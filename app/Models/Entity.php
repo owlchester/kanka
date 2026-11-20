@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
-use App\Facades\Img;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\EntityLogs;
@@ -26,6 +25,7 @@ use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
 use App\Observers\EntityObserver;
 use App\Services\Entity\CustomStatusAssignmentService;
+use App\Services\Images\Img;
 use Carbon\Carbon;
 use Collator;
 use Exception;
@@ -263,7 +263,7 @@ class Entity extends Model
             return '';
         }
 
-        return Img::resetCrop()->crop($width, $height ?? $width)->url($this->$field);
+        return Img::for($this->$field)->crop($width, $height ?? $width)->url();
     }
 
     /**

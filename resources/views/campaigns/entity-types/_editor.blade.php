@@ -8,7 +8,7 @@
             </section>
             <section id="category-image" class="bg-box rounded-xl p-4 md:p-6 flex flex-col gap-4">
                 <h2 class="text-xl">{{ __('Placeholder image') }}</h2>
-                @include('cruds.fields.image-old', ['model' => $entityType ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns/modules.fields.image', 'isModule' => true, 'image' => isset($image) ? Img::crop(96, 96)->url($image['path']) : null])
+                @include('cruds.fields.image-old', ['model' => $entityType ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns/modules.fields.image', 'isModule' => true, 'image' => isset($image) ? Img::for($image['path'])->crop(96, 96)->url() : null])
             </section>
             <section id="category-statuses" class="bg-box rounded-xl p-4 md:p-6 flex flex-col gap-4" data-category-statuses>
                 <h2 class="text-xl">{{ __('Statuses') }}</h2>

@@ -102,6 +102,6 @@
         </div>
     @endif
 
-    @includeWhen(!$entityType->isBookmark() && $campaign->boosted(), 'cruds.fields.image-old', ['model' => $entityType ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns/modules.fields.image', 'isModule' => true, 'image' => isset($image) ? Img::crop(96, 96)->url($image['path']) : null])
+    @includeWhen(!$entityType->isBookmark() && $campaign->boosted(), 'cruds.fields.image-old', ['model' => $entityType ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns/modules.fields.image', 'isModule' => true, 'image' => isset($image) ? Img::for($image['path'])->crop(96, 96)->url() : null])
 
 </x-grid>

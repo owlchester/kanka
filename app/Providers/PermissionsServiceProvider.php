@@ -68,11 +68,7 @@ class PermissionsServiceProvider extends ServiceProvider
 
     protected function registerRole(): self
     {
-        $this->app->singleton(RolePermission::class, function () {
-            return new RolePermission;
-        });
-
-        $this->app->alias(RolePermission::class, 'rolepermission');
+        $this->app->scoped(RolePermission::class);
 
         return $this;
     }

@@ -4,7 +4,6 @@ namespace App\Services\Images;
 
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
-use App\Facades\Img;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\User;
@@ -113,13 +112,13 @@ class Avatar
             return $this->fallbackThumbnail();
         }
 
-        $img = Img::resetCrop()->crop($this->width, $this->height);
+        $img = Img::for($url)->crop($this->width, $this->height);
 
         if (! empty($this->width) && ! empty($this->entity->focus_x) && ! empty($this->entity->focus_y)) {
             $img = $img->focus($this->entity->focus_x, $this->entity->focus_y);
         }
 
-        return $img->url($url);
+        return $img->url();
     }
 
     protected function fallbackThumbnail(): string
@@ -133,8 +132,9 @@ class Avatar
         $defaultImages = $campaign ? CampaignCache::campaign($campaign)->defaultImages() : [];
 
         if ($entityType && Arr::has($defaultImages, $entityType->code)) {
-            return Img::crop($this->width, $this->height)
-                ->url($defaultImages[$entityType->code]);
+            return Img::for($defaultImages[$entityType->code])
+                ->crop($this->width, $this->height)
+                ->url();
         }
 
         $user = $this->user ?? auth()->user();

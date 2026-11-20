@@ -1,4 +1,4 @@
-<aside class="main-sidebar main-sidebar-placeholder absolute z-840 h-auto min-h-full flex flex-col bg-size-[var(--sidebar-width)_208px] bg-no-repeat bg-top-left bg-local @can('member', $campaign)main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url('{{ Img::crop(240, 208)->url($campaign->image) }}')" @endif>
+<aside class="main-sidebar main-sidebar-placeholder absolute z-840 h-auto min-h-full flex flex-col bg-size-[var(--sidebar-width)_208px] bg-no-repeat bg-top-left bg-local @can('member', $campaign)main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url('{{ Img::for($campaign->image)->crop(240, 208)->url() }}')" @endif>
     @include('layouts.sidebars._campaign')
     <section class="sidebar grow">
         <ul class="sidebar-menu overflow-hidden whitespace-no-wrap list-none m-0 p-0 flex flex-col gap-0.5">

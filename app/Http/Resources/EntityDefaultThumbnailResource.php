@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Facades\Img;
+use App\Services\Images\Img;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -20,7 +20,7 @@ class EntityDefaultThumbnailResource extends JsonResource
 
         return [
             'entity_type' => $resource['type'],
-            'url' => Img::url($resource['path']),
+            'url' => Img::for($resource['path'])->url(),
         ];
     }
 }

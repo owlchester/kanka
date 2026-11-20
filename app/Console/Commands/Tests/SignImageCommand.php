@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands\Tests;
 
-use App\Facades\Img;
+use App\Services\Images\Img;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
@@ -53,9 +53,9 @@ class SignImageCommand extends Command
         $height = (int) $height;
 
         if (! empty($height)) {
-            $url = Img::console()->base($base)->crop($width, $height)->url($img);
+            $url = Img::for($img)->base($base)->crop($width, $height)->url();
         } else {
-            $url = Img::console()->base($base)->url($img);
+            $url = Img::for($img)->base($base)->url();
         }
 
         $this->info("Base: {$base}");

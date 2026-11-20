@@ -4,7 +4,6 @@ use App\Enums\EntityEventTypes;
 use App\Enums\Visibility;
 use App\Facades\EntityPermission;
 use App\Facades\Permissions;
-use App\Facades\RolePermission;
 use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
@@ -22,7 +21,7 @@ function switchToPlayerWithFreshPermissions(TestCase $test, Campaign $campaign):
 {
     $test->asPlayer();
     Permissions::swap(new PermissionService);
-    RolePermission::swap(new RolePermissionService);
+    app()->forgetInstance(RolePermissionService::class);
     EntityPermission::swap((new EntityPermissionService)->campaign($campaign));
 }
 

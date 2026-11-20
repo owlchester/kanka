@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Enums\EntityAssetType;
 use App\Enums\Visibility;
-use App\Facades\Img;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\HasVisibility;
@@ -12,6 +11,7 @@ use App\Models\Concerns\Sanitizable;
 use App\Models\Scopes\EntityAssetScopes;
 use App\Models\Scopes\Pinnable;
 use App\Observers\EntityAssetObserver;
+use App\Services\Images\Img;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
@@ -133,7 +133,7 @@ class EntityAsset extends Model
             return $this->image->getUrl(128, 80);
         }
 
-        return Img::crop(128, 80)->url($this->metadata['path']);
+        return Img::for($this->metadata['path'])->crop(128, 80)->url();
     }
 
     /**

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\Visibility;
-use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
@@ -12,6 +11,7 @@ use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Observers\MapLayerObserver;
+use App\Services\Images\Img;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -107,7 +107,7 @@ class MapLayer extends Model
             return $this->image->getUrl($width, $height);
         }
 
-        return Img::crop($width, (! empty($height) ? $height : $width))->url($this->image_path);
+        return Img::for($this->image_path)->crop($width, (! empty($height) ? $height : $width))->url();
     }
 
     public function typeName(): string

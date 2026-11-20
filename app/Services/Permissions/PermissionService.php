@@ -3,7 +3,6 @@
 namespace App\Services\Permissions;
 
 use App\Enums\Permission;
-use App\Facades\RolePermission;
 use App\Facades\UserCache;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
@@ -339,7 +338,7 @@ class PermissionService
     protected function parseRole(CampaignRole $role): void
     {
         // Loop through the permissions of the role to get any blanket _read permissions on entities
-        $permissions = RolePermission::role($role)->permissions();
+        $permissions = app(RolePermission::class)->permissions($role);
         $this->publicRoleId = $role->id;
         foreach ($permissions as $permission) {
             $this->parseRolePermission($permission);
@@ -352,7 +351,7 @@ class PermissionService
     protected function parseRoles(array $roleIDs): void
     {
         // Loop through the permissions of the role to get any blanket _read permissions on entities
-        $permissions = RolePermission::rolesPermissions($roleIDs);
+        $permissions = app(RolePermission::class)->rolesPermissions($roleIDs);
         // dump($permissions);
         // CampaignPermission::whereIn('campaign_role_id', $roleIDs)->get();
         foreach ($permissions as $permission) {

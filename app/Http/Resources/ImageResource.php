@@ -2,8 +2,8 @@
 
 namespace App\Http\Resources;
 
-use App\Facades\Img;
 use App\Models\Image;
+use App\Services\Images\Img;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -28,7 +28,7 @@ class ImageResource extends JsonResource
             'is_folder' => (bool) $image->is_folder,
             'folder_id' => $image->folder_id,
 
-            'path' => $image->is_folder ? null : Img::crop(300, 300)->url($image->path),
+            'path' => $image->is_folder ? null : Img::for($image->path)->crop(300, 300)->url(),
 
             'ext' => $image->ext,
             'version' => $image->version ?? 1,

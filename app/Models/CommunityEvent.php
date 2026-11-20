@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Facades\Img;
 use App\Models\Scopes\CommunityEventScopes;
+use App\Services\Images\Img;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
@@ -62,7 +62,7 @@ class CommunityEvent extends Model
             return '';
         }
 
-        return Img::crop($width, (! empty($height) ? $height : $width))->url($this->$field);
+        return Img::for($this->$field)->crop($width, (! empty($height) ? $height : $width))->url();
     }
 
     /**

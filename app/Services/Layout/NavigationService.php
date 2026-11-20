@@ -4,13 +4,13 @@ namespace App\Services\Layout;
 
 use App\Facades\Domain;
 use App\Facades\Identity;
-use App\Facades\Img;
-use App\Facades\ReleaseCache;
 use App\Facades\UserCache;
 use App\Models\AppRelease;
 use App\Models\Campaign;
 use App\Models\Pledge;
 use App\Notifications\Header;
+use App\Services\Caches\ReleaseCacheService;
+use App\Services\Images\Img;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -115,7 +115,7 @@ class NavigationService
             $data['member'][] = [
                 'name' => $campaign['name'],
                 'is_boosted' => $campaign['boosted'],
-                'image' => $campaign['image'] ? Img::crop(100, 96)->url($campaign['image']) : null,
+                'image' => $campaign['image'] ? Img::for($campaign['image'])->crop(100, 96)->url() : null,
                 'url' => $campaign['route'],
             ];
             $member++;
@@ -125,7 +125,7 @@ class NavigationService
             $data['following'][] = [
                 'name' => $campaign['name'],
                 'is_boosted' => $campaign['boosted'],
-                'image' => $campaign['image'] ? Img::crop(100, 96)->url($campaign['image']) : null,
+                'image' => $campaign['image'] ? Img::for($campaign['image'])->crop(100, 96)->url() : null,
                 'url' => $campaign['route'],
             ];
         }
@@ -227,7 +227,7 @@ class NavigationService
 
     protected function releases(): array
     {
-        $releases = ReleaseCache::latest();
+        $releases = app(ReleaseCacheService::class)->latest();
         $unreadReleases = [];
         /** @var AppRelease $release */
         foreach ($releases as $release) {

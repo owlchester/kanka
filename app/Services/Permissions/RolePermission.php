@@ -3,36 +3,33 @@
 namespace App\Services\Permissions;
 
 use App\Models\CampaignPermission;
-use App\Traits\RoleAware;
+use App\Models\CampaignRole;
 use Illuminate\Database\Eloquent\Collection;
 
 class RolePermission
 {
-    use RoleAware;
-
+    /** @var array<int, Collection<int, CampaignPermission>> */
     protected array $permissions = [];
 
+    /** @var array<string, Collection<int, CampaignPermission>> */
     protected array $rolesPermissions = [];
 
     /**
-     * @return Collection|CampaignPermission[]|array
+     * @return Collection<int, CampaignPermission>
      */
-    public function permissions()
+    public function permissions(CampaignRole $role): Collection
     {
-        if (isset($this->permissions[$this->role->id])) {
-            return $this->permissions[$this->role->id];
-        }
-
-        return $this->permissions[$this->role->id] = $this->role->permissions;
+        return $this->permissions[$role->id] ??= $role->permissions;
     }
 
-    public function rolesPermissions(array $roles): mixed
+    /**
+     * @param  array<int, int>  $roles
+     * @return Collection<int, CampaignPermission>
+     */
+    public function rolesPermissions(array $roles): Collection
     {
         $key = implode('-', $roles);
-        if (isset($this->rolesPermissions[$key])) {
-            return $this->rolesPermissions[$key];
-        }
 
-        return $this->rolesPermissions[$key] = CampaignPermission::roleIds($roles)->get();
+        return $this->rolesPermissions[$key] ??= CampaignPermission::roleIds($roles)->get();
     }
 }
