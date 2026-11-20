@@ -11,6 +11,7 @@ use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\Campaign\Sidebar\SetupService;
 use App\Services\DashboardService;
+use App\Services\Entity\TagFormSyncService;
 use Illuminate\Http\Request;
 
 class BookmarkController extends CampaignTableController
@@ -63,7 +64,7 @@ class BookmarkController extends CampaignTableController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBookmark $request, Campaign $campaign)
+    public function store(StoreBookmark $request, Campaign $campaign, TagFormSyncService $tags)
     {
         $this->authorize('create', [$this->getEntityType(), $campaign]);
         if ($request->ajax()) {
@@ -74,6 +75,7 @@ class BookmarkController extends CampaignTableController
         }
 
         $bookmark = Bookmark::create($request->validated() + ['campaign_id' => $campaign->id]);
+        $tags->sync($bookmark, $request);
         $link = '<a href="' . route('bookmarks.show', [$campaign, $bookmark]) . '" class="text-link">' . e($bookmark->name) . '</a>';
         session()->flash('success_raw', __('general.success.created', ['name' => $link]));
 
@@ -117,7 +119,7 @@ class BookmarkController extends CampaignTableController
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreBookmark $request, Campaign $campaign, Bookmark $bookmark)
+    public function update(StoreBookmark $request, Campaign $campaign, Bookmark $bookmark, TagFormSyncService $tags)
     {
 
         $this->authorize('update', $bookmark);
@@ -129,6 +131,7 @@ class BookmarkController extends CampaignTableController
 
         $data = $request->all();
         $bookmark->update($data);
+        $tags->sync($bookmark, $request);
 
         $link = '<a href="' . route(
             $this->view . '.edit',

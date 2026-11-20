@@ -159,7 +159,7 @@ class StandardController extends Controller
 
             $this->relationsFactory->for($entity)?->save($child, $data);
             $save = $this->entitySaveService->campaign($campaign)->entity($entity);
-            $save->save(Arr::except($data, ['entry_dates']));
+            $save->save(Arr::except($data, ['entry_dates']), $request);
             $this->copyService->entity($entity)->request($request)->fromId()->copy();
             $save->saveEntryDates($data['entry_dates'] ?? []);
 

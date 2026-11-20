@@ -15,7 +15,9 @@ use App\Models\Tag;
 use App\Services\Entity\CopyService;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\EntityRelationsServiceFactory;
+use App\Services\Entity\RemindableService;
 use App\Services\Entity\StandardEntityCreationService;
+use App\Services\Entity\TagFormSyncService;
 use App\Traits\CampaignAware;
 use App\Traits\CreatesEntityFromName;
 use App\Traits\EntityTypeAware;
@@ -48,6 +50,8 @@ class ProcessService
         protected EntitySaveService $entitySaveService,
         protected EntityRelationsServiceFactory $relationsFactory,
         protected StandardEntityCreationService $entityCreationService,
+        protected TagFormSyncService $tagFormSyncService,
+        protected RemindableService $remindableService,
     ) {}
 
     public function entity()
@@ -114,7 +118,7 @@ class ProcessService
                 $this->entity = $model->entity;
             }
 
-            $this->entitySaveService->entity($this->entity)->save(Arr::except($values, ['entry_dates']));
+            $this->entitySaveService->entity($this->entity)->save(Arr::except($values, ['entry_dates']), $this->request);
             if ($model !== null) {
                 $this->relationsFactory->for($this->entity)?->save($model, $values);
             }
@@ -168,6 +172,8 @@ class ProcessService
                 $values['position'] = 1;
                 $new = Post::create($values);
             }
+            $this->tagFormSyncService->sync($new, $this->request);
+            $this->remindableService->save($new, $this->request);
             $this->new[] = $new;
         }
 

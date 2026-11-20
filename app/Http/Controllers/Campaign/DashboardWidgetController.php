@@ -10,6 +10,7 @@ use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Entity;
 use App\Models\Image;
+use App\Services\Entity\TagFormSyncService;
 use App\Services\EntityTypeService;
 
 class DashboardWidgetController extends Controller
@@ -19,8 +20,10 @@ class DashboardWidgetController extends Controller
      *
      * @return void
      */
-    public function __construct(protected EntityTypeService $entityTypeService)
-    {
+    public function __construct(
+        protected EntityTypeService $entityTypeService,
+        protected TagFormSyncService $tagFormSyncService,
+    ) {
         $this->middleware('auth');
     }
 
@@ -100,6 +103,7 @@ class DashboardWidgetController extends Controller
         $data['campaign_id'] = $campaign->id;
         $data = $this->prepareWidgetTarget($data);
         $widget = CampaignDashboardWidget::create($data);
+        $this->tagFormSyncService->sync($widget, $request);
 
         return redirect()
             ->route('dashboard.setup', $widget->dashboard_id ?
@@ -151,6 +155,7 @@ class DashboardWidgetController extends Controller
         $input = $this->prepareWidgetTarget($input);
 
         $campaignDashboardWidget->update($input);
+        $this->tagFormSyncService->sync($campaignDashboardWidget, $request);
 
         return redirect()
             ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ?

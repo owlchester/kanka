@@ -8,12 +8,15 @@ use App\Http\Resources\CampaignDashboardWidgetResource as Resource;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Entity;
+use App\Services\Entity\TagFormSyncService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CampaignDashboardWidgetApiController extends ApiController
 {
+    public function __construct(protected TagFormSyncService $tagFormSyncService) {}
+
     /**
      * @return AnonymousResourceCollection
      *
@@ -55,6 +58,7 @@ class CampaignDashboardWidgetApiController extends ApiController
         $data = array_merge(['campaign_id' => $campaign->id], $request->all());
         $data = $this->prepareWidgetTarget($data);
         $model = CampaignDashboardWidget::create($data);
+        $this->tagFormSyncService->sync($model, $request);
 
         return new Resource($model);
     }
@@ -68,6 +72,7 @@ class CampaignDashboardWidgetApiController extends ApiController
         $data = $request->all();
         $data = $this->prepareWidgetTarget($data);
         $campaignDashboardWidget->update($data);
+        $this->tagFormSyncService->sync($campaignDashboardWidget, $request);
 
         return new Resource($campaignDashboardWidget);
     }

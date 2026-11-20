@@ -90,7 +90,7 @@ class CreateController extends Controller
             $entity->campaign_id = $campaign->id;
             $entity->type_id = $entityType->id;
             $entity->save();
-            $this->entitySaveService->campaign($campaign)->entity($entity)->save($data);
+            $this->entitySaveService->campaign($campaign)->entity($entity)->save($data, $request);
             $this->locationRelationsService->entity($entity)->process($data);
 
             $this->aliasService->entity($entity)->request($request)->save();

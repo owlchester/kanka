@@ -9,6 +9,8 @@ use App\Models\Entity;
 use App\Models\Post;
 use App\Models\PostLayout;
 use App\Services\Entity\PreserveLastUpdatedService;
+use App\Services\Entity\RemindableService;
+use App\Services\Entity\TagFormSyncService;
 use App\Services\MultiEditingService;
 use App\Services\Posts\Permissions\SavePermissionsService;
 use App\Traits\CampaignAware;
@@ -24,6 +26,8 @@ class PostController extends Controller
         protected SavePermissionsService $savePermissionsService,
         protected MultiEditingService $editingService,
         protected PreserveLastUpdatedService $preserveLastUpdatedService,
+        protected TagFormSyncService $tagFormSyncService,
+        protected RemindableService $remindableService,
     ) {}
 
     public function index(Campaign $campaign, Entity $entity)
@@ -107,6 +111,8 @@ class PostController extends Controller
 
         try {
             $post = Post::create($data);
+            $this->tagFormSyncService->sync($post, $request);
+            $this->remindableService->save($post, $request);
 
             if (auth()->user()->can('permissions', $entity)) {
                 $this->savePermissionsService->post($post)->request($request)->save();
@@ -183,6 +189,8 @@ class PostController extends Controller
 
         try {
             $post->update($data);
+            $this->tagFormSyncService->sync($post, $request);
+            $this->remindableService->save($post, $request);
             if (auth()->user()->can('permissions', $entity)) {
                 $this->savePermissionsService
                     ->post($post)

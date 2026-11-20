@@ -122,7 +122,7 @@ class EditController extends Controller
 
                 // Sync parent_id from the request for all entity types
                 // $entity->parent_id = $request->has('parent_id') ? $request->get('parent_id') : null;
-                $this->entitySaveService->campaign($campaign)->entity($entity)->save($data);
+                $this->entitySaveService->campaign($campaign)->entity($entity)->save($data, $request);
 
                 // If the child was changed but nothing changed on the entity, we still want to trigger an update
                 if ($entity->child->wasChanged() && ! $entity->wasChanged()) {
@@ -131,7 +131,7 @@ class EditController extends Controller
             } else {
                 $preparedData = $this->fixRequestData($request, $entity, $validated);
                 $entity->update($preparedData);
-                $this->entitySaveService->campaign($campaign)->entity($entity)->save($preparedData);
+                $this->entitySaveService->campaign($campaign)->entity($entity)->save($preparedData, $request);
                 $this->locationRelationsService->entity($entity)->process($preparedData);
             }
 
