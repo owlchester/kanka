@@ -29,6 +29,7 @@
         'success_copied_members' => __('entities/share.success.copied_members'),
         'success_updated'        => __('entities/share.success.updated'),
         'error_generic'          => __('errors.500.body.1'),
+        'visibility_locked'      => __('campaigns/share.copyright_visibility_locked'),
         'title'                  => __('entities/share.title'),
     ];
 @endphp
@@ -48,9 +49,9 @@
         :initial-entity-private="{{ $entity->is_private ? 'true' : 'false' }}"
         url="{{ $entity->url() }}"
         save-endpoint="{{ route('entities.share.save', [$campaign, $entity]) }}"
+        :can-change-visibility="@js($canChangeVisibility)"
         :trans='@json($shareTranslations)'
     ></entity-share-modal>
 </div>
 
 @endsection
-

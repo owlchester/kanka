@@ -17,6 +17,7 @@
         'success_copied_public'  => __('campaigns/share.success.copied_public'),
         'success_copied_members' => __('campaigns/share.success.copied_members'),
         'error_generic'          => __('errors.500.body.1'),
+        'visibility_locked'      => __('campaigns/share.copyright_visibility_locked'),
     ];
 @endphp
 
@@ -32,6 +33,7 @@
         url="{{ route('dashboard', $campaign) }}"
         save-endpoint="{{ route('campaign.share.save', $campaign) }}"
         settings-url="{{ route('campaign-visibility', $campaign) }}"
+        :can-change-visibility="@js($canChangeVisibility)"
         :trans='@json($shareTranslations)'
     ></campaign-share-modal>
 </div>

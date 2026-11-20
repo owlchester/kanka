@@ -3,6 +3,8 @@
  * @var \App\Models\Campaign $campaign
  */
 use App\Enums\CampaignVisibility;
+use App\Enums\CampaignFlags;
+$visibilityLocked = isset($campaign) && $campaign && $campaign->flags()->where('flag', CampaignFlags::Copyright->value)->exists();
 ?>
 
 <x-forms.field
@@ -12,7 +14,7 @@ use App\Enums\CampaignVisibility;
 
     <div class="flex flex-col gap-2">
         <div class="rounded-xl border border-base-300 p-2 flex gap-2 items-start cursor-pointer hover:shadow-sm">
-            <input type="radio" name="visibility_id" id="visibility-private" value="{{ CampaignVisibility::private->value }}" class="mt-1" @if (!$campaign || $campaign->isPrivate()) checked="checked" @endif>
+            <input type="radio" name="visibility_id" id="visibility-private" value="{{ CampaignVisibility::private->value }}" class="mt-1" @if (!$campaign || $campaign->isPrivate()) checked="checked" @endif @disabled($visibilityLocked)>
             <div class="flex flex-col gap-0 w-full">
                 <label for="visibility-private" class="w-full cursor-pointer">
                     {{ __('campaigns/visibilities.titles.private') }}
@@ -25,7 +27,7 @@ use App\Enums\CampaignVisibility;
         </div>
 
         <div class="rounded-xl border border-base-300 p-2 flex gap-2 items-start cursor-pointer hover:shadow-sm">
-            <input type="radio" name="visibility_id" id="visibility-public" value="{{ CampaignVisibility::public->value }}" class="mt-1" @if ($campaign && $campaign->isPublic()) checked="checked" @endif>
+            <input type="radio" name="visibility_id" id="visibility-public" value="{{ CampaignVisibility::public->value }}" class="mt-1" @if ($campaign && $campaign->isPublic()) checked="checked" @endif @disabled($visibilityLocked)>
             <div class="flex flex-col gap-0 w-full">
                 <label for="visibility-public" class="w-full cursor-pointer">
                     {{ __('campaigns/visibilities.titles.public') }}
@@ -39,7 +41,7 @@ use App\Enums\CampaignVisibility;
 
         @if ($campaign && $campaign->premium())
             <div class="rounded-xl border border-base-300 p-2 flex gap-2 items-start cursor-pointer hover:shadow-sm">
-                <input type="radio" name="visibility_id" id="visibility-unlisted" value="{{ CampaignVisibility::unlisted->value }}" class="mt-1" @if ($campaign->isUnlisted()) checked="checked" @endif>
+                <input type="radio" name="visibility_id" id="visibility-unlisted" value="{{ CampaignVisibility::unlisted->value }}" class="mt-1" @if ($campaign->isUnlisted()) checked="checked" @endif @disabled($visibilityLocked)>
                 <div class="flex flex-col gap-0 w-full">
                     <label for="visibility-unlisted" class="w-full cursor-pointer">
                         {{ __('campaigns/visibilities.titles.unlisted') }}
@@ -68,6 +70,9 @@ use App\Enums\CampaignVisibility;
             </div>
         @endif
     </div>
+    @if ($visibilityLocked)
+        <p class="text-sm text-neutral-content">{{ __('campaigns/share.copyright_visibility_locked') }}</p>
+    @endif
 
     @if (isset($campaign))
         <x-helper>

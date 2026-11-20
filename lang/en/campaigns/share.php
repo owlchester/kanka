@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'copyright_visibility_locked' => 'Campaign visibility cannot be changed while a copyright notice is active.',
+    'visibility_locked' => 'Campaign visibility cannot be changed while a copyright notice is active.',
     'buttons'   => [
         'change_visibility' => 'Change visibility',
         'copy'              => 'Copy link',

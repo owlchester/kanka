@@ -20,7 +20,7 @@ class VisibilityController extends Controller
 
     public function edit(Campaign $campaign)
     {
-        $this->authorize('update', $campaign);
+        $this->authorize('visibility', $campaign);
         $from = request()->get('from');
 
         return view('campaigns.forms.modals.visibility', compact('campaign', 'from'));
@@ -28,7 +28,7 @@ class VisibilityController extends Controller
 
     public function save(StoreCampaignVisibility $request, Campaign $campaign)
     {
-        $this->authorize('update', $campaign);
+        $this->authorize('visibility', $campaign);
         if ($request->ajax()) {
             return response()->json();
         }
