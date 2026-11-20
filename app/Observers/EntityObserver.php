@@ -92,7 +92,7 @@ class EntityObserver
             MapUpdated::dispatch($map);
         }
 
-        if ($entity->campaign->premium()) {
+        if ($entity->campaign->premium() && auth()->check()) {
             EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED->value)->afterCommit();
         }
     }
@@ -102,7 +102,7 @@ class EntityObserver
         // When an entity is soft-deleted, we just want some webhooks to trigger,
         // not actually delete the entity and its image.
         if (! $entity->isForceDeleting()) {
-            if ($entity->campaign->premium()) {
+            if ($entity->campaign->premium() && auth()->check()) {
                 EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::DELETED->value)->afterCommit();
             }
 

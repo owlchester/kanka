@@ -11,6 +11,10 @@ class LogStyle
 {
     public function handle(StyleCreated|StyleUpdated|StyleDeleted $event): void
     {
+        if (! $event->user) {
+            return;
+        }
+
         $action = match (true) {
             $event instanceof StyleCreated => 'created',
             $event instanceof StyleUpdated => 'updated',

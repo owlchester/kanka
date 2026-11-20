@@ -12,6 +12,10 @@ class LogWebhook
 {
     public function handle(WebhookCreated|WebhookUpdated|WebhookDeleted|WebhookTested $event): void
     {
+        if (! $event->user) {
+            return;
+        }
+
         $action = match (true) {
             $event instanceof WebhookCreated => 'created',
             $event instanceof WebhookUpdated => 'updated',

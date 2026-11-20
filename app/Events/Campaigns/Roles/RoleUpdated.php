@@ -19,7 +19,7 @@ class RoleUpdated
      */
     public function __construct(
         public CampaignRole $campaignRole,
-        public User $user
+        public ?User $user
     ) {
         //
     }

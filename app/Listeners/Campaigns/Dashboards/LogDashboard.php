@@ -11,6 +11,10 @@ class LogDashboard
 {
     public function handle(DashboardCreated|DashboardUpdated|DashboardDeleted $event): void
     {
+        if (! $event->user) {
+            return;
+        }
+
         $action = match (true) {
             $event instanceof DashboardCreated => 'created',
             $event instanceof DashboardUpdated => 'updated',

@@ -19,7 +19,7 @@ class PostRestored
      */
     public function __construct(
         public Post $post,
-        public User $user,
+        public ?User $user,
     ) {
         //
     }

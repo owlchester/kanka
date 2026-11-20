@@ -10,6 +10,10 @@ class LogUserRoleChanged
 {
     public function handle(RoleUserAdded|RoleUserRemoved $event): void
     {
+        if (! $event->user) {
+            return;
+        }
+
         $action = $event instanceof RoleUserAdded ? 'created' : 'deleted';
 
         if (! isset($event->campaignRoleUser->campaignRole)) {

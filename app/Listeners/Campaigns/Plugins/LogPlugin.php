@@ -11,6 +11,10 @@ class LogPlugin
 {
     public function handle(PluginUpdated|PluginDeleted|PluginImported $event): void
     {
+        if (! $event->user) {
+            return;
+        }
+
         $action = $event instanceof PluginUpdated ? 'updated' : 'deleted';
         if ($event instanceof PluginUpdated) {
             $action = 'updated';

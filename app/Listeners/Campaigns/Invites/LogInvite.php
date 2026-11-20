@@ -10,6 +10,10 @@ class LogInvite
 {
     public function handle(InviteCreated|InviteDeleted $event): void
     {
+        if (! $event->user) {
+            return;
+        }
+
         $action = $event instanceof InviteCreated ? 'created' : 'deleted';
 
         UserLogger::user($event->user)->campaign(
