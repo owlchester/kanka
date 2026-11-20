@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Datagrids\Actions\DefaultDatagridActions;
 use App\Datagrids\Filters\DatagridFilter;
 use App\Models\Bookmark;
 use App\Models\Campaign;
@@ -27,8 +26,6 @@ abstract class CampaignTableController extends Controller
 
     /** @var class-string<DatagridFilter> */
     protected string $filter;
-
-    protected string $datagridActions = DefaultDatagridActions::class;
 
     protected string $langKey;
 
@@ -81,9 +78,6 @@ abstract class CampaignTableController extends Controller
 
         $data = compact('campaign', 'models', 'name', 'langKey', 'model', 'filter', 'filteredCount', 'unfilteredCount', 'route', 'bulk', 'datagridActions');
         $data['mode'] = 'table';
-        $data['parent'] = null;
-        $data['forceMode'] = null;
-
         if ($model instanceof Bookmark) {
             $type = EntityType::findOrFail(config('entities.ids.bookmark'));
             $data['entityType'] = $type;
@@ -99,10 +93,6 @@ abstract class CampaignTableController extends Controller
                         $data['bookmark'] = $bookmark;
                         $data['titleKey'] = $bookmark->name;
                     }
-                }
-                if ($request->has('order')) {
-                    $data['order'] = $request->query('order');
-                    $data['desc'] = $request->query('desc');
                 }
             }
         } else {

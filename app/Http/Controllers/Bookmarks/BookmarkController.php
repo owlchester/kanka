@@ -18,8 +18,6 @@ class BookmarkController extends CampaignTableController
 {
     protected string $view = 'bookmarks';
 
-    protected string $route = 'bookmarks';
-
     protected string $model = Bookmark::class;
 
     protected string $datagridActions = BookmarkDatagridActions::class;

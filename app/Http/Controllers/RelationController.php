@@ -25,8 +25,6 @@ class RelationController extends CampaignTableController
 
     protected string $view = 'relations';
 
-    protected string $route = 'relations';
-
     protected string $langKey = 'entities/relations';
 
     protected string $model = Relation::class;

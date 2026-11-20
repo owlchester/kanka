@@ -88,7 +88,9 @@ it('still lists, creates and edits bookmarks outside entity CRUD', function () {
 });
 
 it('still renders the campaign-wide relations table', function () {
-    $this->asUser()->withCampaign()->withCharacters()->withRelations();
+    $this->asUser()->withCampaign()->withCharacters()->withRelations(['relation' => 'Visible relation']);
 
-    $this->get(route('relations.index', Campaign::findOrFail(1)))->assertOk();
+    $this->get(route('relations.index', Campaign::findOrFail(1)))
+        ->assertOk()
+        ->assertSee('Visible relation');
 });
