@@ -52,6 +52,8 @@
             @endguest
         @endif
 
+        @yield('error-details')
+
         <p class="lg:max-w-2xl mx-auto text-center">
             {!! __('errors.footer', [
     'discord' => '<a href="https://kanka.io/go/discord" class="link-light">Discord</a>',

@@ -92,6 +92,13 @@ class PermissionService
         return $this->publicRoleId;
     }
 
+    public function fallbackPublicRoleId(): ?int
+    {
+        $this->loadPermissions();
+
+        return $this->publicRoleId ?? null;
+    }
+
     public function reload(): self
     {
         return $this->reset();

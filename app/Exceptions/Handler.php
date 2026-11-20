@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use App\Facades\ApiLog;
 use App\Facades\Domain;
 use App\Models\Campaign;
+use App\Services\Permissions\EntityVisibilityExplanation;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Broadcasting\BroadcastException;
@@ -18,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Support\Str;
+use Illuminate\Support\ViewErrorBag;
 use Illuminate\Validation\ValidationException;
 use Intervention\Image\Exceptions\DecoderException;
 use Laravel\Passport\Exceptions\OAuthServerException;
@@ -122,6 +124,26 @@ class Handler extends ExceptionHandler
         } elseif ($request->is('api/*') || Domain::isApi()) {
             // API error handling
             return $this->handleApiErrors($exception);
+        }
+
+        if ($exception instanceof ModelNotFoundException
+            && $request->isMethod('GET')
+            && ! $request->ajax()
+            && $request->acceptsHtml()
+            && ! $this->shouldReturnJson($request, $exception)
+            && ! Domain::isApi()
+            && ! $request->is('api/*')) {
+            try {
+                $explanation = app(EntityVisibilityExplanation::class)->forMissingBinding($request, $exception);
+                if ($explanation !== null) {
+                    return response()->view('errors.404', [
+                        'visibilityExplanation' => $explanation,
+                        'errors' => new ViewErrorBag,
+                    ], 404, ['Cache-Control' => 'private, no-store']);
+                }
+            } catch (Throwable $diagnosticFailure) {
+                report($diagnosticFailure);
+            }
         }
 
         return parent::render($request, $exception);
