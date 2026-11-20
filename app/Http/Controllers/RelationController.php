@@ -106,28 +106,28 @@ class RelationController extends CampaignTableController
             session()->flash('success_raw', $success);
 
             if ($request->has('submit-new')) {
-                $route = route($this->route . '.create', $campaign);
+                $route = route($this->view . '.create', $campaign);
 
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-update')) {
-                $route = route($this->route . '.edit', [$campaign, $new]);
+                $route = route($this->view . '.edit', [$campaign, $new]);
 
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-view')) {
-                $route = route($this->route . '.show', [$campaign, $new]);
+                $route = route($this->view . '.show', [$campaign, $new]);
 
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-copy')) {
-                $route = route($this->route . '.create', [$campaign, 'copy' => $new->id]);
+                $route = route($this->view . '.create', [$campaign, 'copy' => $new->id]);
 
                 return response()->redirectTo($route);
             } elseif (auth()->user()->new_entity_workflow == 'created') {
-                $route = route($this->route . '.show', [$campaign, $new]);
+                $route = route($this->view . '.show', [$campaign, $new]);
 
                 return response()->redirectTo($route);
             }
 
-            $route = route($this->route . '.index', $campaign);
+            $route = route($this->view . '.index', $campaign);
 
             return response()->redirectTo($route);
         } catch (\LogicException $exception) {

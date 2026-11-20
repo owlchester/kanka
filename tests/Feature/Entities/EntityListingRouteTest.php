@@ -2,8 +2,11 @@
 
 use App\Models\Bookmark;
 use App\Models\Campaign;
+use App\Models\Character;
+use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\Note;
+use App\Models\Relation;
 
 it('redirects bookmark entity listings to the bookmarks page', function () {
     $this->asUser()->withCampaign();
@@ -85,12 +88,44 @@ it('still lists, creates and edits bookmarks outside entity CRUD', function () {
     $bookmark = Bookmark::where('name', 'My bookmark')->sole();
     $this->get(route('bookmarks.edit', [$campaign, $bookmark]))->assertOk()->assertSee('My bookmark');
     $this->get(route('bookmarks.index', $campaign))->assertOk()->assertSee('My bookmark');
+
+    $this->put(route('bookmarks.update', [$campaign, $bookmark]), [
+        'name' => 'Updated bookmark',
+        'submit-close' => true,
+    ])->assertRedirect(route('bookmarks.index', $campaign));
 });
 
 it('still renders the campaign-wide relations table', function () {
     $this->asUser()->withCampaign()->withCharacters()->withRelations(['relation' => 'Visible relation']);
 
+    $characters = Character::query()->orderBy('id')->get();
+    Relation::factory()->create([
+        'campaign_id' => 1,
+        'owner_id' => $characters[2]->entity->id,
+        'target_id' => $characters[3]->entity->id,
+        'relation' => 'Unarchived relation',
+    ]);
+    Entity::query()->whereKey($characters[0]->entity->id)->update(['archived_at' => now()]);
+
     $this->get(route('relations.index', Campaign::findOrFail(1)))
         ->assertOk()
-        ->assertSee('Visible relation');
+        ->assertSee('Unarchived relation')
+        ->assertDontSee('Visible relation');
+});
+
+it('redirects relation creation to the edit route when requested', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $campaign = Campaign::findOrFail(1);
+    $characters = Character::query()->orderBy('id')->get();
+
+    $response = $this->post(route('relations.store', $campaign), [
+        'owner_id' => $characters[0]->entity->id,
+        'target_id' => $characters[1]->entity->id,
+        'relation' => 'Created relation',
+        'submit-update' => true,
+    ]);
+
+    $response->assertRedirect();
+    $relation = Relation::query()->where('relation', 'Created relation')->sole();
+    $response->assertRedirect(route('relations.edit', [$campaign, $relation]));
 });

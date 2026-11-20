@@ -27,6 +27,8 @@ abstract class CampaignTableController extends Controller
     /** @var class-string<DatagridFilter> */
     protected string $filter;
 
+    protected string $datagridActions;
+
     protected string $langKey;
 
     public function __construct(

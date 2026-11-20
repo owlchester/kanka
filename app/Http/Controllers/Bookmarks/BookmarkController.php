@@ -145,13 +145,13 @@ class BookmarkController extends CampaignTableController
         $route = route($this->view . '.edit', $options + [$bookmark]);
 
         if ($request->has('submit-new')) {
-            $route = route($this->route . '.create', $campaign);
+            $route = route($this->view . '.create', $campaign);
         } elseif ($request->has('submit-update')) {
-            $route = route($this->route . '.edit', [$campaign, $bookmark->id]);
+            $route = route($this->view . '.edit', [$campaign, $bookmark->id]);
         } elseif ($request->has('submit-close')) {
-            $route = route($this->route . '.index', [$campaign]);
+            $route = route($this->view . '.index', [$campaign]);
         } elseif ($request->has('submit-copy')) {
-            $route = route($this->route . '.create', [$campaign, 'copy' => $bookmark->id]);
+            $route = route($this->view . '.create', [$campaign, 'copy' => $bookmark->id]);
 
             return response()->redirectTo($route)->with('success_raw', $success);
         }
