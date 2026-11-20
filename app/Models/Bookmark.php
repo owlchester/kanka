@@ -15,6 +15,8 @@ use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\Models\Concerns\Taggable;
+use App\Observers\BookmarkObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -49,6 +51,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static self|Builder ordered()
  * @method static self|Builder active()
  */
+#[ObservedBy(BookmarkObserver::class)]
 class Bookmark extends Model
 {
     use Blameable;

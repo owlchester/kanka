@@ -5,23 +5,15 @@ namespace App\Providers;
 use App\Auth\PassportTokenGuard;
 use App\Http\Validators\HashValidator;
 use App\Jobs\Search\MakeSearchable;
-use App\Models\Bookmark;
 use App\Models\Campaign;
-use App\Models\CampaignDashboardWidget;
-use App\Models\DiceRollResult;
 use App\Models\Entity;
-use App\Models\EntityAsset;
-use App\Models\FamilyTree;
 use App\Models\Image;
 use App\Models\Map;
 use App\Models\MapGroup;
 use App\Models\MapLayer;
 use App\Models\MapMarker;
-use App\Models\Reminder;
-use App\Models\TimelineEra;
 use App\Models\User;
 use App\Observers\CampaignObserver;
-use App\Observers\FamilyTreeObserver;
 use App\View\Composers\EntryWorkspaceComposer;
 use Exception;
 use Illuminate\Contracts\Encryption\Encrypter;
@@ -159,19 +151,12 @@ class AppServiceProvider extends ServiceProvider
 
         // Model observers. Lots of magic.
         Campaign::observe(CampaignObserver::class);
-        CampaignDashboardWidget::observe('App\Observers\CampaignDashboardWidgetObserver');
-        DiceRollResult::observe('App\Observers\DiceRollResultObserver');
         Entity::observe('App\Observers\EntityObserver');
-        EntityAsset::observe('App\Observers\EntityAssetObserver');
-        Reminder::observe('App\Observers\ReminderObserver');
-        FamilyTree::observe(FamilyTreeObserver::class);
         Image::observe('App\Observers\ImageObserver');
         Map::observe('App\Observers\MapObserver');
         MapLayer::observe('App\Observers\MapLayerObserver');
         MapGroup::observe('App\Observers\MapGroupObserver');
         MapMarker::observe('App\Observers\MapMarkerObserver');
-        Bookmark::observe('App\Observers\BookmarkObserver');
-        TimelineEra::observe('App\Observers\TimelineEraObserver');
 
         if (request()->has('_debug_perm') && config('app.debug')) {
             // Add in boot function

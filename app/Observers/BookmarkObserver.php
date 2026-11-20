@@ -10,7 +10,7 @@ class BookmarkObserver
     {
         // Handle empty or wrong positions
         if (empty($model->position)) {
-            $model->position = Bookmark::max('position') + 1;
+            $model->position = Bookmark::where('campaign_id', $model->campaign_id)->max('position') + 1;
         } else {
             $model->position = (int) $model->position;
         }

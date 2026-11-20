@@ -12,8 +12,10 @@ use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Scopes\EntityAssetScopes;
 use App\Models\Scopes\Pinnable;
+use App\Observers\EntityAssetObserver;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -34,6 +36,7 @@ use Illuminate\Support\Str;
  * @property ?Entity $entity
  * @property ?Image $image
  */
+#[ObservedBy(EntityAssetObserver::class)]
 class EntityAsset extends Model
 {
     use Blameable;
