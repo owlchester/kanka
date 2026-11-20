@@ -26,6 +26,10 @@ class UploadFiles extends FormRequest
     {
         /** @var Campaign $campaign */
         $campaign = $this->route('campaign');
+        $limit = Limit::campaign($campaign);
+        if ($this->user()) {
+            $limit = $limit->user($this->user());
+        }
         $types = ['jpeg', 'jpg', 'gif', 'png', 'webp', 'woff2'];
 
         return [
@@ -33,7 +37,7 @@ class UploadFiles extends FormRequest
             'files.*' => [
                 'required',
                 File::types($types),
-                'max:' . Limit::upload(),
+                'max:' . $limit->upload(),
                 new GallerySize,
             ],
             'folder_id' => [

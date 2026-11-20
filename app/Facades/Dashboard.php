@@ -21,6 +21,6 @@ class Dashboard extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'dashboard';
+        return DashboardService::class;
     }
 }

@@ -44,3 +44,18 @@ it('keeps the standard upload limit for non admin users', function () {
 
     expect($size)->toBe(config('limits.filesize.image.standard') * 1024);
 });
+
+it('uses the map upload limit when the scoped map option is retained', function () {
+    $user = User::factory()->create();
+    $limit = app(LimitService::class)->user($user);
+
+    expect($limit->map()->upload())
+        ->toBe(config('limits.filesize.map') * 1024)
+        ->and($limit->upload())
+        ->toBe(config('limits.filesize.image.standard') * 1024);
+});
+
+it('uses the standard upload limit without an authenticated user', function () {
+    expect(app(LimitService::class)->upload())
+        ->toBe(config('limits.filesize.image.standard') * 1024);
+});

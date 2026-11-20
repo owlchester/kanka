@@ -10,7 +10,7 @@ $inputFileTypes = '.jpg, .jpeg, .png, .gif, .webp';
 $max = Limit::user(auth()->user())->campaign($campaign);
 $from = null;
 if (isset($size) && $size == 'map') {
-    $max->map();
+    $max = $max->map();
     $formats = 'PNG, JPG, GIF, SVG, WebP';
     $inputFileTypes = '.jpg, .jpeg, .png, .gif, .webp, .svg';
     $from = 'map';
@@ -127,7 +127,7 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
             @if ($isUnlimited)
                 {{ __('crud.hints.image_formats', ['formats' => $formats]) }}
             @else
-                {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? Limit::readable()->map()->upload() : Limit::readable()->upload())]) }}
+                {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => $max]) }}
                 @includeWhen(config('services.stripe.enabled'), 'cruds.fields.helpers.share')
             @endif
             @if (isset($recommended)) {{ __('crud.hints.image_dimension', ['dimension' => $recommended]) }} @endif

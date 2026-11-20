@@ -6,7 +6,6 @@ use App\Enums\CampaignImportStatus;
 use App\Enums\UserAction;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
-use App\Facades\Limit;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreCustomEntity;
 use App\Models\CampaignImport;
@@ -191,8 +190,6 @@ class CsvImportService
             // We're in the queue after all
             CampaignLocalization::forceCampaign($this->campaign);
             CampaignCache::campaign($this->campaign)->clear();
-            Limit::campaign($this->campaign);
-            Limit::user($this->user);
 
             // Batch size controls how many rows are loaded into memory at once.
             $batchSize = 50;

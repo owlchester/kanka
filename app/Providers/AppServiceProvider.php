@@ -6,6 +6,17 @@ use App\Auth\PassportTokenGuard;
 use App\Http\Validators\HashValidator;
 use App\Jobs\Search\MakeSearchable;
 use App\Models\User;
+use App\Services\AttributeMentionService;
+use App\Services\BreadcrumbService;
+use App\Services\Caches\AdCacheService;
+use App\Services\Caches\CampaignCacheService;
+use App\Services\Caches\UserCacheService;
+use App\Services\Campaign\Import\ImportIdMapper;
+use App\Services\Campaign\ModuleService;
+use App\Services\DashboardService;
+use App\Services\DomainService;
+use App\Services\LimitService;
+use App\Services\Logs\ApiLogService;
 use App\View\Composers\EntryWorkspaceComposer;
 use Exception;
 use Illuminate\Contracts\Encryption\Encrypter;
@@ -30,6 +41,21 @@ use Symfony\Component\Process\Process;
 
 class AppServiceProvider extends ServiceProvider
 {
+    public function register(): void
+    {
+        $this->app->scoped(AdCacheService::class);
+        $this->app->scoped(ApiLogService::class);
+        $this->app->scoped(AttributeMentionService::class);
+        $this->app->scoped(BreadcrumbService::class);
+        $this->app->scoped(CampaignCacheService::class);
+        $this->app->scoped(DashboardService::class);
+        $this->app->scoped(DomainService::class);
+        $this->app->scoped(ImportIdMapper::class);
+        $this->app->scoped(LimitService::class);
+        $this->app->scoped(ModuleService::class);
+        $this->app->scoped(UserCacheService::class);
+    }
+
     /**
      * Bootstrap any application services.
      *
@@ -76,13 +102,6 @@ class AppServiceProvider extends ServiceProvider
             return Route::post('/livewire/update/{campaign?}', $handle)->middleware('web');
         });
     }
-
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register() {}
 
     protected function registerDevelopWarning()
     {

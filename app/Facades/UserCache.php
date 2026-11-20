@@ -21,6 +21,6 @@ class UserCache extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'usercache';
+        return UserCacheService::class;
     }
 }

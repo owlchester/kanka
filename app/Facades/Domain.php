@@ -17,6 +17,6 @@ class Domain extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'domain';
+        return DomainService::class;
     }
 }

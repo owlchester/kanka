@@ -14,19 +14,12 @@ use App\Facades\Limit;
 use App\Facades\Mentions;
 use App\Facades\UserCache;
 use App\Providers\AppServiceProvider;
-use App\Providers\AttributesServiceProvider;
-use App\Providers\BreadcrumbServiceProvider;
 use App\Providers\CampaignLocalizationServiceProvider;
-use App\Providers\DashboardServiceProvider;
 use App\Providers\DatagridRendererProvider;
 use App\Providers\DatalayerServiceProvider;
-use App\Providers\DomainServiceProvider;
 use App\Providers\EntitySetupServiceProvider;
 use App\Providers\EventServiceProvider;
 use App\Providers\ImgServiceProvider;
-use App\Providers\ImporterServiceProvider;
-use App\Providers\LimitServiceProvider;
-use App\Providers\Logs\ApiLogServiceProvider;
 use App\Providers\Logs\UserLoggerServiceProvider;
 use App\Providers\MentionsServiceProvider;
 use App\Providers\ModuleServiceProvider;
@@ -331,21 +324,14 @@ return [
         RouteServiceProvider::class,
         CampaignLocalizationServiceProvider::class,
         MentionsServiceProvider::class,
-        BreadcrumbServiceProvider::class,
         App\Providers\CacheServiceProvider::class,
         ImgServiceProvider::class,
-        AttributesServiceProvider::class,
-        DashboardServiceProvider::class,
         DatalayerServiceProvider::class,
         DatagridRendererProvider::class,
         PermissionsServiceProvider::class,
         EntitySetupServiceProvider::class,
         ModuleServiceProvider::class,
-        ApiLogServiceProvider::class,
         UserLoggerServiceProvider::class,
-        DomainServiceProvider::class,
-        LimitServiceProvider::class,
-        ImporterServiceProvider::class,
 
     ],
 

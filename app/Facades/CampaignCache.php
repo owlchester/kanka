@@ -21,6 +21,6 @@ class CampaignCache extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'campaigncache';
+        return CampaignCacheService::class;
     }
 }
