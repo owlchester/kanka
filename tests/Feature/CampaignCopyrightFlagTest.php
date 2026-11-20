@@ -11,12 +11,15 @@ it('shows a copyright notice to campaign members on campaign pages', function ()
 
     Campaign::find(1)->flags()->create([
         'flag' => CampaignFlags::Copyright,
-        'value' => 'Please respond to our email.',
+        'value' => 'Please <strong>respond</strong> to our email.' . "\n" . 'Contact staff.',
     ]);
 
     $this->get(route('overview', 1))
         ->assertOk()
-        ->assertSeeText('Please respond to our email.');
+        ->assertSeeText('Please respond to our email.')
+        ->assertSee('<strong>respond</strong>', false)
+        ->assertSee('<br />', false)
+        ->assertSeeText('Contact staff.');
 });
 
 it('does not show a copyright notice to non-members', function () {
