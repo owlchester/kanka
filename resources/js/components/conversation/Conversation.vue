@@ -1,13 +1,13 @@
 <template>
-    <div class="box-conversation flex min-w-0 flex-col overflow-hidden rounded-xl bg-base-100">
+    <div class="box-conversation flex min-w-0 flex-col overflow-hidden rounded-lg bg-base-100">
         <div
             ref="transcript"
-            class="box-comments max-h-[60dvh] min-h-32 overflow-y-auto overscroll-contain p-4 [overflow-anchor:none] sm:px-6"
+            class="box-comments max-h-[60dvh] min-h-32 overflow-y-auto overscroll-contain p-4 [overflow-anchor:none]"
             role="region"
             :aria-label="trans.messages"
             tabindex="0"
         >
-            <div v-if="loading" class="py-8 text-center text-sm text-base-content/75" role="status">
+            <div v-if="loading" class="py-8 text-center text-sm text-base-content" role="status">
                 {{ trans.loading }}
             </div>
             <div v-else-if="!ready" class="flex flex-col items-center gap-2 py-8 text-sm">
