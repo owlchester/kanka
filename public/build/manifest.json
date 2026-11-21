@@ -282,7 +282,7 @@
     "isDynamicEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app-i1TmDMcV.css",
+    "file": "assets/app-CdgAjXxC.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -291,7 +291,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-OfAWPEdi.css",
+    "file": "assets/auth-CTH5FLwa.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -318,7 +318,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-BgNsCpyN.css",
+    "file": "assets/front-D6qFYl_J.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -425,7 +425,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-ysWNjiWo.js",
+    "file": "assets/app-By-35bvk.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -673,7 +673,7 @@
     ]
   },
   "resources/js/entities/reader.js": {
-    "file": "assets/reader-CnT9D_wo.js",
+    "file": "assets/reader-yHFqYM_c.js",
     "name": "reader",
     "src": "resources/js/entities/reader.js",
     "isDynamicEntry": true,
@@ -753,7 +753,7 @@
     ]
   },
   "resources/js/gallery/gallery.js": {
-    "file": "assets/gallery-Lx_nHUMN.js",
+    "file": "assets/gallery-DGyamA4s.js",
     "name": "gallery",
     "src": "resources/js/gallery/gallery.js",
     "isEntry": true,

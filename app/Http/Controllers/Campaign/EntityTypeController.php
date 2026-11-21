@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\DeleteEntityType;
 use App\Http\Requests\StoreEntityType;
 use App\Models\Campaign;
+use App\Models\Entity;
 use App\Models\EntityType;
 use App\Services\EntityTypeService;
 use Exception;
@@ -78,6 +79,14 @@ class EntityTypeController extends Controller
 
         $entityType->load('statuses');
 
+        $statusCounts = Entity::withTrashed()
+            ->where('campaign_id', $campaign->id)
+            ->where('type_id', $entityType->id)
+            ->whereNotNull('status_id')
+            ->groupBy('status_id')
+            ->selectRaw('status_id, count(*) as aggregate')
+            ->pluck('aggregate', 'status_id');
+
         $image = null;
         $thumbnails = $campaign->defaultImages();
         foreach ($thumbnails as $thumbnail) {
@@ -89,6 +98,7 @@ class EntityTypeController extends Controller
         return view('campaigns.entity-types.edit')
             ->with('campaign', $campaign)
             ->with('image', $image)
+            ->with('statusCounts', $statusCounts)
             ->with('entityType', $entityType);
     }
 

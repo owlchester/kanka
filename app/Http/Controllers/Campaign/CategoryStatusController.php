@@ -33,6 +33,6 @@ class CategoryStatusController extends Controller
     {
         $this->statuses->delete($campaign, $entityType, $status, $request->validated());
 
-        return redirect()->route('entity_types.edit', [$campaign, $entityType, 'section' => 'statuses'])->with('success', __('Status deleted.'));
+        return redirect(route('entity_types.edit', [$campaign, $entityType]) . '#category-statuses')->with('success', __('Status deleted.'));
     }
 }

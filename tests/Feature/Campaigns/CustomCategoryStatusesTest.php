@@ -371,3 +371,45 @@ it('preserves source statuses in same category copy forms and clears them across
     $service->to(Campaign::factory()->create(['boost_count' => 4]));
     expect((new ReflectionMethod($service, 'transferableStatusId'))->invoke($service))->toBeNull();
 });
+
+it('renders entry counts and compact status editor controls on the category edit page', function () {
+    $used = $this->postJson($this->url, ['label' => 'Active', 'icon' => 'fa-solid fa-check', 'is_default' => true])->json('data.id');
+    $unused = $this->postJson($this->url, ['label' => 'Archived'])->json('data.id');
+    statusEntry($this->category, ['status_id' => $used]);
+
+    $this->get(route('entity_types.edit', [1, $this->category]))
+        ->assertOk()
+        ->assertSee('data-status-count', false)
+        ->assertSee('2 / 10')
+        ->assertSee('data-status-handle', false)
+        ->assertSee('data-status-default', false)
+        ->assertSee('1 entry')
+        ->assertSee('Unused');
+
+    $this->campaign->forceFill(['boost_count' => 0])->save();
+    $this->get(route('entity_types.edit', [1, $this->category]))
+        ->assertOk()
+        ->assertSee('Active')
+        ->assertSee('1 entry')
+        ->assertDontSee('data-status-rows', false);
+});
+
+it('simplifies the status delete confirmation when unused and redirects to the statuses section', function () {
+    $unused = $this->postJson($this->url, ['label' => 'Unused status'])->json('data.id');
+    $used = $this->postJson($this->url, ['label' => 'Used status'])->json('data.id');
+    statusEntry($this->category, ['status_id' => $used]);
+
+    $this->get(route('entity_types.statuses.confirm', [1, $this->category, $unused]))
+        ->assertOk()
+        ->assertSee('No entries currently use this status.')
+        ->assertDontSee('data-status-delete-options', false);
+
+    $this->get(route('entity_types.statuses.confirm', [1, $this->category, $used]))
+        ->assertOk()
+        ->assertSee('data-status-delete-options', false)
+        ->assertSee('Reassign entries to another status')
+        ->assertSee('Clear status from entries');
+
+    $this->delete(route('entity_types.statuses.destroy', [1, $this->category, $unused]))
+        ->assertRedirect(route('entity_types.edit', [$this->campaign, $this->category]) . '#category-statuses');
+});
