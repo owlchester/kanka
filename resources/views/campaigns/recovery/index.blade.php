@@ -16,11 +16,7 @@
             learn-more-url="features/campaigns/recovery.html"
             :lead="__('campaigns/recovery.tutorial', ['amount' => '<span class=font-extrabold>' . config('entities.hard_delete') . '</span>'])"
         />
-        <div id="recovery">
-            <recovery
-                api="{{ route('recovery.setup', [$campaign]) }}"
-            ></recovery>
-        </div>
+        <div id="recovery" data-api="{{ route('recovery.setup', [$campaign]) }}"></div>
     </div>
 
 @endsection

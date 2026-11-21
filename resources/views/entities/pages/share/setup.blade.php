@@ -43,15 +43,14 @@
 
 @section('content')
 
-<div id="entity-share-container">
-    <entity-share-modal
-        initial-campaign-visibility="{{ $campaign->visibility_id->name }}"
-        :initial-entity-private="{{ $entity->is_private ? 'true' : 'false' }}"
-        url="{{ $entity->url() }}"
-        save-endpoint="{{ route('entities.share.save', [$campaign, $entity]) }}"
-        :can-change-visibility="@js($canChangeVisibility)"
-        :trans='@json($shareTranslations)'
-    ></entity-share-modal>
-</div>
+<div
+    id="entity-share-container"
+    data-initial-campaign-visibility="{{ $campaign->visibility_id->name }}"
+    data-initial-entity-private="{{ $entity->is_private ? '1' : '0' }}"
+    data-url="{{ $entity->url() }}"
+    data-save-endpoint="{{ route('entities.share.save', [$campaign, $entity]) }}"
+    data-can-change-visibility="{{ $canChangeVisibility ? '1' : '0' }}"
+    data-trans="{{ json_encode($shareTranslations) }}"
+></div>
 
 @endsection

@@ -2,8 +2,10 @@ import { createApp } from 'vue'
 import Recovery from "./Recovery.vue"
 import vClickOutside from "click-outside-vue3"
 
-const app = createApp({})
-app.component('recovery', Recovery)
-app.use(vClickOutside)
+const element = document.getElementById('recovery')
 
-app.mount('#recovery');
+if (element) {
+    createApp(Recovery, { api: element.dataset.api })
+        .use(vClickOutside)
+        .mount(element)
+}
