@@ -1,175 +1,87 @@
 <template>
-    <div :class="boxClass()" v-if="commentable">
-        <div class="flex items-center gap-2">
-            <div class="max-w-xs" v-if="targetEntity">
-                <select class="w-full" v-model="entity_id">
-                    <option v-for="(name, key) in targets" :value="key" :key="key">
-                        {{ name }}
-                    </option>
-                </select>
-            </div>
-            <div class="field grow">
-                <input
-                        type="text"
-                        id="message"
-                        maxlength="1000"
-                        autocomplete="off"
-                        class="w-full"
-                        @keydown="typing"
-                        v-model="body"
-                        :placeholder=" disabled ? translate('is_closed') : ''"
-                        :disabled="(inputFormDisabled || disabled)"
-                />
-            </div>
-            <button v-if="current_message" type="button" class="btn2 btn-xs btn-default" :disabled="sending" @click="cancelEdit">
-                {{ translate('cancel') }}
+    <form class="flex min-w-0 flex-col gap-3 bg-base-200 px-4 py-4 sm:px-6" @submit.prevent="$emit('submit')">
+        <div v-if="editing" class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+            <i class="fa-solid fa-pen text-base-content/75" aria-hidden="true"></i>
+            <strong>{{ trans.editing }}</strong>
+            <span class="wrap-anywhere text-base-content/75">{{ editing.entity ?? editing.user ?? trans.user_unknown }}</span>
+        </div>
+        <div v-else-if="speakers.length" class="flex min-w-0 flex-col gap-1 text-sm sm:flex-row sm:items-center sm:gap-2">
+            <label v-if="speakers.length > 1" for="conversation-speaker" class="shrink-0 font-medium">{{ trans.speaking_as }}</label>
+            <select
+                v-if="speakers.length > 1"
+                id="conversation-speaker"
+                v-model="speaker"
+                class="w-full min-w-0 sm:max-w-64"
+                :disabled="busy"
+            >
+                <option v-for="option in speakers" :key="option.id" :value="option.id">{{ option.name }}</option>
+            </select>
+            <p v-else class="wrap-anywhere"><strong>{{ trans.speaking_as }}:</strong> {{ speakers[0].name }}</p>
+        </div>
+
+        <label for="conversation-message" class="sr-only">{{ trans.message }}</label>
+        <textarea
+            id="conversation-message"
+            ref="input"
+            v-model="body"
+            class="field-sizing-content min-h-18 max-h-40 w-full resize-y rounded-lg"
+            rows="2"
+            maxlength="1000"
+            :placeholder="trans.message"
+            :readonly="busy"
+            :enterkeyhint="useEnterForNewline ? 'enter' : undefined"
+            :aria-describedby="showKeyboardHint ? 'conversation-keyboard-hint' : undefined"
+            @keydown.enter="onEnter"
+        ></textarea>
+        <p v-if="error" class="text-sm" role="alert">{{ error }}</p>
+
+        <div class="flex flex-wrap items-center justify-end gap-2">
+            <p v-if="showKeyboardHint" id="conversation-keyboard-hint" class="mr-auto text-xs text-base-content/75">
+                {{ trans.keyboard_hint }}
+            </p>
+            <button v-if="editing" type="button" class="btn2 btn-sm btn-default" :disabled="busy" @click="$emit('cancel')">
+                {{ trans.cancel }}
+            </button>
+            <button type="submit" class="btn2 btn-sm btn-primary" :disabled="blocked || !body.trim()">
+                <i v-if="busy" class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+                <i v-else-if="!editing" class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                {{ editing ? (busy ? trans.saving : trans.save) : (busy ? trans.sending : trans.send) }}
             </button>
         </div>
-    </div>
+    </form>
 </template>
 
-<script>
-  /**
-   * The form to send messages to a conversation.
-   * Messy party: we can have a list of characters that the user can edit, or send as the current user.
-   */
-    export default {
-        props: {
-            target: undefined,
-            api: undefined,
-            targets: undefined,
-            disabled: {
-                type: Boolean
-            },
-            current_message: {
-              type: Object,
-              default: null
-            },
-            trans: undefined
-        },
-        emits: [
-            'sending_message',
-            'edited_message',
-            'sent_message',
-            'request_failed',
-            'cancel_edit'
-        ],
+<script setup>
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 
-        data() {
-            return {
-                body: null,
-                sending: false,
-                entity_id: null,
-                message_id: null,
-                edit_message: null
-            }
-        },
-        methods: {
-            /**
-             * We don't want a "send" button, so listen to the enter key. No multi-line support here.
-             * @param e
-             */
-            typing(e) {
-                if (e.keyCode === 13 && !e.shiftKey) {
-                    e.preventDefault();
-                    this.sendMessage();
-                }
-            },
-            editMessage(message) {
-                this.message_id = message.id;
-                this.edit_message = message;
-                this.body = message.message;
-                this.entity_id = message.from_id;
-                document.getElementById("message").focus();
-            },
-            /**
-             * Sending a message. This might be better off in Messages to keep all
-             * api requests in a single place.
-             */
-            sendMessage() {
-                if (!this.body || this.body.trim() === '') {
-                    return;
-                }
-                if (this.targetEntity && this.entity_id === null) {
-                    return;
-                }
-                this.sending = true;
-                this.$emit('sending_message');
+const props = defineProps({
+    speakers: Array,
+    editing: Object,
+    busy: Boolean,
+    blocked: Boolean,
+    error: String,
+    trans: Object,
+})
+const emit = defineEmits(['submit', 'cancel'])
+const body = defineModel({ type: String, required: true })
+const speaker = defineModel('speaker', { type: Number })
+const input = ref(null)
+const mobile = window.matchMedia('(width < 48rem), (pointer: coarse)')
+const useEnterForNewline = ref(mobile.matches)
+const showKeyboardHint = computed(() => !props.editing && !useEnterForNewline.value)
 
-                let url = this.api;
-                let data = {
-                    message: this.body.trim(),
-                };
-                if (this.targetEntity) {
-                    data.entity_id = this.entity_id;
-                }
-                if (this.message_id) {
-                    url += '/' + this.message_id;
+function updateKeyboardMode(event) {
+    useEnterForNewline.value = event.matches
+}
 
-                    axios.put(url, data).then((res) => {
-                        this.$emit('edited_message', res.data.data);
-                        this.messageHandler();
-                    }).catch(() => {
-                        this.sending = false;
-                        this.$emit('request_failed');
-                    });
-                } else {
-                    axios.post(url, data).then(() => {
-                        this.messageHandler();
-                    }).catch(() => {
-                        this.sending = false;
-                        this.$emit('request_failed');
-                    });
-                }
-            },
-            messageHandler() {
-                this.sending = false;
-                this.body = null;
-                this.message_id = null;
-                this.$emit('sent_message');
-            },
-            cancelEdit() {
-                this.body = null;
-                this.message_id = null;
-                this.edit_message = null;
-                this.$emit('cancel_edit');
-            },
+onMounted(() => mobile.addEventListener('change', updateKeyboardMode))
+onUnmounted(() => mobile.removeEventListener('change', updateKeyboardMode))
 
-            translate(key) {
-                return this.trans[key] ?? 'unknown';
-            },
-            boxClass() {
-              let bg = 'bg-base-100';
-              if (this.current_message) {
-                bg = 'bg-accent';
-              }
-              return 'rounded p-2 ' + bg;
-            }
-        },
+function onEnter(event) {
+    if (useEnterForNewline.value || event.shiftKey || event.isComposing) return
+    event.preventDefault()
+    if (!props.blocked && !event.repeat) emit('submit')
+}
 
-        computed: {
-            targetEntity: function() {
-                return this.target === 'entity';
-            },
-            inputFormDisabled: function() {
-                return this.sending;
-            },
-            commentable: function() {
-                if (this.targetEntity) {
-                    return this.targets !== null;
-                }
-                return true;
-            }
-        },
-
-        watch: {
-          current_message: {
-              handler(newValue, oldValue) {
-                if (newValue !== oldValue && newValue) {
-                  this.editMessage(newValue)
-                }
-              }
-            }
-        }
-    }
+defineExpose({ focus: () => input.value?.focus({ preventScroll: !props.editing }) })
 </script>

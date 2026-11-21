@@ -123,11 +123,23 @@ class Conversation extends MiscModel
     }
 
     /**
-     * @return false|string
+     * @return array<int, Entity>
      */
-    public function jsonParticipants()
+    public function postingParticipants(User $user): array
     {
-        return json_encode($this->participantsList());
+        if (! $this->forEntities()) {
+            return [];
+        }
+
+        $participants = [];
+        foreach ($this->participants->sortBy('id') as $row) {
+            $entity = $row->participant;
+            if ($entity instanceof Entity && $entity->campaign_id === $this->campaign_id && $user->can('update', $entity)) {
+                $participants[$entity->id] = $entity;
+            }
+        }
+
+        return $participants;
     }
 
     /**

@@ -8,59 +8,63 @@ use App\Http\Resources\Conversation\ConversationResource;
 use App\Models\Campaign;
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
-use App\Models\Entity;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class ConversationMessageController extends Controller
 {
-    /**
-     * @return ConversationResource
-     */
-    public function index(Campaign $campaign, Conversation $conversation)
+    public function index(Request $request, Campaign $campaign, Conversation $conversation): ConversationResource
     {
-        return new ConversationResource(
-            $conversation
-        );
+        abort_unless($conversation->campaign_id === $campaign->id && $conversation->entity, 404);
+        $this->authorize('view', $conversation->entity);
+
+        $request->validate([
+            'oldest' => ['nullable', 'integer', 'min:1', 'prohibits:newest'],
+            'newest' => ['nullable', 'integer', 'min:0'],
+        ]);
+
+        return new ConversationResource($conversation);
     }
 
     /**
-     * @return ConversationResource
-     *
      * @throws AuthorizationException
      */
-    public function store(StoreConversationMessage $request, Campaign $campaign, Conversation $conversation)
+    public function store(StoreConversationMessage $request, Campaign $campaign, Conversation $conversation): ConversationMessageResource
     {
+        abort_unless($conversation->campaign_id === $campaign->id && $conversation->entity, 404);
         $this->authorize('update', $conversation->entity);
+        abort_if($conversation->is_closed, 403, __('conversations.show.is_closed'));
 
-        $data = ['message' => $request->validated('message')];
-        if (! $conversation->forEntities()) {
-            $participant = Auth::user();
-        } else {
-            $participant = Entity::findOrFail($request->validated('entity_id'));
+        $participant = $request->user();
+        if ($conversation->forEntities()) {
+            $participant = $conversation->postingParticipants($participant)[$request->validated('entity_id')] ?? null;
+            if (! $participant) {
+                throw ValidationException::withMessages([
+                    'entity_id' => __('conversations.messages.invalid_speaker'),
+                ]);
+            }
         }
-        $message = new ConversationMessage($data);
+        $message = new ConversationMessage(['message' => $request->validated('message')]);
         $message->conversation()->associate($conversation);
         $message->participant()->associate($participant);
         $message->save();
 
-        return new ConversationResource(
-            $conversation
-        );
+        return new ConversationMessageResource($message);
     }
 
-    public function update(StoreConversationMessage $request, Campaign $campaign, Conversation $conversation, ConversationMessage $conversationMessage)
+    public function update(StoreConversationMessage $request, Campaign $campaign, Conversation $conversation, ConversationMessage $conversationMessage): ConversationMessageResource
     {
+        abort_unless($conversation->campaign_id === $campaign->id && $conversation->entity && $conversationMessage->conversation_id === $conversation->id, 404);
         $this->authorize('update', $conversation->entity);
         $this->authorize('edit', $conversationMessage);
+        abort_if($conversation->is_closed, 403, __('conversations.show.is_closed'));
 
-        $conversationMessage->update($request->only('message'));
+        $conversationMessage->update(['message' => $request->validated('message')]);
 
-        if (request()->ajax()) {
-            return new ConversationMessageResource($conversationMessage);
-        }
+        return new ConversationMessageResource($conversationMessage);
     }
 
     /**
@@ -70,6 +74,7 @@ class ConversationMessageController extends Controller
      */
     public function destroy(Campaign $campaign, Conversation $conversation, ConversationMessage $conversationMessage)
     {
+        abort_unless($conversation->campaign_id === $campaign->id && $conversation->entity && $conversationMessage->conversation_id === $conversation->id, 404);
         $this->authorize('update', $conversation->entity);
         $this->authorize('delete', $conversationMessage);
 

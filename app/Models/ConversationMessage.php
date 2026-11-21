@@ -8,7 +8,6 @@ use App\Models\Concerns\LastSync;
 use App\Observers\ConversationMessageObserver;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -33,8 +32,6 @@ class ConversationMessage extends Model
     use Blameable;
     use HasFactory;
     use LastSync;
-
-    public bool $isGroupped = false;
 
     protected $fillable = [
         'conversation_id',
@@ -90,41 +87,9 @@ class ConversationMessage extends Model
         return $this->participant_id;
     }
 
-    public function scopeDefault(Builder $query, ?int $oldestId = null, ?int $newestId = null)
-    {
-        $query->with('participant')
-            ->latest()
-            ->take(20);
-
-        if (! empty($oldestId)) {
-            $query->where('id', '<', $oldestId);
-        } elseif (! empty($newestId)) {
-            $query->where('id', '>', $newestId);
-        }
-    }
-
     public function isMine(): bool
     {
         return Auth::check() && $this->created_by == Auth::user()->id;
-    }
-
-    public function grouppedWith(?ConversationMessage $previous = null): self
-    {
-        if (empty($previous)) {
-            return $this;
-        }
-        if ($previous->participant_type !== $this->participant_type || $previous->authorID() != $this->authorID()) {
-            return $this;
-        }
-        // Same 60 seconds
-        $this->isGroupped = $previous->created_at->diffInSeconds($this->created_at) < 60;
-
-        return $this;
-    }
-
-    public function isGroup(): bool
-    {
-        return $this->isGroupped;
     }
 
     /**

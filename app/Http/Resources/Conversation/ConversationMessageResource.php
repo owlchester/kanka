@@ -25,13 +25,13 @@ class ConversationMessageResource extends JsonResource
             'entity_id' => $resource->participant instanceof Entity ? $resource->participant_id : null,
             'message' => $resource->message,
             'created_at' => $resource->created_at->diffForHumans(),
+            'created_at_iso' => $resource->created_at->toISOString(),
             'updated_at' => $resource->updated_at->diffForHumans(),
             'created_by' => $resource->created_by,
             'can_delete' => auth()->check() && auth()->user()->can('delete', $resource),
             'can_edit' => auth()->check() && auth()->user()->can('edit', $resource),
             'delete_url' => route('conversations.conversation_messages.destroy', [$campaign, $resource->conversation_id, $resource->id]),
             'is_updated' => $resource->updated_at != $resource->created_at,
-            'group' => $resource->isGroup(),
         ];
     }
 }

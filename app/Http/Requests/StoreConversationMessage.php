@@ -39,7 +39,9 @@ class StoreConversationMessage extends FormRequest
         }
 
         $rules = [
-            'message' => 'required|string',
+            'message' => $this->routeIs('conversations.conversation_messages.*')
+                ? ['required', 'string', 'max:1000']
+                : ['required', 'string'],
             'entity_id' => $entityRules,
             'user_id' => $userRules,
         ];

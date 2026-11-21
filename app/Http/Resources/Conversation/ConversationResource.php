@@ -3,60 +3,34 @@
 namespace App\Http\Resources\Conversation;
 
 use App\Models\Conversation;
-use App\Models\ConversationMessage;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Collection;
 
 class ConversationResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  Request  $request
-     * @return array
-     */
-    public function toArray($request)
-    {
-        $oldest = $request->get('oldest', null);
-        $newest = $request->get('newest', null);
+    private const PAGE_SIZE = 20;
 
+    public function toArray($request): array
+    {
         /** @var Conversation $resource */
         $resource = $this->resource;
-
-        $messages = new Collection($resource->messages()->default($oldest, $newest)->with('participant')->get());
-        $messages = $messages->reverse();
-
-        $data = [];
-        $previous = null;
-        /** @var ConversationMessage $message */
-        foreach ($messages as $message) {
-            $message->grouppedWith($previous);
-            $data[] = new ConversationMessageResource($message);
-            //            [
-            //                'id' => $message->id,
-            //                'user' => $message->user ? $message->user->name : null,
-            //                'character' => $message->character ? $message->character->name : null,
-            //                'message' => $message->message,
-            //                'created_at' => $message->created_at->diffForHumans(),
-            //                'can_delete' => Auth::user()->can('delete', $message),
-            //                'can_edit' => Auth::user()->can('edit', $message),
-            //                'delete_url' => route('conversations.conversation_messages.destroy', [$this, $message]),
-            //                'is_updated' => $message->updated_at !== $message->created_at
-            //            ];
-            $previous = $message;
+        $query = $resource->messages()->with('participant')->limit(self::PAGE_SIZE + 1);
+        $forward = $request->filled('newest');
+        if ($forward) {
+            $query->where('id', '>', $request->integer('newest'))->oldest('id');
+        } else {
+            $query->latest('id');
+            if ($request->filled('oldest')) {
+                $query->where('id', '<', $request->integer('oldest'));
+            }
         }
 
-        // Check if there are previous messages available
-        $first = $messages->first();
-        $previous = false;
-        if ($first) {
-            $previous = $resource->messages()->where('id', '<', $first->id)->count() > 0;
-        }
+        $results = $query->get();
+        $more = $results->count() > self::PAGE_SIZE;
+        $messages = $results->take(self::PAGE_SIZE);
 
         return [
-            'messages' => $data,
-            'previous' => $previous,
+            'messages' => ConversationMessageResource::collection($forward ? $messages : $messages->reverse()->values()),
+            ...($forward ? ['more_newer' => $more] : ['previous' => $more]),
         ];
     }
 }
