@@ -1,5 +1,5 @@
-<aside class="main-sidebar main-sidebar-placeholder absolute z-20 h-full flex flex-col bg-size-[var(--sidebar-width)_208px] bg-no-repeat bg-top-left bg-local transition-all duration-300 ease-in-out" @if ($user->avatar) style="--sidebar-placeholder: url('{{ Img::for($user->avatar)->crop(240, 208)->url() }}')" @endif>
-    <section class="sidebar-campaign h-52 flex-none overflow-hidden flex items-end">
+<aside class="main-sidebar main-sidebar-placeholder z-840 flex flex-col transition-all duration-150" @if ($user->avatar) style="--sidebar-placeholder: url('{{ Img::for($user->avatar)->crop(240, 208)->url() }}')" @endif>
+    <section class="sidebar-campaign h-36 flex-none overflow-hidden flex items-end">
         <div class="px-4 py-4">
             <div class="campaign-head">
                 <div class="campaign-name truncate text-xl">
@@ -46,7 +46,7 @@
                 ></x-sidebar.element>
             </li>
 
-            <li class="section-subscription pt-4">
+            <li class="section-subscription pt-3">
                 <x-sidebar.section :text="__('settings.menu.subscription')" />
                 <ul class="sidebar-submenu list-none p-0 m-0">
                     @if (config('services.stripe.enabled'))
@@ -95,7 +95,7 @@
                 </ul>
             </li>
 
-            <li class="section-other pt-4">
+            <li class="section-other pt-3">
                 <x-sidebar.section :text="__('settings.menu.other')" />
 
                 <ul class="sidebar-submenu list-none p-0 m-0">

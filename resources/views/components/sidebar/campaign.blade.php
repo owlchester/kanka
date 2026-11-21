@@ -3,7 +3,7 @@
  * @var \App\Models\Campaign $campaign
  */
 ?>
-<aside class="main-sidebar main-sidebar-placeholder absolute z-840 h-auto min-h-full flex flex-col bg-size-[var(--sidebar-width)_208px] bg-no-repeat bg-top-left bg-local transition-all duration-300 ease-in-out @can('member', $campaign)main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url('{{ Img::for($campaign->image)->crop(240, 208)->url() }}')" @endif>
+<aside class="main-sidebar main-sidebar-placeholder z-840 flex flex-col transition-all duration-150 @can('member', $campaign)main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url('{{ Img::for($campaign->image)->crop(240, 208)->url() }}')" @endif>
     <div class="flex shrink-0 items-center gap-2 px-3 py-2 md:hidden">
         <button type="button" class="flex min-h-11 items-center gap-2 rounded-lg px-2" data-mobile-navigation="close">
             <x-icon class="fa-regular fa-angle-left" />

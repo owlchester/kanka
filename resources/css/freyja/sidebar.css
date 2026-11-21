@@ -1,48 +1,88 @@
 :root {
     --sidebar-width: 15rem; /* 240px */
-}
-
-.content-wrapper, .main-footer {
-    margin-left: var(--sidebar-width);
+    --sidebar-inset: 1rem;
+    --sidebar-gap: 0.75rem;
+    --sidebar-radius: 0.75rem;
 }
 
 .main-sidebar {
     width: var(--sidebar-width);
     --tw-bg-opacity: 1;
-    background-color: var(--sidebar-background, hsl(var(--si)/var(--tw-bg-opacity)));
     --tw-text-opacity: 1;
     color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity)));
 
-    .campaign-updated {
-        color: hsl(var(--sic)/var(--tw-text-opacity, 0.7));
+    .sidebar-campaign {
+        border-radius: var(--sidebar-radius);
+        color: #fff;
+        text-shadow: 0 1px 2px rgb(0 0 0 / 0.4);
+
+        .campaign-updated {
+            color: rgb(255 255 255 / 0.8);
+        }
+    }
+
+    > .sidebar {
+        background-color: var(--sidebar-background, hsl(var(--si)/var(--tw-bg-opacity, 1)));
+        color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity, 1)));
+        border-radius: var(--sidebar-radius);
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        padding-block: 0.5rem;
+        scrollbar-width: thin;
+        scrollbar-color: hsl(var(--sic)/0.2) transparent;
     }
 
     .sidebar-menu {
         color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity, 1)));
+
         li {
             a, span {
                 color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity, 1)));
-                letter-spacing: 1.5px;
             }
 
             a {
+                i {
+                    opacity: 0.7;
+                    transition: opacity 150ms ease;
+                }
+
                 &:hover {
-                    --tw-bg-opacity: .7;
-                    background: hsl(var(--sif)/var(--tw-bg-opacity));
+                    background: hsl(var(--sif)/0.6);
                     color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity, 1)));
+
+                    i {
+                        opacity: 1;
+                    }
                 }
             }
         }
 
-        li.active > a, li.active.sidebar-section {
-            background: hsl(var(--sif)/var(--tw-bg-opacity, .7));
+        .sidebar-v2-section > a,
+        .sidebar-v2-section > div,
+        li > div.uppercase {
+            opacity: 0.65;
+        }
+
+        li.active > a,
+        li.active.sidebar-section {
+            background: hsl(var(--sif)/1);
+            font-weight: 500;
+        }
+
+        li.active > a i {
+            opacity: 1;
         }
     }
 }
-.main-sidebar-placeholder {
+
+.main-sidebar-placeholder .sidebar-campaign {
     background-image:
-        linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background, hsl(var(--si)/1)) 100%),
+        linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 0.15) 45%, rgb(0 0 0 / 0.72) 100%),
         var(--sidebar-placeholder, url('https://th.kanka.io/kZFdGAs5iN41r9mDqNqix8BxaAA=/240x208/smart/src/app/backgrounds/mountain-background-medium.jpg'));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .bg-sidebar {
@@ -59,7 +99,19 @@
         background: rgb(0 0 0 / .45);
     }
     .main-sidebar {
+        position: fixed;
+        top: 3rem;
+        bottom: 0;
+        left: 0;
+        height: calc(100dvh - 3rem);
         margin-left: calc(0px - var(--sidebar-width));
+        background-color: var(--sidebar-background, hsl(var(--si)/var(--tw-bg-opacity, 1)));
+        gap: 0;
+
+        .sidebar-campaign,
+        > .sidebar {
+            border-radius: 0;
+        }
     }
     .content-wrapper, .main-footer {
         margin-left: 0;
@@ -67,17 +119,24 @@
 
     .sidebar-open .main-sidebar {
         margin-left: 0;
-        position: fixed;
-        top: 3rem;
-        bottom: 0;
-        height: calc(100dvh - 3rem);
-        overflow-y: auto;
         z-index: 840;
     }
 }
+
 @media (min-width: 768px) {
+    .content-wrapper, .main-footer {
+        margin-left: calc(var(--sidebar-width) + var(--sidebar-inset));
+    }
+    .main-sidebar {
+        position: fixed;
+        top: calc(3rem + var(--sidebar-inset));
+        left: var(--sidebar-inset);
+        max-height: calc(100dvh - 3rem - (var(--sidebar-inset) * 2));
+        background-color: transparent;
+        gap: var(--sidebar-gap);
+    }
     .sidebar-collapse .main-sidebar {
-        margin-left: calc(0px - var(--sidebar-width));
+        margin-left: calc(0px - var(--sidebar-width) - var(--sidebar-inset));
         z-index: 850;
     }
     .sidebar-collapse .content-wrapper, .sidebar-collapse .right-side, .sidebar-collapse .main-footer {

@@ -43,7 +43,7 @@ if($entity->hasHeaderImage()) {
 $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
 
 ?>
-<div class="w-full h-full entity-header flex-wrap lg:flex-nowrap flex gap-3 lg:gap-5 items-start lg:items-end print:items-end print:gap-2 md:print:gap-5 relative @if ($hasBanner) with-entity-banner p-4 text-white aspect-auto lg:aspect-3/1 xl:aspect-auto @endif">
+<div class="w-full h-full entity-header flex-wrap lg:flex-nowrap flex gap-3 lg:gap-5 items-start lg:items-end print:items-end print:gap-2 md:print:gap-5 relative @if ($hasBanner) with-entity-banner rounded-xl p-4 text-white aspect-auto lg:aspect-3/1 xl:aspect-auto @endif">
     @if ($imageUrl)
     <div class="entity-header-image relative w-16 lg:w-48 print:w-28 md:print:w-48 flex-none self-start lg:self-auto z-10">
 
@@ -255,7 +255,7 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
         @endcan
     @endif
         @if ($hasBanner)
-            <picture class="entity-banner absolute top-0 left-0 w-full h-full">
+            <picture class="entity-banner absolute top-0 left-0 w-full h-full rounded-xl overflow-hidden">
                 <source media="(min-width:2400px)" srcset="{{ $headerImageXL }}">
                 <source media="(min-width:1600px)" srcset="{{ $headerImageL }}">
                 <source media="(min-width:800px)" srcset="{{ $headerImageM }}">

@@ -1,4 +1,4 @@
-<section class="sidebar-campaign h-52 flex-none overflow-hidden flex items-end">
+<section class="sidebar-campaign h-36 flex-none overflow-hidden flex items-end">
     <div class="campaign-block px-4 py-4 w-full">
         <div class="campaign-head">
             @if (!$campaign->image && auth()->check() && auth()->user()->can('update', $campaign))
@@ -6,7 +6,7 @@
                     <div class="campaign-name grow truncate text-xl">
                         {!! $campaign->name !!}
                     </div>
-                    <a href="#" class="text-sidebar-content" data-toggle="dialog"
+                    <a href="#" class="text-white/80 hover:text-white" data-toggle="dialog"
                        data-url="{{ route('campaign.sidebar.image', [$campaign]) }}" data-tooltip data-title="{{ __('campaigns/sidebar.tooltips.image') }}">
                         <x-icon class="fa-regular fa-image" />
                     </a>
