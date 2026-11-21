@@ -30,11 +30,32 @@ class SidebarController extends Controller
             $target = request()->query('role', 'default');
             abort_unless(is_string($target) && ($target === 'default' || (ctype_digit($target) && $campaign->roles()->whereKey($target)->exists())), 404);
 
+            $roles = $campaign->roles()->withCount('users')->get();
+            $customTargets = $this->layouts->customLayoutTargets();
+            $hasCustomLayout = $this->layouts->hasCustomLayout($target);
+            $selectedRole = $target === 'default' ? null : $roles->firstWhere('id', (int) $target);
+            $copySources = [];
+            foreach ($roles as $role) {
+                $roleKey = (string) $role->id;
+                if ($roleKey !== $target && in_array($roleKey, $customTargets, true)) {
+                    $copySources[] = [
+                        'id' => $roleKey,
+                        'label' => $role->name,
+                        'items' => $this->layouts->layout($roleKey)['items'],
+                    ];
+                }
+            }
+
             return view('campaigns.sidebar.v2', [
                 'campaign' => $campaign,
                 'revision' => $revision,
                 'target' => $target,
-                'roles' => $campaign->roles()->get(),
+                'roles' => $roles,
+                'selectedRole' => $selectedRole,
+                'customTargets' => $customTargets,
+                'hasCustomLayout' => $hasCustomLayout,
+                'copySources' => $copySources,
+                'inaccessible' => $this->layouts->roleInaccessibleReasons($selectedRole),
                 'layout' => $this->layouts->layout($target),
                 'standard' => $this->layouts->standard(),
                 'default' => $this->layouts->layout(),
@@ -62,6 +83,17 @@ class SidebarController extends Controller
 
         $data = $request->validated();
         $this->layouts->campaign($campaign)->save($data, $request->user());
+
+        if ($request->header('X-Sidebar-Inline') === '1') {
+            $fresh = $campaign->fresh();
+            $this->layouts->campaign($fresh);
+
+            return response()->json([
+                'revision' => $this->layouts->revision(),
+                'hasCustomLayout' => $this->layouts->hasCustomLayout($data['target']),
+                'message' => __('campaigns/sidebar.success'),
+            ]);
+        }
 
         return redirect()->route('campaign-sidebar', [
             $campaign, 'role' => $data['target'],

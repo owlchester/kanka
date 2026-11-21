@@ -282,7 +282,7 @@
     "isDynamicEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app-CdgAjXxC.css",
+    "file": "assets/app-BqksgZoh.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -291,7 +291,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-CTH5FLwa.css",
+    "file": "assets/auth-CxVT3Dt_.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -318,7 +318,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-D6qFYl_J.css",
+    "file": "assets/front-C9uTO69V.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -425,7 +425,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-By-35bvk.js",
+    "file": "assets/app-DdHd-F1V.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -487,12 +487,13 @@
     ]
   },
   "resources/js/campaigns/sidebar.js": {
-    "file": "assets/sidebar-F8XkDqhj.js",
+    "file": "assets/sidebar-CPj6J9Fa.js",
     "name": "sidebar",
     "src": "resources/js/campaigns/sidebar.js",
     "isDynamicEntry": true,
     "imports": [
       "_vue.esm-bundler-Cw8XrFag.js",
+      "_vue-tippy.esm-browser-BC3zTjBy.js",
       "_vue-draggable-next.esm-bundler-Cm3GRFUp.js"
     ]
   },
@@ -673,7 +674,7 @@
     ]
   },
   "resources/js/entities/reader.js": {
-    "file": "assets/reader-yHFqYM_c.js",
+    "file": "assets/reader-pDhMgkJP.js",
     "name": "reader",
     "src": "resources/js/entities/reader.js",
     "isDynamicEntry": true,

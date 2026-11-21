@@ -156,10 +156,6 @@ class EntityTypeService
             }
         }
 
-        if ($this->request->get('update_name')) {
-            $this->updateBookmark();
-        }
-
         if ($this->request->hasFile('default_entity_image') || $this->request->filled('remove-image')) {
 
             $this->defaultImageService->campaign($this->campaign)
@@ -179,17 +175,6 @@ class EntityTypeService
     {
         $this->entityType->is_enabled = ! $this->entityType->is_enabled;
         $this->entityType->save();
-    }
-
-    protected function updateBookmark(): self
-    {
-        $bookmarks = $this->entityType->bookmarks()->whereNull('filters')->get();
-        foreach ($bookmarks as $bookmark) {
-            $bookmark->name = $this->entityType->plural;
-            $bookmark->update();
-        }
-
-        return $this;
     }
 
     protected function bookmark(): self

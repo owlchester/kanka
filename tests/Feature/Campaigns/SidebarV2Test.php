@@ -485,7 +485,101 @@ it('only offers and accepts legacy rollback in local development', function (str
 it('explains and styles the reset action separately from discarding unsaved edits', function (string $target) {
     $this->get(route('campaign-sidebar', [$this->campaign, 'role' => $target]))
         ->assertOk()
-        ->assertSee('class="btn2 btn-outline"', false)
+        ->assertSee('id="sidebar-v2-reset-confirm"', false)
+        ->assertSee('btn2 btn-outline btn-error', false)
         ->assertSee(__('campaigns/sidebar-v2.' . ($target === 'default' ? 'reset_default' : 'reset_role')))
         ->assertSee(__('campaigns/sidebar-v2.' . ($target === 'default' ? 'reset_default_help' : 'reset_role_help')));
 })->with(['default', '3']);
+
+it('renders role tabs with custom status, inheriting banner, and copy sources', function () {
+    $this->postJson(route('campaign-sidebar-v2-save', $this->campaign), sidebarV2Payload($this->campaign, ['target' => '3']))->assertRedirect();
+
+    $this->get(route('campaign-sidebar', [$this->campaign, 'role' => '2']))
+        ->assertOk()
+        ->assertSee('data-sidebar-role-tab="default"', false)
+        ->assertSee('data-sidebar-role-tab="3"', false)
+        ->assertSee('data-inheriting-banner', false)
+        ->assertSee('copySources', false);
+});
+
+it('returns updated revision json for inline saves while preserving redirects for standard saves', function () {
+    $payload = sidebarV2Payload($this->campaign);
+
+    $response = $this->postJson(
+        route('campaign-sidebar-v2-save', $this->campaign),
+        $payload,
+        ['X-Sidebar-Inline' => '1']
+    )->assertOk();
+
+    $response->assertJsonStructure(['revision', 'hasCustomLayout', 'message']);
+    expect($response->json('hasCustomLayout'))->toBeTrue()
+        ->and($response->json('revision'))->not->toBe($payload['revision']);
+});
+
+it('identifies inaccessible categories, private bookmarks, and admin-only items for non-admin roles', function () {
+    $privateBookmark = Bookmark::factory()->create([
+        'campaign_id' => 1,
+        'entity_type_id' => 1,
+        'is_active' => true,
+        'is_private' => true,
+    ]);
+    CampaignPermission::where('campaign_role_id', 3)
+        ->where('entity_type_id', 1)
+        ->where('action', CampaignPermission::ACTION_READ)
+        ->delete();
+
+    $service = app(LayoutService::class)->campaign($this->campaign->fresh());
+    $playerRole = CampaignRole::findOrFail(3);
+    $adminRole = CampaignRole::findOrFail(1);
+
+    $reasons = $service->roleInaccessibleReasons($playerRole);
+
+    expect($reasons)->toHaveKey('category:1', 'permission')
+        ->toHaveKey('bookmark:' . $privateBookmark->id, 'private')
+        ->toHaveKey('system:relations', 'admin_only')
+        ->toHaveKey('system:history', 'admin_only')
+        ->and($service->roleInaccessibleReasons($adminRole))->toBeEmpty()
+        ->and($service->roleInaccessibleReasons(null))->toBeEmpty();
+});
+
+it('flags unfiltered bookmarks that duplicate custom categories without flagging filtered or standard bookmarks', function () {
+    $customType = EntityType::forceCreate([
+        'campaign_id' => 1,
+        'code' => 'spell',
+        'singular' => 'Spell',
+        'plural' => 'Spells',
+        'is_special' => true,
+        'is_enabled' => true,
+        'icon' => 'fa-solid fa-wand-sparkles',
+    ]);
+    $duplicate = Bookmark::factory()->create([
+        'campaign_id' => 1,
+        'entity_type_id' => $customType->id,
+        'is_active' => true,
+        'name' => 'Spells',
+    ]);
+    $filtered = Bookmark::factory()->create([
+        'campaign_id' => 1,
+        'entity_type_id' => $customType->id,
+        'filters' => 'level=3',
+        'is_active' => true,
+        'name' => 'Level 3 Spells',
+    ]);
+    $standard = Bookmark::factory()->create([
+        'campaign_id' => 1,
+        'entity_type_id' => 1,
+        'is_active' => true,
+        'name' => 'All Characters',
+    ]);
+
+    $catalog = app(LayoutService::class)->campaign($this->campaign->fresh())->catalog();
+
+    expect($catalog['bookmark:' . $duplicate->id]['duplicates_category'])->toBeTrue()
+        ->and($catalog['bookmark:' . $filtered->id]['duplicates_category'])->toBeFalse()
+        ->and($catalog['bookmark:' . $standard->id]['duplicates_category'])->toBeFalse();
+
+    $this->get(route('campaign-sidebar', $this->campaign))
+        ->assertOk()
+        ->assertSee('data-duplicate-bookmarks-banner', false)
+        ->assertSee(__('campaigns/sidebar-v2.manage_bookmarks'));
+});

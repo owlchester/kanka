@@ -6,11 +6,14 @@ use App\Enums\Permission;
 use App\Events\Campaigns\Sidebar\SidebarSaved;
 use App\Models\Bookmark;
 use App\Models\Campaign;
+use App\Models\CampaignPermission;
+use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\EntityType;
 use App\Models\Scopes\PrivateScope;
 use App\Models\User;
 use App\Services\Permissions\EntityPermission;
+use App\Services\Permissions\RolePermission;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -82,6 +85,7 @@ class LayoutService
                 'icon' => $bookmark->iconClass(),
                 'required' => false,
                 'disabled' => ! $bookmark->is_active || ! $this->campaign->enabled('bookmarks'),
+                'duplicates_category' => $this->isCustomCategoryDuplicate($bookmark),
             ];
         }
 
@@ -96,6 +100,7 @@ class LayoutService
             $this->catalog[$id] = compact('id', 'icon', 'permission') + [
                 'kind' => 'system', 'label' => __($label),
                 'url' => route($route, $this->campaign), 'required' => true,
+                'disabled' => false,
             ];
         }
 
@@ -181,6 +186,112 @@ class LayoutService
         }
 
         return 'default';
+    }
+
+    public function hasCustomLayout(string $target): bool
+    {
+        return is_array(Arr::get($this->campaign->ui_settings, 'sidebar_v2.layouts.' . $target));
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    public function customLayoutTargets(): array
+    {
+        $layouts = Arr::get($this->campaign->ui_settings, 'sidebar_v2.layouts', []);
+        if (! is_array($layouts)) {
+            return [];
+        }
+
+        $targets = [];
+        foreach ($layouts as $key => $layout) {
+            if (is_array($layout)) {
+                $targets[] = (string) $key;
+            }
+        }
+
+        return $targets;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function roleInaccessibleReasons(?CampaignRole $role): array
+    {
+        if (! $role || $role->isAdmin()) {
+            return [];
+        }
+
+        $catalog = $this->catalog();
+        $cached = [];
+        foreach (app(RolePermission::class)->rolesPermissions([$role->id]) as $permission) {
+            $cached[$permission->key()] = (bool) $permission->access;
+        }
+
+        $reasons = [];
+        foreach ($catalog as $id => $entry) {
+            if ($entry['kind'] === 'category') {
+                $type = $this->types[$id];
+                if ($this->categoryEnabled($type) && empty($cached[$type->id . '_' . Permission::View->value])) {
+                    $reasons[$id] = 'permission';
+                }
+            } elseif ($entry['kind'] === 'bookmark') {
+                $bookmark = $this->bookmarks[$id];
+                if (! $bookmark->is_active || ! $this->campaign->enabled('bookmarks')) {
+                    continue;
+                }
+                if ($bookmark->is_private) {
+                    $reasons[$id] = 'private';
+
+                    continue;
+                }
+                if ($bookmark->dashboard_id) {
+                    if (! $bookmark->dashboard || ! $this->campaign->boosted() || ! $bookmark->isValidDashboard()) {
+                        $reasons[$id] = 'permission';
+                    }
+
+                    continue;
+                }
+                if ($bookmark->isRandom() && $bookmark->random_entity_type === 'any') {
+                    continue;
+                }
+                if ($bookmark->entity_id && ! $bookmark->isRandom()) {
+                    $target = $bookmark->target;
+                    if (! $target || $target->campaign_id !== $this->campaign->id || ! $this->categoryEnabled($target->entityType)) {
+                        $reasons[$id] = 'permission';
+
+                        continue;
+                    }
+                    $entityKey = '_' . Permission::View->value . '_' . $target->id;
+                    $canView = array_key_exists($entityKey, $cached)
+                        ? $cached[$entityKey]
+                        : ! empty($cached[$target->type_id . '_' . Permission::View->value]);
+                    if (! $canView) {
+                        $reasons[$id] = 'permission';
+                    }
+
+                    continue;
+                }
+                $type = $bookmark->isRandom() ? $bookmark->randomEntityType : $bookmark->entityType;
+                if (! $type || ($type->campaign_id && $type->campaign_id !== $this->campaign->id) || ! $this->categoryEnabled($type) || empty($cached[$type->id . '_' . Permission::View->value])) {
+                    $reasons[$id] = 'permission';
+                }
+            } elseif ($entry['kind'] === 'system') {
+                if ($entry['permission'] === 'relations' || $entry['permission'] === 'recover') {
+                    $reasons[$id] = 'admin_only';
+                } elseif ($entry['permission'] === 'gallery') {
+                    $canGallery = ! $role->isPublic() && (
+                        ! empty($cached['campaign_' . CampaignPermission::ACTION_GALLERY]) ||
+                        ! empty($cached['campaign_' . CampaignPermission::ACTION_GALLERY_BROWSE])
+                    );
+                    if (! $canGallery) {
+                        $reasons[$id] = 'permission';
+                    }
+                }
+            }
+        }
+
+        return $reasons;
     }
 
     public function render(?User $user): array
@@ -293,6 +404,19 @@ class LayoutService
     protected function bookmarkSection(): array
     {
         return ['id' => 'bookmarks', 'label_key' => 'entities.bookmarks', 'children' => []];
+    }
+
+    protected function isCustomCategoryDuplicate(Bookmark $bookmark): bool
+    {
+        if (! $bookmark->entity_type_id || $bookmark->entity_id || $bookmark->dashboard_id || $bookmark->isRandom()) {
+            return false;
+        }
+        if (! empty($bookmark->filters) || ! empty($bookmark->tab) || ! empty($bookmark->menu)) {
+            return false;
+        }
+        $type = $this->types['category:' . $bookmark->entity_type_id] ?? null;
+
+        return $type !== null && $type->isCustom();
     }
 
     protected function categoryEnabled(EntityType $type): bool
