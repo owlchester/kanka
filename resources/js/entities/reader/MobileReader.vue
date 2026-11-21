@@ -60,7 +60,6 @@ const detailsId = `entity-details-${props.entityId}`;
 const story = props.root.querySelector('.entity-main-block');
 const content = props.root.querySelector('[data-reader-details-content]');
 const fallback = props.root.querySelector('[data-reader-details-link]');
-const metadata = props.root.querySelector('.entity-header-secondary');
 const more = props.root.querySelector('.entity-mobile-more');
 const navigation = props.root.querySelector('.entity-mobile-navigation');
 const mobile = window.matchMedia('(width < 64rem)');
@@ -75,7 +74,6 @@ let observer;
 let resizeObserver;
 let frame;
 let pendingHash = readHash(window.location.hash);
-let metadataWasOpen;
 let printing = false;
 const tooltipParents = new Map();
 
@@ -210,9 +208,6 @@ const updateViewport = () => {
     if (!mobile.matches) {
         closeDetails(false);
     }
-    if (metadata) {
-        metadata.open = !mobile.matches;
-    }
 };
 
 const updateStickyOffset = () => {
@@ -224,17 +219,10 @@ const updateStickyOffset = () => {
 const beforePrint = () => {
     printing = true;
     closeDetails(false);
-    metadataWasOpen = metadata?.open;
-    if (metadata) {
-        metadata.open = true;
-    }
 };
 
 const afterPrint = () => {
     printing = false;
-    if (metadata && metadataWasOpen !== undefined) {
-        metadata.open = mobile.matches ? metadataWasOpen : true;
-    }
 };
 
 onMounted(() => {
@@ -277,9 +265,6 @@ onBeforeUnmount(() => {
     }
     if (fallback) {
         fallback.hidden = false;
-    }
-    if (metadata) {
-        metadata.open = true;
     }
     observer?.disconnect();
     resizeObserver?.disconnect();

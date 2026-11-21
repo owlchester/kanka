@@ -195,8 +195,7 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
             </div>
         @endif
 
-        <details class="entity-header-secondary" open>
-            <summary class="lg:hidden print:hidden cursor-pointer text-sm py-2">{{ __('Tags and information') }}</summary>
+        <div class="entity-header-secondary">
             <div class="flex flex-col gap-1 md:gap-2">
                 <div class="entity-tags entity-header-line text-xs">
                     <div class="flex flex-wrap gap-2 items-center">
@@ -228,7 +227,7 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
                     @endif
                 </div>
             </div>
-        </details>
+        </div>
 
         @yield($entityHeaderActions ?? 'entity-header-actions')
     </div>

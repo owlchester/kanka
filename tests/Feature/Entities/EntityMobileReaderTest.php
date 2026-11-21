@@ -10,6 +10,7 @@ use App\Models\Character;
 use App\Models\Creature;
 use App\Models\Item;
 use App\Models\Post;
+use App\Models\Tag;
 
 beforeEach(function () {
     $this->asUser()->withCampaign();
@@ -58,6 +59,23 @@ it('retains server rendered stories posts and a single reference sidebar', funct
     expect($sections->item(0)->getAttribute('class'))->toContain('entity-pins')
         ->and($sections->item(1)->getAttribute('class'))->toContain('sidebar-section-profile')
         ->and($sections->item(2)->getAttribute('class'))->toContain('entity-history');
+});
+
+it('renders entity header information inline without a disclosure', function () {
+    $entity = Character::factory()->create(['campaign_id' => 1])->entity;
+    $tag = Tag::factory()->create(['campaign_id' => 1, 'name' => 'Travel companions']);
+    $entity->tags()->attach($tag->id);
+
+    $response = $this->get(route('entities.show', [1, $entity]))
+        ->assertSuccessful()
+        ->assertDontSee('Tags and information');
+    $document = mobileReaderDocument($response->getContent());
+
+    $metadata = $document->query('//*[@class="entity-header-secondary"]');
+
+    expect($metadata->length)->toBe(1)
+        ->and($metadata->item(0)->textContent)->toContain('Travel companions')
+        ->and($document->query('//*[@class="entity-header-secondary"]/ancestor-or-self::details')->length)->toBe(0);
 });
 
 it('uses existing destinations and preserves modal navigation in More', function () {
