@@ -39,10 +39,12 @@ class ShowController extends Controller
                         ->whereHas('participants.entity')
                         ->with([
                             'participants' => fn ($participants) => $participants->whereHas('entity'),
-                            'participants.entity',
+                            'participants.entity.image',
+                            'participants.entity.entityType',
                         ]),
                     'participants' => fn ($query) => $query->whereNull('group_id')->whereHas('entity'),
-                    'participants.entity',
+                    'participants.entity.image',
+                    'participants.entity.entityType',
                 ]);
             }
         }

@@ -405,3 +405,15 @@ it('does not expose inaccessible participant entities in the event profile sideb
     $response = $this->get(route('entities.show', [1, $event->entity]))->assertSuccessful();
     expect($response->getContent())->toContain('Visible Scout')->not->toContain('Hidden Scout');
 });
+
+it('includes entity type and icon in participant snapshot state', function () {
+    $this->asUser()->withCampaign();
+    $event = Event::factory()->create(['campaign_id' => 1]);
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    $event->participants()->create(['entity_id' => $character->entity->id]);
+
+    $state = participantPayload($event);
+    expect($state['participants'])->toHaveCount(1)
+        ->and($state['participants'][0]['type'])->toBe($character->entity->entityType->name())
+        ->and($state['participants'][0]['icon'])->toBe($character->entity->entityType->icon());
+});

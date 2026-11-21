@@ -79,6 +79,8 @@ class ParticipantService
                 'name' => $participant->entity->name,
                 'url' => route('entities.show', [$event->campaign, $participant->entity]),
                 'image' => Avatar::for($participant->entity)->size(80)->fallback()->thumbnail(),
+                'type' => $participant->entity->entityType->name(),
+                'icon' => $participant->entity->entityType->icon(),
                 'group' => $participant->group_id ? (string) $participant->group_id : null,
                 'role' => $participant->role ?? '',
             ])->values()->all(),
