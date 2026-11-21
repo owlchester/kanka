@@ -37,10 +37,12 @@ $isAdmin = auth()->user()->can('admin', $campaign);
                 </div>
             </div>
 
-            <div id="attributes-manager" class="flex-1 min-h-0 h-full overflow-hidden">
-                <input type="hidden" name="sheets_present" value="1" />
-                <attributes-manager api="{{ route('attributes.api-entity', [$campaign, $entity]) }}" />
-            </div>
+            <input type="hidden" name="sheets_present" value="1" />
+            <div
+                id="attributes-manager"
+                class="flex-1 min-h-0 h-full overflow-hidden"
+                data-api="{{ route('attributes.api-entity', [$campaign, $entity]) }}"
+            ></div>
 
             @if (auth()->user()->can('admin', $campaign) && $entity->is_attributes_private)
                 <div class="flex flex-col gap-2">

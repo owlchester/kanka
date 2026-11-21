@@ -184,7 +184,7 @@ export default {
         save_api: undefined,
         entity_api: undefined,
         search_api: undefined,
-        permission: undefined,
+        permission: Boolean,
         subscribe_url: undefined,
     },
     components: {

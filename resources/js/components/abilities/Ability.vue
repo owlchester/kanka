@@ -76,15 +76,11 @@ const details = ref(false)
 
 const props = defineProps<{
     ability: Object,
-    permission: String,
+    permission: boolean,
 }>()
 
 const hasAttribute = () => {
     return props.ability.attributes.length > 0;
-}
-
-const canDelete = () => {
-    return props.permission.value;
 }
 
 const backgroundImage = () => {

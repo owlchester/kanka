@@ -44,7 +44,7 @@ import {ref} from "vue"
 
 const props = defineProps<{
     group: Object,
-    permission: String,
+    permission: boolean,
     meta: Object,
 }>()
 

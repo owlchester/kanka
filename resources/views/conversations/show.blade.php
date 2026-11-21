@@ -40,18 +40,17 @@ $translations = json_encode([
         @include('entities.components.menu_v2', ['active' => 'story'])
 
         <div class="entity-main-block grow flex flex-col gap-5 min-w-0">
-            <div class="box-conversation" id="conversation">
-                <conversation
-                        id="{{ $entity->child->id }}"
-                        api="{{ route('conversations.conversation_messages.index', [$campaign, $entity->child]) }}"
-                        target="{{ $entity->child->forEntities() ? 'entity' : 'user'}}"
-                        :targets="{{ $entity->child->jsonParticipants() }}"
-                        :disabled="{{ ($entity->child->is_closed ? 'true' : 'false') }}"
-                        send="{{ route('conversations.conversation_messages.store', [$campaign, $entity->child]) }}"
-                        trans="{{ $translations }}"
-                >
-                </conversation>
-            </div>
+            <div
+                class="box-conversation"
+                id="conversation"
+                data-conversation-id="{{ $entity->child->id }}"
+                data-api="{{ route('conversations.conversation_messages.index', [$campaign, $entity->child]) }}"
+                data-target="{{ $entity->child->forEntities() ? 'entity' : 'user' }}"
+                data-targets="{{ $entity->child->jsonParticipants() }}"
+                data-disabled="{{ $entity->child->is_closed ? '1' : '0' }}"
+                data-send="{{ route('conversations.conversation_messages.store', [$campaign, $entity->child]) }}"
+                data-trans="{{ $translations }}"
+            ></div>
 
             @include('entities.components.posts')
         </div>

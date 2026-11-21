@@ -22,9 +22,9 @@ import Parent from "./Parent.vue";
 import {onMounted, onUpdated, ref} from "vue"
 
 const props = defineProps<{
-    id: Number,
-    api: String,
-    permission: String,
+    id: number,
+    api: string,
+    permission: boolean,
 }>()
 
 const groups = ref([])

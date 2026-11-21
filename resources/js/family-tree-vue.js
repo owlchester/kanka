@@ -2,30 +2,6 @@ import { createApp } from 'vue'
 import mitt from 'mitt'
 import FamilyTree from "./components/families/FamilyTree.vue";
 import FamilyNode from "./components/families/FamilyNode.vue";
-import FamilyEntity from "./components/families/FamilyEntity.vue";
-import FamilyRelations from "./components/families/FamilyRelations.vue";
-import FamilyRelation from "./components/families/FamilyRelation.vue";
-import FamilyChildren from "./components/families/FamilyChildren.vue";
-import RelationLine from "./components/families/RelationLine.vue";
-import ChildrenLine from "./components/families/ChildrenLine.vue";
-import FamilyParentChildrenLine from "./components/families/FamilyParentChildrenLine.vue";
-const emitter = mitt()
-
-const app = createApp({})
-app.config.globalProperties.emitter = emitter
-app.config.globalProperties.entityHeight = 60
-app.config.globalProperties.entityWidth = 200
-app.component('family-tree', FamilyTree)
-app.component('FamilyNode', FamilyNode)
-app.component('FamilyEntity', FamilyEntity)
-app.component('FamilyRelations', FamilyRelations)
-app.component('FamilyRelation', FamilyRelation)
-app.component('FamilyChildren', FamilyChildren)
-app.component('RelationLine', RelationLine)
-app.component('ChildrenLine', ChildrenLine)
-app.component('FamilyParentChildrenLine', FamilyParentChildrenLine)
-app.mount('#family-tree');
-
 
 window.ftTexts = {};
 
@@ -140,3 +116,23 @@ window.familyTreeRelationWidth = function(relation, index) {
     return Math.max(min, size);
 };
 
+const element = document.getElementById('family-tree')
+
+if (element) {
+    const { api, saveApi, entityApi, searchApi, subscribeUrl, permission } = element.dataset
+    const app = createApp(FamilyTree, {
+        api,
+        save_api: saveApi,
+        entity_api: entityApi,
+        search_api: searchApi,
+        subscribe_url: subscribeUrl,
+        permission: permission === '1',
+    })
+
+    app.config.globalProperties.emitter = mitt()
+    app.config.globalProperties.entityHeight = 60
+    app.config.globalProperties.entityWidth = 200
+    // Register the recursive node on this app to avoid a circular component import.
+    app.component('FamilyNode', FamilyNode)
+    app.mount(element)
+}

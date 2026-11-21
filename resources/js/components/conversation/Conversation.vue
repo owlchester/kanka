@@ -12,7 +12,7 @@
           v-for="message in messages"
           :key="message.id"
           :message="message"
-          :trans="json_trans"
+          :trans="trans"
           @delete_message="deletedMessage"
           @edit_message="editMessage"
 
@@ -29,7 +29,7 @@
         :target="target"
         :targets="targets"
         :disabled="disabled"
-        :trans="json_trans"
+        :trans="trans"
         :current_message="currentMessage"
         @sending_message="sendingMessage"
         @edited_message="editedMessage"
@@ -51,16 +51,14 @@ import {nextTick, onMounted, ref} from "vue";
  */
 
 const props = defineProps<{
-  id: undefined,
-  send: undefined,
-  target: undefined,
-  api: undefined,
-  targets: undefined,
-  trans: undefined,
-  disabled: false
+  id: string,
+  send: string,
+  target: 'entity' | 'user',
+  api: string,
+  targets: Record<number, string> | string[],
+  trans: Record<string, string>,
+  disabled: boolean
 }>()
-
-const json_trans = ref()
 
 const messages = ref([])
 // Show a small spinner below the messages
@@ -140,7 +138,7 @@ const deleteMessage = (message) => {
       }).catch(() => { error.value = translate('request_failed'); });
 }
 const translate = (key) => {
-  return json_trans.value[key] ?? 'unknown'
+  return props.trans[key] ?? 'unknown'
 }
 
 const sendingMessage = (message) => {
@@ -163,8 +161,5 @@ const deletedMessage = (message) => {
 const showError = () => { error.value = translate('request_failed'); }
 
 
-onMounted(() => {
-  json_trans.value = JSON.parse(props.trans)
-  getMessages()
-})
+onMounted(getMessages)
 </script>

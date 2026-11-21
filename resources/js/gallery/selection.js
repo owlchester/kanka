@@ -1,23 +1,13 @@
 import { createApp } from 'vue'
 import Selection from "./Selection.vue"
+import { mountOnce } from '../utility/mountOnce'
 
 const loadGalleryWidget = () => {
-
-    const elements = document.querySelectorAll('.gallery-selection')
-    elements.forEach(el => {
-        // Don't re-mount if already mounted
-        if (el.dataset.init === '1') {
-            return
-        }
-        el.dataset.init = '1'
-        const app = createApp({})
-        app.component('gallery-selection', Selection)
-        app.mount(el)
+    document.querySelectorAll('.gallery-selection').forEach(element => {
+        mountOnce(element, () => createApp({}).component('gallery-selection', Selection))
     })
-};
+}
 
-loadGalleryWidget();
+loadGalleryWidget()
 
-window.onEvent(function() {
-    loadGalleryWidget();
-});
+window.onEvent(loadGalleryWidget)

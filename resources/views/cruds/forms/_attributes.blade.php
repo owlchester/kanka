@@ -15,17 +15,17 @@ if (isset($model)) {
         $entity = $source->entity;
     }
 }
+
+if (! empty($entity)) {
+    $attributesApi = route('attributes.api-entity', [$campaign, $entity]);
+} elseif (! empty($source)) {
+    $attributesApi = route('attributes.api', [$campaign, 'entity_type' => $entityType->id, 'source' => $entity->id]);
+} else {
+    $attributesApi = route('attributes.api', [$campaign, 'entity_type' => $entityType->id]);
+}
 ?>
 <x-grid type="1/1">
-    <div id="attributes-manager">
-        @if (!empty($entity))
-            <attributes-manager api="{{ route('attributes.api-entity', [$campaign, $entity]) }}" />
-        @elseif (!empty($source))
-            <attributes-manager api="{{ route('attributes.api', [$campaign, 'entity_type' => $entityType->id, 'source' => $entity->id]) }}" />
-        @else
-            <attributes-manager api="{{ route('attributes.api', [$campaign, 'entity_type' => $entityType->id]) }}" />
-        @endif
-    </div>
+    <div id="attributes-manager" data-api="{{ $attributesApi }}"></div>
 </x-grid>
 @section('scripts')
     @parent

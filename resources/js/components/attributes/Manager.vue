@@ -165,6 +165,9 @@
 
 <script setup lang="ts">
 import {ref, computed, onMounted, onBeforeUnmount} from 'vue'
+import { VueDraggableNext as Draggable } from 'vue-draggable-next'
+import AttributesManagerAttribute from './Attribute.vue'
+import AttributesManagerForm from './Form.vue'
 
 const props = defineProps<{
     api: string,
