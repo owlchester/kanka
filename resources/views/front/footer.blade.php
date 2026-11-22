@@ -1,5 +1,5 @@
-<footer class="bg-dark text-light py-12 px-6">
-    <div class="mx-auto lg:max-w-7xl flex flex-col gap-10">
+<footer class="bg-dark text-light px-6 py-14">
+    <div class="mx-auto flex flex-col gap-10 lg:max-w-7xl">
         @if(config('tracking.consent'))
         <div data-cookie-consent-bar style="display: none;" class="rounded-lg border border-white/10 bg-white/5 p-4">
             <div class="flex flex-col gap-3 text-sm sm:flex-row sm:items-center">
@@ -14,99 +14,90 @@
             </div>
         </div>
         @endif
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
-            <div class="flex-col gap-8 hidden lg:flex col-span-2 ">
-                <div class="flex">
-                    <a href="{{ route('home') }}" class="text-white">
-                        <svg class="h-28 w-28"  alt="Kanka Logo" class="text-white" >
-                            <use href="/images/svgs/sprites.svg#kanka-logo"></use>
-                        </svg>
-                    </a>
-                </div>
 
-                <div class="flex items-center gap-5 text-3xl flex-wrap">
-                    @include('layouts._socials')
-                </div>
-                <div class="text-xs">
-                    <p class="text-xs">
-                        {{ __('footer.humans') }}
-                    </p>
-                    <p class="text-xs">
-                        {!! __('footer.proof', [
-                            'community-funded' => '<a href="' . Domain::toFront('hall-of-fame') . '">community-funded</a>',
-                            'source' => '<a href="https://kanka.io/go/github">core code available on GitHub</a>',
-                        ]) !!}
-                    </p>
-                    <p class="text-xs">
-                        {!! __('footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!}
-                    </p>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-4 lg:grid-cols-6">
+            <div class="col-span-2 flex flex-col gap-4">
+                <a href="{{ route('home') }}" class="inline-flex w-fit text-white">
+                    <svg class="size-11" aria-label="Kanka Logo">
+                        <use href="/images/svgs/sprites.svg#kanka-logo"></use>
+                    </svg>
+                </a>
+
+                <p class="max-w-xs text-xs leading-relaxed text-white/65">
+                    {{ __('footer.humans') }}
+                </p>
+
+                <div class="flex items-center gap-1.5">
+                    @include('layouts._socials', ['linkClass' => 'text-white/70 hover:text-white hover:bg-white/10'])
                 </div>
             </div>
 
-            <div class="flex flex-col gap-3 text-sm">
-                <span class="block text-nav uppercase">{{ __('footer.platform') }}</span>
-                <a href="{{ Domain::toFront('features') }}">{{ __('footer.features') }}</a>
-                <a href="{{ Domain::toFront('premium') }}">{{ __('footer.premium') }}</a>
-                <a href="{{ Domain::toFront('pricing') }}">{{ __('footer.pricing') }}</a>
-                <a href="{{ config('marketplace.url') }}" >{{ __('footer.plugins') }}</a>
+            <div class="flex flex-col gap-2.5 text-sm">
+                <span class="mb-1 text-xs font-semibold uppercase tracking-wider text-white">{{ __('footer.platform') }}</span>
+                <a href="{{ Domain::toFront('features') }}" class="w-fit text-white/65 transition-colors hover:text-white">{{ __('footer.features') }}</a>
+                <a href="{{ Domain::toFront('premium') }}" class="w-fit text-white/65 transition-colors hover:text-white">{{ __('footer.premium') }}</a>
+                <a href="{{ Domain::toFront('pricing') }}" class="w-fit text-white/65 transition-colors hover:text-white">{{ __('footer.pricing') }}</a>
+                <a href="{{ config('marketplace.url') }}" class="w-fit text-white/65 transition-colors hover:text-white">{{ __('footer.plugins') }}</a>
             </div>
 
-            <div class="flex flex-col gap-3 text-sm">
-                <span class="block text-nav uppercase">{{ __('footer.resources') }}</span>
-                <a href="{{ Domain::toFront('kb') }}">{{ __('footer.kb') }}</a>
-                <a href="https://docs.kanka.io/en/latest/index.html" target="_blank">{{ __('footer.documentation') }}</a>
-                <a href="{{ route('larecipe.index') }}" target="_blank">{{ __('front.features.api.link') }}</a>
-                <a href="{{ route('mcp.help') }}">{{ __('footer.mcp') }}</a>
-                <a href="https://blog.kanka.io" target="_blank">{{ __('footer.blog') }}</a>
-                <a href="https://status.kanka.io" target="_blank">{{ __('footer.status') }}</a>
+            <div class="flex flex-col gap-2.5 text-sm">
+                <span class="mb-1 text-xs font-semibold uppercase tracking-wider text-white">{{ __('footer.resources') }}</span>
+                <a href="{{ Domain::toFront('kb') }}" class="w-fit text-white/65 transition-colors hover:text-white">{{ __('footer.kb') }}</a>
+                <a href="https://docs.kanka.io/en/latest/index.html" target="_blank" class="group inline-flex w-fit items-center gap-1 text-white/65 transition-colors hover:text-white">
+                    {{ __('footer.documentation') }}
+                    <span class="text-[10px] opacity-40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-80" aria-hidden="true">&#8599;</span>
+                </a>
+                <a href="{{ route('larecipe.index') }}" target="_blank" class="group inline-flex w-fit items-center gap-1 text-white/65 transition-colors hover:text-white">
+                    {{ __('front.features.api.link') }}
+                    <span class="text-[10px] opacity-40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-80" aria-hidden="true">&#8599;</span>
+                </a>
+                <a href="{{ route('mcp.help') }}" class="w-fit text-white/65 transition-colors hover:text-white">{{ __('footer.mcp') }}</a>
+                <a href="https://blog.kanka.io" target="_blank" class="group inline-flex w-fit items-center gap-1 text-white/65 transition-colors hover:text-white">
+                    {{ __('footer.blog') }}
+                    <span class="text-[10px] opacity-40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-80" aria-hidden="true">&#8599;</span>
+                </a>
+                <a href="https://status.kanka.io" target="_blank" class="group inline-flex w-fit items-center gap-1 text-white/65 transition-colors hover:text-white">
+                    {{ __('footer.status') }}
+                    <span class="text-[10px] opacity-40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-80" aria-hidden="true">&#8599;</span>
+                </a>
             </div>
 
-            <div class="flex flex-col gap-3 text-sm">
-                <span class="block text-nav uppercase">{{ __('footer.community') }}</span>
-                <a href="https://blog.kanka.io/category/news">{{ __('footer.whats-new') }}</a>
-                <a href="{{ Domain::toFront('campaigns') }}">{{ __('footer.public-campaigns') }}</a>
-                <a href="{{ Domain::toFront('showcase') }}">{{ __('footer.showcase') }}</a>
-                <a href="{{ route('roadmap') }}">{{ __('footer.roadmap') }}</a>
-                <a href="{{ Domain::toFront('hall-of-fame') }}">{{ __('front/hall-of-fame.title') }}</a>
+            <div class="flex flex-col gap-2.5 text-sm">
+                <span class="mb-1 text-xs font-semibold uppercase tracking-wider text-white">{{ __('footer.community') }}</span>
+                <a href="https://blog.kanka.io/category/news" target="_blank" class="group inline-flex w-fit items-center gap-1 text-white/65 transition-colors hover:text-white">
+                    {{ __('footer.whats-new') }}
+                    <span class="text-[10px] opacity-40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-80" aria-hidden="true">&#8599;</span>
+                </a>
+                <a href="{{ Domain::toFront('campaigns') }}" class="w-fit text-white/65 transition-colors hover:text-white">{{ __('footer.public-campaigns') }}</a>
+                <a href="{{ Domain::toFront('showcase') }}" class="w-fit text-white/65 transition-colors hover:text-white">{{ __('footer.showcase') }}</a>
+                <a href="{{ route('roadmap') }}" class="w-fit text-white/65 transition-colors hover:text-white">{{ __('footer.roadmap') }}</a>
+                <a href="{{ Domain::toFront('hall-of-fame') }}" class="w-fit text-white/65 transition-colors hover:text-white">{{ __('front/hall-of-fame.title') }}</a>
             </div>
 
-            <div class="flex flex-col gap-3 text-sm">
-                <span class="block text-nav uppercase">{{ __('footer.company') }}</span>
-                <a href="{{ Domain::toFront('about') }}">{{ __('footer.about') }}</a>
-                <a href="{{ Domain::toFront('contact') }}">{{ __('footer.contact') }}</a>
-                <a href="{{ Domain::toFront('privacy-policy') }}">{{ __('footer.privacy') }}</a>
-                <a href="{{ Domain::toFront('terms-and-conditions') }}">{{ __('footer.terms') }}</a>
-                <a href="{{ Domain::toFront('security') }}">{{ __('footer.security') }}</a>
-                <a href="{{ Domain::toFront('press-kit') }}">{{ __('footer.press-kit') }}</a>
+            <div class="flex flex-col gap-2.5 text-sm">
+                <span class="mb-1 text-xs font-semibold uppercase tracking-wider text-white">{{ __('footer.company') }}</span>
+                <a href="{{ Domain::toFront('about') }}" class="w-fit text-white/65 transition-colors hover:text-white">{{ __('footer.about') }}</a>
+                <a href="{{ Domain::toFront('contact') }}" class="w-fit text-white/65 transition-colors hover:text-white">{{ __('footer.contact') }}</a>
+                <a href="{{ Domain::toFront('privacy-policy') }}" class="w-fit text-white/65 transition-colors hover:text-white">{{ __('footer.privacy') }}</a>
+                <a href="{{ Domain::toFront('terms-and-conditions') }}" class="w-fit text-white/65 transition-colors hover:text-white">{{ __('footer.terms') }}</a>
+                <a href="{{ Domain::toFront('security') }}" class="w-fit text-white/65 transition-colors hover:text-white">{{ __('footer.security') }}</a>
+                <a href="{{ Domain::toFront('press-kit') }}" class="w-fit text-white/65 transition-colors hover:text-white">{{ __('footer.press-kit') }}</a>
                 @if(config('tracking.consent'))
-                <a href="#" onclick="window.dispatchEvent(new CustomEvent('show-cookie-consent')); return false;">{{ __('cookieconsent.preferences') }}</a>
+                <a href="#" onclick="window.dispatchEvent(new CustomEvent('show-cookie-consent')); return false;" class="w-fit text-white/65 transition-colors hover:text-white">{{ __('cookieconsent.preferences') }}</a>
                 @endif
             </div>
         </div>
 
-        <div class="lg:hidden flex flex-col gap-5 text-center">
-            <div class="flex justify-center">
-                <a href="{{ route('home') }}">
-                    <svg class="h-28 w-28"  alt="Kanka Logo" >
-                        <use href="/images/svgs/sprites.svg#kanka-logo"></use>
-                    </svg>
-                </a>
-            </div>
-
-            <div class="flex justify-center gap-5 text-3xl">
-                @include('layouts._socials')
-            </div>
-
-            <div class="text-center text-sm">
-                <p>{{ __('footer.humans') }}</p>
-                <p>
-                    {!! __('footer.proof', [
-                        'community-funded' => '<a href="' . Domain::toFront('hall-of-fame') . '">community-funded</a>',
-                        'source' => '<a href="https://kanka.io/go/github">core code available on GitHub</a>',
-                    ]) !!}
-                </p>
-                Kanka {!! __('footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!}
-            </div>
+        <div class="flex flex-col gap-3 pt-2 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
+            <p>
+                {!! __('footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC']) !!}
+            </p>
+            <p>
+                {!! __('footer.proof', [
+                    'community-funded' => '<a href="' . Domain::toFront('hall-of-fame') . '" class="text-white/80 underline decoration-white/30 underline-offset-2 transition-colors hover:text-white hover:decoration-white">community-funded</a>',
+                    'source' => '<a href="https://kanka.io/go/github" class="text-white/80 underline decoration-white/30 underline-offset-2 transition-colors hover:text-white hover:decoration-white">core code available on GitHub</a>',
+                ]) !!}
+            </p>
         </div>
 
         <span data-ccpa-link="1"></span>
