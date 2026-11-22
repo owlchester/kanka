@@ -1,11 +1,11 @@
-import { createApp } from 'vue'
-import Recovery from "./Recovery.vue"
-import vClickOutside from "click-outside-vue3"
+import { createApp } from 'vue';
+import VueTippy from 'vue-tippy';
+import Recovery from './Recovery.vue';
 
-const element = document.getElementById('recovery')
+const element = document.getElementById('recovery');
 
 if (element) {
     createApp(Recovery, { api: element.dataset.api })
-        .use(vClickOutside)
-        .mount(element)
+        .use(VueTippy, { theme: 'kanka' })
+        .mount(element);
 }
