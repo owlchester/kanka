@@ -1,39 +1,196 @@
+@import '@vue-flow/core/dist/style.css';
+@import '@vue-flow/controls/dist/style.css';
+@import '@vue-flow/minimap/dist/style.css';
+
 #family-tree {
     display: block;
     width: 100%;
     height: 100%;
-
-    --family-tree-column-width: 220px;
-    --family-tree-row-height: 110px;
 }
 
-.family-node-entity {
-    border: 1px solid hsl(var(--nc)/1);
-    --tw-background-opacity: 1;
-    background-color: hsl(var(--b1)/var(--tw-background-opacity));
-    width: var(--family-tree-entity-width, 200px);
-    height: var(--family-tree-entity-height, 60px);
-}
-.family-node-entity-founder {
-    --tw-background-opacity: 1;
-    background-color: var(--family-tree-founder, hsl(var(--pc)/var(--tw-background-opacity)));
-    color: hsl(var(--p)/1);
-}
-.family-node-entity-relation {
-    --tw-background-opacity: 1;
-    background-color: hsl(var(--b3)/var(--tw-background-opacity));
+.kanka-ft-canvas {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    min-height: 520px;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background-color: hsl(var(--b2, 220 14% 96%) / 0.5);
 }
 
-.family-tree-line {
-    background-color: var(--family-tree-line, #333);
+/* Person Card Node */
+.kanka-ft-node {
+    position: relative;
+    width: 220px;
+    min-height: 84px;
+    border-radius: 0.75rem;
+    background-color: hsl(var(--b1, 0 0% 100%) / 1);
+    border: 1.5px solid hsl(var(--n, 220 22% 92%) / 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
 }
-.family-tree-child-line {
-    background-color: var(--family-tree-line, #333);
-}
-.family-tree-child-parent-line {
-    background-color: var(--family-tree-line, #333);
-}
-.family-tree-relation {
 
+.kanka-ft-node--compact {
+    width: 180px;
+    min-height: 56px;
 }
 
+.kanka-ft-node[style*='--ft-colour'] {
+    border-color: var(--ft-colour);
+    border-left-width: 4px;
+}
+
+.kanka-ft-node:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.kanka-ft-node--selected {
+    border-color: hsl(var(--p, 213 75% 37%) / 1);
+    box-shadow: 0 0 0 3px hsl(var(--p, 213 75% 37%) / 0.2);
+}
+
+.kanka-ft-node--placeholder {
+    border-style: dashed;
+    background-color: hsl(var(--b2, 220 14% 96%) / 0.9);
+}
+
+.kanka-ft-node--focused {
+    animation: kanka-ft-ripple 1.8s ease-out 2;
+    border-color: hsl(var(--p, 213 75% 37%) / 1);
+}
+
+@keyframes kanka-ft-ripple {
+    0% {
+        box-shadow: 0 0 0 0 hsl(var(--p, 213 75% 37%) / 0.55);
+    }
+    70% {
+        box-shadow: 0 0 0 18px hsl(var(--p, 213 75% 37%) / 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 hsl(var(--p, 213 75% 37%) / 0);
+    }
+}
+
+/* Direct-manipulation + handles */
+.kanka-ft-action-btn {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    background-color: hsl(var(--p, 213 75% 37%) / 1);
+    color: hsl(var(--pc, 0 0% 100%) / 1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    z-index: 20;
+    cursor: pointer;
+}
+
+.kanka-ft-node:hover .kanka-ft-action-btn,
+.kanka-ft-node--selected .kanka-ft-action-btn,
+.kanka-ft-union:hover .kanka-ft-action-btn,
+.kanka-ft-union--selected .kanka-ft-action-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.kanka-ft-action-btn:hover {
+    transform: scale(1.15);
+}
+
+.kanka-ft-action-btn--top {
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.kanka-ft-action-btn--top:hover {
+    transform: translateX(-50%) scale(1.15);
+}
+
+.kanka-ft-action-btn--right {
+    right: -11px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.kanka-ft-action-btn--right:hover {
+    transform: translateY(-50%) scale(1.15);
+}
+
+.kanka-ft-action-btn--bottom {
+    bottom: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.kanka-ft-action-btn--bottom:hover {
+    transform: translateX(-50%) scale(1.15);
+}
+
+/* Union Junction Node */
+.kanka-ft-union {
+    position: relative;
+    min-width: 32px;
+    height: 30px;
+    padding: 0 8px;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 11px;
+    background-color: hsl(var(--b1, 0 0% 100%) / 1);
+    border: 1.5px solid hsl(var(--n, 220 22% 92%) / 1);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+}
+
+.kanka-ft-union[style*='--ft-colour'] {
+    border-color: var(--ft-colour);
+}
+
+.kanka-ft-union--selected {
+    border-color: hsl(var(--p, 213 75% 37%) / 1);
+    box-shadow: 0 0 0 3px hsl(var(--p, 213 75% 37%) / 0.2);
+}
+
+/* Edge Styles */
+.kanka-ft-edge .vue-flow__edge-path {
+    stroke: hsl(var(--nc, 218 14% 55%) / 0.85);
+    stroke-width: 2;
+}
+
+.kanka-ft-edge.selected .vue-flow__edge-path {
+    stroke: hsl(var(--p, 213 75% 37%) / 1);
+    stroke-width: 3;
+}
+
+.kanka-ft-edge--adopted .vue-flow__edge-path,
+.kanka-ft-edge--divorced .vue-flow__edge-path,
+.kanka-ft-edge--betrothed .vue-flow__edge-path {
+    stroke-dasharray: 6 4;
+}
+
+.kanka-ft-edge--foster .vue-flow__edge-path,
+.kanka-ft-edge--affair .vue-flow__edge-path {
+    stroke-dasharray: 2 4;
+}
+
+.kanka-ft-edge--step .vue-flow__edge-path {
+    stroke-dasharray: 10 4;
+}
+
+.kanka-ft-edge--bastard .vue-flow__edge-path {
+    stroke-dasharray: 8 3 2 3;
+}
+
+/* Hide Vue Flow connection dots since dragging/connecting manually is disabled */
+.kanka-ft-canvas .vue-flow__handle {
+    opacity: 0;
+    pointer-events: none;
+    width: 1px;
+    height: 1px;
+}

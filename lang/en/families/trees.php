@@ -1,69 +1,147 @@
 <?php
 
 return [
-    'actions'   => [
-        'clear'             => 'Erase all',
-        'first'             => 'Add a founder',
-        'founder'           => 'Add a new founder',
-        'rename-relation'   => 'Rename relation',
-        'reset'             => 'Discard changes',
-        'save'              => 'Save',
+    'actions' => [
+        'add_child' => 'Add child',
+        'add_first' => 'Add first person',
+        'add_parent' => 'Add parent',
+        'add_partner' => 'Add partner',
+        'clear' => 'Erase all',
+        'compact' => 'Compact cards',
+        'direction_lr' => 'Left to right',
+        'direction_tb' => 'Top to bottom',
+        'edit' => 'Edit',
+        'export' => 'Export',
+        'export_png' => 'Export PNG',
+        'export_svg' => 'Export SVG',
+        'first' => 'Add a founder',
+        'fit' => 'Fit to screen',
+        'founder' => 'Add a new founder',
+        'minimap' => 'Minimap',
+        'redo' => 'Redo',
+        'rename-relation' => 'Rename relation',
+        'reset' => 'Discard changes',
+        'save' => 'Save',
+        'search' => 'Search tree…',
+        'undo' => 'Undo',
     ],
-    'modal'     => [
-        'first-title'   => 'Select an entry',
-        'helper'        => 'Replace the entry with another from the campaign',
-        'relation'      => 'Relation',
-        'title'         => 'Replace entry',
+    'inspector' => [
+        'character' => 'Character',
+        'colour' => 'Colour',
+        'convert_placeholder' => 'Convert to placeholder',
+        'css' => 'CSS class',
+        'delete_link' => 'Remove link',
+        'delete_person' => 'Remove from tree',
+        'delete_person_confirm' => 'Remove this person from the family tree? Their descendants will remain in the tree.',
+        'delete_union' => 'Remove partnership',
+        'kind' => 'Lineage type',
+        'label' => 'Label',
+        'link_character' => 'Link existing character',
+        'link_title' => 'Parent-Child Link',
+        'person_title' => 'Person',
+        'placeholder_name' => 'Placeholder name',
+        'placeholder_subtitle' => 'Subtitle / note',
+        'promote_character' => 'Promote to Character',
+        'promote_success' => 'Character created and linked.',
+        'role' => 'Role / note',
+        'union_title' => 'Partnership',
+        'union_type' => 'Partnership type',
+        'visibility' => 'Visibility',
     ],
-    'modals'    => [
-        'clear'     => [
-            'confirm'   => 'Are you sure you want to reinitialise all the data from the family tree?',
+    'link_kinds' => [
+        'adopted' => 'Adopted',
+        'bastard' => 'Illegitimate',
+        'biological' => 'Biological',
+        'custom' => 'Custom',
+        'foster' => 'Foster',
+        'step' => 'Step',
+    ],
+    'linked_trees' => [
+        'badge' => 'Also in :name',
+        'jump' => 'Open :name tree',
+        'more' => '+:count trees',
+        'title' => 'Also appears in',
+    ],
+    'modal' => [
+        'first-title' => 'Select an entry',
+        'helper' => 'Replace the entry with another from the campaign',
+        'relation' => 'Relation',
+        'title' => 'Replace entry',
+    ],
+    'modals' => [
+        'clear' => [
+            'confirm' => 'Are you sure you want to erase all entries from the family tree?',
         ],
-        'entity'    => [
-            'add'       => [
-                'founder'   => 'Founder',
-                'member'    => 'Member',
-                'success'   => 'Entry added.',
-                'title'     => 'Add an entry',
+        'entity' => [
+            'add' => [
+                'founder' => 'Founder',
+                'member' => 'Member',
+                'success' => 'Entry added.',
+                'title' => 'Add an entry',
             ],
-            'child'     => [
-                'success'   => 'Child added.',
-                'title'     => 'Add a child',
+            'child' => [
+                'success' => 'Child added.',
+                'title' => 'Add a child',
             ],
-            'edit'      => [
-                'helper'    => 'Check this option if the relation is unknown. A character can be added later.',
-                'success'   => 'Entry updated.',
-                'title'     => 'Update an entry',
+            'edit' => [
+                'helper' => 'Check this option if the relation is unknown. A character can be added later.',
+                'success' => 'Entry updated.',
+                'title' => 'Update an entry',
             ],
-            'founder'   => [
+            'founder' => [
                 'title' => 'Add a new founder',
             ],
-            'remove'    => [
-                'confirm'   => 'Are you sure you want to remove this entry from the family tree?',
-                'success'   => 'Entry removed.',
+            'remove' => [
+                'confirm' => 'Are you sure you want to remove this entry from the family tree?',
+                'success' => 'Entry removed.',
             ],
         ],
         'relations' => [
-            'add'       => [
-                'success'   => 'Relation added.',
-                'title'     => 'Add a relation',
+            'add' => [
+                'success' => 'Relation added.',
+                'title' => 'Add a relation',
             ],
-            'edit'      => [
-                'success'   => 'Relation updated.',
-                'title'     => 'Update a relation',
+            'edit' => [
+                'success' => 'Relation updated.',
+                'title' => 'Update a relation',
             ],
-            'unknown'   => 'Unknown',
+            'unknown' => 'Unknown',
         ],
-        'reset'     => [
-            'confirm'   => 'Are you sure you want to discard any changes made to the family tree?',
+        'reset' => [
+            'confirm' => 'Are you sure you want to discard any unsaved changes made to the family tree?',
         ],
     ],
-    'pitch'     => 'Build a detailed family tree to visualize relationships and lineage within your world\'s families.',
-    'success'   => [
-        'cleared'   => 'Family tree erased.',
-        'reseted'   => 'Family tree has been reset.',
-        'saved'     => 'Family tree saved.',
+    'pitch' => 'Build a detailed family tree to visualize relationships and lineage within your world\'s families.',
+    'placeholders' => [
+        'badge' => 'Placeholder',
+        'create_new' => 'Add as placeholder',
+        'existing_in_tree' => 'Link existing person in tree',
+        'name_placeholder' => 'e.g. Great Uncle Jim (leave blank for Unknown)',
+        'search_placeholder' => 'Search campaign characters…',
+        'subtitle_placeholder' => 'Optional note (e.g. "BBEG?")',
+        'unknown' => 'Unknown',
     ],
-    'title'     => ':name Family Tree',
-    'unknown'   => 'unestablished',
+    'preview' => [
+        'admin' => 'Admin view',
+        'all' => 'Public view',
+        'banner' => 'Previewing tree as :mode. Exit preview to edit.',
+        'label' => 'Preview',
+        'member' => 'Member view',
+    ],
+    'success' => [
+        'cleared' => 'Family tree erased.',
+        'exported' => 'Family tree exported.',
+        'reseted' => 'Family tree has been reset.',
+        'saved' => 'Family tree saved.',
+    ],
+    'title' => ':name Family Tree',
+    'union_types' => [
+        'affair' => 'Affair',
+        'betrothed' => 'Betrothed',
+        'custom' => 'Custom',
+        'divorced' => 'Divorced',
+        'married' => 'Married',
+        'partner' => 'Partner',
+    ],
+    'unknown' => 'unestablished',
 ];
