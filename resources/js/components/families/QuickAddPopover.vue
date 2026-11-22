@@ -1,7 +1,7 @@
 <template>
     <dialog
         ref="dialogEl"
-        class="dialog rounded-top md:rounded-2xl bg-base-100 shadow-md text-base-content w-full max-w-lg"
+        class="dialog rounded-t-2xl md:rounded-2xl bg-base-100 shadow-sm text-base-content w-full md:w-[32rem] max-w-[90vw]"
         aria-modal="true"
         @cancel.prevent="$emit('close')"
         @click="onBackdropClick"
@@ -106,7 +106,7 @@
             <!-- Placeholder Mode -->
             <div v-else-if="mode === 'placeholder'" class="flex flex-col gap-3">
                 <div class="flex flex-col gap-1">
-                    <label class="text-xs font-medium">{{ texts?.inspector?.placeholder_name || 'Placeholder name' }}</label>
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.placeholder_name || 'Placeholder name' }}</label>
                     <input
                         ref="placeholderInput"
                         v-model="placeholderName"
@@ -118,7 +118,7 @@
                     />
                 </div>
                 <div class="flex flex-col gap-1">
-                    <label class="text-xs font-medium">{{ texts?.inspector?.placeholder_subtitle || 'Subtitle / note' }}</label>
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.placeholder_subtitle || 'Subtitle / note' }}</label>
                     <input
                         v-model="placeholderSubtitle"
                         type="text"
@@ -183,13 +183,13 @@
             <!-- Relationship Type / Kind Selector -->
             <div v-if="context?.action === 'add-partner'" class="grid grid-cols-2 gap-3 pt-1">
                 <div class="flex flex-col gap-1">
-                    <label class="text-xs font-medium">{{ texts?.inspector?.union_type || 'Partnership type' }}</label>
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.union_type || 'Partnership type' }}</label>
                     <select v-model="unionType" class="select select-bordered select-sm w-full">
                         <option v-for="(label, key) in unionTypes" :key="key" :value="key">{{ label }}</option>
                     </select>
                 </div>
                 <div class="flex flex-col gap-1">
-                    <label class="text-xs font-medium">{{ texts?.inspector?.role || 'Role / note' }}</label>
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.role || 'Role / note' }}</label>
                     <input
                         v-model="unionRole"
                         type="text"
@@ -205,13 +205,13 @@
                 class="grid grid-cols-2 gap-3 pt-1"
             >
                 <div class="flex flex-col gap-1">
-                    <label class="text-xs font-medium">{{ texts?.inspector?.kind || 'Lineage type' }}</label>
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.kind || 'Lineage type' }}</label>
                     <select v-model="linkKind" class="select select-bordered select-sm w-full">
                         <option v-for="(label, key) in linkKinds" :key="key" :value="key">{{ label }}</option>
                     </select>
                 </div>
                 <div class="flex flex-col gap-1">
-                    <label class="text-xs font-medium">{{ texts?.inspector?.label || 'Label' }}</label>
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.label || 'Label' }}</label>
                     <input
                         v-model="linkLabel"
                         type="text"

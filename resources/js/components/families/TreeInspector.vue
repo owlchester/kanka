@@ -1,7 +1,7 @@
 <template>
     <aside
         v-if="selection"
-        class="w-80 shrink-0 bg-base-100 text-base-content rounded-xl shadow-md p-4 flex flex-col gap-4 overflow-y-auto max-h-[70vh]"
+        class="w-80 shrink-0 bg-base-100 text-base-content rounded-xl p-4 flex flex-col gap-4 overflow-y-auto max-h-[70vh]"
     >
         <header class="flex items-center justify-between">
             <h4 class="font-semibold text-base">{{ headerTitle }}</h4>
@@ -42,7 +42,7 @@
             <!-- Placeholder controls -->
             <div v-else class="flex flex-col gap-2.5">
                 <div class="flex flex-col gap-1">
-                    <label class="text-xs font-medium">{{ texts?.inspector?.placeholder_name || 'Placeholder name' }}</label>
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.placeholder_name || 'Placeholder name' }}</label>
                     <input
                         v-model="placeholderName"
                         type="text"
@@ -53,7 +53,7 @@
                     />
                 </div>
                 <div class="flex flex-col gap-1">
-                    <label class="text-xs font-medium">{{ texts?.inspector?.placeholder_subtitle || 'Subtitle / note' }}</label>
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.placeholder_subtitle || 'Subtitle / note' }}</label>
                     <input
                         v-model="placeholderSubtitle"
                         type="text"
@@ -78,7 +78,7 @@
 
                 <!-- Link Existing Character -->
                 <div v-if="isEditing" class="flex flex-col gap-1 pt-1">
-                    <label class="text-xs font-medium">{{ texts?.inspector?.link_character || 'Link existing character' }}</label>
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.link_character || 'Link existing character' }}</label>
                     <input
                         v-model="charQuery"
                         type="text"
@@ -132,16 +132,28 @@
 
             <!-- Styling & Visibility -->
             <template v-if="isEditing">
+                <div class="flex flex-col gap-1.5">
+                    <div class="flex items-start justify-between gap-2">
+                        <ColourPicker
+                            :colour="person.colour || null"
+                            :label="texts?.inspector?.colour || 'Colour'"
+                            @change="updatePerson({ colour: $event })"
+                        />
+                        <button
+                            v-if="person.colour"
+                            type="button"
+                            class="btn2 btn-xs btn-ghost shrink-0"
+                            title="Clear"
+                            @click="updatePerson({ colour: null })"
+                        >
+                            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
                 <div class="grid grid-cols-2 gap-2.5">
                     <div class="flex flex-col gap-1">
-                        <label class="text-xs font-medium">{{ texts?.inspector?.colour || 'Colour' }}</label>
-                        <ColourPicker
-                            :model-value="person.colour || null"
-                            @update:model-value="updatePerson({ colour: $event })"
-                        />
-                    </div>
-                    <div class="flex flex-col gap-1">
-                        <label class="text-xs font-medium">{{ texts?.inspector?.visibility || 'Visibility' }}</label>
+                        <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.visibility || 'Visibility' }}</label>
                         <select
                             class="select select-bordered select-sm w-full"
                             :value="person.visibility ?? 1"
@@ -152,17 +164,17 @@
                             <option value="2">{{ texts?.modals?.fields?.visibility?.admins || 'Admins' }}</option>
                         </select>
                     </div>
-                </div>
 
-                <div class="flex flex-col gap-1">
-                    <label class="text-xs font-medium">{{ texts?.inspector?.css || 'CSS class' }}</label>
-                    <input
-                        :value="person.cssClass || ''"
-                        type="text"
-                        maxlength="70"
-                        class="input input-bordered input-sm w-full"
-                        @change="updatePerson({ cssClass: $event.target.value.trim() || null })"
-                    />
+                    <div class="flex flex-col gap-1">
+                        <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.css || 'CSS class' }}</label>
+                        <input
+                            :value="person.cssClass || ''"
+                            type="text"
+                            maxlength="70"
+                            class="input input-bordered input-sm w-full"
+                            @change="updatePerson({ cssClass: $event.target.value.trim() || null })"
+                        />
+                    </div>
                 </div>
 
                 <button
@@ -180,7 +192,7 @@
         <template v-else-if="selection.type === 'union' && union">
             <div class="flex flex-col gap-3">
                 <div class="flex flex-col gap-1">
-                    <label class="text-xs font-medium">{{ texts?.inspector?.union_type || 'Partnership type' }}</label>
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.union_type || 'Partnership type' }}</label>
                     <select
                         class="select select-bordered select-sm w-full"
                         :disabled="!isEditing"
@@ -192,7 +204,7 @@
                 </div>
 
                 <div class="flex flex-col gap-1">
-                    <label class="text-xs font-medium">{{ texts?.inspector?.role || 'Role / note' }}</label>
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.role || 'Role / note' }}</label>
                     <input
                         :value="union.role || ''"
                         type="text"
@@ -213,16 +225,26 @@
                         {{ texts?.actions?.add_child || 'Add child' }}
                     </button>
 
+                    <div class="flex items-start justify-between gap-2">
+                        <ColourPicker
+                            :colour="union.colour || null"
+                            :label="texts?.inspector?.colour || 'Colour'"
+                            @change="updateUnion({ colour: $event })"
+                        />
+                        <button
+                            v-if="union.colour"
+                            type="button"
+                            class="btn2 btn-xs btn-ghost shrink-0"
+                            title="Clear"
+                            @click="updateUnion({ colour: null })"
+                        >
+                            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
                     <div class="grid grid-cols-2 gap-2.5">
                         <div class="flex flex-col gap-1">
-                            <label class="text-xs font-medium">{{ texts?.inspector?.colour || 'Colour' }}</label>
-                            <ColourPicker
-                                :model-value="union.colour || null"
-                                @update:model-value="updateUnion({ colour: $event })"
-                            />
-                        </div>
-                        <div class="flex flex-col gap-1">
-                            <label class="text-xs font-medium">{{ texts?.inspector?.visibility || 'Visibility' }}</label>
+                            <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.visibility || 'Visibility' }}</label>
                             <select
                                 class="select select-bordered select-sm w-full"
                                 :value="union.visibility ?? 1"
@@ -233,17 +255,17 @@
                                 <option value="2">{{ texts?.modals?.fields?.visibility?.admins || 'Admins' }}</option>
                             </select>
                         </div>
-                    </div>
 
-                    <div class="flex flex-col gap-1">
-                        <label class="text-xs font-medium">{{ texts?.inspector?.css || 'CSS class' }}</label>
-                        <input
-                            :value="union.cssClass || ''"
-                            type="text"
-                            maxlength="70"
-                            class="input input-bordered input-sm w-full"
-                            @change="updateUnion({ cssClass: $event.target.value.trim() || null })"
-                        />
+                        <div class="flex flex-col gap-1">
+                            <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.css || 'CSS class' }}</label>
+                            <input
+                                :value="union.cssClass || ''"
+                                type="text"
+                                maxlength="70"
+                                class="input input-bordered input-sm w-full"
+                                @change="updateUnion({ cssClass: $event.target.value.trim() || null })"
+                            />
+                        </div>
                     </div>
 
                     <button
@@ -262,7 +284,7 @@
         <template v-else-if="selection.type === 'link' && link">
             <div class="flex flex-col gap-3">
                 <div class="flex flex-col gap-1">
-                    <label class="text-xs font-medium">{{ texts?.inspector?.kind || 'Lineage type' }}</label>
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.kind || 'Lineage type' }}</label>
                     <select
                         class="select select-bordered select-sm w-full"
                         :disabled="!isEditing"
@@ -274,7 +296,7 @@
                 </div>
 
                 <div class="flex flex-col gap-1">
-                    <label class="text-xs font-medium">{{ texts?.inspector?.label || 'Label' }}</label>
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.label || 'Label' }}</label>
                     <input
                         :value="link.label || ''"
                         type="text"
@@ -286,26 +308,34 @@
                 </div>
 
                 <template v-if="isEditing">
-                    <div class="grid grid-cols-2 gap-2.5">
-                        <div class="flex flex-col gap-1">
-                            <label class="text-xs font-medium">{{ texts?.inspector?.colour || 'Colour' }}</label>
-                            <ColourPicker
-                                :model-value="link.colour || null"
-                                @update:model-value="updateLink({ colour: $event })"
-                            />
-                        </div>
-                        <div class="flex flex-col gap-1">
-                            <label class="text-xs font-medium">{{ texts?.inspector?.visibility || 'Visibility' }}</label>
-                            <select
-                                class="select select-bordered select-sm w-full"
-                                :value="link.visibility ?? 1"
-                                @change="updateLink({ visibility: Number($event.target.value) })"
-                            >
-                                <option value="1">{{ texts?.modals?.fields?.visibility?.all || 'All' }}</option>
-                                <option value="5">{{ texts?.modals?.fields?.visibility?.members || 'Members' }}</option>
-                                <option value="2">{{ texts?.modals?.fields?.visibility?.admins || 'Admins' }}</option>
-                            </select>
-                        </div>
+                    <div class="flex items-start justify-between gap-2">
+                        <ColourPicker
+                            :colour="link.colour || null"
+                            :label="texts?.inspector?.colour || 'Colour'"
+                            @change="updateLink({ colour: $event })"
+                        />
+                        <button
+                            v-if="link.colour"
+                            type="button"
+                            class="btn2 btn-xs btn-ghost shrink-0"
+                            title="Clear"
+                            @click="updateLink({ colour: null })"
+                        >
+                            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                    <div class="flex flex-col gap-1">
+                        <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ texts?.inspector?.visibility || 'Visibility' }}</label>
+                        <select
+                            class="select select-bordered select-sm w-full"
+                            :value="link.visibility ?? 1"
+                            @change="updateLink({ visibility: Number($event.target.value) })"
+                        >
+                            <option value="1">{{ texts?.modals?.fields?.visibility?.all || 'All' }}</option>
+                            <option value="5">{{ texts?.modals?.fields?.visibility?.members || 'Members' }}</option>
+                            <option value="2">{{ texts?.modals?.fields?.visibility?.admins || 'Admins' }}</option>
+                        </select>
                     </div>
 
                     <button
@@ -325,7 +355,7 @@
 <script setup>
 import { computed, ref, watch } from 'vue';
 import axios from 'axios';
-import ColourPicker from './ColourPicker.vue';
+import ColourPicker from '../maps/ColourPicker.vue';
 
 const props = defineProps({
     selection: { type: Object, default: null },

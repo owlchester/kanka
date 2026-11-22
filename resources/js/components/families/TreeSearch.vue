@@ -1,7 +1,7 @@
 <template>
     <dialog
         ref="dialogEl"
-        class="dialog rounded-top md:rounded-2xl bg-base-100 shadow-md text-base-content w-full max-w-md"
+        class="dialog rounded-t-2xl md:rounded-2xl bg-base-100 shadow-sm text-base-content w-full md:w-[28rem] max-w-[90vw]"
         aria-modal="true"
         @cancel.prevent="$emit('close')"
         @click="onBackdropClick"

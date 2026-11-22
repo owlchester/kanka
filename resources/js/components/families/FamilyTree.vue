@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col gap-3 w-full">
         <!-- Toolbar -->
-        <div v-if="!isLoading" class="flex flex-wrap items-center justify-between gap-2 bg-base-100 rounded-xl p-2.5 shadow-sm">
+        <div v-if="!isLoading" class="flex flex-wrap items-center justify-between gap-2 bg-base-100 rounded-xl p-2.5">
             <!-- Left controls: View & Layout -->
             <div class="flex flex-wrap items-center gap-1.5">
                 <button type="button" class="btn2 btn-sm btn-ghost" :title="texts?.actions?.fit || 'Fit'" @click="fitTree">
@@ -53,7 +53,7 @@
                     </button>
                     <div
                         v-if="exportMenuOpen"
-                        class="absolute left-0 mt-1 w-40 bg-base-100 rounded-xl shadow-lg p-1 z-40 flex flex-col gap-0.5"
+                        class="absolute left-0 mt-1 w-40 bg-base-100 rounded-xl shadow-sm border border-base-200 p-1 z-40 flex flex-col gap-0.5"
                     >
                         <button type="button" class="text-left text-sm px-3 py-1.5 rounded-lg hover:bg-base-200 cursor-pointer" @click="exportImage('png')">
                             {{ texts?.actions?.export_png || 'Export PNG' }}
@@ -158,7 +158,7 @@
                     v-if="graph.people.length === 0"
                     class="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 p-6 text-center"
                 >
-                    <div class="w-14 h-14 rounded-2xl bg-base-100 shadow-sm flex items-center justify-center text-2xl text-primary">
+                    <div class="w-14 h-14 rounded-2xl bg-base-100 flex items-center justify-center text-2xl text-primary">
                         <i class="fa-solid fa-sitemap" aria-hidden="true"></i>
                     </div>
                     <div v-if="permission && isEditing" class="flex flex-col items-center gap-3">
@@ -190,7 +190,7 @@
                     :node-types="nodeTypes"
                     :nodes-draggable="false"
                     :nodes-connectable="false"
-                    :only-render-visible-elements="true"
+                    :only-render-visible-elements="!isExporting"
                     :min-zoom="0.15"
                     :max-zoom="2.5"
                     @edge-click="onEdgeClick"
@@ -250,7 +250,7 @@
         />
 
         <!-- Premium Pitch Modal -->
-        <dialog class="dialog rounded-top md:rounded-2xl bg-base-100 min-w-fit shadow-md text-base-content" id="family-tree-pitch" aria-modal="true" v-if="!isLoading">
+        <dialog class="dialog rounded-t-2xl md:rounded-2xl bg-base-100 w-full md:w-[32rem] max-w-[90vw] shadow-sm text-base-content" id="family-tree-pitch" aria-modal="true" v-if="!isLoading">
             <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
                 <h4 class="text-lg font-normal" v-html="texts?.modals?.pitch?.title"></h4>
                 <button autofocus type="button" class="text-xl opacity-50 hover:opacity-100 cursor-pointer" aria-label="Close" @click="closePitchModal">
@@ -278,7 +278,7 @@ import { Controls } from '@vue-flow/controls';
 import { MiniMap } from '@vue-flow/minimap';
 import { toPng, toSvg } from 'html-to-image';
 import { createGraphStore, emptyGraph } from '../../families/graphStore';
-import { layoutGraph } from '../../families/layout';
+import { layoutGraph, NODE_DIMENSIONS } from '../../families/layout';
 import PersonNode from './PersonNode.vue';
 import UnionNode from './UnionNode.vue';
 import QuickAddPopover from './QuickAddPopover.vue';
@@ -302,7 +302,7 @@ const nodeTypes = {
     union: markRaw(UnionNode),
 };
 
-const { fitView } = useVueFlow();
+const { fitView, getNodesBounds } = useVueFlow();
 
 const store = createGraphStore();
 const graph = ref(emptyGraph());
@@ -318,6 +318,7 @@ const vfEdges = ref([]);
 const isLoading = ref(true);
 const isEditing = ref(false);
 const isSaving = ref(false);
+const isExporting = ref(false);
 const isDirty = ref(false);
 const canUndo = ref(false);
 const canRedo = ref(false);
@@ -592,22 +593,145 @@ function onEdgeClick({ edge }) {
     }
 }
 
+function computeFallbackBounds() {
+    if (vfNodes.value.length === 0) {
+        return { x: 0, y: 0, width: 400, height: 300 };
+    }
+    let minX = Infinity;
+    let minY = Infinity;
+    let maxX = -Infinity;
+    let maxY = -Infinity;
+    for (const node of vfNodes.value) {
+        const x = node.position?.x ?? 0;
+        const y = node.position?.y ?? 0;
+        let w = NODE_DIMENSIONS.normal.width;
+        let h = NODE_DIMENSIONS.normal.height;
+        if (node.type === 'union') {
+            w = node.data?.union?.role ? NODE_DIMENSIONS.unionWithRole.width : NODE_DIMENSIONS.union.width;
+            h = node.data?.union?.role ? NODE_DIMENSIONS.unionWithRole.height : NODE_DIMENSIONS.union.height;
+        } else if (node.data?.compact) {
+            w = NODE_DIMENSIONS.compact.width;
+            h = NODE_DIMENSIONS.compact.height;
+        }
+        minX = Math.min(minX, x);
+        minY = Math.min(minY, y);
+        maxX = Math.max(maxX, x + w);
+        maxY = Math.max(maxY, y + h);
+    }
+    return {
+        x: minX,
+        y: minY,
+        width: Math.max(1, maxX - minX),
+        height: Math.max(1, maxY - minY),
+    };
+}
+
 async function exportImage(format) {
     exportMenuOpen.value = false;
-    const el = canvasWrapper.value?.querySelector('.vue-flow__viewport') || canvasWrapper.value;
-    if (!el) {
+    if (vfNodes.value.length === 0) {
         return;
     }
-    const slug = (props.family_name || 'family').toLowerCase().replace(/[^a-z0-9]+/g, '-');
-    const dataUrl = format === 'svg'
-        ? await toSvg(el, { backgroundColor: '#ffffff' })
-        : await toPng(el, { pixelRatio: 2, backgroundColor: '#ffffff' });
 
-    const a = document.createElement('a');
-    a.href = dataUrl;
-    a.download = `${slug}-family-tree.${format}`;
-    a.click();
-    window.showToast?.(texts.value?.toasts?.exported || 'Family tree exported.');
+    const previousSelection = selection.value;
+    selection.value = null;
+    focusedNodeId.value = null;
+    isExporting.value = true;
+
+    try {
+        await nextTick();
+        await new Promise((resolve) => requestAnimationFrame(resolve));
+
+        const el = canvasWrapper.value?.querySelector('.vue-flow__viewport');
+        if (!el) {
+            return;
+        }
+
+        // Ensure SVG edge paths have explicit fill="none" and inlined stroke styles for html-to-image
+        el.querySelectorAll('.vue-flow__edge-path').forEach((pathEl) => {
+            pathEl.setAttribute('fill', 'none');
+            const computed = window.getComputedStyle(pathEl);
+            if (computed.stroke && computed.stroke !== 'none') {
+                pathEl.style.stroke = computed.stroke;
+            }
+            if (computed.strokeWidth) {
+                pathEl.style.strokeWidth = computed.strokeWidth;
+            }
+            if (computed.strokeDasharray && computed.strokeDasharray !== 'none') {
+                pathEl.style.strokeDasharray = computed.strokeDasharray;
+            }
+        });
+
+        el.querySelectorAll('.vue-flow__edge-textbg').forEach((rectEl) => {
+            const computedFill = window.getComputedStyle(rectEl).fill;
+            const safeFill = computedFill && computedFill !== 'none' && computedFill !== 'rgb(0, 0, 0)'
+                ? computedFill
+                : '#ffffff';
+            rectEl.setAttribute('fill', safeFill);
+            rectEl.style.fill = safeFill;
+        });
+
+        el.querySelectorAll('.vue-flow__edge-text').forEach((textEl) => {
+            const computed = window.getComputedStyle(textEl);
+            const safeFill = computed.fill && computed.fill !== 'none' ? computed.fill : '#1f2937';
+            textEl.setAttribute('fill', safeFill);
+            textEl.style.fill = safeFill;
+            if (computed.fontSize) {
+                textEl.style.fontSize = computed.fontSize;
+            }
+            if (computed.fontWeight) {
+                textEl.style.fontWeight = computed.fontWeight;
+            }
+        });
+
+        let bounds = typeof getNodesBounds === 'function' ? getNodesBounds(vfNodes.value) : null;
+        if (!bounds || !Number.isFinite(bounds.width) || bounds.width <= 0 || bounds.height <= 0) {
+            bounds = computeFallbackBounds();
+        }
+
+        const padding = 48;
+        const imageWidth = Math.ceil(bounds.width + padding * 2);
+        const imageHeight = Math.ceil(bounds.height + padding * 2);
+
+        const bg = window.getComputedStyle(document.body).backgroundColor;
+        const backgroundColor = bg && bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent' ? bg : '#ffffff';
+
+        const options = {
+            backgroundColor,
+            width: imageWidth,
+            height: imageHeight,
+            cacheBust: true,
+            style: {
+                width: `${imageWidth}px`,
+                height: `${imageHeight}px`,
+                transform: `translate(${-bounds.x + padding}px, ${-bounds.y + padding}px) scale(1)`,
+            },
+            filter: (node) => {
+                if (!node || !node.classList) {
+                    return true;
+                }
+                if (
+                    node.classList.contains('vue-flow__edge-interaction') ||
+                    node.classList.contains('kanka-ft-action-btn') ||
+                    node.classList.contains('vue-flow__handle')
+                ) {
+                    return false;
+                }
+                return true;
+            },
+        };
+
+        const slug = (props.family_name || 'family').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        const dataUrl = format === 'svg' ? await toSvg(el, options) : await toPng(el, { ...options, pixelRatio: 2 });
+
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = `${slug}-family-tree.${format}`;
+        a.click();
+        window.showToast?.(texts.value?.toasts?.exported || 'Family tree exported.');
+    } finally {
+        isExporting.value = false;
+        selection.value = previousSelection;
+    }
 }
 
 const searchablePeople = computed(() =>
