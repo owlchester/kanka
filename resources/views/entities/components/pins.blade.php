@@ -12,7 +12,7 @@ if (auth()->check() && auth()->user()->can('update', $entity)) {
     <div class="entity-reader-details contents in-[.entity-details-sheet]:flex in-[.entity-details-sheet]:flex-col in-[.entity-details-sheet]:gap-3" data-reader-details-content>
         @if ($forceShow || $entity->hasPins())
             <div class="col-span-2 sidebar-section-box entity-pins overflow-hidden flex flex-col gap-2 {{ $entity->hasPins() ? '' : 'entity-empty-pin' }}">
-                <div class="sidebar-section-title flex items-center gap-2 justify-between">
+                <div class="sidebar-section-title relative flex items-center gap-2 justify-between">
                     <button type="button" class="cursor-pointer user-select element-toggle group text-left grow flex items-center justify-between gap-2" data-animate="collapse" data-target="#sidebar-pinned-elements" aria-expanded="true" aria-controls="sidebar-pinned-elements">
                         <span class="text-xs font-semibold uppercase tracking-wider">{{ __('entities/pins.title') }}</span>
                         <span class="text-xs shrink-0">
@@ -20,7 +20,7 @@ if (auth()->check() && auth()->user()->can('update', $entity)) {
                             <x-icon class="fa-regular fa-chevron-down icon-hide transition-transform duration-200 group-hover:translate-y-0.5" />
                         </span>
                     </button>
-                    <a href="https://docs.kanka.io/en/latest/features/profile-sidebar.html" data-toggle="tooltip" data-title="{{ __('general.documentation') }}" class="text-link shrink-0 text-xs">
+                    <a href="https://docs.kanka.io/en/latest/features/profile-sidebar.html" data-toggle="tooltip" data-title="{{ __('general.documentation') }}" class="text-link shrink-0 text-xs absolute right-5 in-[.entity-details-sheet]:static">
                         <x-icon class="question" />
                         <span class="sr-only">{{ __('general.documentation') }}</span>
                     </a>

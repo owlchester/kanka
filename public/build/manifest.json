@@ -282,7 +282,7 @@
     "isDynamicEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app-BAxH4XY5.css",
+    "file": "assets/app-BZ5IygUr.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -291,7 +291,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-D4xX4N9i.css",
+    "file": "assets/auth-B0E-Y63x.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -318,7 +318,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-BYh6nuxn.css",
+    "file": "assets/front-BmgKCkdA.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
