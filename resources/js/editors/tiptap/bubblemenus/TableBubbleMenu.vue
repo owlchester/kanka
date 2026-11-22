@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import type { Editor } from '@tiptap/core'
 import { buttonClass } from '../utils'
 import { toggleTableClass } from '../extensions/table/tableClasses.js'
+import { t } from '../i18n.js'
 
 const props = defineProps<{
     editor: Editor
@@ -68,8 +69,16 @@ const toggleStriped = () => toggleClass('table-striped')
 const toggleLeft = () => toggleClass('table-left', ['table-right'])
 const toggleRight = () => toggleClass('table-right', ['table-left'])
 
+const addColumnBefore = () => {
+    props.editor.chain().focus().addColumnBefore().run()
+}
+
 const addColumnAfter = () => {
     props.editor.chain().focus().addColumnAfter().run()
+}
+
+const addRowBefore = () => {
+    props.editor.chain().focus().addRowBefore().run()
 }
 
 const addRowAfter = () => {
@@ -94,43 +103,66 @@ const toggleHeaderRow = () => {
 </script>
 
 <template>
-    <div class="flex gap-1 items-center text-xs text-neutral-content px-2">
+    <div class="flex gap-1 items-center text-xs text-neutral-content px-2 flex-wrap">
         <button
+            type="button"
+            @click.prevent="addColumnBefore"
+            :class="buttonClass(false)"
+            :title="t('add_column_before', 'Add column left')"
+        >
+            <i class="fa-regular fa-arrow-left text-[8px]" aria-hidden="true" />
+            <i class="fa-regular fa-table-columns" aria-hidden="true" />
+        </button>
+        <button
+            type="button"
             @click.prevent="addColumnAfter"
             :class="buttonClass(false)"
-            title="Add column"
+            :title="t('add_column_after', 'Add column right')"
         >
             <i class="fa-regular fa-table-columns" aria-hidden="true" />
             <i class="fa-regular fa-plus text-[8px]" aria-hidden="true" />
         </button>
         <button
+            type="button"
+            @click.prevent="addRowBefore"
+            :class="buttonClass(false)"
+            :title="t('add_row_before', 'Add row above')"
+        >
+            <i class="fa-regular fa-arrow-up text-[8px]" aria-hidden="true" />
+            <i class="fa-regular fa-table-rows" aria-hidden="true" />
+        </button>
+        <button
+            type="button"
             @click.prevent="addRowAfter"
             :class="buttonClass(false)"
-            title="Add row"
+            :title="t('add_row_after', 'Add row below')"
         >
             <i class="fa-regular fa-table-rows" aria-hidden="true" />
             <i class="fa-regular fa-plus text-[8px]" aria-hidden="true" />
         </button>
         <button
+            type="button"
             @click.prevent="deleteColumn"
             :class="buttonClass(false)"
-            title="Delete column"
+            :title="t('delete_column', 'Delete column')"
         >
             <i class="fa-regular fa-table-columns" aria-hidden="true" />
             <i class="fa-regular fa-minus text-[8px]" aria-hidden="true" />
         </button>
         <button
+            type="button"
             @click.prevent="deleteRow"
             :class="buttonClass(false)"
-            title="Delete row"
+            :title="t('delete_row', 'Delete row')"
         >
             <i class="fa-regular fa-table-rows" aria-hidden="true" />
             <i class="fa-regular fa-minus text-[8px]" aria-hidden="true" />
         </button>
         <button
+            type="button"
             @click.prevent="toggleHeaderRow"
             :class="buttonClass(false)"
-            title="Toggle header row"
+            :title="t('toggle_header_row', 'Toggle header row')"
         >
             <i class="fa-regular fa-heading" aria-hidden="true" />
         </button>
@@ -138,31 +170,35 @@ const toggleHeaderRow = () => {
         <span class="w-px h-4 bg-base-content/20 mx-1" />
 
         <button
+            type="button"
             @click.prevent="toggleBorderless"
             :class="buttonClass(hasBorderless)"
             :aria-pressed="hasBorderless"
-            title="Toggle borderless"
+            :title="t('toggle_borderless', 'Toggle borderless')"
         >
             <i class="fa-regular fa-border-none" aria-hidden="true" />
         </button>
         <button
+            type="button"
             @click.prevent="toggleStriped"
             :class="buttonClass(hasStriped)"
-            title="Toggle striped"
+            :title="t('toggle_striped', 'Toggle striped')"
         >
             <i class="fa-regular fa-bars" aria-hidden="true" />
         </button>
         <button
+            type="button"
             @click.prevent="toggleLeft"
             :class="buttonClass(hasLeft)"
-            title="Align left"
+            :title="t('align_left', 'Align left')"
         >
             <i class="fa-regular fa-align-left" aria-hidden="true" />
         </button>
         <button
+            type="button"
             @click.prevent="toggleRight"
             :class="buttonClass(hasRight)"
-            title="Align right"
+            :title="t('align_right', 'Align right')"
         >
             <i class="fa-regular fa-align-right" aria-hidden="true" />
         </button>
@@ -170,9 +206,10 @@ const toggleHeaderRow = () => {
         <span class="w-px h-4 bg-base-content/20 mx-1" />
 
         <button
+            type="button"
             @click.prevent="deleteTable"
             class="hover:text-error-content px-2 py-1"
-            title="Delete table"
+            :title="t('delete_table', 'Delete table')"
         >
             <i class="fa-regular fa-trash" aria-hidden="true" />
         </button>

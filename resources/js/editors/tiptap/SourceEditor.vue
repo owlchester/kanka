@@ -7,15 +7,18 @@ import { EditorState } from '@codemirror/state'
 import { indentWithTab } from '@codemirror/commands'
 import { keymap } from '@codemirror/view'
 import { search } from '@codemirror/search'
+import { t } from './i18n.js'
 
 const props = defineProps<{
     modelValue: string
     cursorBlockIndex?: number
+    isFullscreen?: boolean
 }>()
 
 const emit = defineEmits<{
     'update:modelValue': [value: string]
     'exit': [cursorBlockIndex: number]
+    'toggle-fullscreen': []
 }>()
 
 const editorContainer = ref<HTMLElement | null>(null)
@@ -198,18 +201,28 @@ const exitSourceMode = () => {
 </script>
 
 <template>
-    <div class="source-editor">
+    <div class="source-editor" :class="{ 'is-fullscreen': isFullscreen }">
         <div class="source-editor-toolbar">
-            <span class="text-xs text-neutral-content">Source Mode</span>
-            <button
-                type="button"
-                @click="exitSourceMode"
-                class="btn btn-xs btn-ghost"
-                title="Exit source mode"
-            >
-                <i class="fa-regular fa-eye" aria-hidden="true" />
-                Visual Editor
-            </button>
+            <span class="text-xs text-neutral-content">{{ t('source_mode', 'Source Mode') }}</span>
+            <div class="flex items-center gap-1">
+                <button
+                    type="button"
+                    @click="emit('toggle-fullscreen')"
+                    class="btn btn-xs btn-ghost"
+                    :title="isFullscreen ? t('exit_fullscreen', 'Exit fullscreen') : t('fullscreen', 'Fullscreen')"
+                >
+                    <i class="fa-regular" :class="isFullscreen ? 'fa-compress' : 'fa-expand'" aria-hidden="true" />
+                </button>
+                <button
+                    type="button"
+                    @click="exitSourceMode"
+                    class="btn btn-xs btn-ghost"
+                    :title="t('visual_editor', 'Visual Editor')"
+                >
+                    <i class="fa-regular fa-eye" aria-hidden="true" />
+                    {{ t('visual_editor', 'Visual Editor') }}
+                </button>
+            </div>
         </div>
         <div ref="editorContainer" class="source-editor-content" />
     </div>
@@ -220,6 +233,13 @@ const exitSourceMode = () => {
     border: 1px solid hsl(var(--bc)/.1);
     border-radius: var(--rounded-btn);
     overflow: hidden;
+}
+
+.source-editor.is-fullscreen {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0%;
+    min-height: 0;
 }
 
 .source-editor-toolbar {
@@ -237,11 +257,21 @@ const exitSourceMode = () => {
     overflow-y: auto;
 }
 
+.source-editor.is-fullscreen .source-editor-content {
+    flex: 1 1 0%;
+    min-height: 0;
+    max-height: none;
+}
+
 .source-editor-content :deep(.cm-editor) {
     height: 100%;
     min-height: 200px;
     max-height: calc(70vh - 40px);
     font-size: 0.875rem;
+}
+
+.source-editor.is-fullscreen .source-editor-content :deep(.cm-editor) {
+    max-height: none;
 }
 
 .source-editor-content :deep(.cm-scroller) {

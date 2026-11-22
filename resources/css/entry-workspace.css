@@ -171,8 +171,17 @@
             padding: 1rem;
         }
 
-        .tiptap-editor > p {
+        .tiptap-editor > p,
+        .tiptap-editor .tiptap-helper {
             margin-inline: 1rem;
+        }
+
+        .tiptap-editor .editor-toolbar {
+            margin: 1rem 1rem 0;
+        }
+
+        .tiptap-editor .tiptap-minimal-bar {
+            margin: 0.5rem 1rem 0;
         }
 
         .entry-workspace-description > a {
@@ -187,8 +196,17 @@
                 padding: 2rem;
             }
 
-            .tiptap-editor > p {
+            .tiptap-editor > p,
+            .tiptap-editor .tiptap-helper {
                 margin-inline: 2rem;
+            }
+
+            .tiptap-editor .editor-toolbar {
+                margin: 1.5rem 2rem 0;
+            }
+
+            .tiptap-editor .tiptap-minimal-bar {
+                margin: 0.75rem 2rem 0;
             }
         }
     }
@@ -228,6 +246,7 @@
             .entry-workspace-description,
             .field-entry,
             .tiptap-editor,
+            .tiptap-shell,
             .tiptap-content,
             .source-editor,
             .source-editor-content {
@@ -236,6 +255,11 @@
                 flex: 1;
                 min-width: 0;
                 min-height: 0;
+            }
+
+            .editor-toolbar,
+            .tiptap-minimal-bar {
+                flex-shrink: 0;
             }
 
             .tiptap.ProseMirror {
