@@ -221,30 +221,8 @@ const registerVanityUrl = () => {
 };
 
 
-const registerPermissionToggleAll = () => {
-    const togglers = document.querySelectorAll('.permission-toggle');
-    togglers.forEach(toggler => {
-        toggler.addEventListener('click', function (e) {
-            e.preventDefault();
-            let action = this.dataset.action;
-            let selector = document.querySelectorAll('input[data-action="' + action + '"]');
-            let checked = this.dataset.checked === "1" ? false : true;
-            this.dataset.checked = checked ? 1 : 0;
-            selector.forEach(checkbox => {
-                if (checked) {
-                    checkbox.checked = true;
-                } else {
-                    checkbox.checked = false;
-                }
-            });
-        });
-    });
-};
-
-
 registerModules();
 registerSidebarSetup();
 registerRoles();
 registerCampaignThemes();
 registerVanityUrl();
-registerPermissionToggleAll();

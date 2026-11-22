@@ -135,7 +135,7 @@ class RoleController extends Controller
     public function show(Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('view', [$campaignRole, $campaign]);
-        $campaignRole->loadMissing('permissions');
+        $campaignRole->loadMissing(['permissions', 'rolePermissions']);
 
         $members = $campaignRole
             ->users()

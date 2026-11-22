@@ -53,6 +53,37 @@ return [
     'show'          => [
         'title' => ':role permissions - :campaign',
     ],
+    'standard'      => [
+        'advanced'  => [
+            'toggle'    => 'Show individual permissions',
+        ],
+        'features'  => [
+            'groups'    => [
+                'bookmarks' => 'Bookmarks',
+                'campaign'  => 'Campaign',
+                'gallery'   => 'Gallery',
+                'templates' => 'Archetypes & Templates',
+            ],
+            'helpers'   => [
+                'bookmarks'         => 'Allow managing campaign bookmarks.',
+                'template_articles' => 'Allow managing article templates.',
+                'template_entries'  => 'Allow managing entry archetypes and templates.',
+            ],
+        ],
+        'presets'   => [
+            'clear_all'     => 'Clear all',
+            'contribute'    => 'Contribute',
+            'custom'        => 'Custom',
+            'full'          => 'Full access',
+            'label'         => 'Quick apply',
+            'none'          => 'No access',
+            'view'          => 'View only',
+        ],
+        'save_bar'  => [
+            'reset'     => 'Reset',
+            'unsaved'   => 'You have unsaved permission changes.',
+        ],
+    ],
     'toggle'        => [
         'disabled'  => 'Members of the :role role can no longer :action :entities',
         'enabled'   => 'Members of the :role role can now :action :entities',

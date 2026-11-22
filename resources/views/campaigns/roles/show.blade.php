@@ -20,40 +20,31 @@
     @if ($role->isPublic())
         @include('campaigns.roles._public')
     @else
-    <div class="flex flex-col gap-5 relative">
+        <div class="flex flex-col gap-6 relative">
+            <x-campaigns.page-header
+                :title="$role->name"
+                :lead="$role->isAdmin()
+                    ? __('campaigns.roles.hints.role_admin', ['name' => '<span class=\'font-semibold\'>' . e($role->name) . '</span>'])
+                    : __('campaigns.roles.hints.role_permissions', ['name' => '<span class=\'font-semibold\'>' . e($role->name) . '</span>'])"
+            >
+                <x-slot name="actions">
+                    <button type="button" class="btn2 btn-sm btn-ghost" data-target="permission-modal" data-toggle="dialog">
+                        <x-icon class="question" />
+                        {{ __('general.learn-more') }}
+                    </button>
+                </x-slot>
+            </x-campaigns.page-header>
 
-        <div class="flex gap-2 items-center justify-between">
-            <h1 class="text-2xl">{{ __('crud.permissions.title') }}</h1>
-            <button class="btn2 btn-sm btn-ghost" data-target="permission-modal" data-toggle="dialog">
-                <x-icon class="question" />
-                {{ __('general.learn-more') }}
-            </button>
-        </div>
-        @if (!$role->isAdmin())
-            <p>{!! __('campaigns.roles.hints.role_permissions', ['name' => '<span class="font-semibold">' . $role->name . '</span>']) !!}</p>
-        @else
-            <p>{!! __('campaigns.roles.hints.role_admin', ['name' => '<span class="font-semibold">' . $role->name . '</span>']) !!} </p>
-        @endif
+            @include('campaigns.roles._members')
 
-        @include('campaigns.roles._members')
-
-        @if (!$role->isAdmin())
-            @can('permission', $role)
-                <x-form :action="['campaign_roles.savePermissions', $campaign, 'campaign_role' => $role]">
-                    <div class="w-full flex flex-col gap-4">
+            @if (!$role->isAdmin())
+                @can('permission', $role)
+                    <x-form :action="['campaign_roles.savePermissions', $campaign, 'campaign_role' => $role]">
                         @include('campaigns.roles._pretty')
-
-                        <div class="sticky bottom-4 ml-auto z-50">
-                            <button class="btn2 btn-primary">
-                                <x-icon class="save" />
-                                {{ __('crud.save') }}
-                            </button>
-                        </div>
-                    </div>
-                </x-form>
+                    </x-form>
+                @endcan
             @endif
-        @endif
-    </div>
+        </div>
     @endif
 @endsection
 
@@ -108,7 +99,6 @@
             </li>
         </ul>
 
-
         <p class="m-0">
             {!! __('sidebar.gallery') !!}
         </p>
@@ -134,9 +124,4 @@
             </a>
         </p>
     </x-dialog>
-@endsection
-
-@section('styles')
-    <!-- Needed to show the icons instead of the checkbox input fields -->
-    <link href="/vendor/pretty-checkbox/pretty-checkbox.min.css" rel="stylesheet">
 @endsection
