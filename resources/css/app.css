@@ -244,20 +244,35 @@ button.loading {
     border-color: hsl(var(--er)/var(--tw-border-opacity));
 }
 
+.entity-menu-section {
+    background-color: var(--entity-menu-background, hsl(var(--b1) / 1));
+}
+
+.entity-desktop-navigation ul.entity-menu li {
+    width: auto;
+}
+
 ul.entity-menu {
     li {
-        a {
-            color: hsl(var(--bc)/0.8);
-            &:hover {
-                background-color: hsl(var(--b2)/1);
-                color: hsl(var(--bc)/1);
+        > a {
+            color: hsl(var(--bc) / 0.78);
+        }
+
+        &:hover {
+            background-color: hsl(var(--b2) / 0.6);
+
+            > a {
+                color: hsl(var(--bc) / 1);
             }
         }
     }
+
     li.active {
-        a {
-            background-color: hsl(var(--b2)/1);
-            color: hsl(var(--bc)/1);
+        background-color: hsl(var(--b2) / 1);
+        font-weight: 500;
+
+        > a {
+            color: hsl(var(--bc) / 1);
         }
     }
 }

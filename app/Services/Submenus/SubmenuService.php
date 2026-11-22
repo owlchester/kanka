@@ -31,11 +31,6 @@ class SubmenuService
             'name' => __('crud.tabs.overview'),
             'route' => 'entities.show',
             'entity' => true,
-            'button' => isset($this->user) && $this->user->can('update', $this->entity) ? [
-                'url' => route('entities.story.reorder', [$this->campaign, $this->entity]),
-                'icon' => 'fa-regular fa-arrow-up-arrow-down',
-                'tooltip' => __('entities/story.reorder.icon_tooltip'),
-            ] : null,
         ];
 
         $childCount = $this->entity->children()->count();
@@ -118,6 +113,16 @@ class SubmenuService
                 'route' => 'entities.mentions',
                 'entity' => true,
                 'count' => $mentionsCount,
+            ];
+        }
+
+        // Reorder articles
+        if (isset($this->user) && $this->user->can('update', $this->entity)) {
+            $this->items['fourth']['story_reorder'] = [
+                'name' => __('entities/story.reorder.panel_title'),
+                'route' => 'entities.story.reorder',
+                'entity' => true,
+                'icon' => 'fa-regular fa-arrow-up-arrow-down',
             ];
         }
 

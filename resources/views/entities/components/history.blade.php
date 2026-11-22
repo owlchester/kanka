@@ -1,8 +1,10 @@
 <div class="sidebar-section-box entity-history overflow-hidden flex flex-col gap-2">
-    <button type="button" class="sidebar-section-title text-left cursor-pointer user-select border-b element-toggle group" data-animate="collapse" data-target="#sidebar-history" aria-expanded="true" aria-controls="sidebar-history">
-        <x-icon class="fa-regular fa-chevron-up icon-show transition-transform duration-200 group-hover:-translate-y-0.5" />
-        <x-icon class="fa-regular fa-chevron-down icon-hide transition-transform duration-200 group-hover:translate-y-0.5" />
-        <span class="text-lg">{{ __('entities/profile.history') }}</span>
+    <button type="button" class="sidebar-section-title text-left cursor-pointer user-select element-toggle group flex items-center justify-between gap-2 w-full" data-animate="collapse" data-target="#sidebar-history" aria-expanded="true" aria-controls="sidebar-history">
+        <span class="text-xs font-semibold uppercase tracking-wider">{{ __('entities/profile.history') }}</span>
+        <span class="text-xs shrink-0">
+            <x-icon class="fa-regular fa-chevron-up icon-show transition-transform duration-200 group-hover:-translate-y-0.5" />
+            <x-icon class="fa-regular fa-chevron-down icon-hide transition-transform duration-200 group-hover:translate-y-0.5" />
+        </span>
     </button>
     <div class="sidebar-elements overflow-hidden" id="sidebar-history">
         <div class="flex flex-col gap-2 text-xs">

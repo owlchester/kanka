@@ -69,3 +69,19 @@ mark.kanka-search-highlight {
         display: none;
     }
 }
+
+@media screen and (width >= 64rem) {
+    .entity-grid > .entity-body {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 14rem;
+        align-items: start;
+    }
+
+    .entity-grid > .entity-body:not(:has(> .entity-sidebar)) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .entity-grid > .entity-body > .entity-submenu {
+        grid-column: 1 / -1;
+    }
+}

@@ -15,7 +15,7 @@
 
 @section('content')
     @include('entities.pages.subpage', [
-        'active' => 'story',
+        'active' => 'story_reorder',
         'view' => 'entities.pages.story._reorder',
         'entity' => $entity,
     ])

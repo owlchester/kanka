@@ -26,8 +26,52 @@
 }
 
 .sidebar-section-box {
-    background: var(--sidebar-section-background, none);
-    padding: var(--sidebar-section-padding, 0);
+    background: var(--sidebar-section-background, hsl(var(--b1) / 1));
+    padding: var(--sidebar-section-padding, 0.875rem);
+    border-radius: var(--sidebar-section-radius, 0.75rem);
+}
+
+.sidebar-section-title {
+    color: hsl(var(--bc) / 0.6);
+    transition: color 150ms ease;
+
+    &:hover {
+        color: hsl(var(--bc) / 0.9);
+    }
+}
+
+.sidebar-section-profile .element .title {
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: hsl(var(--bc) / 0.55);
+}
+
+.pinned-attribute {
+    strong {
+        font-weight: 500;
+        color: hsl(var(--bc) / 0.65);
+    }
+
+    &.pinned-attribute-section {
+        padding-top: 0.5rem;
+        margin-top: 0.25rem;
+        font-size: 0.6875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: hsl(var(--bc) / 0.55);
+    }
+}
+
+.entity-history {
+    opacity: 0.85;
+    transition: opacity 150ms ease;
+
+    &:hover {
+        opacity: 1;
+    }
 }
 
 .entity-header {

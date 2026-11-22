@@ -30,18 +30,20 @@ $totalParticipants = $visibleGroups->sum(fn ($group) => $group->participants->co
     <div class="sidebar-section-box overflow-hidden flex flex-col gap-2">
         <button
             type="button"
-            class="sidebar-section-title text-left cursor-pointer group user-select border-b element-toggle flex items-center justify-between gap-2"
+            class="sidebar-section-title text-left cursor-pointer group user-select element-toggle flex items-center justify-between gap-2 w-full"
             data-animate="collapse"
             data-target="#sidebar-event-participants"
             aria-expanded="true"
             aria-controls="sidebar-event-participants"
         >
-            <span class="flex items-center gap-1 min-w-0">
-                <x-icon class="fa-regular fa-chevron-up icon-show transition-transform duration-200 group-hover:-translate-y-0.5" />
-                <x-icon class="fa-regular fa-chevron-down icon-hide transition-transform duration-200 group-hover:translate-y-0.5" />
-                <span class="text-lg truncate">{{ __('events.participants.title') }}</span>
+            <span class="text-xs font-semibold uppercase tracking-wider truncate">{{ __('events.participants.title') }}</span>
+            <span class="flex items-center gap-1.5 shrink-0">
+                <span class="text-xs font-medium text-neutral-content bg-base-200 px-1.5 py-0.5 rounded-full">{{ $totalParticipants }}</span>
+                <span class="text-xs">
+                    <x-icon class="fa-regular fa-chevron-up icon-show transition-transform duration-200 group-hover:-translate-y-0.5" />
+                    <x-icon class="fa-regular fa-chevron-down icon-hide transition-transform duration-200 group-hover:translate-y-0.5" />
+                </span>
             </span>
-            <span class="text-xs font-medium text-neutral-content bg-base-200 px-1.5 py-0.5 rounded-full shrink-0">{{ $totalParticipants }}</span>
         </button>
 
         <div class="sidebar-elements grid overflow-hidden" id="sidebar-event-participants">

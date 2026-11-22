@@ -245,6 +245,7 @@ return [
     'keyboard-shortcut' => 'Keyboard shortcut :code',
     'navigation'        => [
         'cancel'            => 'cancel',
+        'entity'            => 'Entry navigation',
         'or_cancel'         => 'or :cancel',
         'skip_to_content'   => 'Skip navigation',
     ],
@@ -313,6 +314,7 @@ return [
         'abilities'     => 'Abilities',
         'inventory'     => 'Inventory',
         'mentions'      => 'Mentions',
+        'more'          => 'More',
         'overview'      => 'Overview',
         'permissions'   => 'Permissions',
         'premium'       => 'Premium',

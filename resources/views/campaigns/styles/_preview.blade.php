@@ -101,29 +101,26 @@
         <h6>Heading 6</h6>
     </div>
     <div class="col-span-2">
-        <x-box :padding="0">
-            <x-menu>
-                <x-menu>
-                    <x-menu.element
-                        :active="true"
-                        route="#"
-                    >
-                        Menu item 1
-                    </x-menu.element>
-                    <x-menu.element
-                        route="#"
-                        :badge="2"
-                    >
-                        Menu item 1
-                    </x-menu.element>
-                    <x-menu.element
-                        route="#"
-                    >
-                        Menu item 3
-                    </x-menu.element>
-                </x-menu>
-            </x-menu>
-        </x-box>
+        <nav class="entity-menu-section entity-desktop-navigation flex items-center gap-1 rounded-xl p-1.5">
+            <ul class="list-none menu entity-menu flex flex-wrap items-center gap-1 m-0 p-0 text-sm grow">
+                <li class="relative flex items-center rounded-lg transition-colors duration-150 overflow-hidden active">
+                    <a href="#" class="flex items-center gap-1.5 py-1.5 px-2.5 select-none transition-all duration-150 cursor-pointer text-inherit overflow-hidden">
+                        <span class="truncate">Menu item 1</span>
+                    </a>
+                </li>
+                <li class="relative flex items-center rounded-lg transition-colors duration-150 overflow-hidden">
+                    <a href="#" class="flex items-center gap-1.5 py-1.5 px-2.5 select-none transition-all duration-150 cursor-pointer text-inherit overflow-hidden">
+                        <span class="truncate">Menu item 2</span>
+                        <span class="text-xs text-neutral-content tabular-nums opacity-75">2</span>
+                    </a>
+                </li>
+                <li class="relative flex items-center rounded-lg transition-colors duration-150 overflow-hidden">
+                    <a href="#" class="flex items-center gap-1.5 py-1.5 px-2.5 select-none transition-all duration-150 cursor-pointer text-inherit overflow-hidden">
+                        <span class="truncate">Menu item 3</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
 
 

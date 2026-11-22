@@ -15,12 +15,6 @@ class CharacterSubmenu extends BaseSubmenu
             'name' => __('entities/profile.show.tab_name'),
             'route' => 'entities.profile',
             'entity' => true,
-
-            'button' => $canEdit ? [
-                'url' => $this->entity->url('edit'),
-                'icon' => 'fa-regular fa-pencil',
-                'tooltip' => __('entities/profile.actions.edit_profile'),
-            ] : null,
         ];
 
         // @phpstan-ignore-next-line
