@@ -1,71 +1,139 @@
 <?php
 /**
- * @var \App\Services\PermissionService $permissionService
+ * @var \App\Services\Permissions\RolePermissionService $permissionService
  * @var \App\Models\CampaignRole $role
  * @var \App\Models\Campaign $campaign
- * @var \App\Models\EntityType $entityType
+ * @var \Illuminate\Support\Collection<int, \App\Models\EntityType> $modules
  */
+
+[$activeModules, $disabledModules] = $modules->partition(
+    fn (\App\Models\EntityType $entityType): bool => ($entityType->isStandard() && $campaign->enabled($entityType))
+        || ($entityType->isCustom() && $entityType->isEnabled())
+);
+
+$visibleActiveCount = $activeModules->filter(
+    fn (\App\Models\EntityType $entityType): bool => $permissionService->type($entityType->id)->can(\App\Enums\Permission::View)
+)->count();
+
+$anyVisibleCount = $modules->filter(
+    fn (\App\Models\EntityType $entityType): bool => $permissionService->type($entityType->id)->can(\App\Enums\Permission::View)
+)->count();
 ?>
 <div class="flex flex-col gap-5">
-    <div class="flex gap-2 justify-between">
-        <h1 class="text-2xl">
-            {{ __('crud.permissions.title') }}
-        </h1>
-        <a href="#" data-url="{{ route('campaign-visibility', $campaign) }}" data-target="campaign-visibility" data-toggle="dialog" class="btn2 btn-sm btn-primary" >
-            <x-icon class="fa-solid fa-user-secret" />
-            {{ __('campaigns/roles.actions.status', [
-            'status' => $campaign->isUnlisted() ? __('campaigns/visibilities.titles.unlisted') : ($campaign->isPublic() ? __('campaigns/visibilities.titles.public') : __('campaigns/visibilities.titles.private'))
-            ]) }}
-        </a>
-    </div>
+    <x-campaigns.page-header
+        :title="__('crud.permissions.title')"
+        :lead="__('campaigns/roles.public.helpers.intro')"
+    >
+        <x-slot name="actions">
+            <a href="#" data-url="{{ route('campaign-visibility', $campaign) }}" data-target="campaign-visibility" data-toggle="dialog" class="btn2 btn-sm btn-primary">
+                <x-icon class="fa-solid fa-user-secret" />
+                {{ __('campaigns/roles.actions.status', [
+                    'status' => $campaign->isUnlisted() ? __('campaigns/visibilities.titles.unlisted') : ($campaign->isPublic() ? __('campaigns/visibilities.titles.public') : __('campaigns/visibilities.titles.private'))
+                ]) }}
+            </a>
+            <a href="{{ route('dashboard', [$campaign, 'goal' => 'incognito']) }}" target="_blank" class="btn2 btn-sm">
+                <x-icon class="fa-regular fa-eye" />
+                {!! __('campaigns/roles.public.helpers.preview') !!}
+            </a>
+            <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank" class="btn2 btn-sm btn-ghost">
+                <x-icon class="fa-regular fa-circle-play" />
+                {{ __('general.tutorial') }}
+            </a>
+        </x-slot>
+    </x-campaigns.page-header>
 
-    <p>
-        {!! __('campaigns/roles.public.helpers.intro') !!}
-    </p>
-    <p>
+    <p class="text-neutral-content">
         {!! __('campaigns/roles.public.helpers.main') !!}
     </p>
-    <div class="flex gap-4">
-        <a href="{{ route('dashboard', [$campaign, 'goal' => 'incognito']) }}" target="_blank" class="text-link">
-            {!! __('campaigns/roles.public.helpers.preview') !!}
-            <x-icon class="link" />
-        </a>
-        <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank" class="text-link">
-            {{ __('general.tutorial') }}
-            <x-icon class="link" />
-        </a>
+
+    @if ($campaign->isPrivate())
+        <x-alert type="info">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div>
+                    <p class="font-semibold">{{ __('campaigns/roles.public.private_notice.title') }}</p>
+                    <p class="text-sm opacity-90">{{ __('campaigns/roles.public.private_notice.body') }}</p>
+                </div>
+                <a href="#" data-url="{{ route('campaign-visibility', $campaign) }}" data-target="campaign-visibility" data-toggle="dialog" class="btn2 btn-sm shrink-0">
+                    <x-icon class="fa-solid fa-user-secret" />
+                    {{ __('campaigns/roles.public.private_notice.action') }}
+                </a>
+            </div>
+        </x-alert>
+    @endif
+
+    <div class="flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-baseline gap-3">
+            <h2 class="text-xl font-light">
+                {{ __('campaigns/categories.tab') }}
+            </h2>
+            <span
+                class="text-sm text-neutral-content"
+                data-public-role-summary
+                data-total="{{ $activeModules->count() }}"
+                data-template="{{ __('campaigns/roles.public.summary', ['visible' => '__VISIBLE__', 'total' => $activeModules->count()]) }}"
+            >
+                {{ __('campaigns/roles.public.summary', ['visible' => $visibleActiveCount, 'total' => $activeModules->count()]) }}
+            </span>
+        </div>
+
+        <div class="flex items-center gap-2">
+            <button
+                type="button"
+                class="btn2 btn-sm"
+                data-public-role-bulk="1"
+                data-url="{{ route('campaign_roles.toggle-all', [$campaign, $role]) }}"
+                @if ($activeModules->isEmpty() || $visibleActiveCount === $activeModules->count()) disabled @endif
+            >
+                {{ __('campaigns/roles.public.actions.enable_all') }}
+            </button>
+            <button
+                type="button"
+                class="btn2 btn-sm btn-ghost"
+                data-public-role-bulk="0"
+                data-url="{{ route('campaign_roles.toggle-all', [$campaign, $role]) }}"
+                @if ($anyVisibleCount === 0) disabled @endif
+            >
+                {{ __('campaigns/roles.public.actions.disable_all') }}
+            </button>
+        </div>
     </div>
 
-    <h2 class="text-xl font-light">
-        {{ __('campaigns/categories.tab') }}
-    </h2>
-
-    <x-helper>
-        <p>{{ __('campaigns/roles.public.helpers.click') }}</p>
-    </x-helper>
-
-    <div class="grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        @foreach ($modules as $entityType)
-            <div class="public-permission flex flex-col gap-2 rounded items-center text-center justify-center break-all overflow-x-hidden cursor-pointer text-lg px-2 py-5 select-none {{ $permissionService->type($entityType->id)->can(\App\Enums\Permission::View) ? "enabled": null }}" data-url="{{ route('campaign_roles.toggle', [$campaign, $role, 'entityType' => $entityType, 'action' => \App\Enums\Permission::View->value]) }}">
-                <div class="block text-2xl">
-                    <div class="module-icon">
-                        <x-icon class="{{ $entityType->icon() }}" />
-                    </div>
-                    <div class="loading-animation hidden">
-                        <x-icon class="load" />
-                    </div>
-                </div>
-
-                <div class="">{!! $entityType->plural() !!}</div>
-                @if (($entityType->isStandard() && !$campaign->enabled($entityType)) || ($entityType->isCustom() && !$entityType->isEnabled()))
-                    <div class="rounded bg-warning text-warning-content" data-toggle="tooltip" data-title="{{ __('campaigns/categories.errors.permission-disabled') }}">
-                        <x-icon class="fa-regular fa-exclamation-triangle" />
-                        <span class="md:hidden text-sm inline">{{ __('campaigns/categories.errors.permission-disabled') }}</span>
-                    </div>
-                @endif
-            </div>
+    <div class="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        @foreach ($activeModules as $entityType)
+            @include('campaigns.roles._public_card', [
+                'campaign' => $campaign,
+                'role' => $role,
+                'entityType' => $entityType,
+                'enabled' => $permissionService->type($entityType->id)->can(\App\Enums\Permission::View),
+                'isDisabled' => false,
+            ])
         @endforeach
     </div>
+
+    @if ($disabledModules->isNotEmpty())
+        <details class="group/disabled">
+            <summary class="list-none cursor-pointer flex items-center gap-2 text-sm text-neutral-content hover:text-base-content select-none py-1">
+                <x-icon class="fa-solid fa-chevron-right text-xs transition-transform group-open/disabled:rotate-90" />
+                <span>{{ __('campaigns/roles.public.disabled_categories.title', ['count' => $disabledModules->count()]) }}</span>
+            </summary>
+            <div class="mt-3 flex flex-col gap-3">
+                <p class="text-sm text-neutral-content">
+                    {{ __('campaigns/roles.public.disabled_categories.helper') }}
+                </p>
+                <div class="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                    @foreach ($disabledModules as $entityType)
+                        @include('campaigns.roles._public_card', [
+                            'campaign' => $campaign,
+                            'role' => $role,
+                            'entityType' => $entityType,
+                            'enabled' => $permissionService->type($entityType->id)->can(\App\Enums\Permission::View),
+                            'isDisabled' => true,
+                        ])
+                    @endforeach
+                </div>
+            </div>
+        </details>
+    @endif
 </div>
 
 @section('modals')

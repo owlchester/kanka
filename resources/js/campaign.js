@@ -39,31 +39,91 @@ const registerModuleChange = (field) => {
 };
 
 /** Toggling an action on a permission **/
-const registerRoles = () =>  {
-    let elements = document.querySelectorAll('.public-permission');
-    elements.forEach(el => {
+const registerRoles = () => {
+    document.querySelectorAll('.public-permission').forEach(el => {
         el.addEventListener('click', togglePublicRole);
     });
+
+    document.querySelectorAll('[data-public-role-bulk]').forEach(btn => {
+        btn.addEventListener('click', toggleAllPublicRoles);
+    });
+};
+
+const updatePublicRoleSummary = () => {
+    const summary = document.querySelector('[data-public-role-summary]');
+    if (!summary) {
+        return;
+    }
+
+    const totalActive = Number(summary.dataset.total || 0);
+    const visibleActive = document.querySelectorAll('.public-permission[data-active-category="1"][aria-checked="true"]').length;
+    const anyVisible = document.querySelectorAll('.public-permission[aria-checked="true"]').length;
+
+    summary.textContent = summary.dataset.template.replace('__VISIBLE__', String(visibleActive));
+
+    const enableBtn = document.querySelector('[data-public-role-bulk="1"]');
+    const disableBtn = document.querySelector('[data-public-role-bulk="0"]');
+    if (enableBtn) {
+        enableBtn.disabled = totalActive === 0 || visibleActive === totalActive;
+    }
+    if (disableBtn) {
+        disableBtn.disabled = anyVisible === 0;
+    }
 };
 
 const togglePublicRole = (e) => {
     e.preventDefault();
-    let target = e.currentTarget;
-    target.querySelector('.module-icon').classList.add('hidden');
-    target.querySelector('.loading-animation').classList.remove('hidden');
+    const target = e.currentTarget;
+    if (target.disabled) {
+        return;
+    }
+
+    target.disabled = true;
+    target.querySelector('.module-icon')?.classList.add('hidden');
+    target.querySelector('.loading-animation')?.classList.remove('hidden');
 
     axios.post(target.dataset.url)
         .then(res => {
-            target.querySelector('.module-icon').classList.remove('hidden');
-            target.querySelector('.loading-animation').classList.add('hidden');
             if (res.data.success) {
-                if (res.data.status) {
-                    target.classList.add('enabled');
-                } else {
-                    target.classList.remove('enabled');
-                }
+                target.setAttribute('aria-checked', res.data.status ? 'true' : 'false');
+                updatePublicRoleSummary();
                 window.showToast(res.data.toast);
             }
+        })
+        .finally(() => {
+            target.disabled = false;
+            target.querySelector('.module-icon')?.classList.remove('hidden');
+            target.querySelector('.loading-animation')?.classList.add('hidden');
+        });
+};
+
+const toggleAllPublicRoles = (e) => {
+    e.preventDefault();
+    const btn = e.currentTarget;
+    const enable = btn.dataset.publicRoleBulk === '1';
+    const bulkButtons = document.querySelectorAll('[data-public-role-bulk]');
+    const targetCards = document.querySelectorAll(
+        enable ? '.public-permission[data-active-category="1"]' : '.public-permission'
+    );
+
+    bulkButtons.forEach(b => { b.disabled = true; });
+    targetCards.forEach(card => { card.disabled = true; });
+
+    axios.post(btn.dataset.url, { enabled: enable })
+        .then(res => {
+            if (res.data.success) {
+                const updatedIds = new Set((res.data.entity_type_ids || []).map(String));
+                document.querySelectorAll('.public-permission').forEach(card => {
+                    if (updatedIds.has(card.dataset.entityTypeId)) {
+                        card.setAttribute('aria-checked', res.data.enabled ? 'true' : 'false');
+                    }
+                });
+                window.showToast(res.data.toast);
+            }
+        })
+        .finally(() => {
+            targetCards.forEach(card => { card.disabled = false; });
+            updatePublicRoleSummary();
         });
 };
 

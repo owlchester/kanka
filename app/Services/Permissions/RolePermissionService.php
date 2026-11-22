@@ -9,6 +9,7 @@ use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RoleAware;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class RolePermissionService
@@ -346,6 +347,44 @@ class RolePermissionService
         $this->add($this->entityType->id, $action);
 
         return true;
+    }
+
+    /**
+     * Enable or disable public view permissions for the given entity types.
+     *
+     * @param  Collection<int, EntityType>  $entityTypes
+     * @return array<int, int>
+     */
+    public function setPublicCategories(Collection $entityTypes, bool $enabled): array
+    {
+        if ($entityTypes->isEmpty()) {
+            return [];
+        }
+
+        $ids = $entityTypes->pluck('id');
+
+        if ($enabled) {
+            $existing = $this->role->permissions()
+                ->where('action', Permission::View->value)
+                ->whereNull('entity_id')
+                ->whereIn('entity_type_id', $ids)
+                ->pluck('entity_type_id')
+                ->all();
+
+            foreach ($entityTypes as $entityType) {
+                if (! in_array($entityType->id, $existing, true)) {
+                    $this->add($entityType->id, Permission::View->value);
+                }
+            }
+        } else {
+            $this->role->permissions()
+                ->where('action', Permission::View->value)
+                ->whereNull('entity_id')
+                ->whereIn('entity_type_id', $ids)
+                ->delete();
+        }
+
+        return $ids->map(fn ($id): int => (int) $id)->values()->all();
     }
 
     /**

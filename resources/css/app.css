@@ -248,8 +248,13 @@ button.loading {
     background-color: var(--entity-menu-background, hsl(var(--b1) / 1));
 }
 
-.entity-desktop-navigation ul.entity-menu li {
-    width: auto;
+.entity-desktop-navigation {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--bc) / 0.2) transparent;
+
+    ul.entity-menu li {
+        width: auto;
+    }
 }
 
 ul.entity-menu {
@@ -258,7 +263,7 @@ ul.entity-menu {
             color: hsl(var(--bc) / 0.78);
         }
 
-        &:hover {
+        &:not(.entity-menu-divider):hover {
             background-color: hsl(var(--b2) / 0.6);
 
             > a {

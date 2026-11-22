@@ -116,28 +116,6 @@ class SubmenuService
             ];
         }
 
-        // Reorder articles
-        if (isset($this->user) && $this->user->can('update', $this->entity)) {
-            $this->items['fourth']['story_reorder'] = [
-                'name' => __('entities/story.reorder.panel_title'),
-                'route' => 'entities.story.reorder',
-                'entity' => true,
-                'icon' => 'fa-regular fa-arrow-up-arrow-down',
-            ];
-        }
-
-        // Permissions for the admin?
-        if (isset($this->user) && $this->user->can('permissions', $this->entity)) {
-            $this->items['fourth']['permissions'] = [
-                'name' => __('crud.tabs.permissions'),
-                'route' => 'entities.permissions',
-                'entity' => true,
-                'ajax' => true,
-                'id' => 'entity-permissions-link',
-                'icon' => 'lock',
-            ];
-        }
-
         return $this;
     }
 

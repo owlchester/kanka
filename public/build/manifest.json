@@ -282,7 +282,7 @@
     "isDynamicEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app-BZ5IygUr.css",
+    "file": "assets/app-DKv_fwT9.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -291,7 +291,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-B0E-Y63x.css",
+    "file": "assets/auth-C0gAbyOB.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -318,7 +318,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-BmgKCkdA.css",
+    "file": "assets/front-DiPPPJgf.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -425,7 +425,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-DdHd-F1V.js",
+    "file": "assets/app-D-jgdhGk.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -674,7 +674,7 @@
     ]
   },
   "resources/js/entities/reader.js": {
-    "file": "assets/reader-pDhMgkJP.js",
+    "file": "assets/reader-pOgAqRNv.js",
     "name": "reader",
     "src": "resources/js/entities/reader.js",
     "isDynamicEntry": true,

@@ -180,8 +180,8 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
                     <span class="sr-only">{{ $headerStatus->name() }}</span>
                 </span>
             @endif
-            @can('admin', $campaign)
-                <span role="button" tabindex="0" class="entity-privacy-icon md:text-2xl hover:text-primary" data-toggle="dialog" data-url="{{ route('entities.quick-privacy', [$campaign, $entity]) }}" aria-haspopup="dialog">
+            @if (auth()->check() && (auth()->user()->can('admin', $campaign) || auth()->user()->can('permissions', $entity)))
+                <span role="button" tabindex="0" class="entity-privacy-icon md:text-2xl hover:text-primary" data-toggle="dialog" data-url="{{ route('entities.permissions', [$campaign, $entity]) }}" aria-haspopup="dialog">
                         <i class="fa-regular fa-lock entity-icons" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         <i class="fa-regular fa-lock-open entity-icons" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
