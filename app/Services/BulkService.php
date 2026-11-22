@@ -152,15 +152,16 @@ class BulkService
             ->to($campaign);
 
         $with = [
-            'entityType', 'image', 'inventories', 'attributes', 'child',
+            'entityType', 'image', 'inventories', 'attributes', 'child', 'sheets',
         ];
         $entities = Entity::with($with)->whereIn('id', $this->ids)->get();
+        $sheetReferences = $this->moveService->sheetReferences($entities);
 
         foreach ($entities as $entity) {
             if (! $this->can('update', $entity)) {
                 continue;
             }
-            if ($this->moveService->entity($entity)->process()) {
+            if ($this->moveService->entity($entity)->process($sheetReferences)) {
                 $this->count++;
             }
         }

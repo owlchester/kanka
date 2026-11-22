@@ -56,10 +56,10 @@ class CampaignPlugin extends Model
 
     public function scopeTemplates(Builder $builder, Campaign $campaign): Builder
     {
-        return $builder->leftJoin('plugins as p', 'p.id', 'plugin_id')
-            ->where('campaign_id', $campaign->id)
+        return $builder->leftJoin('plugins as p', 'p.id', 'campaign_plugins.plugin_id')
+            ->where('campaign_plugins.campaign_id', $campaign->id)
             ->where('p.type_id', 2)
-            ->where('is_active', true)
+            ->where('campaign_plugins.is_active', true)
             ->with('version')
             ->orderBy('p.name');
     }
