@@ -41,10 +41,7 @@
             <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
         </div>
         <template v-else>
-            <div class="header flex flex-none pr-14">
-                <button type="button" class="absolute right-2 top-2 flex size-11 items-center justify-center rounded-xl bg-base-100 hover:bg-base-200" :aria-label="close_label" @click="is_expanded = false">
-                    <i class="fa-regular fa-times" aria-hidden="true"></i>
-                </button>
+            <div class="header flex flex-none">
                 <div :class="blockClass(view_campaigns)" v-on:click="openCampaigns()" tabindex="0" role="button" aria-label="Campaign list">
                     <div class="full flex items-center gap-4" v-if="view_campaigns">
                         <div class="flex-none">
@@ -77,6 +74,17 @@
                         </div>
                         <div class="flex-none w-9 h-9 rounded-lg cover-background" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
                     </div>
+                </div>
+                <div class="flex flex-none items-center justify-center px-2" :class="view_campaigns ? 'bg-base-200' : 'bg-base-100'">
+                    <button
+                        type="button"
+                        class="flex size-11 items-center justify-center rounded-xl"
+                        :class="view_campaigns ? 'hover:bg-base-300' : 'hover:bg-base-200'"
+                        :aria-label="close_label"
+                        @click="is_expanded = false"
+                    >
+                        <i class="fa-regular fa-times" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
             <div class="grow overflow-y-auto">
@@ -324,7 +332,7 @@ const loadData = () => {
 }
 const blockClass = (active) => {
     if (active) {
-        return 'block p-4 grow items-center focus:box-shadow';
+        return 'block p-4 grow min-w-0 items-center focus:box-shadow';
     }
     return 'block p-4  items-center bg-base-200 cursor-pointer flex-none focus:box-shadow';
 }
