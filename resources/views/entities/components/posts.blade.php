@@ -24,6 +24,19 @@ if (!isset($posts)) {
 
 $first = $posts->first();
 $postCount = 0;
+$isExcludedEntityType = $entity && $entity->isType([
+    config('entities.ids.map'),
+    config('entities.ids.timeline'),
+    config('entities.ids.calendar'),
+    config('entities.ids.whiteboard'),
+]);
+$showEmptyState = !request()->ajax()
+    && empty($printing)
+    && !empty($withEntry)
+    && $entity
+    && !$entity->hasEntry()
+    && $posts->count() === 0
+    && !$isExcludedEntityType;
 @endphp
 
 @if (isset($withEntry) && ($posts->count() === 0 || (!empty($first) && $first->position >= 0)))
@@ -54,7 +67,9 @@ $postCount = 0;
         @php $entryShown = true; $adShown = true; @endphp
     @endif
 
-    <div id="post-anchor-loader" data-url="{{ route('entities.posts.show', [$campaign, $entity, 'post' => 0]) }}"></div>
+    @if ($posts->count() > 0)
+        <div id="post-anchor-loader" data-url="{{ route('entities.posts.show', [$campaign, $entity, 'post' => 0]) }}"></div>
+    @endif
 
     @if ($posts->currentPage() < $posts->lastPage())
         <div class="text-center">
@@ -77,7 +92,11 @@ $postCount = 0;
 </div>
 @endif
 
-@if (!request()->ajax() && $entity && !$entity->isType([config('entities.ids.map'), config('entities.ids.timeline'), config('entities.ids.calendar')]))
+@if ($showEmptyState)
+    @include('entities.components.empty-state')
+@endif
+
+@if (!request()->ajax() && !$showEmptyState && $entity && !$entity->isType([config('entities.ids.map'), config('entities.ids.timeline'), config('entities.ids.calendar')]))
 @can('post', [$entity])
     <div class="text-center row-add-note-button">
         <a href="{{ route('entities.posts.create', [$campaign, $entity]) }}" class="btn2 btn-sm btn-new-post  btn-block"
