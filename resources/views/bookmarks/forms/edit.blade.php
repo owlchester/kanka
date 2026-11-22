@@ -1,6 +1,7 @@
 @extends('layouts.app', [
     'title' => __('crud.titles.editing', ['name' => $model->name])  . ' - ' . __('entities.' . $name),
     'breadcrumbs' => [
+        ['url' => Breadcrumb::campaign($campaign)->index($name), 'label' => __('entities.' . $name)],
         __('crud.edit'),
     ],
     'mainTitle' => false,
