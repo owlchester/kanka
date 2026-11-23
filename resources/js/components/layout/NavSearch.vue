@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { onBeforeUnmount, onMounted } from 'vue';
 import { useCommandCenter } from '../../composables/useCommandCenter.js';
 
 export default {
@@ -29,6 +30,15 @@ export default {
 
     setup() {
         const { open } = useCommandCenter();
+
+        onMounted(() => {
+            window.addEventListener('command-center:open', open);
+        });
+
+        onBeforeUnmount(() => {
+            window.removeEventListener('command-center:open', open);
+        });
+
         return { open };
     },
 };

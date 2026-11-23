@@ -83,10 +83,12 @@ onMounted(() => {
     loadFromCookie();
     document.addEventListener('click', handleOutsideClick);
     document.addEventListener('keydown', handleEscape);
+    window.addEventListener('sidebar:toggle', toggleSidebar);
 });
 
 onBeforeUnmount(() => {
     document.removeEventListener('click', handleOutsideClick);
     document.removeEventListener('keydown', handleEscape);
+    window.removeEventListener('sidebar:toggle', toggleSidebar);
 });
 </script>

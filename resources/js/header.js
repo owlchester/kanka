@@ -14,3 +14,29 @@ app.component('command-center', CommandCenter);
 app.component('mobile-navigation', MobileNavigation);
 app.use(vClickOutside);
 app.mount('header');
+
+const sidebarActionEvents = {
+    toggle: 'sidebar:toggle',
+    worlds: 'navigation:worlds',
+    profile: 'navigation:profile',
+    search: 'command-center:open',
+};
+
+document.addEventListener('click', (event) => {
+    const trigger = event.target?.closest?.('[data-sidebar-action]');
+    if (!trigger) {
+        return;
+    }
+
+    const eventName = sidebarActionEvents[trigger.dataset.sidebarAction];
+    if (eventName) {
+        window.dispatchEvent(new CustomEvent(eventName));
+    }
+});
+
+window.addEventListener('navigation:alerts', (event) => {
+    const hasAlerts = Boolean(event.detail?.hasAlerts);
+    document.querySelectorAll('[data-nav-alert-dot]').forEach((dot) => {
+        dot.classList.toggle('hidden', !hasAlerts);
+    });
+});

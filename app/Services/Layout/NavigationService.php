@@ -113,6 +113,7 @@ class NavigationService
         $member = 0;
         foreach (UserCache::campaigns() as $campaign) {
             $data['member'][] = [
+                'id' => $campaign['id'] ?? null,
                 'name' => $campaign['name'],
                 'is_boosted' => $campaign['boosted'],
                 'image' => $campaign['image'] ? Img::for($campaign['image'])->crop(100, 96)->url() : null,
@@ -123,6 +124,7 @@ class NavigationService
 
         foreach (UserCache::follows() as $campaign) {
             $data['following'][] = [
+                'id' => $campaign['id'] ?? null,
                 'name' => $campaign['name'],
                 'is_boosted' => $campaign['boosted'],
                 'image' => $campaign['image'] ? Img::for($campaign['image'])->crop(100, 96)->url() : null,

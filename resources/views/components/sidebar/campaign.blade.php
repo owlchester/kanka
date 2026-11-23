@@ -13,6 +13,8 @@
 
     @include('layouts.sidebars._campaign')
 
+    @include('layouts.sidebars._actions')
+
     <section class="sidebar grow">
         <ul class="sidebar-menu overflow-hidden whitespace-no-wrap list-none m-0 p-0 flex flex-col gap-0.5">
             @foreach ($layout as $name => $element)
@@ -88,4 +90,6 @@
             @endforeach
         </ul>
     </section>
+
+    @include('layouts.sidebars._user')
 </aside>
