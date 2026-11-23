@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\TranslatableException;
+use App\Facades\CampaignCache;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
 use App\Services\Campaign\BoostService;

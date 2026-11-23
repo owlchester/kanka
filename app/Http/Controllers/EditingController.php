@@ -38,7 +38,7 @@ class EditingController extends Controller
 
         if ($model instanceof Post) {
             $entity = $model->entity;
-            abort_unless($entity, 404);
+            abort_unless($entity !== null, 404);
 
             $url = route('posts.confirm-editing', [$campaign, 'post' => $model, 'entity' => $entity]);
             $show = $entity->url();

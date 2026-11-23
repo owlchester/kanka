@@ -2,8 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Facades\CampaignCache;
-use App\Facades\UserCache;
 use App\Models\Campaign;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -64,8 +62,6 @@ class CampaignResource extends JsonResource
             ],
         ];
 
-        CampaignCache::campaign($campaign)->user(auth()->user());
-        UserCache::campaign($campaign)->user(auth()->user());
         if (auth()->user()->can('member', $campaign) && auth()->user()->can('members', $campaign)) {
             $data['members'] = CampaignUserResource::collection($campaign->members);
         }

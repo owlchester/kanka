@@ -14,7 +14,7 @@ class MakeSearchable extends ScoutMakeSearchable
     {
         // An entity's child can change type before the job runs. Indexing only needs entity fields.
         if ($models->first() instanceof Entity) {
-            $models = $models->map->withoutRelations();
+            $models = new Collection($models->map->withoutRelations()->all());
         }
 
         parent::__construct($models);
