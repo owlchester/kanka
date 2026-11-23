@@ -880,7 +880,7 @@ class CalendarRenderer
 
         try {
             return (string) $this->chronology->addDays(new CalendarDate($year, $month, $day), 1);
-        } catch (\InvalidArgumentException) {
+        } catch (InvalidArgumentException) {
             // Parent-calendar events can use a month that does not exist in the displayed calendar.
         }
 
