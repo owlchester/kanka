@@ -26,8 +26,8 @@
 
         @if (!empty($campaign))
             <nav-search
-                placeholder="{{ __('search.placeholder') }}"
-                keyboard_tooltip="{!! __('crud.keyboard-shortcut', ['code' => '<code>K</code>']) !!}"
+                placeholder="{{ __('crud.search') }}"
+                keyboard_tooltip="{{ __('crud.keyboard-shortcut', ['code' => '<code>K</code>']) }}"
             ></nav-search>
             <command-center
                 back_text="{{ __('crud.actions.back') }}"

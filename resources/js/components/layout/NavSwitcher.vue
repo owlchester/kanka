@@ -1,21 +1,21 @@
 <template>
     <div class="nav-switcher flex min-w-0 items-center justify-center align-middle h-12 gap-1">
-        <button v-if="!impersonation" type="button" class="campaigns btn2 btn-ghost btn-square inline-flex items-center justify-center text-2xl hover:text-primary-focus" :class="campaign_name ? 'max-md:hidden!' : ''" v-on:click="openCampaigns()" :aria-label="campaigns_label" :aria-expanded="is_expanded && view_campaigns">
-            <GridSvg :size="7" />
+        <button v-if="!impersonation" type="button" class="campaigns btn2 btn-ghost btn-square size-9.5! min-h-9.5! inline-flex items-center justify-center text-2xl hover:text-primary-focus" :class="campaign_name ? 'max-md:hidden!' : ''" v-on:click="openCampaigns()" :aria-label="campaigns_label" :aria-expanded="is_expanded && view_campaigns">
+            <GridSvg :size="6" />
         </button>
         <button v-if="impersonation" type="button" class="flex min-h-9 max-w-52 items-center gap-2 rounded-lg bg-warning px-3 text-sm font-semibold text-warning-content hover:bg-warning/90" @click="openProfile()" :aria-label="impersonation.label" :aria-expanded="is_expanded">
             <span class="truncate max-md:hidden">{{ impersonation.label }}</span>
             <span class="truncate md:hidden">{{ impersonation.shortLabel }}</span>
             <i class="fa-regular fa-angle-down shrink-0" aria-hidden="true"></i>
         </button>
-        <button v-else type="button" class="profile btn2 btn-ghost btn-square  shrink-0 flex items-center justify-center text-center uppercase" v-on:click="openProfile()" aria-label="Profile settings" :aria-expanded="is_expanded && view_profile">
+        <button v-else type="button" class="profile btn2 btn-ghost btn-square size-9.5! min-h-9.5! shrink-0 flex items-center justify-center text-center uppercase" v-on:click="openProfile()" aria-label="Profile settings" :aria-expanded="is_expanded && view_profile">
             <div class="indicator relative inline-flex w-max">
                 <span class="notification-badge left-auto top-auto -right-[0.2rem] -bottom-[0.2rem] translate-x-1/2 leading-2 w-fit inline-flex absolute content-center items-center z-10" v-if="show_alerts"></span>
-                <div class="profile-box rounded-lg p-2 text-center font-bold" v-if="showInitials()">
+                <div class="profile-box w-8 h-8 flex items-center justify-center rounded-lg text-center font-bold" v-if="showInitials()">
                     {{ initials }}
                 </div>
-                <UserSvg class="w-9 h-9 text-base-content" v-else-if="isDefaultAvatar()" />
-                <div class="w-9 h-9 rounded-lg cover-background" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
+                <UserSvg class="w-8 h-8 text-base-content" v-else-if="isDefaultAvatar()" />
+                <div class="w-8 h-8 rounded-lg cover-background" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
             </div>
         </button>
     </div>
