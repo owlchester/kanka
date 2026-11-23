@@ -34,11 +34,36 @@ return [
     'helpers'   => [
         'premium'   => 'These bonuses apply to premium campaigns you unlock.',
     ],
+    'includes'  => [
+        'owlbear'   => 'Everything in Owlbear, plus:',
+        'wyvern'    => 'Everything in Wyvern, plus:',
+    ],
     'periods'   => [
-        'billed_monthly'    => 'billed monthly',
-        'billed_yearly'     => 'billed yearly',
+        'billed_monthly'        => 'billed monthly',
+        'billed_yearly'         => 'billed yearly',
+        'billed_yearly_amount'  => 'Billed :currency:amount yearly',
+        'per_month'             => '/ month',
+    ],
+    'premium_summary' => [
+        'logs_desc'     => 'Full campaign activity history',
+        'logs_title'    => ':days days of logs',
+        'members_desc'  => 'Members, roles, and bookmarks',
+        'members_title' => 'Unlimited team',
+        'more'          => 'See all features',
+        'plugins_desc'  => 'Themes, templates & packs from the Marketplace',
+        'plugins_title' => 'Community plugins',
+        'styling_desc'  => 'Personalize your campaign with custom CSS',
+        'styling_title' => 'Custom styling',
+        'subtitle'      => 'Upgrade any campaign you own and all members benefit, even on free accounts.',
+        'title'         => 'What every Premium Campaign unlocks',
     ],
     'pricing'   => ':currency :amount / month',
+    'reassurance' => [
+        'cancel'    => 'Cancel or switch plans anytime',
+        'data'      => 'Your data is never deleted if you cancel',
+        'refund'    => '14-day no-questions-asked refund on yearly plans',
+        'shared'    => 'Every player in a Premium Campaign gets the perks',
+    ],
     'ribbons'   => [
         'best-value'    => 'Recommended for GMs',
         'current'       => 'Current subscription',
