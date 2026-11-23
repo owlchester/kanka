@@ -11,7 +11,7 @@ Example: /translate fr French
 
 ## Steps
 
-1. Run `php artisan translations:missing $ARG1` and capture the output
+1. Run `sail artisan translations:missing $ARG1` and capture the output
 2. For each missing key/string:
     - Translate the English string to the target language naturally (not literally)
     - Preserve `:variable` placeholders, `<html>` tags, and pluralization syntax exactly

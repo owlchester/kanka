@@ -20,16 +20,32 @@ return [
         'empty' => 'Registra diálogos, cartas o intercambios entre personajes y facciones.',
     ],
     'messages'      => [
+        'actions'           => 'Acciones del mensaje',
         'confirm_delete'    => '¿Eliminar este mensaje?',
+        'copied'            => 'Mensaje copiado al portapapeles.',
+        'copy_failed'       => 'No se pudo copiar el mensaje al portapapeles.',
         'destroy'           => [
             'success'   => 'Mensaje eliminado.',
         ],
+        'editing'           => 'Editando mensaje',
+        'empty'             => 'Aún no hay mensajes.',
+        'first_message'     => 'Envía un mensaje para iniciar la conversación.',
+        'invalid_speaker'   => 'Solo puedes hablar en nombre de un participante autorizado de esta conversación.',
         'is_updated'        => 'Actualizado',
+        'keyboard_hint'     => 'Enter para enviar · Shift+Enter para insertar una línea nueva',
         'load_previous'     => 'Cargar mensajes previos',
+        'loading'           => 'Cargando mensajes…',
+        'no_speaker'        => 'No hay participantes disponibles en cuyo nombre puedas hablar.',
         'placeholders'      => [
             'message'   => 'Tu mensaje',
         ],
+        'refresh_failed'    => 'Se envió tu mensaje, pero no se pudo actualizar la conversación.',
         'request_failed'    => 'La solicitud falló. Inténtalo de nuevo.',
+        'retry'             => 'Reintentar',
+        'saving'            => 'Guardando…',
+        'send'              => 'Enviar',
+        'sending'           => 'Enviando…',
+        'speaking_as'       => 'Hablando como',
     ],
     'participants'  => [
         'create'    => [
