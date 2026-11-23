@@ -20,7 +20,7 @@ return [
         'api_requests'      => 'Up to :amount API requests per minute',
         'boosters'          => 'Campaign Boosters',
         'discord'           => 'Unique :discord role and channel',
-        'feature_influence' => 'Direct input into roadmap decisions',
+        'feature_influence' => 'Champion a roadmap idea',
         'file_size'         => ':size file uploads',
         'import'            => 'Campaign importer',
         'modules'           => ':count custom categories',

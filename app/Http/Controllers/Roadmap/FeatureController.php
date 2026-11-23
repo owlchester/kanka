@@ -12,6 +12,11 @@ class FeatureController extends Controller
 {
     public function show(Feature $feature)
     {
+        $feature->loadCount('champions');
+        if (auth()->check()) {
+            $feature->load('userChampion');
+        }
+
         return view('roadmap.feature.show')
             ->with('feature', $feature);
     }

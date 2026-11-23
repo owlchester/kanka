@@ -38,5 +38,7 @@
     <div class="w-8 shrink-0 text-center">
         <x-icon class="check" />
     </div>
-    {{ __('tiers.features.feature_influence') }}
+    <a href="https://docs.kanka.io/en/latest/guides/roadmap.html#champion" class="text-link" target="_blank" rel="noopener noreferrer">
+        {{ __('tiers.features.feature_influence') }}
+    </a>
 </div>
