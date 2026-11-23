@@ -17,7 +17,6 @@ return [
         'main'  => 'Controle a aparência e o comportamento de Kanka. Observe que as campanhas podem substituir algumas dessas configurações.',
     ],
     'editors'           => [
-        'default'   => 'Padrão (:name)',
         'helpers'   => [
             'feedback'  => 'Ajude-nos a melhorar, enviando seu feedback (2 min)',
             'legacy'    => 'O editor de texto antigo (TinyMCE) não oferece suporte a menções em dispositivos móveis, galerias de campanhas ou outros recursos avançados.',

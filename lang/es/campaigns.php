@@ -129,10 +129,6 @@ return [
             'role'                  => 'Rol',
             'roles'                 => 'Roles',
         ],
-        'impersonating'         => [
-            'message'   => 'Estás viendo la campaña como otro usuario. Algunas funcionalidades están deshabilitadas, pero el resto actúa exactamente como el usuario lo vería. Para volver a tu usuario, usa el botón "Volver a mi usuario" cerca del botón de Cerrar Sesión.',
-            'title'     => 'Estás viendo como :name',
-        ],
         'invite'                => [
             'description'   => 'Puedes invitar a tus amigos a unirse a la campaña mediante un enlace de invitación. Una vez acepten la invitación, se añadirán con su rol correspondiente. También puedes enviarles la invitación por correo electrónico, siempre y cuando no sea una dirección de Hotmail, ya que siempre rechazan los mails de Kanka.',
             'more'          => 'Puedes añadir más roles desde la :link.',

@@ -121,10 +121,6 @@ return [
             'role'          => 'Ruolo',
             'roles'         => 'Ruoli',
         ],
-        'impersonating'         => [
-            'message'   => 'Stai visualizzando la campagna come un altro utente. Alcune caratteristiche sono state disabilitate, ma il resto viene mostrato esattamente come lo vedrebbe quell\'utente.',
-            'title'     => 'Stai impersonando :name',
-        ],
         'invite'                => [
             'description'   => 'Puoi invitare i tuoi amici nella tua campagna indicandoci i loro indirizzi e-mail. Una volta che avranno accettato il loro invito verranno aggiunti come membri nel ruolo indicato.',
             'more'          => 'Puoi aggiungere ulteriori ruoli su :link.',

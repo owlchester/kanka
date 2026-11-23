@@ -17,7 +17,6 @@ return [
         'main'  => 'Controla el aspecto de Kanka. Ten en cuenta que las campañas pueden anular algunos de estos ajustes.',
     ],
     'editors'           => [
-        'default'   => 'Por defecto (:name)',
         'helpers'   => [
             'feedback'  => 'Ayúdanos a mejorarlo dando tu opinión (2 min)',
             'legacy'    => 'El editor de texto heredado (TinyMCE) no admite menciones en dispositivos móviles, galerías de campaña u otras funciones avanzadas.',

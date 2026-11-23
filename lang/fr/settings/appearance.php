@@ -17,7 +17,6 @@ return [
         'main'  => 'Gères l\'apparence et certains fonctionements de Kanka. La configuration de campagnes peuvent remplacer certains de ces paramètres.',
     ],
     'editors'           => [
-        'default'   => 'Défaut (:name)',
         'helpers'   => [
             'feedback'  => 'Aide-nous à l\'améliorer en donnant ton avis (2min)',
             'legacy'    => 'L\'ancien éditeur de texte (TinyMCE) ne supporte pas les mentions sur mobile, les galeries de campagne ni d\'autres fonctionnalités avancées.',

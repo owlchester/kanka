@@ -126,10 +126,6 @@ return [
             'role'                  => 'Rôle',
             'roles'                 => 'Rôles',
         ],
-        'impersonating'         => [
-            'message'   => 'Tu visualises la campagne en tant qu\'un autre membre. Certaines fonctionnalités ont été désactivées, mais le reste fonctionne exactement comme le verrait le membre.',
-            'title'     => 'Se faisant passer pour :name',
-        ],
         'invite'                => [
             'description'   => 'Invite tes amis et joueurs à participer à la campagne en créant un lien d\'invitation et en leur envoyant l\'URL générée! En acceptant l\'invitation, ils seront ajoutés en tant que membres dans le rôle défini par l\'invitation.',
             'more'          => 'Tu peux ajouter plus de rôles sur la :link.',

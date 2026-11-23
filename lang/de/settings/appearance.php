@@ -17,7 +17,6 @@ return [
         'main'  => 'Kontrolliere, wie Kanka aussieht und sich anfühlt. Bitte beachte, dass Kampagnen einige dieser Einstellungen überschreiben können.',
     ],
     'editors'           => [
-        'default'   => 'Standard (:name)',
         'legacy'    => 'Vermächtnis (:name)',
     ],
     'explore'           => [
