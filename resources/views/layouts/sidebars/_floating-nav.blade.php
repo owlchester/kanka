@@ -36,31 +36,33 @@
     @endif
 
     @if (!empty($campaign))
-        <button
-            type="button"
-            data-sidebar-action="search"
-            data-tooltip
-            data-html="true"
-            data-title="{{ __('crud.keyboard-shortcut', ['code' => '<code>K</code>']) }}"
-            aria-label="{{ __('crud.search') }}"
-            class="size-8 rounded-full inline-flex items-center justify-center hover:bg-base-200 transition-colors cursor-pointer"
-        >
-            <x-icon class="fa-solid fa-magnifying-glass text-sm" />
-        </button>
-
-        @if (auth()->check() && auth()->user()->can('member', $campaign) && (!isset($qq) || $qq))
-            <a
-                href="#"
-                data-url="{{ route('entity-creator.selection', $campaign) }}"
-                data-toggle="dialog"
+        <div class="inline-flex items-center gap-1" data-tour="search-create">
+            <button
+                type="button"
+                data-sidebar-action="search"
                 data-tooltip
-                data-title="{{ __('header.qq.tooltip') }}"
-                aria-label="{{ __('crud.create') }}"
-                class="size-8 rounded-full inline-flex items-center justify-center hover:bg-primary hover:text-primary-content transition-colors"
+                data-html="true"
+                data-title="{{ __('crud.keyboard-shortcut', ['code' => '<code>K</code>']) }}"
+                aria-label="{{ __('crud.search') }}"
+                class="size-8 rounded-full inline-flex items-center justify-center hover:bg-base-200 transition-colors cursor-pointer"
             >
-                <x-icon class="fa-regular fa-plus text-sm" />
-            </a>
-        @endif
+                <x-icon class="fa-solid fa-magnifying-glass text-sm" />
+            </button>
+
+            @if (auth()->check() && auth()->user()->can('member', $campaign) && (!isset($qq) || $qq))
+                <a
+                    href="#"
+                    data-url="{{ route('entity-creator.selection', $campaign) }}"
+                    data-toggle="dialog"
+                    data-tooltip
+                    data-title="{{ __('header.qq.tooltip') }}"
+                    aria-label="{{ __('crud.create') }}"
+                    class="size-8 rounded-full inline-flex items-center justify-center hover:bg-primary hover:text-primary-content transition-colors"
+                >
+                    <x-icon class="fa-regular fa-plus text-sm" />
+                </a>
+            @endif
+        </div>
     @endif
 
     <span class="w-px h-5 bg-base-content/15 mx-0.5" aria-hidden="true"></span>

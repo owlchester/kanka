@@ -2,6 +2,7 @@ import Sortable from "sortablejs"
 import { createApp } from 'vue'
 import VueTippy from 'vue-tippy'
 import OnboardingWidget from "./dashboards/widgets/onboarding-widget/OnboardingWidget.vue"
+import V4Walkthrough from "./dashboards/V4Walkthrough.vue"
 import vClickOutside from "click-outside-vue3"
 
 class DashboardManager {
@@ -16,6 +17,7 @@ class DashboardManager {
         this.initDashboardAdminUI();
         this.initFollow();
         this.initOnboardingWidget();
+        this.initV4Walkthrough();
 
         // Start observing widgets
         this.initLazyLoader();
@@ -225,6 +227,16 @@ class DashboardManager {
         app.use(vClickOutside);
         app.component('onboarding-widget', OnboardingWidget);
         app.mount('#onboarding-widget');
+    }
+
+    initV4Walkthrough() {
+        const el = document.getElementById('v4-dashboard-welcome');
+        if (!el) {
+            return;
+        }
+        const app = createApp({});
+        app.component('v4-walkthrough', V4Walkthrough);
+        app.mount('#v4-dashboard-welcome');
     }
 }
 

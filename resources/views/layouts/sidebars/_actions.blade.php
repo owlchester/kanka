@@ -1,5 +1,5 @@
 @if (!empty($campaign))
-    <div class="hidden md:flex items-center gap-2 flex-none">
+    <div class="hidden md:flex items-center gap-2 flex-none" data-tour="search-create">
         <button
             type="button"
             data-sidebar-action="search"
