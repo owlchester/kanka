@@ -1,25 +1,25 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'           => [
         'recover'           => 'Recover',
         'recover_selected'  => 'Recover selected',
     ],
-    'cta'           => [
+    'cta'               => [
         'lead'  => 'Restore deleted entries and articles before they are permanently removed.',
         'title' => 'Recover deleted content',
     ],
-    'empty'         => 'Deleted entries and articles will appear here while they are available for recovery.',
-    'empty_title'   => 'Nothing to recover',
-    'error'         => 'An error occurred trying to recover entries.',
-    'fields'        => [
-        'days_left'       => '{0} Expires today|{1} 1 day left|[2,*] :count days left',
-        'deleted'         => 'Deleted',
-        'deleted_at'      => 'Deleted :date by :user',
-        'expires_tooltip' => 'Permanently removed on :date',
-        'parent_entity'   => 'in :name',
+    'empty'             => 'Deleted entries and articles will appear here while they are available for recovery.',
+    'empty_title'       => 'Nothing to recover',
+    'error'             => 'An error occurred trying to recover entries.',
+    'fields'            => [
+        'days_left'         => '{0} Expires today|{1} 1 day left|[2,*] :count days left',
+        'deleted'           => 'Deleted',
+        'deleted_at'        => 'Deleted :date by :user',
+        'expires_tooltip'   => 'Permanently removed on :date',
+        'parent_entity'     => 'in :name',
     ],
-    'filters'       => [
+    'filters'           => [
         'all_dates'     => 'Any time',
         'all_types'     => 'All types',
         'all_users'     => 'Deleted by anyone',
@@ -27,17 +27,17 @@ return [
         'deleted_by'    => 'Deleted by',
         'expiring_soon' => 'Expiring in 7 days',
         'last_24h'      => 'Last 24 hours',
-        'last_7d'       => 'Last 7 days',
         'last_30d'      => 'Last 30 days',
+        'last_7d'       => 'Last 7 days',
         'search'        => 'Search deleted elements...',
         'sort'          => 'Sort by',
         'timeframe'     => 'Timeframe',
         'type'          => 'Type',
     ],
-    'name_link'     => ':name was successfully recovered',
-    'no_results'    => 'Try adjusting your search or filters to find what you are looking for.',
-    'no_results_title' => 'No matching elements',
-    'order'         => [
+    'name_link'         => ':name was successfully recovered',
+    'no_results'        => 'Try adjusting your search or filters to find what you are looking for.',
+    'no_results_title'  => 'No matching elements',
+    'order'             => [
         'name_asc'      => 'Name (A–Z)',
         'newest'        => 'Order by: Newest',
         'newest_first'  => 'Newest first',
@@ -46,10 +46,10 @@ return [
         'type'          => 'Order by: Type',
         'type_order'    => 'Type',
     ],
-    'recovered_badge' => 'Recovered',
-    'showing_count' => 'Showing :shown of :total',
-    'success_v2'    => '{1} :count element was recovered.|[2,*] :count elements were recovered.',
-    'title'         => 'Recovery',
-    'tutorial'      => 'View and restore recently deleted elements. Entries, articles, and other supporting data can be recovered for :amount days before they are permanently removed. Restoring a element returns it with all its data intact.',
-    'view_recovered' => 'View',
+    'recovered_badge'   => 'Recovered',
+    'showing_count'     => 'Showing :shown of :total',
+    'success_v2'        => '{1} :count element was recovered.|[2,*] :count elements were recovered.',
+    'title'             => 'Recovery',
+    'tutorial'          => 'View and restore recently deleted elements. Entries, articles, and other supporting data can be recovered for :amount days before they are permanently removed. Restoring a element returns it with all its data intact.',
+    'view_recovered'    => 'View',
 ];
