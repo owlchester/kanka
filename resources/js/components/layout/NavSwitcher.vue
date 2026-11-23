@@ -1,6 +1,6 @@
 <template>
-    <div class="nav-switcher flex min-w-0 items-center justify-center align-middle h-12 gap-1 md:gap-2">
-        <button v-if="!impersonation" type="button" class="campaigns btn2 btn-ghost btn-square max-md:size-11! max-md:p-1! inline-flex items-center justify-center text-2xl hover:text-primary-focus" :class="campaign_name ? 'max-md:hidden!' : ''" v-on:click="openCampaigns()" :aria-label="campaigns_label" :aria-expanded="is_expanded && view_campaigns">
+    <div class="nav-switcher flex min-w-0 items-center justify-center align-middle h-12 gap-1">
+        <button v-if="!impersonation" type="button" class="campaigns btn2 btn-ghost btn-square inline-flex items-center justify-center text-2xl hover:text-primary-focus" :class="campaign_name ? 'max-md:hidden!' : ''" v-on:click="openCampaigns()" :aria-label="campaigns_label" :aria-expanded="is_expanded && view_campaigns">
             <GridSvg :size="7" />
         </button>
         <button v-if="impersonation" type="button" class="flex min-h-9 max-w-52 items-center gap-2 rounded-lg bg-warning px-3 text-sm font-semibold text-warning-content hover:bg-warning/90" @click="openProfile()" :aria-label="impersonation.label" :aria-expanded="is_expanded">
@@ -8,12 +8,13 @@
             <span class="truncate md:hidden">{{ impersonation.shortLabel }}</span>
             <i class="fa-regular fa-angle-down shrink-0" aria-hidden="true"></i>
         </button>
-        <button v-else type="button" class="profile btn2 btn-ghost btn-square max-md:size-11! max-md:p-1! shrink-0 flex items-center justify-center text-center uppercase" v-on:click="openProfile()" aria-label="Profile settings" :aria-expanded="is_expanded && view_profile">
+        <button v-else type="button" class="profile btn2 btn-ghost btn-square  shrink-0 flex items-center justify-center text-center uppercase" v-on:click="openProfile()" aria-label="Profile settings" :aria-expanded="is_expanded && view_profile">
             <div class="indicator relative inline-flex w-max">
-                <span class="notification-badge left-auto top-auto -right-[0.2rem] -bottom-[0.2rem] translate-x-1/2 leading-2 p-[0.3rem] w-fit inline-flex absolute content-center items-center z-10" v-if="show_alerts"></span>
+                <span class="notification-badge left-auto top-auto -right-[0.2rem] -bottom-[0.2rem] translate-x-1/2 leading-2 w-fit inline-flex absolute content-center items-center z-10" v-if="show_alerts"></span>
                 <div class="profile-box rounded-lg p-2 text-center font-bold" v-if="showInitials()">
                     {{ initials }}
                 </div>
+                <UserSvg class="w-9 h-9 text-base-content" v-else-if="isDefaultAvatar()" />
                 <div class="w-9 h-9 rounded-lg cover-background" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
             </div>
         </button>
@@ -61,6 +62,7 @@
                         <div class="flex-none profile-box rounded-lg p-2 text-center uppercase font-bold" v-if="showInitials()">
                             {{ initials }}
                         </div>
+                        <UserSvg class="flex-none w-9 h-9 text-base-content" v-else-if="isDefaultAvatar()" />
                         <div class="flex-none w-9 h-9 rounded-lg cover-background" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
 
                         <div class="grow">
@@ -72,6 +74,7 @@
                         <div class="flex-none profile-box rounded-lg p-2 text-center uppercase font-bold" v-if="showInitials()">
                             {{ initials }}
                         </div>
+                        <UserSvg class="flex-none w-9 h-9 text-base-content" v-else-if="isDefaultAvatar()" />
                         <div class="flex-none w-9 h-9 rounded-lg cover-background" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
                     </div>
                 </div>
@@ -245,6 +248,7 @@ import Campaign from './Campaign.vue';
 import Notification from './Notification.vue';
 import Release from './Release.vue';
 import GridSvg from "../icons/GridSvg.vue";
+import UserSvg from "../icons/UserSvg.vue";
 import ImpersonationRoles from './ImpersonationRoles.vue';
 import {onBeforeUnmount, onMounted, ref} from "vue";
 import { useNavigationAlerts } from '../../composables/useNavigationAlerts';
@@ -416,7 +420,10 @@ const queueFetch = () => {
     alertTimer = setTimeout(function () { updateAlerts() }, alert_delta.value);
 }
 const showInitials = () => {
-    return props.avatar.startsWith('/images/');
+    return props.avatar?.startsWith('/images/') && !isDefaultAvatar();
+}
+const isDefaultAvatar = () => {
+    return !props.avatar || props.avatar.includes('/images/defaults/user.svg');
 }
 const profilePictureUrl = () => {
     return 'url(' + props.avatar + ')'
