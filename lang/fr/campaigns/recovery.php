@@ -1,23 +1,44 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'           => [
         'recover'           => 'Récupérer',
         'recover_selected'  => 'Récupérer la sélection',
     ],
-    'cta'           => [
+    'cta'               => [
         'lead'  => 'Restaure les entrées et articles supprimés avant leur suppression définitive.',
         'title' => 'Récupère le contenu supprimé',
     ],
-    'empty'         => 'Les entrées et articles supprimés apparaîtront ici tant qu’ils pourront être récupérés.',
-    'empty_title'   => 'Rien à récupérer',
-    'error'         => 'Une erreur est survenue lors de la récupération.',
-    'fields'        => [
-        'deleted'       => 'Supprimé',
-        'deleted_at'    => 'Supprimé le :date par :user',
+    'empty'             => 'Les entrées et articles supprimés apparaîtront ici tant qu’ils pourront être récupérés.',
+    'empty_title'       => 'Rien à récupérer',
+    'error'             => 'Une erreur est survenue lors de la récupération.',
+    'fields'            => [
+        'days_left'         => '{0} Expire aujourd’hui|{1} Il reste 1 jour|[2,*] Il reste :count jours',
+        'deleted'           => 'Supprimé',
+        'deleted_at'        => 'Supprimé le :date par :user',
+        'expires_tooltip'   => 'Suppression définitive le :date',
+        'parent_entity'     => 'dans :name',
     ],
-    'name_link'     => ':name récupéré',
-    'order'         => [
+    'filters'           => [
+        'all_dates'     => 'Toutes les périodes',
+        'all_types'     => 'Tous les types',
+        'all_users'     => 'Tous les auteurs de suppression',
+        'clear'         => 'Effacer les filtres',
+        'deleted_by'    => 'Supprimé par',
+        'expiring_soon' => 'Expire dans les 7 jours',
+        'last_24h'      => 'Dernières 24 heures',
+        'last_30d'      => '30 derniers jours',
+        'last_7d'       => '7 derniers jours',
+        'search'        => 'Rechercher des éléments supprimés...',
+        'sort'          => 'Trier par',
+        'timeframe'     => 'Période',
+        'type'          => 'Type',
+    ],
+    'name_link'         => ':name récupéré',
+    'no_results'        => 'Essaie de modifier ta recherche ou tes filtres pour trouver ce que tu cherches.',
+    'no_results_title'  => 'Aucun élément correspondant',
+    'order'             => [
+        'name_asc'      => 'Nom (A–Z)',
         'newest'        => 'Ordonner par: Récent',
         'newest_first'  => 'Plus récent en premier',
         'oldest'        => 'Ordonner par: Ancienté',
@@ -25,7 +46,10 @@ return [
         'type'          => 'Ordonner par: Type',
         'type_order'    => 'Type',
     ],
-    'success_v2'    => '{1} :count élément a été récupéré.|[2,*] :count éléments ont été récupérés.',
-    'title'         => 'Récupération d\'éléments supprimés',
-    'tutorial'      => 'Affiche et restaure les éléments récemment supprimés de la campagne. Les entrées, article et autres données associées peuvent être récupérés pendant :amount jours avant d\'être supprimés définitivement. Restaurer un élément le remet avec toutes ses données intactes.',
+    'recovered_badge'   => 'Récupéré',
+    'showing_count'     => 'Éléments affichés: :shown sur :total',
+    'success_v2'        => '{1} :count élément a été récupéré.|[2,*] :count éléments ont été récupérés.',
+    'title'             => 'Récupération d\'éléments supprimés',
+    'tutorial'          => 'Affiche et restaure les éléments récemment supprimés de la campagne. Les entrées, article et autres données associées peuvent être récupérés pendant :amount jours avant d\'être supprimés définitivement. Restaurer un élément le remet avec toutes ses données intactes.',
+    'view_recovered'    => 'Voir',
 ];

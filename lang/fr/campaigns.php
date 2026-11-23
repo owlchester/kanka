@@ -126,6 +126,11 @@ return [
             'role'                  => 'Rôle',
             'roles'                 => 'Rôles',
         ],
+        'impersonating'         => [
+            'acting_as'         => 'Tu agis en tant que :name',
+            'acting_as_short'   => 'En tant que…',
+            'no_roles'          => 'Aucun rôle attribué',
+        ],
         'invite'                => [
             'description'   => 'Invite tes amis et joueurs à participer à la campagne en créant un lien d\'invitation et en leur envoyant l\'URL générée! En acceptant l\'invitation, ils seront ajoutés en tant que membres dans le rôle défini par l\'invitation.',
             'more'          => 'Tu peux ajouter plus de rôles sur la :link.',

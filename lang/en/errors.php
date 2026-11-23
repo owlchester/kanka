@@ -37,10 +37,10 @@ return [
         'reasons'       => [
             'direct-deny'   => 'View is explicitly denied for :member on this entry.',
             'no-grant'      => ':member has no applicable View grant for the module or this entry.',
-            'private'       => 'This entry is private. Only campaign admins can see it; the settings below do not override privacy.',
+            'private'       => 'This entry is private. Only admins can see it; the settings below do not override privacy.',
             'role-deny'     => 'The following roles deny View on this entry:',
         ],
-        'role'          => 'Campaign role',
+        'role'          => 'Role',
         'settings'      => [
             'allow'         => 'Allow',
             'assigned'      => 'Assigned',

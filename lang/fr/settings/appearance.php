@@ -17,13 +17,19 @@ return [
         'main'  => 'Gères l\'apparence et certains fonctionements de Kanka. La configuration de campagnes peuvent remplacer certains de ces paramètres.',
     ],
     'editors'           => [
+        'classic'   => 'Classique (:name)',
         'helpers'   => [
-            'feedback'  => 'Aide-nous à l\'améliorer en donnant ton avis (2min)',
-            'legacy'    => 'L\'ancien éditeur de texte (TinyMCE) ne supporte pas les mentions sur mobile, les galeries de campagne ni d\'autres fonctionnalités avancées.',
-            'tiptap'    => 'Ceci est notre nouvel éditeur expérimental qui est activement développé et mis à jour régulièrement. Il ne contient pas encore toutes les fonctionnalités auxquelles tu es habitué.',
+            'feedback'      => 'Aide-nous à l\'améliorer en donnant ton avis (2min)',
+            'legacy'        => 'L\'ancien éditeur de texte (TinyMCE) ne supporte pas les mentions sur mobile, les galeries de campagne ni d\'autres fonctionnalités avancées.',
+            'summernote'    => 'Summernote est un ancien éditeur qui ne gère les tableaux que de façon limitée. Il sera retiré à terme et cessera de fonctionner. Passe à l’éditeur Moderne (Tiptap), qui continuera à être maintenu.',
+            'tiptap'        => 'Ceci est notre nouvel éditeur expérimental qui est activement développé et mis à jour régulièrement. Il ne contient pas encore toutes les fonctionnalités auxquelles tu es habitué.',
         ],
         'legacy'    => 'Ancien (:name)',
         'tiptap'    => 'Expérimental 2026',
+    ],
+    'entry-forms'       => [
+        'legacy'    => 'Classique',
+        'modern'    => 'Moderne',
     ],
     'explore'           => [
         'grid'  => 'Grille (défaut)',
@@ -34,6 +40,7 @@ return [
         'date-format'           => 'Formatage de date',
         'editor'                => 'Éditeur de texte',
         'entity-explore'        => 'Listes d\'entrées',
+        'entry-forms'           => 'Formulaires d’entrée',
         'mentions'              => 'Mentions lors de l\'édition',
         'new-entity-workflow'   => 'Flux de nouvelle entrée',
         'pagination'            => 'Résultats par page',
@@ -45,6 +52,7 @@ return [
         'date-format'           => 'Contrôler le format dans lequel afficher les dates ancrées dans notre calendrier.',
         'editors'               => 'Choisis l\'éditeur de texte à utiliser pour les grands champs de texte.',
         'entity-explore'        => 'Contrôler la manière dont s\'affiche les listes d\'entrées des campagnes.',
+        'entry-forms'           => 'Essaie la mise en page Moderne, pensée pour l’écriture, pour les entrées standard et personnalisées, ou garde les formulaires Classique.',
         'new-entity-workflow'   => 'Contrôler l\'interface vers laquelle tu es redirigé après avoir créé une nouvelle entrée.',
         'overridable'           => 'Les campagnes peuvent individuellement remplacer cette préférence.',
         'pagination'            => 'Pour les listes qui s\'étendent sur plusieurs pages, définis le nombre d\'éléments visibles sur chaque page.',

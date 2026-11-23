@@ -12,5 +12,6 @@ return [
         ],
         'invalid_currency'      => 'Tu avais précédemment un abonnement en :old, ce qui t\'empêche d\'avoir un nouvel abonnement en :new. Priere de changer ta devise en :old, ou nous contacter à :email si tu souhaites changer de devise.',
         'legacy_paypal'         => 'Ton abonnement est géré par notre ancien système PayPal et reste actif jusqu’au :date. Tu peux ensuite t’abonner via Stripe. Aucune donnée ne sera perdue.',
+        'pending'               => 'Un paiement d’abonnement est déjà en cours de traitement. Vérifie ton abonnement avant de réessayer. Si le problème persiste, contacte l’assistance.',
     ],
 ];
