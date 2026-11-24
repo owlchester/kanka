@@ -50,7 +50,7 @@
                     <i class="fa-solid fa-spinner fa-spin text-lg" aria-hidden="true"></i>
                 </div>
                 <template v-else>
-                    <div class="flex items-center gap-2 p-3 border-b border-base-content/10 flex-none">
+                    <div class="flex items-center gap-2 p-3 flex-none">
                         <div class="bg-base-200 p-1 rounded-xl flex items-center gap-1 grow min-w-0">
                             <button
                                 type="button"
