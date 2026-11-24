@@ -125,6 +125,11 @@ class Campaign extends Model
         return 'slug';
     }
 
+    public function getRouteKey()
+    {
+        return $this->slug ?: $this->id;
+    }
+
     /**
      * Does the campaign has a preview text that can be displayed
      */
@@ -482,7 +487,7 @@ class Campaign extends Model
 
     public function hasVanity(): bool
     {
-        return $this->slug != $this->id;
+        return ! empty($this->slug) && $this->slug != $this->id;
     }
 
     public function getSystems(): string

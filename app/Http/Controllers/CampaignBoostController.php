@@ -26,7 +26,7 @@ class CampaignBoostController extends Controller
     public function create()
     {
         $campaignID = request()->get('campaign');
-        $campaign = Campaign::where('slug', $campaignID)->firstOrFail();
+        $campaign = Campaign::slug($campaignID)->firstOrFail();
         $user = auth()->user();
         if ($user->hasLegacyBoosterNomenclature()) {
             $superboost = request()->has('superboost');
