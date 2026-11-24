@@ -42,30 +42,37 @@ class ApiLogService
         return $this;
     }
 
-    public function log()
+    public function reset(): void
     {
-        if (! config('logging.enabled')) {
-            return;
-        }
+        unset($this->campaign, $this->response, $this->exception);
+        $this->user = null;
+        $this->request = null;
+        $this->duration = null;
+    }
 
-        // Front-facing APIs? Don't log
-        if (! isset($this->user)) {
-            return;
-        }
+    public function log(): void
+    {
+        try {
+            if (! config('logging.enabled') || ! isset($this->user, $this->request)) {
+                return;
+            }
 
-        if (isset($this->exception)) {
-            $code = 500;
-        } else {
-            $code = isset($this->response) ? $this->response->getStatusCode() : 200;
-        }
+            if (isset($this->exception)) {
+                $code = 500;
+            } else {
+                $code = isset($this->response) ? $this->response->getStatusCode() : 200;
+            }
 
-        ApiLog::create([
-            'campaign_id' => isset($this->campaign) ? $this->campaign->id : null,
-            'user_id' => $this->user->id,
-            'uri' => $this->request->path(),
-            'params' => $this->request->all(),
-            'duration' => $this->duration,
-            'response' => $code,
-        ]);
+            ApiLog::create([
+                'campaign_id' => isset($this->campaign) ? $this->campaign->id : null,
+                'user_id' => $this->user->id,
+                'uri' => $this->request->path(),
+                'params' => $this->request->except(['password', 'password_confirmation', 'current_password']),
+                'duration' => $this->duration,
+                'response' => (string) $code,
+            ]);
+        } finally {
+            $this->reset();
+        }
     }
 }

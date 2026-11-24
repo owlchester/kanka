@@ -8,6 +8,8 @@ use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\WebhookObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -22,6 +24,7 @@ use Illuminate\Support\Arr;
  * @property int $action
  * @property array|null $settings
  */
+#[ObservedBy(WebhookObserver::class)]
 class Webhook extends Model
 {
     use Blameable;

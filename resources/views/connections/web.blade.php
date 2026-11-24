@@ -7,14 +7,12 @@
 ])
 
 @section('content')
-<div id="web">
-    <connections-web
-        api="{{ route('connections.web.api', [$campaign]) }}"
-        :premium="@js($campaign->boosted())"
-        :creator="{{ auth()->check() && !empty($campaign) && auth()->user()->can('member', $campaign) ? 1 : 0 }}"
-    >
-    </connections-web>
-</div>
+<div
+    id="web"
+    data-api="{{ route('connections.web.api', [$campaign]) }}"
+    data-premium="{{ $campaign->boosted() ? '1' : '0' }}"
+    data-creator="{{ auth()->check() && !empty($campaign) && auth()->user()->can('member', $campaign) ? '1' : '0' }}"
+></div>
 
 @endsection
 

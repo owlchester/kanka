@@ -3,11 +3,11 @@
 namespace App\Policies;
 
 use App\Enums\Visibility;
-use App\Facades\EntityPermission;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\Image;
 use App\Models\User;
+use App\Services\Permissions\EntityPermission;
 
 class ImagePolicy
 {
@@ -80,6 +80,6 @@ class ImagePolicy
      */
     protected function checkPermission(int $action, User $user, ?Campaign $campaign = null)
     {
-        return EntityPermission::campaign($campaign)->user($user)->hasPermission(0, $action, null);
+        return app(EntityPermission::class)->hasPermission(0, $action, null, $user, $campaign);
     }
 }

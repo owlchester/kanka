@@ -2,12 +2,12 @@
 
 namespace App\Services\Entity;
 
-use App\Facades\Avatar;
 use App\Facades\Module;
 use App\Models\Attribute;
 use App\Models\Character;
 use App\Models\Location;
 use App\Models\MiscModel;
+use App\Services\Images\Avatar;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 
@@ -78,7 +78,7 @@ class PreviewService
 
     protected function image(): mixed
     {
-        return Avatar::entity($this->entity)->size(276)->thumbnail();
+        return Avatar::for($this->entity)->size(276)->thumbnail();
     }
 
     protected function attributes(): array
@@ -180,7 +180,7 @@ class PreviewService
                 'id' => $relation->target->id,
                 'name' => $relation->target->name,
                 'type' => $relation->relation,
-                'image' => Avatar::entity($relation->target)->size(64)->thumbnail(),
+                'image' => Avatar::for($relation->target)->size(64)->thumbnail(),
                 'link' => $relation->target->url(),
             ];
 
@@ -221,7 +221,7 @@ class PreviewService
     protected function status(): ?array
     {
         $status = $this->entity->status;
-        if (! $status?->icon) {
+        if (! $status || (! $status->isCustom() && ! $status->icon)) {
             return null;
         }
 

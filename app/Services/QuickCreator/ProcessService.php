@@ -13,9 +13,12 @@ use App\Models\Post;
 use App\Models\Race;
 use App\Models\Tag;
 use App\Services\Entity\CopyService;
+use App\Services\Entity\CreatorPermissionService;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\EntityRelationsServiceFactory;
+use App\Services\Entity\RemindableService;
 use App\Services\Entity\StandardEntityCreationService;
+use App\Services\Entity\TagFormSyncService;
 use App\Traits\CampaignAware;
 use App\Traits\CreatesEntityFromName;
 use App\Traits\EntityTypeAware;
@@ -48,6 +51,8 @@ class ProcessService
         protected EntitySaveService $entitySaveService,
         protected EntityRelationsServiceFactory $relationsFactory,
         protected StandardEntityCreationService $entityCreationService,
+        protected TagFormSyncService $tagFormSyncService,
+        protected RemindableService $remindableService,
     ) {}
 
     public function entity()
@@ -106,6 +111,10 @@ class ProcessService
                 $this->entity->campaign_id = $this->campaign->id;
                 $this->entity->type_id = $this->entityType->id;
                 $this->entity->save();
+                app(CreatorPermissionService::class)
+                    ->entity($this->entity)
+                    ->user(auth()->user())
+                    ->grant();
             } else {
                 $model = $this->entityCreationService
                     ->campaign($this->campaign)
@@ -114,12 +123,13 @@ class ProcessService
                 $this->entity = $model->entity;
             }
 
-            $this->entitySaveService->entity($this->entity)->save($values);
+            $this->entitySaveService->entity($this->entity)->save(Arr::except($values, ['entry_dates']), $this->request);
             if ($model !== null) {
                 $this->relationsFactory->for($this->entity)?->save($model, $values);
             }
             $this->new[] = $this->entity;
             $this->copyTemplateRelations();
+            $this->entitySaveService->saveEntryDates($values['entry_dates'] ?? []);
         }
 
         // If no entity was created, we throw the standard error
@@ -167,6 +177,8 @@ class ProcessService
                 $values['position'] = 1;
                 $new = Post::create($values);
             }
+            $this->tagFormSyncService->sync($new, $this->request);
+            $this->remindableService->save($new, $this->request);
             $this->new[] = $new;
         }
 
@@ -375,6 +387,7 @@ class ProcessService
         $this->copyService
             ->source($this->template)
             ->entity($this->entity)
+            ->request($this->request)
             ->force()
             ->copy();
 
@@ -383,6 +396,7 @@ class ProcessService
         if ($this->template->isCharacter()) {
             $this->copyService->character();
         }
+        $this->copyService->event();
 
         return $this;
     }

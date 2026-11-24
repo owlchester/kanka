@@ -2,8 +2,8 @@
 
 namespace App\Models\Concerns;
 
-use App\Facades\Img;
 use App\Observers\ImageableObserver;
+use App\Services\Images\Img;
 
 /**
  * @property ?string image
@@ -31,8 +31,8 @@ trait HasImage
             return '';
         }
 
-        return Img::resetCrop()
+        return Img::for($this->$field)
             ->crop($width, (! empty($height) ? $height : $width))
-            ->url($this->$field);
+            ->url();
     }
 }

@@ -19,7 +19,9 @@ use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
+use App\Observers\CampaignObserver;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -58,6 +60,7 @@ use Illuminate\Support\Collection;
  * @property bool|int $hide_members
  * @property bool|int $hide_history
  */
+#[ObservedBy(CampaignObserver::class)]
 class Campaign extends Model
 {
     use Blameable;
@@ -101,6 +104,8 @@ class Campaign extends Model
     protected $attributes = [
         'is_hidden' => false,
         'is_prioritised' => false,
+        'entity_visibility' => false,
+        'entity_personality_visibility' => false,
     ];
 
     protected array $sanitizable = [

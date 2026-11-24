@@ -2,19 +2,8 @@
 
 namespace Tests;
 
-use App\Facades\Avatar;
-use App\Facades\BookmarkCache;
-use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
-use App\Facades\CharacterCache;
-use App\Facades\EntityAssetCache;
-use App\Facades\EntityCache;
-use App\Facades\MapMarkerCache;
 use App\Facades\Mentions;
-use App\Facades\Module;
-use App\Facades\QuestCache;
-use App\Facades\TimelineElementCache;
-use App\Facades\UserCache;
 use App\Models\Ability;
 use App\Models\Attribute;
 use App\Models\Bookmark;
@@ -209,18 +198,7 @@ abstract class TestCase extends BaseTestCase
         ]);
         $setting->save();
 
-        EntityCache::campaign($campaign);
-        CampaignCache::campaign($campaign);
-        UserCache::campaign($campaign);
         Mentions::campaign($campaign);
-        Module::campaign($campaign);
-        QuestCache::campaign($campaign);
-        BookmarkCache::campaign($campaign);
-        EntityAssetCache::campaign($campaign);
-        TimelineElementCache::campaign($campaign);
-        CharacterCache::campaign($campaign);
-        MapMarkerCache::campaign($campaign);
-        Avatar::campaign($campaign);
 
         return $this;
     }

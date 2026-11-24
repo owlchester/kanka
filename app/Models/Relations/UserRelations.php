@@ -2,6 +2,7 @@
 
 namespace App\Models\Relations;
 
+use App\Enums\FeatureStatus;
 use App\Models\Application;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
@@ -15,6 +16,7 @@ use App\Models\ConversationParticipant;
 use App\Models\Entity;
 use App\Models\EntityClaim;
 use App\Models\EntityUser;
+use App\Models\FeatureChampion;
 use App\Models\FeatureVote;
 use App\Models\PasswordSecurity;
 use App\Models\Plugin;
@@ -276,6 +278,27 @@ trait UserRelations
     public function upvotes(): HasMany
     {
         return $this->hasMany(FeatureVote::class);
+    }
+
+    /**
+     * List of ideas the user has championed in the roadmap
+     *
+     * @return HasMany<FeatureChampion, $this>
+     */
+    public function featureChampions(): HasMany
+    {
+        return $this->hasMany(FeatureChampion::class);
+    }
+
+    /**
+     * The user's currently active championed roadmap idea
+     *
+     * @return HasOne<FeatureChampion, $this>
+     */
+    public function activeFeatureChampion(): HasOne
+    {
+        return $this->hasOne(FeatureChampion::class)
+            ->whereHas('feature', fn ($q) => $q->whereNotIn('status_id', [FeatureStatus::Done, FeatureStatus::Rejected]));
     }
 
     /**

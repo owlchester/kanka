@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Facades\Avatar;
 use App\Models\Concerns\Blameable;
 use App\Observers\WhiteboardShapeObserver;
+use App\Services\Images\Avatar;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
 use Illuminate\Database\Eloquent\Model;
@@ -121,7 +121,7 @@ class WhiteboardShape extends Model
         } elseif ($this->isEntity()) {
             $entity = Entity::find($this->shape['entity_id']);
             if ($entity) {
-                return Avatar::entity($entity)->size(256)->fallback()->thumbnail();
+                return Avatar::for($entity)->size(256)->fallback()->thumbnail();
             }
         }
 

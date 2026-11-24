@@ -1,6 +1,14 @@
 
 @php
-    $options = [
+    $options = ($field['multiple'] ?? false) === true ? [
+        '' => __('crud.filters.options.include_any'),
+        'all' => __('crud.filters.options.include_all'),
+        'children' => __('crud.filters.options.children'),
+        'exclude' => __('crud.filters.options.exclude_any'),
+        'exclude_all' => __('crud.filters.options.exclude_all'),
+        'none' => __('crud.filters.options.none'),
+        'not_empty' => __('crud.filters.options.not_empty'),
+    ] : [
         '' => __('crud.filters.options.include'),
         'children' => __('crud.filters.options.children'),
         'exclude' => __('crud.filters.options.exclude'),

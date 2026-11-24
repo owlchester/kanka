@@ -126,8 +126,9 @@ return [
             'roles'                 => 'Roles',
         ],
         'impersonating'         => [
-            'message'   => 'You are viewing and interacting with :campaign as :name. Some features have been disabled, but the rest acts exactly as they would see it.',
-            'title'     => 'Impersonating :name',
+            'acting_as'         => 'Acting as :name',
+            'acting_as_short'   => 'Acting as…',
+            'no_roles'          => 'No assigned roles',
         ],
         'invite'                => [
             'description'   => 'Invite friends and players to :campaign by creating an invitation link and sending them the generated URL! Upon accepting their invitation, they will be added as a member in the invitation\'s requested role.',

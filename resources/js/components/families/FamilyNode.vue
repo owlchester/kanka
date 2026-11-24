@@ -42,8 +42,12 @@
 </template>
 
 <script>
+import ChildrenLine from './ChildrenLine.vue'
+import FamilyEntity from './FamilyEntity.vue'
+import FamilyRelations from './FamilyRelations.vue'
 
 export default {
+    components: { ChildrenLine, FamilyEntity, FamilyRelations },
     props: {
         node: undefined,
         entities: undefined,

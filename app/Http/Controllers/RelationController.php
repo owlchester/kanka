@@ -9,7 +9,6 @@ use App\Http\Resources\Web\EntityResource;
 use App\Models\Campaign;
 use App\Models\Relation;
 use App\Renderers\DatagridRenderer;
-use App\Services\AttributeService;
 use App\Services\Entity\RelationService;
 use App\Services\FilterService;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -20,47 +19,25 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-class RelationController extends CrudController
+class RelationController extends CampaignTableController
 {
     protected RelationService $relationService;
 
     protected string $view = 'relations';
 
-    protected string $route = 'relations';
-
-    protected $langKey = 'entities/relations';
-
-    protected bool $tabPermissions = false;
-
-    protected bool $tabAttributes = false;
-
-    protected bool $tabBoosted = false;
-
-    protected bool $tabCopy = false;
-
-    protected string $forceMode = 'table';
+    protected string $langKey = 'entities/relations';
 
     protected string $model = Relation::class;
 
     /** @var string The datagrid controlling the bulk actions */
     protected string $datagridActions = RelationDatagridActions::class;
 
-    /** @var string Disable the sanitizer, handled by the observer */
-    protected string $sanitizer = '';
-
     protected string $filter = RelationFilter::class;
 
-    public function __construct(FilterService $filterService, DatagridRenderer $datagridRenderer, AttributeService $attributeService, RelationService $relationService)
+    public function __construct(FilterService $filterService, DatagridRenderer $datagridRenderer, RelationService $relationService)
     {
-        $this->filterService = $filterService;
-        $this->datagrid = $datagridRenderer;
-        $this->attributeService = $attributeService;
+        parent::__construct($filterService, $datagridRenderer);
         $this->relationService = $relationService;
-    }
-
-    public function titleKey(): string
-    {
-        return __('sidebar.relations');
     }
 
     /**
@@ -71,8 +48,6 @@ class RelationController extends CrudController
     public function create(Campaign $campaign)
     {
         $this->authorize('relations', $campaign);
-
-        $model = new $this->model;
 
         $params['campaign'] = $campaign;
         $params['entityAttributeTemplates'] = [];
@@ -131,28 +106,28 @@ class RelationController extends CrudController
             session()->flash('success_raw', $success);
 
             if ($request->has('submit-new')) {
-                $route = route($this->route . '.create', $campaign);
+                $route = route($this->view . '.create', $campaign);
 
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-update')) {
-                $route = route($this->route . '.edit', [$campaign, $new]);
+                $route = route($this->view . '.edit', [$campaign, $new]);
 
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-view')) {
-                $route = route($this->route . '.show', [$campaign, $new]);
+                $route = route($this->view . '.show', [$campaign, $new]);
 
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-copy')) {
-                $route = route($this->route . '.create', [$campaign, 'copy' => $new->id]);
+                $route = route($this->view . '.create', [$campaign, 'copy' => $new->id]);
 
                 return response()->redirectTo($route);
             } elseif (auth()->user()->new_entity_workflow == 'created') {
-                $route = route($this->route . '.show', [$campaign, $new]);
+                $route = route($this->view . '.show', [$campaign, $new]);
 
                 return response()->redirectTo($route);
             }
 
-            $route = route($this->route . '.index', $campaign);
+            $route = route($this->view . '.index', $campaign);
 
             return response()->redirectTo($route);
         } catch (\LogicException $exception) {

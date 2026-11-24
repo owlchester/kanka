@@ -9,8 +9,13 @@ use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use App\Services\Entity\StandardEntityCreationService;
 use CampaignLocalization;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class MiscApiController extends ApiController
+abstract class MiscApiController extends ApiController
 {
     public function __construct(
         protected EntitySaveService $entitySaveService,
@@ -18,12 +23,83 @@ class MiscApiController extends ApiController
         protected StandardEntityCreationService $entityCreationService,
     ) {}
 
-    protected function createStandardModel(Campaign $campaign, array $data, int $entityTypeId): MiscModel
+    /**
+     * @template T of MiscModel
+     *
+     * @param  HasMany<T, Campaign>  $relation
+     * @param  class-string<JsonResource>  $resource
+     */
+    protected function listModels(Campaign $campaign, HasMany $relation, string $resource, bool $loadBeforeFiltering = false): AnonymousResourceCollection
     {
-        return $this->entityCreationService
+        $this->authorize('access', $campaign);
+
+        $query = $relation->getQuery();
+        if ($loadBeforeFiltering) {
+            $query->withApi();
+        }
+        $query->filter(request()->all());
+        if (! $loadBeforeFiltering) {
+            $query->withApi();
+        }
+
+        return $resource::collection($query
+            ->lastSync(request()->get('lastSync'))
+            ->orderBy($relation->getRelated()->getQualifiedKeyName())
+            ->paginate());
+    }
+
+    protected function viewModel(Campaign $campaign, MiscModel $model): MiscModel
+    {
+        $this->authorizeModel('view', $campaign, $model);
+
+        return $model;
+    }
+
+    protected function storeModel(FormRequest $request, Campaign $campaign, int $entityTypeId): MiscModel
+    {
+        $this->authorize('access', $campaign);
+        $type = EntityType::findOrFail($entityTypeId);
+        $this->authorize('create', [$type, $campaign]);
+
+        $validated = $request->validated();
+        $data = $this->childData($request, $validated);
+        $data['campaign_id'] = $campaign->id;
+        $model = $this->entityCreationService
             ->campaign($campaign)
-            ->entityType(EntityType::findOrFail($entityTypeId))
+            ->entityType($type)
             ->create($data);
+        $this->crudSave($model, $validated);
+
+        return $model;
+    }
+
+    protected function updateModel(FormRequest $request, Campaign $campaign, MiscModel $model): MiscModel
+    {
+        $this->authorizeModel('update', $campaign, $model);
+        $validated = $request->validated();
+        $model->update($this->childData($request, $validated));
+        $this->crudSave($model, $validated);
+
+        return $model;
+    }
+
+    protected function deleteModel(Campaign $campaign, MiscModel $model): JsonResponse
+    {
+        $this->authorizeModel('delete', $campaign, $model);
+        $model->entity->delete();
+
+        return response()->json(null, 204);
+    }
+
+    protected function childData(FormRequest $request, array $validated): array
+    {
+        return $validated;
+    }
+
+    private function authorizeModel(string $ability, Campaign $campaign, MiscModel $model): void
+    {
+        $this->authorize('access', $campaign);
+        $this->authorize($ability, $model->entity);
     }
 
     protected function crudSave(MiscModel $model, array $data): void

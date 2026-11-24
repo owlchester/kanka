@@ -2,7 +2,6 @@
 
 namespace App\Jobs\Copyright;
 
-use App\Facades\Avatar;
 use App\Facades\Images;
 use App\Models\Campaign;
 use App\Models\Entity;
@@ -85,7 +84,5 @@ class DeleteEntityImage implements ShouldQueue
             $entity->update(['header_image' => $entity->header_image]);
         }
 
-        // Whenever an entity is updated, we always want to re-calculate the cached image.
-        Avatar::entity($entity)->forget();
     }
 }

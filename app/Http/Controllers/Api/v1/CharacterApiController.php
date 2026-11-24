@@ -2,101 +2,37 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreCharacter as Request;
+use App\Http\Requests\StoreCharacter;
 use App\Http\Resources\CharacterResource;
 use App\Models\Campaign;
 use App\Models\Character;
-use App\Models\EntityType;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CharacterApiController extends MiscApiController
 {
-    /**
-     * @return AnonymousResourceCollection
-     *
-     * @throws AuthorizationException
-     */
-    public function index(Campaign $campaign)
+    public function index(Campaign $campaign): AnonymousResourceCollection
     {
-        $this->authorize('access', $campaign);
-
-        return CharacterResource::collection(
-            $campaign
-                ->characters()
-                ->withApi()
-                ->filter(request()->all())
-                ->lastSync(request()->get('lastSync'))
-                ->orderBy('characters.id')
-                ->paginate(),
-        );
+        return $this->listModels($campaign, $campaign->characters(), CharacterResource::class, loadBeforeFiltering: true);
     }
 
-    /**
-     * @return CharacterResource
-     *
-     * @throws AuthorizationException
-     */
-    public function show(Campaign $campaign, Character $character)
+    public function show(Campaign $campaign, Character $character): CharacterResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $character->entity);
-
-        return new CharacterResource($character);
+        return new CharacterResource($this->viewModel($campaign, $character));
     }
 
-    /**
-     * @return CharacterResource
-     *
-     * @throws AuthorizationException
-     */
-    public function store(Request $request, Campaign $campaign)
+    public function store(StoreCharacter $request, Campaign $campaign): CharacterResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', [
-            EntityType::find(config('entities.ids.character')),
-            $campaign,
-        ]);
-
-        $data = $request->validated();
-        $data['campaign_id'] = $campaign->id;
-        /** @var Character $model */
-        $model = $this->createStandardModel($campaign, $data, config('entities.ids.character'));
-        $this->crudSave($model, $request->validated());
-
-        return new CharacterResource($model);
+        return new CharacterResource($this->storeModel($request, $campaign, config('entities.ids.character')));
     }
 
-    /**
-     * @return CharacterResource
-     *
-     * @throws AuthorizationException
-     */
-    public function update(
-        Request $request,
-        Campaign $campaign,
-        Character $character,
-    ) {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $character->entity);
-        $character->update($request->validated());
-        $this->crudSave($character, $request->validated());
-
-        return new CharacterResource($character);
+    public function update(StoreCharacter $request, Campaign $campaign, Character $character): CharacterResource
+    {
+        return new CharacterResource($this->updateModel($request, $campaign, $character));
     }
 
-    /**
-     * @return JsonResponse
-     *
-     * @throws AuthorizationException
-     */
-    public function destroy(Campaign $campaign, Character $character)
+    public function destroy(Campaign $campaign, Character $character): JsonResponse
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $character->entity);
-        $character->entity->delete();
-
-        return response()->json(null, 204);
+        return $this->deleteModel($campaign, $character);
     }
 }

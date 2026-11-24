@@ -3,7 +3,6 @@
 namespace App\Models\Concerns;
 
 use App\Models\Tag;
-use App\Observers\TaggableObserver;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -15,16 +14,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 trait Taggable
 {
-    public static function bootTaggable(): void
-    {
-        // Don't add this observer if in console mode
-        if (app()->runningInConsole()) {
-            return;
-        }
-        $observer = app(TaggableObserver::class);
-        static::saved([$observer, 'saved']);
-    }
-
     /**
      * @return BelongsToMany<Tag, $this>
      */

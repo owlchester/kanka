@@ -2,88 +2,37 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreTag as Request;
-use App\Http\Resources\TagResource as Resource;
+use App\Http\Requests\StoreTag;
+use App\Http\Resources\TagResource;
 use App\Models\Campaign;
-use App\Models\EntityType;
 use App\Models\Tag;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class TagApiController extends MiscApiController
 {
-    /**
-     * @return AnonymousResourceCollection
-     *
-     * @throws AuthorizationException
-     */
-    public function index(Campaign $campaign)
+    public function index(Campaign $campaign): AnonymousResourceCollection
     {
-        $this->authorize('access', $campaign);
-
-        return Resource::collection($campaign
-            ->tags()
-            ->filter(request()->all())
-            ->withApi()
-            ->lastSync(request()->get('lastSync'))
-            ->orderBy('tags.id')
-            ->paginate());
+        return $this->listModels($campaign, $campaign->tags(), TagResource::class);
     }
 
-    /**
-     * @return resource
-     */
-    public function show(Campaign $campaign, Tag $tag)
+    public function show(Campaign $campaign, Tag $tag): TagResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $tag->entity);
-
-        return new Resource($tag);
+        return new TagResource($this->viewModel($campaign, $tag));
     }
 
-    /**
-     * @return resource
-     *
-     * @throws AuthorizationException
-     */
-    public function store(Request $request, Campaign $campaign)
+    public function store(StoreTag $request, Campaign $campaign): TagResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', [EntityType::find(config('entities.ids.tag')), $campaign]);
-
-        $data = $request->validated();
-        $data['campaign_id'] = $campaign->id;
-        $model = $this->createStandardModel($campaign, $data, config('entities.ids.tag'));
-        $this->crudSave($model, $request->validated());
-
-        return new Resource($model);
+        return new TagResource($this->storeModel($request, $campaign, config('entities.ids.tag')));
     }
 
-    /**
-     * @return resource
-     */
-    public function update(Request $request, Campaign $campaign, Tag $tag)
+    public function update(StoreTag $request, Campaign $campaign, Tag $tag): TagResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $tag->entity);
-        $tag->update($request->validated());
-        $this->crudSave($tag, $request->validated());
-
-        return new Resource($tag);
+        return new TagResource($this->updateModel($request, $campaign, $tag));
     }
 
-    /**
-     * @return JsonResponse
-     *
-     * @throws AuthorizationException
-     */
-    public function destroy(Campaign $campaign, Tag $tag)
+    public function destroy(Campaign $campaign, Tag $tag): JsonResponse
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $tag->entity);
-        $tag->entity->delete();
-
-        return response()->json(null, 204);
+        return $this->deleteModel($campaign, $tag);
     }
 }

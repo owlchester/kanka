@@ -4,16 +4,8 @@ namespace App\Services;
 
 use App\Enums\CampaignImportStatus;
 use App\Enums\UserAction;
-use App\Facades\BookmarkCache;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
-use App\Facades\CharacterCache;
-use App\Facades\EntityAssetCache;
-use App\Facades\EntityCache;
-use App\Facades\Limit;
-use App\Facades\MapMarkerCache;
-use App\Facades\QuestCache;
-use App\Facades\TimelineElementCache;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreCustomEntity;
 use App\Models\CampaignImport;
@@ -36,6 +28,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use RuntimeException;
 use SplFileObject;
 use Stevebauman\Purify\Facades\Purify;
 use Throwable;
@@ -143,11 +136,17 @@ class CsvImportService
         foreach ($files as $file) {
             // Log::info('Want to download ' . $file);
             $s3 = Storage::disk('export')->get($file);
+            if ($s3 === null) {
+                throw new RuntimeException(__('campaigns/import.csv.download_error'));
+            }
+
             $local = $path . uniqid() . '.csv';
             // Log::info('Will download from the export disk to local ' . $local);
-            Storage::disk('local')->put($local, $s3);
+            if (! Storage::disk('local')->put($local, $s3)) {
+                throw new RuntimeException(__('campaigns/import.csv.local_write_error'));
+            }
 
-            $this->filePath = storage_path('app/' . $local);
+            $this->filePath = Storage::disk('local')->path($local);
             $this->logs[] = 'Downloaded csv to ' . $local;
         }
 
@@ -191,15 +190,6 @@ class CsvImportService
             // We're in the queue after all
             CampaignLocalization::forceCampaign($this->campaign);
             CampaignCache::campaign($this->campaign)->clear();
-            EntityCache::campaign($this->campaign);
-            CharacterCache::campaign($this->campaign);
-            TimelineElementCache::campaign($this->campaign);
-            QuestCache::campaign($this->campaign);
-            MapMarkerCache::campaign($this->campaign);
-            EntityAssetCache::campaign($this->campaign);
-            BookmarkCache::campaign($this->campaign);
-            Limit::campaign($this->campaign);
-            Limit::user($this->user);
 
             // Batch size controls how many rows are loaded into memory at once.
             $batchSize = 50;

@@ -26,8 +26,12 @@ class UploadFile extends FormRequest
     public function rules(): array
     {
         $types = ['jpeg', 'jpg', 'gif', 'png', 'webp'];
+        $limit = Limit::campaign($this->route('campaign'));
+        if ($this->user()) {
+            $limit = $limit->user($this->user());
+        }
         if (request()->has('map')) {
-            Limit::map();
+            $limit = $limit->map();
             $types[] = 'svg';
         }
 
@@ -35,7 +39,7 @@ class UploadFile extends FormRequest
             'file' => [
                 'required',
                 File::types($types),
-                'max:' . Limit::upload(),
+                'max:' . $limit->upload(),
                 new GallerySize,
             ],
         ];

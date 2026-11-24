@@ -2,12 +2,12 @@
 
 namespace App\Services\Search;
 
-use App\Facades\Avatar;
 use App\Facades\Breadcrumb;
 use App\Models\Bookmark;
 use App\Models\Entity;
 use App\Services\Bookmarks\RoutingService;
 use App\Services\EntityTypeService;
+use App\Services\Images\Avatar;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Collection;
@@ -49,7 +49,6 @@ class RecentService
 
     /**
      * Format an entity for the lookup/search/recent dropdown
-     * Todo: switch to a trait and share with SearchService
      */
     protected function formatForLookup(Entity $entity): array
     {
@@ -57,7 +56,7 @@ class RecentService
             'id' => $entity->id,
             'name' => $entity->name,
             'is_private' => $entity->is_private,
-            'image' => Avatar::entity($entity)->fallback()->size(64)->thumbnail(),
+            'image' => Avatar::for($entity)->fallback()->size(64)->thumbnail(),
             'link' => $entity->url(),
             'type' => $entity->entityType->name(),
             'preview' => route('entities.preview', [$this->campaign, $entity]),

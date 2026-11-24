@@ -239,21 +239,7 @@ class SubscriptionController extends Controller
                 ->request($request->all())
                 ->change();
 
-            // Emails are owned by the Stripe webhook. Suppress them here except for
-            // downgrades, which send an immediate notification on user request.
-            if (! $sub->downgrading()) {
-                $sub->webhook();
-            }
-
-            $sub->finish();
-            $this->markSubscriptionSuccess(! $sub->downgrading());
-
-            return redirect()
-                ->route('settings.subscription.finish')
-                ->with('sub_tracking', 'subscribed')
-                ->with('sub_value', $this->subscription->subscriptionValue())
-                ->with('sub_coupon', $request->get('coupon'))
-                ->with('sub_id', $this->subscription->tierPrice()->id);
+            return $this->completeCheckout($sub, $request);
         } catch (IncompletePayment $exception) {
             $this->markSubscriptionSuccess(! $this->subscription->downgrading());
             session()->put('subscription_callback', $request->get('payment_id'));
@@ -335,19 +321,7 @@ class SubscriptionController extends Controller
                 ])
                 ->change();
 
-            if (! $sub->downgrading()) {
-                $sub->webhook();
-            }
-
-            $sub->finish();
-            $this->markSubscriptionSuccess(! $sub->downgrading());
-
-            return redirect()
-                ->route('settings.subscription.finish')
-                ->with('sub_tracking', 'subscribed')
-                ->with('sub_value', $this->subscription->subscriptionValue())
-                ->with('sub_coupon', $request->get('coupon'))
-                ->with('sub_id', $this->subscription->tierPrice()->id);
+            return $this->completeCheckout($sub, $request);
 
         } catch (IncompletePayment $exception) {
             $this->markSubscriptionSuccess(! $this->subscription->downgrading());
@@ -396,6 +370,26 @@ class SubscriptionController extends Controller
         return redirect()
             ->route('settings.subscription')
             ->withError(__('settings.subscription.errors.callback'));
+    }
+
+    private function completeCheckout(SubscriptionService $sub, Request $request): RedirectResponse
+    {
+        if ($sub->alreadyCompleted()) {
+            return redirect()->route('settings.subscription');
+        }
+
+        // Emails are owned by the webhook except for immediate downgrade notifications.
+        if (! $sub->downgrading()) {
+            $sub->webhook();
+        }
+        $sub->finish();
+        $this->markSubscriptionSuccess(! $sub->downgrading());
+
+        return redirect()->route('settings.subscription.finish')
+            ->with('sub_tracking', 'subscribed')
+            ->with('sub_value', $sub->subscriptionValue())
+            ->with('sub_coupon', $request->get('coupon'))
+            ->with('sub_id', $sub->tierPrice()->id);
     }
 
     private function rememberCampaignContext(Request $request, bool $clearWhenMissing = false): void

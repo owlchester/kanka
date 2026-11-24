@@ -30,8 +30,6 @@ elseif(!empty($model)) {
     }
 }
 ?>
-<label>{{ __('organisations.fields.members') }}</label>
-
 <select multiple="multiple" name="members[]" id="members" class=" form-members" style="width: 100%" data-url="{{ route('search-list', [$campaign, config('entities.ids.character')]) }}" data-placeholder="{{ __('crud.placeholders.search') }}">
     @foreach ($selectedOption as $key => $val)
         <option value="{{ $key }}" selected="selected">{{ $val }}</option>

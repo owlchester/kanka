@@ -57,9 +57,8 @@ To create a map group, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required without `entity_id`) | Name of the map group |
-| `map_id` | `int` (Required) | The parent map |
 | `parent_id` | `int` | The parent map group, must be different than self |
-| `is_shown` | `boolean` | If the layer is shown on map load |
+| `is_shown` | `boolean` | If the group is shown on map load |
 | `position` | `int` | Position in the list of groups |
 | `colour` | `string` | Hex colour code with leading `#` |
 | `visibility_id` | `integer` | The visibility: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |

@@ -2,106 +2,44 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreCalendar as Request;
-use App\Http\Resources\CalendarResource as Resource;
+use App\Http\Requests\StoreCalendar;
+use App\Http\Resources\CalendarResource;
 use App\Models\Calendar;
 use App\Models\Campaign;
-use App\Models\EntityType;
 use App\Sanitizers\CalendarSanitizer;
-use App\Services\Entity\EntitySaveService;
-use App\Services\Entity\Relations\EntityRelationsServiceFactory;
-use App\Services\Entity\StandardEntityCreationService;
-use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CalendarApiController extends MiscApiController
 {
-    protected CalendarSanitizer $sanitizer;
-
-    public function __construct(
-        EntitySaveService $entitySaveService,
-        EntityRelationsServiceFactory $relationsFactory,
-        StandardEntityCreationService $entityCreationService,
-        CalendarSanitizer $sanitizer,
-    ) {
-        parent::__construct($entitySaveService, $relationsFactory, $entityCreationService);
-        $this->sanitizer = $sanitizer;
+    public function index(Campaign $campaign): AnonymousResourceCollection
+    {
+        return $this->listModels($campaign, $campaign->calendars(), CalendarResource::class);
     }
 
-    /**
-     * @return AnonymousResourceCollection
-     *
-     * @throws AuthorizationException
-     */
-    public function index(Campaign $campaign)
+    public function show(Campaign $campaign, Calendar $calendar): CalendarResource
     {
-        $this->authorize('access', $campaign);
-
-        return Resource::collection($campaign
-            ->calendars()
-            ->filter(request()->all())
-            ->withApi()
-            ->lastSync(request()->get('lastSync'))
-            ->orderBy('calendars.id')
-            ->paginate());
+        return new CalendarResource($this->viewModel($campaign, $calendar));
     }
 
-    /**
-     * @return resource
-     */
-    public function show(Campaign $campaign, Calendar $calendar)
+    public function store(StoreCalendar $request, Campaign $campaign): CalendarResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $calendar->entity);
-
-        return new Resource($calendar);
+        return new CalendarResource($this->storeModel($request, $campaign, config('entities.ids.calendar')));
     }
 
-    /**
-     * @return resource
-     *
-     * @throws AuthorizationException
-     */
-    public function store(Request $request, Campaign $campaign)
+    public function update(StoreCalendar $request, Campaign $campaign, Calendar $calendar): CalendarResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', [EntityType::find(config('entities.ids.calendar')), $campaign]);
-
-        $data = array_replace($request->validated(), $this->sanitizer->request($request)->sanitize());
-        $data['campaign_id'] = $campaign->id;
-        /** @var Calendar $model */
-        $model = $this->createStandardModel($campaign, $data, config('entities.ids.calendar'));
-        $this->crudSave($model, $request->validated());
-
-        return new Resource($model);
+        return new CalendarResource($this->updateModel($request, $campaign, $calendar));
     }
 
-    /**
-     * @return resource
-     */
-    public function update(Request $request, Campaign $campaign, Calendar $calendar)
+    public function destroy(Campaign $campaign, Calendar $calendar): JsonResponse
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $calendar->entity);
-        $data = array_replace($request->validated(), $this->sanitizer->request($request)->sanitize());
-        $calendar->update($data);
-        $this->crudSave($calendar, $request->validated());
-
-        return new Resource($calendar);
+        return $this->deleteModel($campaign, $calendar);
     }
 
-    /**
-     * @return JsonResponse
-     *
-     * @throws AuthorizationException
-     */
-    public function destroy(Campaign $campaign, Calendar $calendar)
+    protected function childData(FormRequest $request, array $validated): array
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $calendar->entity);
-        $calendar->entity->delete();
-
-        return response()->json(null, 204);
+        return array_replace($validated, app(CalendarSanitizer::class)->request($request)->sanitize());
     }
 }

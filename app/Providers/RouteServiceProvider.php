@@ -71,11 +71,10 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware(['web', 'adless'])
             ->namespace($this->namespace)
-            ->group(base_path('routes/web.php'));
-
-        Route::middleware(['web', 'adless'])
-            ->namespace($this->namespace)
-            ->group(base_path('routes/web-i18n.php'));
+            ->group([
+                base_path('routes/web.php'),
+                base_path('routes/web-i18n.php'),
+            ]);
 
         return $this;
     }
@@ -112,22 +111,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::domain($domain)
             ->middleware(['web', LastCampaign::class])
             ->namespace($this->namespace)
-            ->group(base_path('routes/campaigns/campaign.php'));
-
-        Route::domain($domain)
-            ->middleware(['web', LastCampaign::class])
-            ->namespace($this->namespace)
-            ->group(base_path('routes/campaigns/entities.php'));
-
-        Route::domain($domain)
-            ->middleware(['web', LastCampaign::class])
-            ->namespace($this->namespace)
-            ->group(base_path('routes/campaigns/bulks.php'));
-
-        Route::domain($domain)
-            ->middleware(['web', LastCampaign::class])
-            ->namespace($this->namespace)
-            ->group(base_path('routes/campaigns/search.php'));
+            ->prefix('w/{campaign}')
+            ->group(function (): void {
+                foreach (['campaign', 'entities', 'bulks', 'search'] as $routes) {
+                    require base_path("routes/campaigns/{$routes}.php");
+                }
+            });
 
         return $this;
     }

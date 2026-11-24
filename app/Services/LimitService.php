@@ -3,69 +3,86 @@
 namespace App\Services;
 
 use App\Enums\UserFlags;
+use App\Facades\CampaignLocalization;
 use App\Facades\UserCache;
-use App\Traits\CampaignAware;
-use App\Traits\UserAware;
+use App\Models\Campaign;
+use App\Models\User;
 
 class LimitService
 {
-    use CampaignAware;
-    use UserAware;
+    private ?Campaign $explicitCampaign = null;
+
+    private ?User $explicitUser = null;
 
     protected bool $readable = false;
 
     protected bool $map = false;
 
+    public function campaign(Campaign $campaign): self
+    {
+        $scoped = clone $this;
+        $scoped->explicitCampaign = $campaign;
+
+        return $scoped;
+    }
+
+    public function user(User $user): self
+    {
+        $scoped = clone $this;
+        $scoped->explicitUser = $user;
+
+        return $scoped;
+    }
+
     public function map(): self
     {
-        $this->map = true;
+        $scoped = clone $this;
+        $scoped->map = true;
 
-        return $this;
+        return $scoped;
     }
 
     public function readable(): self
     {
-        $this->readable = true;
+        $scoped = clone $this;
+        $scoped->readable = true;
 
-        return $this;
+        return $scoped;
     }
 
     public function upload(): int|string
     {
+        $user = $this->activeUser();
+        $campaign = $this->activeCampaign();
+
         // Default for Owlbears and legacy Goblins/Kobolds, or members of a campaign
         $min = config('limits.filesize.image.owlbear');
-        if (! $this->user->isSubscriber() && (! isset($this->campaign) || ! $this->campaign->boosted())) {
+        if ((! $user || ! $user->isSubscriber()) && (! $campaign || ! $campaign->boosted())) {
             $min = config('limits.filesize.image.standard');
             if ($this->map) {
                 $min = config('limits.filesize.map');
             }
-        } elseif ($this->user->isElemental() || (isset($this->campaign) && $this->campaign->isElemental())) {
+        } elseif (($user && $user->isElemental()) || ($campaign && $campaign->isElemental())) {
             $min = config('limits.filesize.image.elemental');
-        } elseif ($this->user->isWyvern() || (isset($this->campaign) && $this->campaign->isWyvern())) {
+        } elseif (($user && $user->isWyvern()) || ($campaign && $campaign->isWyvern())) {
             $min = config('limits.filesize.image.wyvern');
         }
 
-        if ($this->user->hasRole('admin') && $min < config('limits.filesize.image.admin')) {
+        if ($user && $user->hasRole('admin') && $min < config('limits.filesize.image.admin')) {
             $min = config('limits.filesize.image.admin');
         }
 
-        $this->map = false;
-
         if (empty($min)) {
-            $this->readable = false;
-
             return PHP_INT_MAX;
         }
 
-        $size = ($min * 1024);
-
-        return $this->finalize($size);
+        return $this->finalize($min * 1024, $user, $campaign);
     }
 
-    protected function finalize(int $size): string|int
+    protected function finalize(int $size, ?User $user, ?Campaign $campaign): string|int
     {
-        if (isset($this->campaign)) {
-            $flags = UserCache::user($this->user)->campaign($this->campaign)->flags();
+        if ($user && $campaign) {
+            $flags = UserCache::user($user)->campaign($campaign)->flags();
         }
 
         if (isset($flags[UserFlags::uploadSize->value]) && $flags[UserFlags::uploadSize->value]['amount'] > ceil($size / 1024)) {
@@ -75,17 +92,31 @@ class LimitService
         if (! $this->readable) {
             return $size;
         }
-        $this->readable = false;
 
         return ceil($size / 1024) . 'MiB';
     }
 
     public function entityFiles(): int
     {
-        if ($this->campaign->boosted()) {
+        $campaign = $this->activeCampaign();
+        if ($campaign && $campaign->boosted()) {
             return config('limits.campaigns.files.premium');
         }
 
         return config('limits.campaigns.files.standard');
+    }
+
+    protected function activeCampaign(): ?Campaign
+    {
+        if ($this->explicitCampaign) {
+            return $this->explicitCampaign;
+        }
+
+        return CampaignLocalization::hasCampaign() ? CampaignLocalization::getCampaign() : null;
+    }
+
+    protected function activeUser(): ?User
+    {
+        return $this->explicitUser ?? auth()->user();
     }
 }

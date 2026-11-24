@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
-use App\Facades\Img;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\EntityLogs;
@@ -24,9 +23,13 @@ use App\Models\Concerns\Templatable;
 use App\Models\Concerns\TouchSilently;
 use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
+use App\Observers\EntityObserver;
+use App\Services\Entity\CustomStatusAssignmentService;
+use App\Services\Images\Img;
 use Carbon\Carbon;
 use Collator;
 use Exception;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -67,6 +70,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property Carbon $deleted_at
  * @property ?Carbon $archived_at
  */
+#[ObservedBy(EntityObserver::class)]
 class Entity extends Model
 {
     public const CREATION_FIELDS = [
@@ -118,6 +122,12 @@ class Entity extends Model
             $entity->conversationParticipants()->delete();
             $entity->conversationMessages()->update(['participant_type' => null, 'participant_id' => null]);
         });
+    }
+
+    public function save(array $options = [])
+    {
+        return app(CustomStatusAssignmentService::class)
+            ->save($this, fn () => parent::save($options));
     }
 
     protected $fillable = [
@@ -253,7 +263,7 @@ class Entity extends Model
             return '';
         }
 
-        return Img::resetCrop()->crop($width, $height ?? $width)->url($this->$field);
+        return Img::for($this->$field)->crop($width, $height ?? $width)->url();
     }
 
     /**

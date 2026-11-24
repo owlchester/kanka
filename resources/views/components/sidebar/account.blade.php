@@ -1,5 +1,34 @@
-<aside class="main-sidebar main-sidebar-placeholder absolute z-20 h-full flex flex-col background-cover" @if ($user->avatar) style="--sidebar-placeholder: url('{{ Img::crop(240, 208)->url($user->avatar) }}')" @endif>
-    <section class="sidebar-campaign h-52 flex-none overflow-hidden flex items-end">
+<aside class="main-sidebar main-sidebar-placeholder z-840 flex flex-col transition-all duration-150" @if ($user->avatar) style="--sidebar-placeholder: url('{{ Img::for($user->avatar)->crop(240, 208)->url() }}')" @endif>
+    <section class="sidebar-campaign relative h-36 flex-none overflow-hidden flex items-end">
+        <div class="hidden md:flex absolute top-2 right-2 items-center gap-1 z-10">
+            @if (auth()->check() && !\App\Facades\Identity::isImpersonating())
+                <button
+                    type="button"
+                    data-sidebar-action="worlds"
+                    data-tooltip
+                    data-title="{{ __('entities.campaigns') }}"
+                    aria-label="{{ __('entities.campaigns') }}"
+                    class="size-8 rounded-lg bg-black/35 hover:bg-black/55 text-white/90 hover:text-white backdrop-blur-sm inline-flex items-center justify-center transition-colors cursor-pointer"
+                >
+                    <x-icon class="fa-regular fa-earth-americas text-sm" />
+                </button>
+            @endif
+            <button
+                type="button"
+                data-sidebar-action="toggle"
+                data-tooltip
+                data-html="true"
+                data-title="{{ __('crud.keyboard-shortcut', ['code' => '<code>]</code>']) }}"
+                aria-label="{{ __('header.toggle_navigation') }}"
+                class="size-8 rounded-lg bg-black/35 hover:bg-black/55 text-white/90 hover:text-white backdrop-blur-sm inline-flex items-center justify-center transition-colors cursor-pointer"
+            >
+                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect width="18" height="18" x="3" y="3" rx="2" />
+                    <path d="M9 3v18" />
+                    <path d="m16 15-3-3 3-3" />
+                </svg>
+            </button>
+        </div>
         <div class="px-4 py-4">
             <div class="campaign-head">
                 <div class="campaign-name truncate text-xl">
@@ -46,7 +75,7 @@
                 ></x-sidebar.element>
             </li>
 
-            <li class="section-subscription pt-4">
+            <li class="section-subscription pt-3">
                 <x-sidebar.section :text="__('settings.menu.subscription')" />
                 <ul class="sidebar-submenu list-none p-0 m-0">
                     @if (config('services.stripe.enabled'))
@@ -95,7 +124,7 @@
                 </ul>
             </li>
 
-            <li class="section-other pt-4">
+            <li class="section-other pt-3">
                 <x-sidebar.section :text="__('settings.menu.other')" />
 
                 <ul class="sidebar-submenu list-none p-0 m-0">
@@ -134,4 +163,5 @@
 
         </ul>
     </section>
+    @include('layouts.sidebars._user')
 </aside>

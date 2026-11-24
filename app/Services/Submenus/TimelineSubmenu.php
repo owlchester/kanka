@@ -4,7 +4,7 @@ namespace App\Services\Submenus;
 
 use App\Models\Timeline;
 
-class TimelineSubmenu extends BaseSubmenu implements EntitySubmenu
+class TimelineSubmenu extends BaseSubmenu
 {
     public function extra(): array
     {

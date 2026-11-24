@@ -16,16 +16,6 @@ class FamilyFilter extends DatagridFilter
             ->locations()
             ->character('member_id')
             ->add('status_id')
-            ->isPrivate()
-            ->template()
-            ->archived()
-            ->hasImage()
-            ->hasEntry()
-            ->hasPosts()
-            ->hasEntityFiles()
-            ->hasAttributes()
-            ->tags()
-            ->attributes()
-            ->connections();
+            ->standardFilters();
     }
 }

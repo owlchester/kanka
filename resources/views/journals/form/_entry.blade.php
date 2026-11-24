@@ -8,7 +8,9 @@
 @include('cruds.fields.date')
 
 <div class="col-span-2">
-    @include('cruds.forms._calendar', ['source' => $source])
+    @unless ($workspaceFields ?? false)
+        @include('cruds.forms._calendar', ['source' => $source])
+    @endunless
 </div>
 
 @include('cruds.fields.entry2')

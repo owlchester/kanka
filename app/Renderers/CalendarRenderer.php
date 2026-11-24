@@ -7,18 +7,23 @@ use App\Models\Calendar;
 use App\Models\Entity;
 use App\Models\Post;
 use App\Models\Reminder;
+use App\Services\Calendars\CalendarChronology;
 use App\Services\Calendars\DaysService;
+use App\Services\Calendars\LegacyRecurrenceAdapter;
 use App\Services\Calendars\MoonPhase;
 use App\Services\Calendars\MoonService;
+use App\Services\Calendars\OccurrenceEngine;
 use App\Services\Calendars\SeasonService;
 use App\Services\Calendars\WeatherService;
 use App\Traits\CalendarAware;
 use App\Traits\CampaignAware;
 use App\Traits\RequestAware;
 use App\ValueObjects\Calendars\CalendarDate;
+use App\ValueObjects\Calendars\RecurrenceRule;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 
 class CalendarRenderer
 {
@@ -45,16 +50,6 @@ class CalendarRenderer
      * Named Weeks
      */
     protected array $weeks = [];
-
-    /**
-     * Death events
-     */
-    protected array $deaths = [];
-
-    /**
-     * Birthday events
-     */
-    protected array $births = [];
 
     /**
      * Array of weirdly recurring events
@@ -85,11 +80,14 @@ class CalendarRenderer
 
     protected array $remainingRecurring;
 
+    private CalendarChronology $chronology;
+
     public function __construct(
         protected MoonService $moonService,
         protected SeasonService $seasonService,
         protected WeatherService $weatherService,
-        protected DaysService $daysService
+        protected DaysService $daysService,
+        protected LegacyRecurrenceAdapter $recurrenceAdapter,
     ) {}
 
     public function prepare(): self
@@ -339,7 +337,7 @@ class CalendarRenderer
         $weekNumber = $this->startingWeekNumber();
         // dump("starting week number: " . $weekNumber);
 
-        $monthLength = $this->calendar->chronology()->daysInMonth($this->getYear(), $this->getMonth());
+        $monthLength = $this->chronology->daysInMonth($this->getYear(), $this->getMonth());
         $weekLength = 0;
         $week = [];
         $this->remainingRecurring = [];
@@ -376,7 +374,7 @@ class CalendarRenderer
                     $this->dayData['isToday'] = true;
                 }
 
-                $ordinal = $this->calendar->chronology()->toOrdinal(new CalendarDate($this->getYear(), $this->getMonth(), $day));
+                $ordinal = $this->chronology->toOrdinal(new CalendarDate($this->getYear(), $this->getMonth(), $day));
                 if ($this->moonService->has($ordinal)) {
                     $this->dayData['moons'] = $this->moonService->get($ordinal);
                 }
@@ -464,7 +462,7 @@ class CalendarRenderer
             $month = $months[$monthNumber - 1];
             $this->month = $monthNumber;
 
-            $monthLength = $this->calendar->chronology()->daysInMonth($this->getYear(), $monthNumber);
+            $monthLength = $this->chronology->daysInMonth($this->getYear(), $monthNumber);
             $week = [];
             $currentPosition = 0;
 
@@ -510,7 +508,7 @@ class CalendarRenderer
                     $this->dayData['isToday'] = true;
                 }
 
-                $ordinal = $this->calendar->chronology()->toOrdinal(new CalendarDate($this->getYear(), $monthNumber, $day));
+                $ordinal = $this->chronology->toOrdinal(new CalendarDate($this->getYear(), $monthNumber, $day));
                 if ($this->moonService->has($ordinal)) {
                     $this->dayData['moons'] = $this->moonService->get($ordinal);
                 }
@@ -646,6 +644,7 @@ class CalendarRenderer
             $this->setMonth(1);
         }
 
+        $this->chronology = $this->calendar->chronology();
         $this->buildFullmoons();
         $this->buildSeasons();
         $this->buildWeeks();
@@ -683,16 +682,21 @@ class CalendarRenderer
     protected function events(): array
     {
         $this->events = [];
-        $reminders = $this->getReminders($this->calendar);
-        $this->parseReminders($reminders);
+        $this->eventStart = [];
+        $this->eventEnd = [];
+        $this->recurring = [];
+        $lastMonth = $this->isYearlyLayout() ? count($this->calendar->months ?? []) : $this->getMonth();
+        $from = new CalendarDate($this->getYear(), $this->getMonth(), 1);
+        $to = new CalendarDate($this->getYear(), $lastMonth, $this->chronology->daysInMonth($this->getYear(), $lastMonth));
+        $engine = new OccurrenceEngine($this->chronology);
+
+        $this->parseReminders($this->getReminders($this->calendar), $engine, $from, $to);
 
         $parent = $this->calendar->entity->parent?->child;
         if ($parent instanceof Calendar) {
-            $reminders = $this->getReminders($parent);
-            $this->parseReminders($reminders);
+            $this->parseReminders($this->getReminders($parent), $engine, $from, $to);
         }
 
-        // dd($this->events);
         return $this->events;
     }
 
@@ -722,15 +726,6 @@ class CalendarRenderer
                             $sub->where('month', $this->getMonth());
                         }
                     })
-                    // Or where the event is recurring, or recurring on this month
-                    ->orWhere(function ($sub) {
-                        if ($this->isYearlyLayout()) {
-                            $sub->where('is_recurring', true);
-                        } else {
-                            $sub->where('month', $this->getMonth())
-                                ->where('is_recurring', true);
-                        }
-                    })
                     ->orWhere(function ($sub) {
                         if ($this->calendar->show_birthdays) {
                             $sub->where('year', '<=', $this->getYear())
@@ -749,15 +744,7 @@ class CalendarRenderer
                         $sub->whereIn('year', [$previousYear, $this->getYear()])
                             ->where('length', '>', 1);
                     })
-                    // Events from previous month that spill over
-//                    ->orWhere(function ($sub) {
-//                        list($year, $month) = $this->subMonth($this->getYear(), $this->getMonth());
-//                        $sub->where('year', $year)
-//                            ->where('month', $month)
-//                            ->where('length', '>', 1);
-//                    })
-
-                    // Monthly recurring events
+                    // Recurring events can have started outside this window.
                     ->orWhere(function ($sub) {
                         $sub->where('is_recurring', true);
                     });
@@ -765,7 +752,7 @@ class CalendarRenderer
             ->get();
     }
 
-    protected function parseReminders(Collection $reminders): void
+    protected function parseReminders(Collection $reminders, OccurrenceEngine $engine, CalendarDate $from, CalendarDate $to): void
     {
         $totalMonths = count($this->calendar->months ?? []);
         if (! $this->isYearlyLayout()) {
@@ -776,6 +763,17 @@ class CalendarRenderer
             if ($event->isBirth() && $event->death && $event->death->isPastDate($this->getYear(), $event->month, $event->day)) {
                 continue;
             }
+
+            // Make sure the user can actually see the requested event.
+            if (empty($event->remindable) || ($event->remindable instanceof Entity && $event->remindable->isMissingChild()) || ($event->remindable instanceof Post && ! $event->remindable->entity)) {
+                continue;
+            }
+
+            // Birthdays and dates invalid in the displayed calendar keep their legacy interpretation.
+            if (! $event->isBirth() && $this->expandOccurrences($event, $engine, $from, $to)) {
+                continue;
+            }
+
             $date = $event->year . '-' . $event->month . '-' . $event->day;
 
             // If the event is recurring, get the year to make sure it should start showing. This was previously
@@ -795,10 +793,6 @@ class CalendarRenderer
                 $this->events[$date] = [];
             }
 
-            // Make sure the user can actually see the requested event
-            if (empty($event->remindable) || ($event->remindable instanceof Entity && $event->remindable->isMissingChild()) || ($event->remindable instanceof Post && ! $event->remindable->entity)) {
-                continue;
-            }
             // If the event reoccurs each month, let's add it everywhere
             if ($event->recurringMonthly()) {
                 $startingMonth = $event->year == $this->getYear() ? $event->month : 1;
@@ -818,14 +812,36 @@ class CalendarRenderer
                 $this->addMultidayEvent($event, $date);
             }
         }
+    }
 
-        foreach ($this->births as $key => $birth) {
-            if (! isset($this->deaths[$key]) || ($this->deaths[$key]->month > $birth->month || ($this->deaths[$key]->month == $birth->month && $this->deaths[$key]->day > $birth->day))) {
-                $date = $this->getYear() . '-' . $birth->month . '-' . $birth->day;
-                $this->events[$date][] = $birth;
+    private function expandOccurrences(Reminder $event, OccurrenceEngine $engine, CalendarDate $from, CalendarDate $to): bool
+    {
+        try {
+            $rule = $this->recurrenceAdapter->fromReminder($event);
+            // The legacy grid treated the moon end year as exclusive.
+            if ($rule?->frequency === RecurrenceRule::MOON_PHASE && ! empty($rule->untilYear) && $from->year >= $rule->untilYear) {
+                return true;
+            }
+            $anchor = new CalendarDate((int) $event->year, (int) $event->month, (int) $event->day);
+            $occurrences = $engine->occurrences($anchor, max(1, (int) $event->length), $rule, $from, $to);
+        } catch (InvalidArgumentException) {
+            return false;
+        }
+
+        $chronology = $this->chronology;
+        foreach ($occurrences as $occurrence) {
+            $start = max($chronology->toOrdinal($from), $chronology->toOrdinal($occurrence->start));
+            $end = min($chronology->toOrdinal($to), $chronology->toOrdinal($occurrence->end));
+            for ($day = $start; $day <= $end; $day++) {
+                $this->events[(string) $chronology->fromOrdinal($day)][] = $event;
+            }
+            if ($occurrence->start->compare($occurrence->end) !== 0) {
+                $this->eventStart[$event->id][] = (string) $occurrence->start;
+                $this->eventEnd[$event->id][] = (string) $occurrence->end;
             }
         }
-        // should end the first day of the month
+
+        return true;
     }
 
     /**
@@ -863,8 +879,8 @@ class CalendarRenderer
         [$year, $month, $day] = $this->splitDate($date);
 
         try {
-            return (string) $this->calendar->chronology()->addDays(new CalendarDate($year, $month, $day), 1);
-        } catch (\InvalidArgumentException) {
+            return (string) $this->chronology->addDays(new CalendarDate($year, $month, $day), 1);
+        } catch (InvalidArgumentException) {
             // Parent-calendar events can use a month that does not exist in the displayed calendar.
         }
 
@@ -894,19 +910,6 @@ class CalendarRenderer
         }
 
         return "{$year}-{$month}-{$day}";
-    }
-
-    protected function subMonth(int $year, int $month): array
-    {
-        $months = $this->calendar->months ?? [];
-        $month--;
-
-        if ($month <= 0) {
-            $month = count($months);
-            $year--;
-        }
-
-        return [$year, $month];
     }
 
     /**
@@ -997,7 +1000,7 @@ class CalendarRenderer
         $startMonth = $this->isYearlyLayout() ? 1 : $this->getMonth();
         $endMonth = $this->isYearlyLayout() ? count($this->calendar->months ?? []) : $this->getMonth();
         $from = new CalendarDate($this->getYear(), $startMonth, 1);
-        $to = new CalendarDate($this->getYear(), $endMonth, $this->calendar->chronology()->daysInMonth($this->getYear(), $endMonth));
+        $to = new CalendarDate($this->getYear(), $endMonth, $this->chronology->daysInMonth($this->getYear(), $endMonth));
         $this->moonService
             ->calendar($this->calendar)
             ->buildForRange($from, $to);

@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Facades\Identity;
 use App\Facades\UserCache;
+use App\Models\User;
 use App\Models\Users\Tutorial;
 use App\Traits\UserAware;
 use Exception;
@@ -12,6 +14,8 @@ use Stevebauman\Purify\Facades\Purify;
 class TutorialService
 {
     use UserAware;
+
+    public const V4_CUTOFF = '2026-11-24 00:00:00';
 
     protected array $tutorials = [
         'campaign_modules',
@@ -27,9 +31,23 @@ class TutorialService
         'map_groups',
         'map_layers',
         'dashboard_setup',
-        'tiptap_survey',
         'timeline',
+        'v4_dashboard_welcome',
+        'v4_entry_form_layout',
     ];
+
+    public static function eligibleForV4(?User $user, string $code): bool
+    {
+        if ($user === null || Identity::isImpersonating()) {
+            return false;
+        }
+
+        if ($user->created_at === null || ! $user->created_at->isBefore(self::V4_CUTOFF)) {
+            return false;
+        }
+
+        return ! UserCache::dismissedTutorial($code);
+    }
 
     /**
      * Reset all the dismissed tutorials for the user
@@ -67,6 +85,7 @@ class TutorialService
             $tutorial->code = $code;
             $tutorial->save();
 
+            $this->user->unsetRelation('tutorials');
             UserCache::clear();
         } catch (Exception $e) {
             // Someone double-clicked with a slow internet

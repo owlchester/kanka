@@ -6,8 +6,10 @@ return [
     ],
     'csv'               => [
         'continue'          => 'Continue',
+        'download_error'    => 'The CSV file could not be downloaded.',
         'encoding_error'    => 'The CSV file must be encoded in UTF-8.',
         'fields_helper'     => 'Select a column to assign to each of the fillable fields of the entry.',
+        'local_write_error' => 'The CSV file could not be saved for processing.',
         'no_preview'        => 'No preview data available',
         'preview'           => 'Preview',
         'select_module'     => 'Category selection',

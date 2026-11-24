@@ -1,5 +1,7 @@
 <template>
     <div class="flex flex-col gap-2 px-4 py-2" ref="resultsRef">
+        <div v-if="mode === 'fulltext' && maintenanceMessage" class="alert alert-info" role="status">{{ maintenanceMessage }}</div>
+
         <!-- Rest state: no query -->
         <template v-if="!hasQuery">
             <div v-if="recent.length > 0" class="flex flex-col">
@@ -122,7 +124,7 @@
         </template>
 
         <!-- Full-text results -->
-        <template v-else-if="mode === 'fulltext'">
+        <template v-else-if="mode === 'fulltext' && !maintenanceMessage">
             <div v-if="loading" class="cmd-loading">
                 <i class="fa-solid fa-spinner fa-spin"></i>
             </div>
@@ -169,7 +171,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-else class="text-neutral-content text-center" v-html="noResultsHtml"></div>
+                <div v-else-if="!maintenanceMessage" class="text-neutral-content text-center" v-html="noResultsHtml"></div>
             </template>
         </template>
     </div>
@@ -181,6 +183,7 @@ export default {
 
     props: {
         mode: { type: String, default: 'name' },
+        maintenanceMessage: { type: String, default: '' },
         query: { type: String, default: '' },
         loading: { type: Boolean, default: false },
         recent: { type: Array, default: () => [] },

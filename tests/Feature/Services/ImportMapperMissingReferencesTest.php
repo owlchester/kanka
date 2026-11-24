@@ -4,6 +4,7 @@ use App\Facades\ImportIdMapper;
 use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\CharacterOrganisation;
+use App\Models\Entity;
 use App\Models\EntityMention;
 use App\Models\Location;
 use App\Models\Map;
@@ -15,6 +16,7 @@ use App\Models\TimelineElement;
 use App\Services\Campaign\Import\ImportIdMapper as IdMapper;
 use App\Services\Campaign\Import\Mappers\CharacterMapper;
 use App\Services\Campaign\Import\Mappers\MapMapper;
+use App\Services\Campaign\Import\Mappers\NoteMapper;
 use App\Services\Campaign\Import\Mappers\TimelineMapper;
 
 beforeEach(function () {
@@ -28,6 +30,27 @@ beforeEach(function () {
 
         return $mapper;
     };
+});
+
+test('standard import trees resolve legacy parent ids within the same entity type', function () {
+    $mapper = app(NoteMapper::class)->campaign(Campaign::findOrFail(1))->user(auth()->user());
+    foreach ([
+        ['id' => 10, 'name' => 'Note parent'],
+        ['id' => 20, 'name' => 'Note child', 'note_id' => 10],
+        ['id' => 30, 'name' => 'Missing parent', 'note_id' => 999],
+    ] as $data) {
+        $mapper->data($data + [
+            'is_private' => false,
+            'entity' => ['id' => $data['id'] + 100, 'name' => $data['name']],
+        ])->first();
+    }
+    $parent = Entity::where('name', 'Note parent')->sole();
+    expect($parent->entity_id)->toBe(Character::findOrFail(1)->id);
+
+    $mapper->tree();
+
+    expect(Entity::where('name', 'Note child')->sole()->parent_id)->toBe($parent->id)
+        ->and(Entity::where('name', 'Missing parent')->sole()->parent_id)->toBeNull();
 });
 
 test('character locations skip missing mappings and deduplicate legacy and current links', function () {

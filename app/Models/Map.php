@@ -4,11 +4,12 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\MapObserver;
 use App\Traits\ExportableTrait;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -38,13 +39,13 @@ use Illuminate\Support\Facades\Storage;
  * @property Collection|MapGroup[] $groups
  * @property array $grids
  */
+#[ObservedBy(MapObserver::class)]
 class Map extends MiscModel
 {
     use Acl;
     use ExportableTrait;
     use HasCampaign;
     use HasFactory;
-    use HasFilters;
     use HasLocation;
     use Sanitizable;
     use SortableTrait;

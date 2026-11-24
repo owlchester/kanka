@@ -2,7 +2,7 @@
  /** @var \App\Models\Inventory $item **/
 $image = false;
 if ($item->item && $item->item->entity->hasImage()) {
-    $image = \App\Facades\Avatar::entity($item->item->entity)->size(192)->thumbnail();
+    $image = Avatar::for($item->item->entity)->size(192)->thumbnail();
 } elseif ($item->image) {
     $image = $item->image->getUrl(192);
 }

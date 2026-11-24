@@ -23,13 +23,13 @@
         @else
             @if ($isDowngrading)
                 {!! __('settings.subscription.change.text.downgrade_' . ($period->isYearly() ? 'yearly' : 'monthly'), [
-                    'downgrade' => "<strong>$currency<span id='pricing-now'>" . \Illuminate\Support\Number::format($upgrade, 2) . "</span></strong>",
+                    'downgrade' => "<strong>$currency<span id='pricing-now' data-original-price='" . \Illuminate\Support\Number::format($upgrade, 2) . "'>" . \Illuminate\Support\Number::format($upgrade, 2) . "</span></strong>",
                     'tier' => "<strong>$tier->name</strong>",
                     'amount' => "<strong>$currency$amount</strong>"
                 ]) !!}
             @else
                 {!! __('settings.subscription.change.text.upgrade_' . ($period->isYearly() ? 'yearly' : 'monthly'), [
-                    'upgrade' => "<strong>$currency<span id='pricing-now'>" . \Illuminate\Support\Number::format($upgrade, 2) . "</span></strong>",
+                    'upgrade' => "<strong>$currency<span id='pricing-now' data-original-price='" . \Illuminate\Support\Number::format($upgrade, 2) . "'>" . \Illuminate\Support\Number::format($upgrade, 2) . "</span></strong>",
                     'tier' => "<strong>$tier->name</strong>",
                     'amount' => "<strong>$currency$amount</strong>"
                 ]) !!}
@@ -97,10 +97,10 @@
                 @includeWhen($hasPromo, 'settings.subscription._promo')
                 <div class="text-center">
                     <button class="btn2 btn-block btn-primary subscription-confirm-button">
-                        {{ __('subscriptions/confirm.actions.subscribe', [
+                        {!! __('subscriptions/confirm.actions.subscribe', [
     'currency' => $currency,
-    'amount' => $amount,
-]) }}
+    'amount' => '<span id="pricing-button" data-original-price="' . e($amount) . '">' . e($amount) . '</span>',
+]) !!}
                     </button>
                 </div>
 
@@ -124,7 +124,7 @@
                         <div class="flex gap-1">
                             <x-icon class="fa-regular fa-handshake w-5 flex-none" />
                             <p class="text-xs grow">
-                                {!! __('subscriptions/confirm.helpers.refund', ['email' => '<a href="mailto' . config('app.email') . '" class="text-link">' . config('app.email') . '</a>']) !!}
+                                {!! __('subscriptions/confirm.helpers.refund', ['email' => '<a href="mailto:' . config('app.email') . '" class="text-link">' . config('app.email') . '</a>']) !!}
                             </p>
                         </div>
                     @endif

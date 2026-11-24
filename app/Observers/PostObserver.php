@@ -12,19 +12,6 @@ class PostObserver
 {
     use ReorderTrait;
 
-    public function saving(Post $post)
-    {
-        $settings = $post->settings;
-        if (request()->has('settings[collapse]')) {
-            if ((bool) request()->get('settings[collapse]')) {
-                $settings['collapse'] = true;
-            } else {
-                unset($settings['collapse']);
-            }
-        }
-        $post->settings = $settings;
-    }
-
     public function created(Post $post)
     {
         PostCreated::dispatch($post, auth()->user());
@@ -42,7 +29,7 @@ class PostObserver
 
     public function saved(Post $post)
     {
-        if (request()->filled('position')) {
+        if (($post->wasRecentlyCreated && $post->position !== null) || $post->wasChanged('position')) {
             $this->reorder($post);
         }
         // When adding or changing a post to an entity, we want to update the

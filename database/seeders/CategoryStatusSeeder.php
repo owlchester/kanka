@@ -8,6 +8,17 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryStatusSeeder extends Seeder
 {
+    private const RESERVED_IDS = [
+        'character' => ['alive' => 1, 'missing' => 2, 'dead' => 3],
+        'creature' => ['dead' => 4, 'extinct' => 5],
+        'location' => ['destroyed' => 6],
+        'race' => ['extinct' => 7],
+        'quest' => ['not_started' => 8, 'ongoing' => 9, 'completed' => 10, 'abandoned' => 11],
+        'family' => ['extinct' => 12],
+        'organisation' => ['defunct' => 13],
+        'item' => ['owned' => 14, 'lost' => 15, 'destroyed' => 16],
+    ];
+
     /**
      * Run the database seeds.
      */
@@ -55,8 +66,14 @@ class CategoryStatusSeeder extends Seeder
             }
 
             foreach ($categoryStatuses as $status) {
+                $reservedId = self::RESERVED_IDS[$code][$status['key']];
+                $existing = DB::table('category_statuses')->whereNull('campaign_id')->where('category_id', $entityType->id)->where('key', $status['key'])->first();
+                if (! $existing && DB::table('category_statuses')->where('id', $reservedId)->exists()) {
+                    throw new \RuntimeException('Reserved category status ID is already occupied: ' . $reservedId);
+                }
                 DB::table('category_statuses')->updateOrInsert(
                     [
+                        ...($existing ? [] : ['id' => $reservedId]),
                         'campaign_id' => null,
                         'category_id' => $entityType->id,
                         'key' => $status['key'],

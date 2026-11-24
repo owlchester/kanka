@@ -20,6 +20,6 @@ class ImportIdMapper extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'importidmapper';
+        return \App\Services\Campaign\Import\ImportIdMapper::class;
     }
 }

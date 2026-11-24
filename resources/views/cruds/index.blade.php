@@ -11,9 +11,6 @@
     <div class="flex gap-2 items-center mb-5 justify-between">
         <h1 class="text-2xl category-title truncate">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
         <div class="flex flex-wrap gap-2 justify-end">
-            @if($mode === 'table' && $parent)
-                @include('entities.index.actions.parent')
-            @endif
             @if (isset($entityType))
                 @includeIf('entities.index.actions.' . $entityType->code)
                 @includeWhen(isset($model) && auth()->check() && auth()->user()->can('create', [$entityType, $campaign]), 'cruds.lists._create')
@@ -42,20 +39,14 @@
         @endif
     @endif
 
-    @if (!isset($mode) || $mode === 'grid')
-        @include('cruds.datagrids.explore', ['route' => $route . '.index'])
-    @else
-        @if (isset($entityType))
-            <x-form class="flex flex-col gap-5" :action="['bulk.print', [$campaign, 'entity_type' => $entityType]]" direct>
-                @include('cruds._table')
-                <input type="hidden" name="page" value="{{ request()->get('page') }}" />
-            </x-form>
-            <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.index', $campaign) }}">
-        @else
+    @if (isset($entityType))
+        <x-form class="flex flex-col gap-5" :action="['bulk.print', [$campaign, 'entity_type' => $entityType]]" direct>
             @include('cruds._table')
-        @endif
-
-
+            <input type="hidden" name="page" value="{{ request()->get('page') }}" />
+        </x-form>
+        <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.index', $campaign) }}">
+    @else
+        @include('cruds._table')
     @endif
     </div>
 @endsection

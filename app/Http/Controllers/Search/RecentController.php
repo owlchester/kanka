@@ -50,6 +50,8 @@ class RecentController extends Controller
                 ]),
                 'pages' => __('search.lookup.pages'),
                 'no_results' => __('search.lookup.nothing'),
+                'fulltext_maintenance' => __('search/fulltext.maintenance'),
+                'fulltext_search_available' => ! config('scout.search_maintenance', false),
             ],
         ]);
     }

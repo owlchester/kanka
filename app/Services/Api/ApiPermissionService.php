@@ -2,12 +2,12 @@
 
 namespace App\Services\Api;
 
-use App\Facades\EntityPermission;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Models\User;
+use App\Services\Permissions\EntityPermission;
 use Illuminate\Http\Request;
 
 class ApiPermissionService
@@ -67,17 +67,14 @@ class ApiPermissionService
      */
     public function entityPermissionTest($request, Campaign $campaign): array
     {
-        $previousUser = 0;
+        $permissions = app(EntityPermission::class);
         $permissionTest = [];
         foreach ($request->all() as $test) {
             $entityTypeId = null;
             /** @var Entity|MiscModel|null $entity */
             $entity = null;
             $entityId = null;
-            if (! isset($user) || $user != $previousUser) {
-                $user = User::find($test['user_id']);
-                EntityPermission::resetPermissions();
-            }
+            $user = User::find($test['user_id']);
 
             if (isset($test['entity_type_id'])) {
                 $entityTypeId = $test['entity_type_id'];
@@ -87,7 +84,7 @@ class ApiPermissionService
                 $entityId = $entity->id;
             }
 
-            $permission = EntityPermission::campaign($campaign)->user($user)->hasPermission($entityTypeId, $test['action'], $entity);
+            $permission = $permissions->hasPermission($entityTypeId, $test['action'], $entity, $user, $campaign);
 
             $permissionTest[] = ([
                 'entity_type_id' => $entityTypeId,
@@ -96,7 +93,6 @@ class ApiPermissionService
                 'action' => $test['action'],
                 'can' => $permission,
             ]);
-            $previousUser = $user;
         }
 
         return $permissionTest;

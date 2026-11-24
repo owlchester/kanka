@@ -58,7 +58,6 @@ To create a map layer, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required without `entity_id`) | Name of the map layer |
-| `map_id` | `int` (Required) | The parent map |
 | `image_url` | `string` (Required without `image`) | URL to a picture to be used for the map |
 | `entry` | `string` | Entry of the layer |
 | `type_id` | `int` | `null` and 0 for `standard`, 1 for `overlay`, 2 for `overlay_shown` |

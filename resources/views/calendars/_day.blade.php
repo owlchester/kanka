@@ -101,9 +101,9 @@
                         @endif
                         >
                         <div class="flex gap-1 items-center">
-                            @if ($event->isEntity() && Avatar::entity($event->remindable)->hasImage())
+                            @if ($event->isEntity() && Avatar::for($event->remindable)->hasImage())
                                 <div class="hidden md:inline grow-0">
-                                    <a href="{{ $event->remindable->url() }}" class="entity-image w-7 h-7 cover-background" style="background-image: url('{{ Avatar::size(40)->thumbnail() }}');"></a>
+                                    <a href="{{ $event->remindable->url() }}" class="entity-image w-7 h-7 cover-background" style="background-image: url('{{ Avatar::for($event->remindable)->size(40)->thumbnail() }}');"></a>
                                 </div>
                             @endif
 

@@ -21,6 +21,6 @@ class Attributes extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'attributes';
+        return AttributeMentionService::class;
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\Visibility;
-use App\Facades\QuestCache;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasSuggestions;
@@ -65,10 +64,6 @@ class QuestElement extends Model
         'name',
         'role',
         'colour',
-    ];
-
-    protected array $suggestions = [
-        QuestCache::class => 'clearSuggestion',
     ];
 
     /**

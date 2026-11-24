@@ -8,13 +8,13 @@ trait MemberCache
 {
     public function members(): Collection
     {
-        return new Collection($this->primary($this->campaign->id)->get('members'));
+        return new Collection($this->primary($this->activeCampaign()->id)->get('members'));
     }
 
     protected function formatMembers(): array
     {
         $data = [];
-        foreach ($this->campaign->members as $member) {
+        foreach ($this->activeCampaign()->members as $member) {
             $data[] = [
                 'id' => $member->user_id,
             ];

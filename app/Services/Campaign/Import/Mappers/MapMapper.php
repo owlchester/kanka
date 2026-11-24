@@ -3,7 +3,6 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Facades\ImportIdMapper;
-use App\Models\Entity;
 use App\Models\Map;
 use App\Models\MapGroup;
 use App\Models\MapLayer;
@@ -12,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class MapMapper extends MiscMapper
+class MapMapper extends StandardTreeMapper
 {
     protected array $ignore = ['id', 'entry', 'type', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'map_id', 'created_at', 'updated_at', 'location_id', 'center_marker_id'];
 
@@ -40,28 +39,6 @@ class MapMapper extends MiscMapper
             ->layers()
             ->markers()
             ->entitySecond();
-    }
-
-    public function tree(): self
-    {
-        foreach ($this->parents as $parent => $entityIds) {
-            if (! isset($this->mapping[$parent])) {
-                continue;
-            }
-            $parentEntity = Entity::where('entity_id', $this->mapping[$parent])
-                ->where('type_id', config('entities.ids.map'))
-                ->first();
-            if (! $parentEntity) {
-                continue;
-            }
-            $entities = Entity::whereIn('id', $entityIds)->get();
-            foreach ($entities as $entity) {
-                $entity->parent_id = $parentEntity->id;
-                $entity->saveQuietly();
-            }
-        }
-
-        return $this;
     }
 
     protected function groups(): self

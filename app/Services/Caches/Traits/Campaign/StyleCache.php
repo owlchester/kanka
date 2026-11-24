@@ -15,8 +15,8 @@ trait StyleCache
         $key = $this->stylesKey();
 
         return Cache::remember($key, 24 * 3600, function () {
-            $css = "/**\n * Campaign Styles for campaign #" . $this->campaign->id . "\n */\n\n";
-            $styles = $this->campaign
+            $css = "/**\n * Campaign Styles for campaign #" . $this->activeCampaign()->id . "\n */\n\n";
+            $styles = $this->activeCampaign()
                 ->styles()
                 ->enabled()
                 ->defaultOrder()
@@ -37,7 +37,7 @@ trait StyleCache
 
     public function stylesTimestamp(): int
     {
-        return (int) $this->primary($this->campaign->id)->get('time');
+        return (int) $this->primary($this->activeCampaign()->id)->get('time');
     }
 
     public function clearStyles(): self
@@ -51,6 +51,6 @@ trait StyleCache
 
     protected function stylesKey(): string
     {
-        return 'campaign_' . $this->campaign->id . '_styles';
+        return 'campaign_' . $this->activeCampaign()->id . '_styles';
     }
 }

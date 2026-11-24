@@ -12,6 +12,10 @@ class LogEntityType
 {
     public function handle(EntityTypeCreated|EntityTypeUpdated|EntityTypeDeleted|EntityTypeToggled $event): void
     {
+        if (! $event->user) {
+            return;
+        }
+
         if (! isset($event->entityType->campaign_id) && ! isset($event->campaign)) {
             return;
         }

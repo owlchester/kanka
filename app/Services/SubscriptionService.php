@@ -19,14 +19,18 @@ use App\Models\Role;
 use App\Models\SubscriptionCancellation;
 use App\Models\Tier;
 use App\Models\TierPrice;
+use App\Services\Roadmap\FeatureChampionService;
 use App\Traits\UserAware;
 use Carbon\Carbon;
+use Illuminate\Contracts\Cache\LockProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Number;
 use Laravel\Cashier\Exceptions\IncompletePayment;
 use Laravel\Cashier\PaymentMethod;
 use Laravel\Cashier\Subscription;
+use LogicException;
 use Stripe\Card;
 
 class SubscriptionService
@@ -55,6 +59,8 @@ class SubscriptionService
 
     /** @var bool if the user has cancelled */
     protected bool $cancelled = false;
+
+    protected bool $duplicate = false;
 
     /** @var string applied coupon */
     protected string $coupon;
@@ -137,14 +143,22 @@ class SubscriptionService
      */
     public function change(): self
     {
+        return $this->withSubscriptionLock(fn () => $this->changeSubscription());
+    }
+
+    protected function changeSubscription(): self
+    {
         if ($this->user->hasPayPal()) {
             throw (new TranslatableException('subscription.errors.legacy_paypal'))->setOptions([
                 'date' => $this->user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y'),
             ]);
         }
 
-        // Update the user's payment plan
-        $paymentMethodID = Arr::get($this->request, 'payment_id');
+        return $this->performSubscribe(Arr::get($this->request, 'payment_id'), updatePaymentMethod: true);
+    }
+
+    protected function updatePaymentMethod(string $paymentMethodID): void
+    {
         $this->user->addPaymentMethod($paymentMethodID);
         $this->user->updateDefaultPaymentMethod($paymentMethodID);
 
@@ -159,11 +173,6 @@ class SubscriptionService
                 throw (new TranslatableException('subscription.errors.invalid_card_country.brl'))->setOptions(['email' => '<a href="mailto:' . config('app.email') . '" class="text-link">' . config('app.email') . '</a>']);
             }
         }
-
-        // Subscribe
-        $this->subscribe($paymentMethodID);
-
-        return $this;
     }
 
     /**
@@ -171,6 +180,52 @@ class SubscriptionService
      */
     public function subscribe(string $paymentID): self
     {
+        return $this->withSubscriptionLock(fn () => $this->performSubscribe($paymentID));
+    }
+
+    protected function withSubscriptionLock(callable $callback): self
+    {
+        $store = Cache::store(config('services.stripe.lock_store'))->getStore();
+        if (! $store instanceof LockProvider) {
+            throw new LogicException('The subscription cache store must support atomic locks.');
+        }
+
+        $result = $store->lock('subscription:user:' . $this->user->id, 600)
+            ->get(function () use ($callback): self {
+                $this->user->refresh();
+
+                return $callback();
+            });
+
+        if ($result === false) {
+            throw new TranslatableException('subscription.errors.pending');
+        }
+
+        return $result;
+    }
+
+    protected function performSubscribe(string $paymentID, bool $updatePaymentMethod = false): self
+    {
+        $this->duplicate = false;
+        $existing = Subscription::where('user_id', $this->user->id)
+            ->where('type', 'kanka')
+            ->whereNotIn('stripe_status', ['canceled', 'incomplete_expired'])
+            ->latest('id')->first();
+
+        if ($existing && (! in_array($existing->stripe_status, ['active', 'trialing']) || ! $existing->valid())) {
+            throw new TranslatableException('subscription.errors.pending');
+        }
+
+        if ($existing && $existing->stripe_price === $this->tierPrice()->stripe_id) {
+            $this->duplicate = true;
+
+            return $this;
+        }
+
+        if ($updatePaymentMethod) {
+            $this->updatePaymentMethod($paymentID);
+        }
+
         // New subscriber
         if (! $this->user->subscribed('kanka')) {
             $this->user->newSubscription('kanka', $this->tierPrice()->stripe_id)
@@ -194,6 +249,11 @@ class SubscriptionService
         return $this;
     }
 
+    public function alreadyCompleted(): bool
+    {
+        return $this->duplicate;
+    }
+
     public function renew(): void
     {
         $this->user->subscription('kanka')->resume();
@@ -206,7 +266,7 @@ class SubscriptionService
     {
 
         // If the user is cancelling through the interface, don't do anything else
-        if ($this->cancelled) {
+        if ($this->cancelled || $this->duplicate) {
             return $this;
         }
 
@@ -233,6 +293,10 @@ class SubscriptionService
         // Add the necessary roles and pledge data
         $this->user->pledge = $this->tier->name;
         $this->user->update(['pledge' => $this->tier->name]);
+
+        if ($this->tier->name !== Pledge::ELEMENTAL) {
+            app(FeatureChampionService::class)->user($this->user)->releaseActive();
+        }
 
         // We're so far, good. Let's add the user to the subscriber group
         $role = Role::where('name', '=', Pledge::ROLE)->first();

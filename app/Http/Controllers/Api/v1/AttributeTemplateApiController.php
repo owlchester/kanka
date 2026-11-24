@@ -2,104 +2,37 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreAttributeTemplate as Request;
-use App\Http\Resources\AttributeTemplateResource as Resource;
+use App\Http\Requests\StoreAttributeTemplate;
+use App\Http\Resources\AttributeTemplateResource;
 use App\Models\AttributeTemplate;
 use App\Models\Campaign;
-use App\Models\EntityType;
-use App\Services\AttributeService;
-use App\Services\Entity\EntitySaveService;
-use App\Services\Entity\Relations\EntityRelationsServiceFactory;
-use App\Services\Entity\StandardEntityCreationService;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class AttributeTemplateApiController extends MiscApiController
 {
-    protected AttributeService $attributeService;
-
-    public function __construct(
-        EntitySaveService $entitySaveService,
-        EntityRelationsServiceFactory $relationsFactory,
-        StandardEntityCreationService $entityCreationService,
-        AttributeService $attributeService,
-    ) {
-        parent::__construct($entitySaveService, $relationsFactory, $entityCreationService);
-        $this->attributeService = $attributeService;
+    public function index(Campaign $campaign): AnonymousResourceCollection
+    {
+        return $this->listModels($campaign, $campaign->attributeTemplates(), AttributeTemplateResource::class);
     }
 
-    /**
-     * @return AnonymousResourceCollection
-     *
-     * @throws AuthorizationException
-     */
-    public function index(Campaign $campaign)
+    public function show(Campaign $campaign, AttributeTemplate $attributeTemplate): AttributeTemplateResource
     {
-        $this->authorize('access', $campaign);
-
-        return Resource::collection($campaign
-            ->attributeTemplates()
-            ->filter(request()->all())
-            ->withApi()
-            ->lastSync(request()->get('lastSync'))
-            ->orderBy('attribute_templates.id')
-            ->paginate());
+        return new AttributeTemplateResource($this->viewModel($campaign, $attributeTemplate));
     }
 
-    /**
-     * @return resource
-     */
-    public function show(Campaign $campaign, AttributeTemplate $attributeTemplate)
+    public function store(StoreAttributeTemplate $request, Campaign $campaign): AttributeTemplateResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $attributeTemplate->entity);
-
-        return new Resource($attributeTemplate);
+        return new AttributeTemplateResource($this->storeModel($request, $campaign, config('entities.ids.attribute_template')));
     }
 
-    /**
-     * @return resource
-     *
-     * @throws AuthorizationException
-     */
-    public function store(Request $request, Campaign $campaign)
+    public function update(StoreAttributeTemplate $request, Campaign $campaign, AttributeTemplate $attributeTemplate): AttributeTemplateResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', [EntityType::find(config('entities.ids.attribute_template')), $campaign]);
-
-        $data = $request->validated();
-        $data['campaign_id'] = $campaign->id;
-        $model = $this->createStandardModel($campaign, $data, config('entities.ids.attribute_template'));
-        $this->crudSave($model, $request->validated());
-
-        return new Resource($model);
+        return new AttributeTemplateResource($this->updateModel($request, $campaign, $attributeTemplate));
     }
 
-    /**
-     * @return resource
-     */
-    public function update(Request $request, Campaign $campaign, AttributeTemplate $attributeTemplate)
+    public function destroy(Campaign $campaign, AttributeTemplate $attributeTemplate): JsonResponse
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $attributeTemplate->entity);
-        $attributeTemplate->update($request->validated());
-        $this->crudSave($attributeTemplate, $request->validated());
-
-        return new Resource($attributeTemplate);
-    }
-
-    /**
-     * @return JsonResponse
-     *
-     * @throws AuthorizationException
-     */
-    public function destroy(Campaign $campaign, AttributeTemplate $attributeTemplate)
-    {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $attributeTemplate->entity);
-        $attributeTemplate->entity->delete();
-
-        return response()->json(null, 204);
+        return $this->deleteModel($campaign, $attributeTemplate);
     }
 }

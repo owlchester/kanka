@@ -1,7 +1,4 @@
-<?php /** @var \App\Models\EntityType $module */?>
-<x-tab.tab target="traits" :title="__('characters.fields.traits')"></x-tab.tab>
-
-@if ($campaign->enabled('organisations'))
-    @php $module = \App\Models\EntityType::find(config('entities.ids.organisation')); @endphp
-    <x-tab.tab target="organisations" :icon="$module->icon()" :title="$module->plural()"></x-tab.tab>
-@endif
+@foreach (\App\View\EntryFormTabs::for($entityType, $campaign) as $target => $label)
+    @php($icon = $target === 'organisations' ? \App\Models\EntityType::find(config('entities.ids.organisation'))?->icon() : null)
+    <x-tab.tab :target="$target" :title="$label" :icon="$icon"></x-tab.tab>
+@endforeach

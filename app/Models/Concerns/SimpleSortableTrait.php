@@ -2,7 +2,7 @@
 
 namespace App\Models\Concerns;
 
-use App\Datagrids\Sorters\DatagridSorter;
+use App\Datagrids\Sorters\QuestElementSorter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
@@ -12,12 +12,12 @@ use Illuminate\Support\Str;
 trait SimpleSortableTrait
 {
     /**
-     * @param  DatagridSorter|string  $datagridSorter
+     * @param  QuestElementSorter|string  $datagridSorter
      * @return Builder
      */
     public function scopeSimpleSort(Builder $builder, mixed $datagridSorter = null)
     {
-        // DatagridSorter can be empty on exports
+        // Exports can omit the sorter.
         if (empty($datagridSorter)) {
             return $builder;
         }

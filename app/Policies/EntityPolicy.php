@@ -3,13 +3,13 @@
 namespace App\Policies;
 
 use App\Enums\Permission;
-use App\Facades\EntityPermission;
 use App\Facades\Limit;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Post;
 use App\Models\User;
+use App\Services\Permissions\EntityPermission;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class EntityPolicy
@@ -18,18 +18,12 @@ class EntityPolicy
 
     public function view(?User $user, Entity $entity): bool
     {
-        if ($user) {
-            EntityPermission::user($user);
-        } else {
-            EntityPermission::userless();
-        }
-
-        return EntityPermission::entity($entity)->can(Permission::View);
+        return app(EntityPermission::class)->canEntity($entity, Permission::View, $user);
     }
 
     public function update(User $user, Entity $entity): bool
     {
-        return EntityPermission::entity($entity)->user($user)->can(Permission::Update);
+        return app(EntityPermission::class)->canEntity($entity, Permission::Update, $user);
     }
 
     public function attributes(?User $user, Entity $entity, ?Campaign $campaign = null): bool
@@ -82,20 +76,20 @@ class EntityPolicy
     public function permissions(User $user, Entity $entity): bool
     {
         return $this->update($user, $entity)
-            && EntityPermission::entity($entity)->user($user)->can(Permission::Permissions);
+            && app(EntityPermission::class)->canEntity($entity, Permission::Permissions, $user);
     }
 
     public function post(User $user, Entity $entity, ?string $action = null, ?Post $post = null): bool
     {
         return
             $this->update($user, $entity) ||
-            EntityPermission::entity($entity)->user($user)->can(Permission::Posts) ||
+            app(EntityPermission::class)->canEntity($entity, Permission::Posts, $user) ||
             ($action == 'edit' ? $this->checkPostPermission($user, $post) : false);
     }
 
     public function delete(User $user, Entity $entity): bool
     {
-        return EntityPermission::entity($entity)->user($user)->can(Permission::Delete);
+        return app(EntityPermission::class)->canEntity($entity, Permission::Delete, $user);
     }
 
     public function reminders(User $user, Entity $entity): bool

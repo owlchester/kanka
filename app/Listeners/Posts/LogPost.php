@@ -28,6 +28,10 @@ class LogPost
      */
     public function handle(PostCreated|PostUpdated|PostRestored|PostDeleted $event): void
     {
+        if (! $event->user) {
+            return;
+        }
+
         $action = match (true) {
             $event instanceof PostCreated => 'created',
             $event instanceof PostUpdated => 'updated',

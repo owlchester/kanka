@@ -12,6 +12,7 @@ use App\Services\Attributes\EntitySheetService;
 use App\Services\AttributeService;
 use App\Services\Entity\AliasService;
 use App\Services\Entity\CopyService;
+use App\Services\Entity\CreatorPermissionService;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\LocationRelationsService;
 use Illuminate\Http\Request;
@@ -26,7 +27,8 @@ class CreateController extends Controller
         protected EntitySheetService $entitySheetService,
         protected AliasService $aliasService,
         protected EntitySaveService $entitySaveService,
-        protected LocationRelationsService $locationRelationsService
+        protected LocationRelationsService $locationRelationsService,
+        protected StandardController $standardController,
     ) {}
 
     public function index(Request $request, Campaign $campaign, EntityType $entityType)
@@ -37,21 +39,24 @@ class CreateController extends Controller
         $source = null;
         FormCopy::request($request);
         if ($request->filled('copy')) {
-            $source = Entity::inTypes([$entityType->id])->find($request->get('copy'));
-            if ($source) {
+            $source = Entity::inTypes([$entityType->id])->where('campaign_id', $campaign->id)->find($request->get('copy'));
+            if ($source && ! $source->isMissingChild()) {
                 FormCopy::request($request)->source($source);
                 $tabCopy = true;
+            } else {
+                $source = null;
             }
         }
 
         if ($entityType->isStandard()) {
-            $options = [$campaign];
+            if (! $entityType->hasEntity()) {
+                return redirect()->route($entityType->pluralCode() . '.create', $campaign);
+            }
             if ($tabCopy) {
-                $options['copy'] = $source->id;
-                $options['template'] = true;
+                $request->query->set('template', true);
             }
 
-            return redirect()->route($entityType->pluralCode() . '.create', $options);
+            return $this->standardController->form($campaign, $entityType, $source);
         }
 
         return view('entities.forms.create')
@@ -61,9 +66,16 @@ class CreateController extends Controller
             ->with('source', $source);
     }
 
-    public function store(StoreCustomEntity $request, Campaign $campaign, EntityType $entityType)
+    public function store(Campaign $campaign, EntityType $entityType)
     {
+        if ($entityType->isStandard()) {
+            abort_unless($entityType->hasEntity(), 404);
+
+            return $this->standardController->persist($campaign, $entityType);
+        }
+
         $this->authorize('create', [$entityType, $campaign]);
+        $request = app(StoreCustomEntity::class);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -79,7 +91,11 @@ class CreateController extends Controller
             $entity->campaign_id = $campaign->id;
             $entity->type_id = $entityType->id;
             $entity->save();
-            $this->entitySaveService->campaign($campaign)->entity($entity)->save($data);
+            app(CreatorPermissionService::class)
+                ->entity($entity)
+                ->user(auth()->user())
+                ->grant();
+            $this->entitySaveService->campaign($campaign)->entity($entity)->save($data, $request);
             $this->locationRelationsService->entity($entity)->process($data);
 
             $this->aliasService->entity($entity)->request($request)->save();

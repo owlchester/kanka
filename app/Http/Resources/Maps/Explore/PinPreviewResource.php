@@ -2,10 +2,10 @@
 
 namespace App\Http\Resources\Maps\Explore;
 
-use App\Facades\Avatar;
 use App\Models\Entity;
 use App\Models\Location;
 use App\Models\MapMarker;
+use App\Services\Images\Avatar;
 use App\Traits\CampaignAware;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -26,7 +26,7 @@ class PinPreviewResource extends JsonResource
         return [
             'entity_name' => $entity?->name,
             'entity_url' => $entity?->url(),
-            'entity_image' => $entity && $entity->hasImage() ? Avatar::entity($entity)->size(400, 200)->thumbnail() : null,
+            'entity_image' => $entity && $entity->hasImage() ? Avatar::for($entity)->size(400, 200)->thumbnail() : null,
             'marker_entry' => $marker->hasEntry() ? $marker->parsedEntry() : null,
             'entity_entry' => $entity && $entity->hasEntry() ? $entity->parsedEntry() : null,
             'type' => $marker->typeLabel(),

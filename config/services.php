@@ -34,6 +34,7 @@ return [
     ],
 
     'stripe' => [
+        'lock_store' => env('SUBSCRIPTION_LOCK_STORE', 'redis'),
         'enabled' => ! empty(env('STRIPE_KEY')) ? true : false,
         'model' => User::class,
         'key' => env('STRIPE_KEY'),

@@ -44,9 +44,13 @@
                     <i class="fa-regular fa-chalkboard" aria-hidden="true"></i>
                 </a>
             </div>
-            <a v-else :href="entity.urls.show" class="block text-center relative truncate h-12 p-4 text-link"
+            <a v-else :href="entity.urls.show" class="flex min-h-12 items-center justify-center text-center relative line-clamp-2 px-2 py-2 text-link"
                data-toggle="tooltip-ajax" :data-id="entity.id" :data-url="entity.urls.tooltip"
                v-html="entity.name" @click="handleNameClick" />
+            <div v-if="entity.status?.is_custom" class="px-4 pb-2 text-xs flex items-center justify-center gap-1">
+                <i v-if="entity.status.icon" :class="entity.status.icon" :title="entity.status.name" role="img" :aria-label="entity.status.name"></i>
+                <span v-else>{{ entity.status.name }}</span>
+            </div>
         </div>
         <div v-for="s in Math.min(entity.children, 2)" :key="s"
              class="entity entity-stack bg-base-300 w-full overflow-hidden rounded aspect-square flex flex-col shadow-xs">
@@ -58,7 +62,7 @@
          @pointerdown="lpStart" @pointerup="lpCancel" @pointermove="lpMove" @pointercancel="lpCancel"
          @contextmenu="handleContextMenu">
         <a :href="entity.urls.show" class="block avatar grow relative cover-background" :style="entityImage"
-           :title="entity.name" @click.prevent="handleImageClick">
+            :title="entity.name" @click.prevent="handleImageClick">
             <div v-if="entity.is_private && !selecting"
                  class="bubble-private absolute left-1.5 top-1.5 text-xs shadow-xs flex justify-center items-center aspect-square rounded-full w-6 h-6 bg-box opacity-80 text-base-content"
                  :title="i18n.is_private">
@@ -83,9 +87,13 @@
                 <i class="fa-regular fa-chalkboard" aria-hidden="true"></i>
             </a>
         </div>
-        <a v-else :href="entity.urls.show" class="block text-center relative truncate h-12 p-4 text-link"
+        <a v-else :href="entity.urls.show" class="flex min-h-12 items-center justify-center text-center relative line-clamp-2 px-2 py-2 text-link"
            data-toggle="tooltip-ajax" :data-id="entity.id" :data-url="entity.urls.tooltip"
            v-html="entity.name" @click="handleNameClick" />
+        <div v-if="entity.status?.is_custom" class="px-4 pb-2 text-xs flex items-center justify-center gap-1">
+            <i v-if="entity.status.icon" :class="entity.status.icon" :title="entity.status.name" role="img" :aria-label="entity.status.name"></i>
+            <span v-else>{{ entity.status.name }}</span>
+        </div>
     </div>
 </template>
 

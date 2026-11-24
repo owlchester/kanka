@@ -2,12 +2,12 @@
 
 namespace App\Services\Search;
 
-use App\Facades\Avatar;
 use App\Models\Attribute;
 use App\Models\Entity;
 use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\TimelineElement;
+use App\Services\Images\Avatar;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -59,6 +59,12 @@ class EntitySearchService
      */
     public function search(?string $term = null, ?string $term2 = null): array
     {
+        if (config('scout.search_maintenance', false)) {
+            $this->pages = 1;
+
+            return [];
+        }
+
         // Get results from Meilisearch
         $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
         $client->getKeys();
@@ -103,6 +109,10 @@ class EntitySearchService
      */
     public function searchWithSnippets(string $term, ?string $term2 = null): array
     {
+        if (config('scout.search_maintenance', false)) {
+            return [];
+        }
+
         $baseQuery = fn (string $q) => (new SearchQuery)
             ->setIndexUid('entities')
             ->setQuery($q)
@@ -170,7 +180,7 @@ class EntitySearchService
                 'id' => $entity->id,
                 'name' => $entity->name,
                 'is_private' => $entity->is_private,
-                'image' => Avatar::entity($entity)->fallback()->size(64)->thumbnail(),
+                'image' => Avatar::for($entity)->fallback()->size(64)->thumbnail(),
                 'link' => $entity->url(),
                 'type' => $entity->entityType->name() ?? '',
                 'icon' => $entity->entityType->icon() ?? '',

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\CampaignRoleObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +30,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static self|Builder public(bool $with)
  * @method static self|Builder withoutAdmin()
  */
+#[ObservedBy(CampaignRoleObserver::class)]
 class CampaignRole extends Model
 {
     use Paginatable;

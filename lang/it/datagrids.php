@@ -1,16 +1,22 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'       => [
         'back_to'   => 'Ritorna a :name',
     ],
-    'modes'     => [
+    'modes'         => [
         'flatten'   => 'Passa a un layout appiattito',
         'grid'      => 'Passa alla visualizzazione a griglia',
         'nested'    => 'Passa a un layout annidato',
         'table'     => 'Passa alla visualizzazione a tabella',
     ],
-    'tooltips'  => [
+    'modes_short'   => [
+        'flatten'   => 'Piatto',
+        'grid'      => 'Griglia',
+        'list'      => 'Elenco',
+        'nested'    => 'Annidato',
+    ],
+    'tooltips'      => [
         'nested'    => 'Questa entità non ha figli. Clicca sull\'immagine per visualizzarli.',
     ],
 ];

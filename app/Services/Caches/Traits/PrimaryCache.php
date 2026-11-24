@@ -2,19 +2,32 @@
 
 namespace App\Services\Caches\Traits;
 
+use ArrayObject;
 use Illuminate\Support\Collection;
 
 trait PrimaryCache
 {
     /**
-     * Cached primary data
+     * Shared per-request primary cache store (kept as an ArrayObject so cloned
+     * scoped instances share invalidations cleanly).
+     *
+     * @var ArrayObject<int, Collection<string, mixed>>|null
      */
-    protected array $primary = [];
+    protected ?ArrayObject $primary = null;
+
+    /**
+     * @return ArrayObject<int, Collection<string, mixed>>
+     */
+    protected function primaryStore(): ArrayObject
+    {
+        return $this->primary ??= new ArrayObject;
+    }
 
     protected function primary(int $cache): Collection
     {
-        if (isset($this->primary[$cache])) {
-            return $this->primary[$cache];
+        $store = $this->primaryStore();
+        if (isset($store[$cache])) {
+            return $store[$cache];
         }
 
         $key = $this->primaryKey();
@@ -26,14 +39,14 @@ trait PrimaryCache
             $data = $data->all();
         }
         if (is_array($data) && $data !== []) {
-            return $this->primary[$cache] = new Collection($data);
+            return $store[$cache] = new Collection($data);
         }
 
         $data = $this->primaryData();
 
         $this->forever($key, $data);
 
-        return $this->primary[$cache] = new Collection($data);
+        return $store[$cache] = new Collection($data);
     }
 
     /**
@@ -42,7 +55,7 @@ trait PrimaryCache
     public function clear(): self
     {
         $this->forget($this->primaryKey());
-        $this->primary = [];
+        $this->primaryStore()->exchangeArray([]);
 
         return $this;
     }
@@ -52,7 +65,7 @@ trait PrimaryCache
      */
     protected function append(int $key, string $property, mixed $data): mixed
     {
-        $primary = $this->primary[$key];
+        $primary = $this->primaryStore()[$key];
         $primary[$property] = $data;
         $this->forever($this->primaryKey(), $primary->all());
 

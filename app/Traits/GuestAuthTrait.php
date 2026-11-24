@@ -3,8 +3,8 @@
 namespace App\Traits;
 
 use App\Enums\Permission;
-use App\Facades\EntityPermission;
 use App\Models\Entity;
+use App\Services\Permissions\EntityPermission;
 
 trait GuestAuthTrait
 {
@@ -36,7 +36,7 @@ trait GuestAuthTrait
         }
 
         // @phpstan-ignore-next-line
-        $permission = EntityPermission::entity($entity)->campaign($this->campaign)->can($permission);
+        $permission = app(EntityPermission::class)->canEntity($entity, $permission, null, $this->campaign);
 
         // @phpstan-ignore-next-line
         if ($this->campaign->id != $entity->campaign_id || ! $permission) {

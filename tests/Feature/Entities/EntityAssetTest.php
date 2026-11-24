@@ -2,8 +2,11 @@
 
 use App\Enums\EntityAssetType;
 use App\Models\EntityAsset;
+use App\Models\Image;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 it('POSTS an invalid entity_assets form')
     ->asUser()
@@ -59,6 +62,52 @@ it('POSTS a new File')
             'entity_id',
         ],
     ]);
+
+it('returns a translated error when the entity file limit is reached', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    config(['limits.campaigns.files.standard' => 0]);
+
+    $assetCount = EntityAsset::count();
+    $imageCount = Image::count();
+
+    $this->postJson('/api/1.0/campaigns/1/entities/1/entity_assets', [
+        'type_id' => EntityAssetType::file->value,
+        'visibility_id' => 1,
+        'file' => UploadedFile::fake()->image('avatar.jpg'),
+    ])
+        ->assertUnprocessable()
+        ->assertJsonPath('error', __('crud.files.errors.max', ['max' => 0]));
+
+    expect(EntityAsset::count())->toBe($assetCount)
+        ->and(Image::count())->toBe($imageCount);
+});
+
+it('returns a translated error when gallery storage is exhausted', function (bool $premium, string $errorKey) {
+    $this->asUser()->withCampaign($premium ? ['boost_count' => 4] : [])->withCharacters();
+    config([
+        $premium ? 'limits.gallery.premium' : 'limits.gallery.standard' => 1,
+    ]);
+    Image::factory()->create(['campaign_id' => 1, 'size' => 2]);
+    Cache::forget('campaign_1_gallery');
+
+    $assetCount = EntityAsset::count();
+    $imageCount = Image::count();
+
+    $this->postJson('/api/1.0/campaigns/1/entities/1/entity_assets', [
+        'type_id' => EntityAssetType::file->value,
+        'visibility_id' => 1,
+        'file' => UploadedFile::fake()->image('avatar.jpg'),
+    ])
+        ->assertUnprocessable()
+        ->assertJsonPath('error', __($errorKey));
+
+    expect(EntityAsset::count())->toBe($assetCount)
+        ->and(Image::count())->toBe($imageCount)
+        ->and(Storage::disk('s3')->allFiles())->toBe([]);
+})->with([
+    'free gallery' => [false, 'gallery.download.errors.gallery_full_free'],
+    'premium gallery' => [true, 'gallery.download.errors.gallery_full_premium'],
+]);
 
 it('POSTS a new Link')
     ->asUser()

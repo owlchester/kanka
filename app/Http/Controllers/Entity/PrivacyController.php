@@ -7,9 +7,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\PrivacyService;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 
 /**
  * Class PrivacyController
@@ -24,20 +22,11 @@ class PrivacyController extends Controller
     }
 
     /**
-     * @return Application|Factory|View
-     *
      * @throws AuthorizationException
      */
-    public function index(Campaign $campaign, Entity $entity)
+    public function index(Request $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('privacy', [$entity, $campaign]);
-
-        $visibility = $this->service->entity($entity)->visibilities();
-
-        return view('entities.pages.privacy.index')
-            ->with('campaign', $campaign)
-            ->with('entity', $entity)
-            ->with('visibility', $visibility);
+        return app(PermissionController::class)->view($request, $campaign, $entity);
     }
 
     /**

@@ -1,11 +1,28 @@
 import { Image } from '@tiptap/extension-image'
 import { mergeAttributes, ResizableNodeView } from '@tiptap/core'
+import {
+    applyImageNodeViewStyles,
+    buildImageStyle,
+    filterImageClasses,
+    parseFloatStyle,
+    parsePercentWidth,
+    parsePixelDimension,
+} from './imageStyles.js'
+
+export interface ImageAttributesPayload {
+    alt?: string | null
+    title?: string | null
+    width?: number | null
+    height?: number | null
+    widthStyle?: string | null
+}
 
 declare module '@tiptap/core' {
     interface Commands<ReturnType> {
         customImage: {
             setImageWidth: (width: string | null) => ReturnType
             setImageFloat: (float: 'left' | 'right' | null) => ReturnType
+            setImageAttributes: (attrs: ImageAttributesPayload) => ReturnType
         }
     }
 }
@@ -21,92 +38,34 @@ export const CustomImage = Image.extend({
             'data-gallery-id': { default: null },
             class: {
                 default: null,
-                parseHTML: (element: HTMLElement) => {
-                    const classes = element.getAttribute('class') || ''
-                    const filtered = classes
-                        .split(/\s+/)
-                        .filter(c => !['note-float-left', 'note-float-right', 'float-left', 'float-right'].includes(c))
-                        .join(' ')
-                        .trim()
-                    return filtered || null
-                },
+                parseHTML: (element: HTMLElement) => filterImageClasses(element),
             },
             width: {
                 default: null,
-                parseHTML: (element: HTMLElement) => {
-                    const style = element.getAttribute('style') || ''
-                    const match = style.match(/width:\s*(\d+(?:\.\d+)?)px/)
-                    if (match) return parseFloat(match[1])
-
-                    const attr = element.getAttribute('width')
-                    if (attr) return parseFloat(attr)
-
-                    return null
-                },
+                parseHTML: (element: HTMLElement) => parsePixelDimension(element, 'width'),
                 renderHTML: () => ({}),
             },
             height: {
                 default: null,
-                parseHTML: (element: HTMLElement) => {
-                    const style = element.getAttribute('style') || ''
-                    const match = style.match(/height:\s*(\d+(?:\.\d+)?)px/)
-                    if (match) return parseFloat(match[1])
-
-                    const attr = element.getAttribute('height')
-                    if (attr) return parseFloat(attr)
-
-                    return null
-                },
+                parseHTML: (element: HTMLElement) => parsePixelDimension(element, 'height'),
                 renderHTML: () => ({}),
             },
             widthStyle: {
                 default: null,
-                parseHTML: (element: HTMLElement) => {
-                    const style = element.getAttribute('style') || ''
-                    const match = style.match(/width:\s*(\d+%)/)
-                    return match ? match[1] : null
-                },
+                parseHTML: (element: HTMLElement) => parsePercentWidth(element),
                 renderHTML: () => ({}),
             },
             floatStyle: {
                 default: null,
-                parseHTML: (element: HTMLElement) => {
-                    const style = element.getAttribute('style') || ''
-                    const match = style.match(/float:\s*(left|right)/)
-                    if (match) return match[1]
-
-                    const classes = element.getAttribute('class') || ''
-                    if (classes.includes('note-float-left') || classes.includes('float-left')) return 'left'
-                    if (classes.includes('note-float-right') || classes.includes('float-right')) return 'right'
-
-                    return null
-                },
+                parseHTML: (element: HTMLElement) => parseFloatStyle(element),
                 renderHTML: () => ({}),
             },
         }
     },
 
     renderHTML({ node, HTMLAttributes }) {
-        const { width, height, widthStyle, floatStyle } = node.attrs
-        const styleParts: string[] = []
-
-        if (widthStyle) {
-            styleParts.push(`width: ${widthStyle}`)
-        } else if (width != null) {
-            styleParts.push(`width: ${typeof width === 'number' ? `${width}px` : width}`)
-        }
-
-        if (!widthStyle && height != null) {
-            styleParts.push(`height: ${typeof height === 'number' ? `${height}px` : height}`)
-        }
-
-        if (floatStyle) {
-            styleParts.push(`float: ${floatStyle}`)
-            if (floatStyle === 'left') styleParts.push('margin-right: 0.5rem')
-            if (floatStyle === 'right') styleParts.push('margin-left: 0.5rem')
-        }
-
-        const styleAttr = styleParts.length > 0 ? { style: styleParts.join('; ') } : {}
+        const style = buildImageStyle(node.attrs)
+        const styleAttr = style ? { style } : {}
 
         return ['img', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, styleAttr)]
     },
@@ -123,6 +82,9 @@ export const CustomImage = Image.extend({
             },
             setImageFloat: (float: 'left' | 'right' | null) => ({ commands }) => {
                 return commands.updateAttributes('image', { floatStyle: float })
+            },
+            setImageAttributes: (attrs: ImageAttributesPayload) => ({ commands }) => {
+                return commands.updateAttributes('image', attrs)
             },
         }
     },
@@ -152,22 +114,6 @@ export const CustomImage = Image.extend({
 
             el.src = HTMLAttributes.src
 
-            const applyCustomStyles = (attrs: any, container: HTMLElement) => {
-                const { widthStyle, floatStyle } = attrs
-
-                if (widthStyle) {
-                    container.style.width = widthStyle
-                    el.style.width = '100%'
-                    el.style.height = 'auto'
-                } else {
-                    container.style.width = ''
-                }
-
-                container.style.float = floatStyle || ''
-                container.style.marginRight = floatStyle === 'left' ? '0.5rem' : ''
-                container.style.marginLeft = floatStyle === 'right' ? '0.5rem' : ''
-            }
-
             const nodeView = new ResizableNodeView({
                 element: el,
                 editor,
@@ -177,20 +123,20 @@ export const CustomImage = Image.extend({
                     el.style.width = `${width}px`
                     el.style.height = `${height}px`
                 },
-                onCommit: (width: number, height: number) => {
+                onCommit: (width: number) => {
                     const pos = getPos()
                     if (pos === undefined) return
 
                     this.editor.chain().setNodeSelection(pos).updateAttributes(this.name, {
-                        width,
-                        height,
+                        width: Math.round(width),
+                        height: null,
                         widthStyle: null,
                     }).run()
                 },
                 onUpdate: (updatedNode: any) => {
                     if (updatedNode.type !== node.type) return false
 
-                    applyCustomStyles(updatedNode.attrs, nodeView.dom as HTMLElement)
+                    applyImageNodeViewStyles(updatedNode.attrs, el, nodeView.dom as HTMLElement)
                     return true
                 },
                 options: {
@@ -208,8 +154,12 @@ export const CustomImage = Image.extend({
                 dom.style.visibility = ''
                 dom.style.pointerEvents = ''
             }
+            if (el.complete) {
+                dom.style.visibility = ''
+                dom.style.pointerEvents = ''
+            }
 
-            applyCustomStyles(node.attrs, dom)
+            applyImageNodeViewStyles(node.attrs, el, dom)
 
             return nodeView
         }

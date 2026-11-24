@@ -2,10 +2,10 @@
 
 namespace App\Services\Search;
 
-use App\Facades\Avatar;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\Tag;
+use App\Services\Images\Avatar;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
@@ -72,7 +72,7 @@ class LiveSearchService
                 $format['colour'] = $child->colour;
                 $format['colour_style'] = $child->colourStyle();
             }
-            $format['image'] = Avatar::entity($entity)->fallback()->size(40)->thumbnail();
+            $format['image'] = Avatar::for($entity)->fallback()->size(40)->thumbnail();
             $format['url'] = $entity->url();
 
             if ($this->request->filled('with-family') && $child instanceof Character) {

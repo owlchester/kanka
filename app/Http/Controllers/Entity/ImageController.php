@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Facades\Avatar;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreImageFocus;
 use App\Http\Requests\UpdateEntityImage;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Image;
+use App\Services\Images\Avatar;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -62,7 +62,7 @@ class ImageController extends Controller
                 'toast' => __('entities/image.focus.success'),
                 'thumbnail' => $source instanceof Image
                     ? $source->getUrl(160, 160)
-                    : Avatar::entity($entity)->size(160, 160)->thumbnail(),
+                    : Avatar::for($entity)->size(160, 160)->thumbnail(),
             ]);
         }
 

@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Bulks;
 
 use App\Datagrids\Bulks\Bulk;
-use App\Datagrids\Bulks\EntityBulk;
+use App\Datagrids\Bulks\BulkResolver;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\BulkService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class BatchController extends Controller
 {
@@ -59,12 +58,6 @@ class BatchController extends Controller
 
     private function resolveBulk(EntityType $entityType): Bulk
     {
-        $bulkClass = 'App\Datagrids\Bulks\\' . Str::studly($entityType->code) . 'Bulk';
-
-        if (class_exists($bulkClass)) {
-            return new $bulkClass;
-        }
-
-        return new EntityBulk;
+        return app(BulkResolver::class)->for($entityType->code, entityFallback: true);
     }
 }

@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Enums\Visibility;
-use App\Facades\TimelineElementCache;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
+use App\Observers\TimelineElementObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -38,6 +39,7 @@ use Laravel\Scout\Searchable;
  *
  * @method static self|Builder ordered()
  */
+#[ObservedBy(TimelineElementObserver::class)]
 class TimelineElement extends Model
 {
     use Blameable;
@@ -69,10 +71,6 @@ class TimelineElement extends Model
         'use_entity_entry' => 'boolean',
         'use_event_date' => 'boolean',
         'is_collapsed' => 'boolean',
-    ];
-
-    protected array $suggestions = [
-        TimelineElementCache::class => 'clearSuggestion',
     ];
 
     protected array $sanitizable = [

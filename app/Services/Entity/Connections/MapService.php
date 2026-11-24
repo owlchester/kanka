@@ -2,7 +2,6 @@
 
 namespace App\Services\Entity\Connections;
 
-use App\Facades\Avatar;
 use App\Facades\Module;
 use App\Models\Character;
 use App\Models\Conversation;
@@ -20,6 +19,7 @@ use App\Models\OrganisationMember;
 use App\Models\Quest;
 use App\Models\QuestElement;
 use App\Models\Relation;
+use App\Services\Images\Avatar;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
@@ -46,20 +46,15 @@ class MapService
     /** @var array Mirrored IDs */
     protected array $mirrors = [];
 
-    protected bool $family = false;
-
-    protected bool $organisation = false;
-
     /** @var array Entities that have had their relations already loaded */
     protected array $entityIds = [];
-
-    /** @var bool Enable or disable relations */
-    protected bool $withRelations = true;
 
     /** @var bool Enable loading entities on relations */
     protected bool $withEntity = false;
 
     protected ?string $option = null;
+
+    public function __construct(protected LocationConnections $locationConnections) {}
 
     public function option(?string $option = null): self
     {
@@ -67,27 +62,6 @@ class MapService
             $option = null;
         }
         $this->option = $option;
-
-        return $this;
-    }
-
-    protected function family(bool $family = true): self
-    {
-        $this->family = $family;
-
-        return $this;
-    }
-
-    protected function organisation(bool $organisation = true): self
-    {
-        $this->organisation = $organisation;
-
-        return $this;
-    }
-
-    protected function withoutRelations(bool $without = true): self
-    {
-        $this->withRelations = ! $without;
 
         return $this;
     }
@@ -170,7 +144,7 @@ class MapService
             return $this;
         }
 
-        $img = $image ?? Avatar::entity($entity)->size(192)->fallback()->thumbnail();
+        $img = $image ?? Avatar::for($entity)->size(192)->fallback()->thumbnail();
         if (empty($img)) {
             // Fallback?
             $img = '';
@@ -332,7 +306,7 @@ class MapService
     protected function addFamilyRelations(Family $family)
     {
         /** @var Family $family */
-        $this->family()->addEntity($family->entity)->addRelations($family->entity);
+        $this->addEntity($family->entity)->addRelations($family->entity);
 
         $this->addFamilyMembers($family);
     }
@@ -365,7 +339,7 @@ class MapService
         if (empty($organisation) || $organisation->entity === null) {
             return;
         }
-        $this->organisation()->addEntity($organisation->entity);
+        $this->addEntity($organisation->entity);
 
         /** @var OrganisationMember $member */
         foreach ($organisation->members()->with(['character.entity', 'character.entity.image', 'character.entity.entityType'])->has('character.entity')->get() as $member) {
@@ -376,7 +350,7 @@ class MapService
                 continue;
             }
             $this->orgMembers[$member->id] = true;
-            $this->addEntity($member->character->entity, Avatar::entity($member->character->entity)->fallback()->size(192)->thumbnail());
+            $this->addEntity($member->character->entity, Avatar::for($member->character->entity)->fallback()->size(192)->thumbnail());
 
             // Add relation
             $this->relations[] = [
@@ -517,7 +491,7 @@ class MapService
         /** @var Character $member */
         foreach ($family->members()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $member) {
             $this
-                ->addEntity($member->entity, Avatar::entity($member->entity)->fallback()->size(192)->thumbnail())
+                ->addEntity($member->entity, Avatar::for($member->entity)->fallback()->size(192)->thumbnail())
                 ->addRelations($member->entity);
 
             // Add relation
@@ -543,24 +517,12 @@ class MapService
         /** @var Location $location */
         $location = $this->entity->child;
 
-        $families = Family::query()
-            ->select('families.*')
-            ->join('entities', function ($join) {
-                $join->on('entities.entity_id', '=', 'families.id')
-                    ->where('entities.type_id', '=', config('entities.ids.family'));
-            })
-            ->join('entity_locations', 'entity_locations.entity_id', '=', 'entities.id')
-            ->where('entity_locations.location_id', $location->id)
-            ->with(['entity', 'entity.image', 'entity.entityType'])
-            ->has('entity')
-            ->get();
-
-        foreach ($families as $subfamily) {
-            $this->addEntity($subfamily->entity);
-            $this->addRelations($subfamily->entity);
+        foreach ($this->locationConnections->entities($location, Family::class, ['image', 'entityType']) as $family) {
+            $this->addEntity($family);
+            $this->addRelations($family);
 
             $this->relations[] = [
-                'source' => $subfamily->entity->id,
+                'source' => $family->id,
                 'target' => $this->entity->id,
                 'text' => Module::singular(config('entities.ids.family'), __('entities.family')),
                 'colour' => '#ccc',
@@ -582,7 +544,7 @@ class MapService
         $members = $organisation->members()->with(['character', 'character.entity', 'character.entity.image', 'character.entity.entityType'])->has('character')->has('character.entity')->get();
         foreach ($members as $member) {
             $this
-                ->addEntity($member->character->entity, Avatar::entity($member->character->entity)->fallback()->size(192)->thumbnail())
+                ->addEntity($member->character->entity, Avatar::for($member->character->entity)->fallback()->size(192)->thumbnail())
                 ->addRelations($member->character->entity);
 
             // Add relation
@@ -625,23 +587,11 @@ class MapService
     {
         /** @var Location $parent */
         $parent = $this->entity->child;
-        $journals = Journal::query()
-            ->select('journals.*')
-            ->join('entities', function ($join) {
-                $join->on('entities.entity_id', '=', 'journals.id')
-                    ->where('entities.type_id', '=', config('entities.ids.journal'));
-            })
-            ->join('entity_locations', 'entity_locations.entity_id', '=', 'entities.id')
-            ->where('entity_locations.location_id', $parent->id)
-            ->with(['entity', 'entity.image', 'entity.entityType'])
-            ->has('entity')
-            ->get();
-        /** @var Journal $journal */
-        foreach ($journals as $journal) {
-            $this->addEntity($journal->entity);
+        foreach ($this->locationConnections->entities($parent, Journal::class, ['image', 'entityType']) as $journal) {
+            $this->addEntity($journal);
             $this->relations[] = [
                 'source' => $this->entity->id,
-                'target' => $journal->entity->id,
+                'target' => $journal->id,
                 'text' => Module::singular(config('entities.ids.journal'), __('entities.journal')),
                 'colour' => '#ccc',
                 'attitude' => null,
@@ -657,22 +607,11 @@ class MapService
     {
         /** @var Location $parent */
         $parent = $this->entity->child;
-        $quests = Quest::query()
-            ->select('quests.*')
-            ->join('entities', function ($join) {
-                $join->on('entities.entity_id', '=', 'quests.id')
-                    ->where('entities.type_id', '=', config('entities.ids.quest'));
-            })
-            ->join('entity_locations', 'entity_locations.entity_id', '=', 'entities.id')
-            ->where('entity_locations.location_id', $parent->id)
-            ->with(['entity', 'entity.image', 'entity.entityType'])
-            ->has('entity')
-            ->get();
-        foreach ($quests as $quest) {
-            $this->addEntity($quest->entity);
+        foreach ($this->locationConnections->entities($parent, Quest::class, ['image', 'entityType']) as $quest) {
+            $this->addEntity($quest);
             $this->relations[] = [
                 'source' => $this->entity->id,
-                'target' => $quest->entity->id,
+                'target' => $quest->id,
                 'text' => Module::singular(config('entities.ids.quest'), __('entities.quest')),
                 'colour' => '#ccc',
                 'attitude' => null,

@@ -1,9 +1,9 @@
 <?php
 
-use App\Facades\Avatar;
 use App\Models\Character;
 use App\Models\Map;
 use App\Models\MapMarker;
+use App\Services\Images\Avatar;
 
 it('resolves the default pin icon', function () {
     $this->asUser()->withCampaign();
@@ -38,7 +38,7 @@ it('resolves the entity avatar icon', function () {
     $icon = $marker->exploreIcon();
 
     expect($icon['type'])->toBe('avatar');
-    expect($icon['value'])->toBe(Avatar::entity($entity)->fallback()->size(276)->thumbnail());
+    expect($icon['value'])->toBe(Avatar::for($entity)->fallback()->size(276)->thumbnail());
 });
 
 it('resolves a custom fontawesome icon only when the campaign is boosted', function () {

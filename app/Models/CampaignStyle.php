@@ -6,8 +6,10 @@ use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\CampaignStyleObserver;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -29,6 +31,7 @@ use Illuminate\Support\Str;
  *
  * @method static self|Builder enabled($enabled = true)
  */
+#[ObservedBy(CampaignStyleObserver::class)]
 class CampaignStyle extends Model
 {
     use Blameable;

@@ -6,6 +6,8 @@ use App\Facades\Mentions;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\TimelineEraObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -31,6 +33,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *
  * @method static self|Builder ordered()
  */
+#[ObservedBy(TimelineEraObserver::class)]
 class TimelineEra extends Model
 {
     use HasEntry;

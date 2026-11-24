@@ -7,7 +7,9 @@ use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\EntityEventScopes;
+use App\Observers\ReminderObserver;
 use Exception;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -40,6 +42,7 @@ use Illuminate\Support\Str;
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Reminder has($relation)
  */
+#[ObservedBy(ReminderObserver::class)]
 class Reminder extends Model
 {
     use Blameable;

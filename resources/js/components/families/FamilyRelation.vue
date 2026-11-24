@@ -58,8 +58,12 @@
 </template>
 
 <script>
+import FamilyEntity from './FamilyEntity.vue'
+import RelationLine from './RelationLine.vue'
+import FamilyChildren from './FamilyChildren.vue'
 
 export default {
+    components: { FamilyEntity, RelationLine, FamilyChildren },
     props: {
         relation: undefined,
         entities: undefined,

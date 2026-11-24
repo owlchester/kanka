@@ -19,7 +19,7 @@ class Saved
      */
     public function __construct(
         public Campaign $campaign,
-        public User $user,
+        public ?User $user,
     ) {
         //
     }

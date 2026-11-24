@@ -17,6 +17,6 @@ class Limit extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'limit';
+        return LimitService::class;
     }
 }

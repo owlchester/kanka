@@ -4,7 +4,7 @@ namespace App\Services\Submenus;
 
 use App\Facades\Module;
 
-class CharacterSubmenu extends BaseSubmenu implements EntitySubmenu
+class CharacterSubmenu extends BaseSubmenu
 {
     public function extra(): array
     {
@@ -15,12 +15,6 @@ class CharacterSubmenu extends BaseSubmenu implements EntitySubmenu
             'name' => __('entities/profile.show.tab_name'),
             'route' => 'entities.profile',
             'entity' => true,
-
-            'button' => $canEdit ? [
-                'url' => $this->entity->url('edit'),
-                'icon' => 'fa-regular fa-pencil',
-                'tooltip' => __('entities/profile.actions.edit_profile'),
-            ] : null,
         ];
 
         // @phpstan-ignore-next-line

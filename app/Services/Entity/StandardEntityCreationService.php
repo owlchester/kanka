@@ -40,6 +40,10 @@ class StandardEntityCreationService
             }
             $entity->setRelation('entityType', $this->entityType);
             $entity->save();
+            app(CreatorPermissionService::class)
+                ->entity($entity)
+                ->user($this->user ?? auth()->user())
+                ->grant();
 
             unset($child->name);
             $child->fill(Arr::except($data, ['name']));

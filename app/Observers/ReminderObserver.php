@@ -45,12 +45,12 @@ class ReminderObserver
     public function updated(Reminder $reminder)
     {
         // Go touch linked entity and its child
-        $reminder->remindable->touchSilently();
+        $reminder->remindable?->touchSilently();
     }
 
     public function deleted(Reminder $reminder)
     {
         // Go touch linked entity and its child
-        $reminder->remindable->touchSilently();
+        $reminder->remindable?->touchSilently();
     }
 }

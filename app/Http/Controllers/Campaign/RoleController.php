@@ -135,16 +135,22 @@ class RoleController extends Controller
     public function show(Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('view', [$campaignRole, $campaign]);
+        $campaignRole->loadMissing(['permissions', 'rolePermissions']);
 
         $members = $campaignRole
             ->users()
             ->with('user')
             ->paginate();
 
-        $modules = $this->entityTypeService
+        $entityTypeService = $this->entityTypeService
             ->campaign($campaign)
-            ->exclude([config('entities.ids.bookmark')])
-            ->ordered();
+            ->exclude([config('entities.ids.bookmark')]);
+
+        if ($campaignRole->isPublic()) {
+            $entityTypeService->withDisabled();
+        }
+
+        $modules = $entityTypeService->ordered();
 
         return view($this->view . '.show', [
             'model' => $campaign,
@@ -289,6 +295,50 @@ class RoleController extends Controller
                 'role' => $campaignRole->name,
                 'action' => __('campaigns.roles.permissions.actions.read'),
                 'entities' => $entityType->plural(),
+            ]),
+        ]);
+    }
+
+    /**
+     * Bulk toggle public view permissions for the public role.
+     */
+    public function toggleAll(Request $request, Campaign $campaign, CampaignRole $campaignRole): JsonResponse
+    {
+        $this->authorize('view', [$campaignRole, $campaign]);
+        $this->authorize('update', $campaignRole);
+
+        if (! $campaignRole->is_public) {
+            abort(404);
+        }
+
+        $validated = $request->validate([
+            'enabled' => ['required', 'boolean'],
+        ]);
+        $enabled = (bool) $validated['enabled'];
+
+        $entityTypeService = $this->entityTypeService
+            ->campaign($campaign)
+            ->exclude([config('entities.ids.bookmark')]);
+
+        if ($campaignRole->isPublic()) {
+            $entityTypeService->withDisabled();
+        }
+
+        $modules = $entityTypeService->ordered();
+
+        $targetModules = $enabled
+            ? $modules->filter(fn (EntityType $entityType): bool => ($entityType->isStandard() && $campaign->enabled($entityType))
+                || ($entityType->isCustom() && $entityType->isEnabled()))
+            : $modules;
+
+        $updatedIds = $this->service->role($campaignRole)->setPublicCategories($targetModules, $enabled);
+
+        return response()->json([
+            'success' => true,
+            'enabled' => $enabled,
+            'entity_type_ids' => $updatedIds,
+            'toast' => __('campaigns/roles.public.toggle_all.' . ($enabled ? 'enabled' : 'disabled'), [
+                'role' => $campaignRole->name,
             ]),
         ]);
     }

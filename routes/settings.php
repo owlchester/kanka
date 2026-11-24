@@ -137,6 +137,7 @@ Route::post('/marketplace', 'Settings\MarketplaceController@save')
 //    ->name('settings.tutorial.disable');
 // Route::get('/tutorial/reset', 'Settings\TutorialController@reset')
 //    ->name('settings.tutorial.reset');
+Route::post('/appearance/entry-form-layout', [AppearanceController::class, 'enableModernEntryForm'])->name('settings.appearance.modern-entry-form');
 Route::post('/tutorials/{code}/dismiss', [TutorialController::class, 'dismiss'])->name('tutorials.dismiss');
 Route::patch('/tutorials/reset', [TutorialController::class, 'reset'])->name('tutorials.reset');
 

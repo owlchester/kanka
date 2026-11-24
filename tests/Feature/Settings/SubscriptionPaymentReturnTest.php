@@ -17,7 +17,7 @@ it('redirects to subscription page when setup_intent is missing', function () {
         ->assertRedirect(route('settings.subscription'));
 });
 
-it('redirects to subscription finish on successful setup intent', function () {
+it('records a purchase only for a newly completed setup intent', function (bool $alreadyCompleted) {
     config(['services.stripe.enabled' => true]);
 
     $user = User::factory()->create(['stripe_id' => 'cus_test123']);
@@ -53,6 +53,7 @@ it('redirects to subscription finish on successful setup intent', function () {
         'reason_custom' => null,
     ])->andReturnSelf();
     $subscriptionServiceMock->shouldReceive('change')->andReturnSelf();
+    $subscriptionServiceMock->shouldReceive('alreadyCompleted')->andReturn($alreadyCompleted);
     $subscriptionServiceMock->shouldReceive('downgrading')->andReturnFalse();
     $subscriptionServiceMock->shouldReceive('webhook')->andReturnSelf();
     $subscriptionServiceMock->shouldReceive('finish')->andReturnSelf();
@@ -65,9 +66,15 @@ it('redirects to subscription finish on successful setup intent', function () {
             'setup_intent' => 'seti_test123',
         ]));
 
-    $response
-        ->assertRedirect(route('settings.subscription.finish'));
-});
+    if ($alreadyCompleted) {
+        $response->assertRedirect(route('settings.subscription'))
+            ->assertSessionMissing('subscription_success')
+            ->assertSessionMissing('sub_tracking');
+    } else {
+        $response->assertRedirect(route('settings.subscription.finish'))
+            ->assertSessionHas('sub_tracking', 'subscribed');
+    }
+})->with([false, true]);
 
 it('preserves downgrade feedback from a setup intent return', function () {
     config(['services.stripe.enabled' => true]);
@@ -105,6 +112,7 @@ it('preserves downgrade feedback from a setup intent return', function () {
         'reason_custom' => 'Too expensive',
     ])->andReturnSelf();
     $subscriptionServiceMock->shouldReceive('change')->andReturnSelf();
+    $subscriptionServiceMock->shouldReceive('alreadyCompleted')->andReturnFalse();
     $subscriptionServiceMock->shouldReceive('downgrading')->andReturnFalse();
     $subscriptionServiceMock->shouldReceive('webhook')->andReturnSelf();
     $subscriptionServiceMock->shouldReceive('finish')->andReturnSelf();

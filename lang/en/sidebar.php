@@ -3,11 +3,11 @@
 return [
     'campaign_switcher' => [
         'count'             => 'Member of :member',
-        'created_campaigns' => 'Your Campaigns',
-        'follow_more'       => 'Find campaigns',
-        'followed_campaigns'=> 'Followed Campaigns',
-        'new_campaign'      => 'New Campaign',
-        'public_campaigns'  => 'Public Campaigns',
+        'created_campaigns' => 'Your worlds',
+        'follow_more'       => 'Find worlds',
+        'followed_campaigns'=> 'Followed worlds',
+        'new_campaign'      => 'New world',
+        'public_campaigns'  => 'Public worlds',
         'reorder'           => 'Reorder',
         'updated'           => 'Updated',
     ],

@@ -4,15 +4,12 @@ namespace App\Http\Controllers\Search;
 
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Services\SearchService;
+use App\Services\Search\NameLookupService;
 use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
-    /**
-     * LiveController constructor.
-     */
-    public function __construct(protected SearchService $searchService) {}
+    public function __construct(protected NameLookupService $searchService) {}
 
     public function index(Request $request, Campaign $campaign)
     {
@@ -27,18 +24,25 @@ class CalendarController extends Controller
         );
     }
 
-    /**
-     * Live Search
-     */
     public function months(Request $request, Campaign $campaign)
     {
         $term = mb_trim($request->get('q') ?? '');
+        $results = [];
 
-        return response()->json(
-            $this->searchService
-                ->term($term)
-                ->campaign($campaign)
-                ->monthList()
-        );
+        $calendars = $campaign->calendars()->withWhereHas('entity')->get();
+        foreach ($calendars as $calendar) {
+            foreach ($calendar->months ?? [] as $month) {
+                if (! str_contains($month['name'], $term)) {
+                    continue;
+                }
+
+                $results[] = [
+                    'fullname' => $month['name'],
+                    'name' => $month['name'] . ' (' . $calendar->entity->name . ')',
+                ];
+            }
+        }
+
+        return response()->json($results);
     }
 }

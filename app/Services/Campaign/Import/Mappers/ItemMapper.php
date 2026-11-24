@@ -3,11 +3,10 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Facades\ImportIdMapper;
-use App\Models\Entity;
 use App\Models\Item;
 use App\Models\ItemCreator;
 
-class ItemMapper extends MiscMapper
+class ItemMapper extends StandardTreeMapper
 {
     protected array $ignore = ['id', 'entry', 'type', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'item_id', 'character_id', 'creator_id', 'created_at', 'updated_at', 'location_id'];
 
@@ -72,28 +71,6 @@ class ItemMapper extends MiscMapper
         $creator->item_id = $this->model->id;
         $creator->creator_id = $foreignID;
         $creator->save();
-
-        return $this;
-    }
-
-    public function tree(): self
-    {
-        foreach ($this->parents as $parent => $entityIds) {
-            if (! isset($this->mapping[$parent])) {
-                continue;
-            }
-            $parentEntity = Entity::where('entity_id', $this->mapping[$parent])
-                ->where('type_id', config('entities.ids.item'))
-                ->first();
-            if (! $parentEntity) {
-                continue;
-            }
-            $entities = Entity::whereIn('id', $entityIds)->get();
-            foreach ($entities as $entity) {
-                $entity->parent_id = $parentEntity->id;
-                $entity->saveQuietly();
-            }
-        }
 
         return $this;
     }

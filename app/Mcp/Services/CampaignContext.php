@@ -2,13 +2,7 @@
 
 namespace App\Mcp\Services;
 
-use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
-use App\Facades\EntityCache;
-use App\Facades\EntityPermission;
-use App\Facades\Module;
-use App\Facades\Permissions;
-use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -34,12 +28,6 @@ class CampaignContext
         Gate::forUser($user)->authorize('access', $campaign);
 
         CampaignLocalization::forceCampaign($campaign);
-        CampaignCache::campaign($campaign);
-        EntityCache::campaign($campaign);
-        Module::campaign($campaign);
-        UserCache::campaign($campaign)->user($user);
-        EntityPermission::campaign($campaign)->user($user);
-        Permissions::campaign($campaign)->user($user)->reload()->reset();
 
         return $campaign;
     }

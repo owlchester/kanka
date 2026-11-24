@@ -15,7 +15,6 @@ use App\Models\MiscModel;
 use App\Models\Post;
 use App\Models\Quest;
 use App\Services\Entity\NewService;
-use App\Services\TOC\TocSlugify;
 use App\Traits\CampaignAware;
 use App\Traits\MentionTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -857,12 +856,6 @@ class MentionsService
      */
     protected function mapCodes()
     {
-        // Re-use the same markupFixer to keep references of previously generated slugs on this page
-        // @phpstan-ignore-next-line
-        if (! isset($this->markupFixer)) {
-            $this->markupFixer = new MarkupFixer(null, new TocSlugify);
-        }
-        // $markupFixer = new MarkupFixer(null, new TocSlugify());
         $tocGenerator = new TocGenerator;
         $this->text = $this->markupFixer->fix($this->text);
 

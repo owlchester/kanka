@@ -21,6 +21,6 @@ class AdCache extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'adcache';
+        return AdCacheService::class;
     }
 }

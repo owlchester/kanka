@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use App\Services\Tracking\DatalayerService;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\ServiceProvider;
 
 class DatalayerServiceProvider extends ServiceProvider
 {

@@ -5,15 +5,8 @@ namespace App\Services\Campaign\Import;
 use App\Enums\CampaignImportStatus;
 use App\Enums\UserAction;
 use App\Exceptions\Campaign\ImportException;
-use App\Facades\BookmarkCache;
 use App\Facades\CampaignCache;
-use App\Facades\CharacterCache;
-use App\Facades\EntityAssetCache;
-use App\Facades\EntityCache;
 use App\Facades\ImportIdMapper;
-use App\Facades\MapMarkerCache;
-use App\Facades\QuestCache;
-use App\Facades\TimelineElementCache;
 use App\Models\Bookmark;
 use App\Models\CampaignImport;
 use App\Models\EntityType;
@@ -39,12 +32,16 @@ use App\Services\Campaign\Import\Mappers\QuestMapper;
 use App\Services\Campaign\Import\Mappers\RaceMapper;
 use App\Services\Campaign\Import\Mappers\TagMapper;
 use App\Services\Campaign\Import\Mappers\TimelineMapper;
+use App\Services\Campaign\Sidebar\LayoutService;
+use App\Services\CategoryStatusService;
 use App\Services\EntityMappingService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Throwable;
 use ZipArchive;
@@ -64,6 +61,8 @@ class ImportService
     protected EntityMappingService $entityMappingService;
 
     protected int $originalCampaignID;
+
+    protected ?array $importedSidebar = null;
 
     protected string $dataPath;
 
@@ -252,6 +251,14 @@ class ImportService
         if ($data == []) {
             throw new ImportException('No campaign.json found');
         }
+        $this->importedSidebar = $data['ui_settings']['sidebar_v2'] ?? null;
+        if (isset($data['ui_settings']) && is_array($data['ui_settings'])) {
+            // Publish imported layouts only after their campaign-local references are remapped.
+            unset($data['ui_settings']['sidebar_v2']);
+            if (isset($this->campaign->ui_settings['sidebar_v2'])) {
+                $data['ui_settings']['sidebar_v2'] = $this->campaign->ui_settings['sidebar_v2'];
+            }
+        }
 
         /** @var CampaignMapper $mapper */
         $mapper = app()->make(CampaignMapper::class);
@@ -319,18 +326,16 @@ class ImportService
 
         // Since modules and custom names are cached, any changes to them need to invalidate any existing cache
         CampaignCache::campaign($this->campaign)->clear();
-        EntityCache::campaign($this->campaign);
-        CharacterCache::campaign($this->campaign);
-        TimelineElementCache::campaign($this->campaign);
-        QuestCache::campaign($this->campaign);
-        MapMarkerCache::campaign($this->campaign);
-        EntityAssetCache::campaign($this->campaign);
-        BookmarkCache::campaign($this->campaign);
 
         return $this;
     }
 
     protected function customModules(): self
+    {
+        return DB::transaction(fn () => $this->importCustomModules());
+    }
+
+    protected function importCustomModules(): self
     {
         // Open the campaign settings file
         $data = $this->open('settings/custom-modules.json');
@@ -365,12 +370,35 @@ class ImportService
             $newModule->icon = $module['icon'];
             $newModule->code = $module['code'];
             $newModule->save();
+            $definitions = $module['statuses'] ?? [];
+            if ($definitions !== []) {
+                Validator::make(['statuses' => $definitions], [
+                    'statuses' => ['array', 'max:10'],
+                    'statuses.*.id' => ['required', 'integer', 'min:1', 'distinct'],
+                    'statuses.*.key' => ['required', 'string', 'max:45', 'distinct', 'regex:/^[a-z0-9_-]+$/'],
+                ])->validate();
+                $createdStatuses = app(CategoryStatusService::class)->sync($this->campaign, $newModule, array_map(fn ($definition) => [
+                    'label' => $definition['label'] ?? $definition['key'],
+                    'icon' => $definition['icon'] ?? null,
+                    'is_default' => $definition['is_default'] ?? false,
+                ], $definitions));
+                foreach ($createdStatuses as $createdStatus) {
+                    $createdStatus->update(['key' => (string) Str::uuid()]);
+                }
+                foreach (array_values($definitions) as $position => $definition) {
+                    $createdStatuses[$position]->update(['key' => $definition['key']]);
+                    ImportIdMapper::put('category_statuses', (int) $definition['id'], $createdStatuses[$position]->id);
+                }
+            }
             // Create its corresponding bookmark
             $bookmark = new Bookmark;
             $bookmark->campaign_id = $this->campaign->id;
             $bookmark->entity_type_id = $newModule->id;
             $bookmark->name = $newModule->plural;
             $bookmark->save();
+            if (! empty($module['bookmark_id'])) {
+                ImportIdMapper::put('bookmarks', (int) $module['bookmark_id'], $bookmark->id);
+            }
 
             ImportIdMapper::putCustomEntityType($module['id'], $newModule->id);
             ImportIdMapper::putCustomEntityTypeName($module['code'] . '_' . $module['id'], Str::camel(Str::slug($module['plural'])) . '_' . $module['id']);
@@ -594,6 +622,8 @@ class ImportService
 
     protected function secondCampaign(): self
     {
+        $this->remapSidebarLayouts();
+
         // As of 3.11, exports no longer include the descriptions
         // $this->campaign->description->description = $this->mentions($this->campaign->description->description);
         // $this->campaign->description->exertpt = $this->mentions($this->campaign->description->exertpt);
@@ -602,6 +632,82 @@ class ImportService
         $this->entityMappingService->silent()->with($this->campaign)->map();
 
         return $this;
+    }
+
+    protected function remapSidebarLayouts(): void
+    {
+        $sidebar = $this->importedSidebar;
+        if ($sidebar === null) {
+            return;
+        }
+
+        $catalog = app(LayoutService::class)->campaign($this->campaign)->catalog();
+        $roles = $this->campaign->roles()->get();
+        $layouts = [];
+        foreach ($sidebar['layouts'] ?? [] as $target => $layout) {
+            if (! is_array($layout['items'] ?? null)) {
+                continue;
+            }
+            if ($target !== 'default') {
+                $role = $layout['target_role'] ?? [];
+                $matches = $roles->filter(fn ($candidate) => $candidate->name === ($role['name'] ?? null)
+                    && $candidate->is_admin === ($role['is_admin'] ?? null)
+                    && $candidate->is_public === ($role['is_public'] ?? null));
+                if ($matches->count() !== 1) {
+                    continue;
+                }
+                $target = $matches->first()->id;
+            }
+            $layouts[$target] = [
+                'items' => array_values(array_filter(array_map(fn ($node) => $this->remapSidebarNode($node, $catalog), $layout['items']))),
+                'known' => array_values(array_filter(array_map(fn ($id) => $this->remapSidebarReference($id, $catalog), $layout['known'] ?? []))),
+            ];
+        }
+        $sidebar['layouts'] = $layouts;
+        $this->campaign->update(['ui_settings' => array_replace($this->campaign->ui_settings ?? [], ['sidebar_v2' => $sidebar])]);
+    }
+
+    protected function remapSidebarReference(string $id, array $catalog): ?string
+    {
+        if (str_starts_with($id, 'bookmark:')) {
+            $oldId = (int) substr($id, 9);
+            $id = ImportIdMapper::has('bookmarks', $oldId) ? 'bookmark:' . ImportIdMapper::get('bookmarks', $oldId) : '';
+        } elseif (str_starts_with($id, 'category:')) {
+            $oldId = (int) substr($id, 9);
+            if (ImportIdMapper::hasOldEntityType($oldId)) {
+                $id = 'category:' . ImportIdMapper::getCustomEntityType($oldId);
+            } elseif (! in_array($oldId, config('entities.ids'), true)) {
+                return null;
+            }
+        }
+
+        return isset($catalog[$id]) ? $id : null;
+    }
+
+    protected function remapSidebarNode(mixed $node, array $catalog): ?array
+    {
+        if (! is_array($node) || ! isset($node['id'])) {
+            return null;
+        }
+        if (isset($node['children']) && is_array($node['children'])) {
+            $children = [];
+            foreach ($node['children'] as $child) {
+                $id = $child['id'] ?? null;
+                if (is_string($id) && ($mapped = $this->remapSidebarReference($id, $catalog))) {
+                    $children[] = ['id' => $mapped];
+                }
+            }
+            $node['children'] = $children;
+
+            return $node;
+        }
+        $id = is_string($node['id']) ? $this->remapSidebarReference($node['id'], $catalog) : null;
+        if (! $id) {
+            return null;
+        }
+        $node['id'] = $id;
+
+        return $node;
     }
 
     protected function cleanup(): self

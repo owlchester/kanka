@@ -7,11 +7,13 @@ use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\EntityType;
 use App\Services\Campaign\DefaultImageService;
+use App\Services\Campaign\Sidebar\LayoutService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class EntityTypeService
@@ -125,6 +127,11 @@ class EntityTypeService
 
     public function save(): EntityType
     {
+        return DB::transaction(fn () => $this->persist());
+    }
+
+    protected function persist(): EntityType
+    {
         if (! isset($this->entityType)) {
             $this->entityType = new EntityType;
             $this->entityType->campaign_id = $this->campaign->id;
@@ -138,12 +145,15 @@ class EntityTypeService
         $this->entityType->is_enabled = (bool) $this->request->get('is_enabled');
         $this->entityType->save();
 
-        if ($this->entityType->wasRecentlyCreated) {
-            $this->permissions()->bookmark();
+        if ($this->request->has('statuses')) {
+            app(CategoryStatusService::class)->sync($this->campaign, $this->entityType, $this->request->input('statuses', []));
         }
 
-        if ($this->request->get('update_name')) {
-            $this->updateBookmark();
+        if ($this->entityType->wasRecentlyCreated) {
+            $this->permissions();
+            if (! app(LayoutService::class)->campaign($this->campaign)->enabled()) {
+                $this->bookmark();
+            }
         }
 
         if ($this->request->hasFile('default_entity_image') || $this->request->filled('remove-image')) {
@@ -165,17 +175,6 @@ class EntityTypeService
     {
         $this->entityType->is_enabled = ! $this->entityType->is_enabled;
         $this->entityType->save();
-    }
-
-    protected function updateBookmark(): self
-    {
-        $bookmarks = $this->entityType->bookmarks()->whereNull('filters')->get();
-        foreach ($bookmarks as $bookmark) {
-            $bookmark->name = $this->entityType->plural;
-            $bookmark->update();
-        }
-
-        return $this;
     }
 
     protected function bookmark(): self

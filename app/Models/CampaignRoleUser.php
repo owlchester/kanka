@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasUser;
+use App\Observers\CampaignRoleUserObserver;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -12,17 +14,22 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property int $id
  * @property int $campaign_role_id
+ * @property int $position
  * @property Campaign $campaign
  * @property CampaignRole $campaignRole
  * @property Carbon $created_at
  */
+#[ObservedBy(CampaignRoleUserObserver::class)]
 class CampaignRoleUser extends Model
 {
     use HasUser;
 
+    protected $attributes = ['position' => 0];
+
     protected $fillable = [
         'campaign_role_id',
         'user_id',
+        'position',
     ];
 
     /**

@@ -2,88 +2,37 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreFamily as Request;
-use App\Http\Resources\FamilyResource as Resource;
+use App\Http\Requests\StoreFamily;
+use App\Http\Resources\FamilyResource;
 use App\Models\Campaign;
-use App\Models\EntityType;
 use App\Models\Family;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class FamilyApiController extends MiscApiController
 {
-    /**
-     * @return AnonymousResourceCollection
-     *
-     * @throws AuthorizationException
-     */
-    public function index(Campaign $campaign)
+    public function index(Campaign $campaign): AnonymousResourceCollection
     {
-        $this->authorize('access', $campaign);
-
-        return Resource::collection($campaign
-            ->families()
-            ->filter(request()->all())
-            ->withApi()
-            ->lastSync(request()->get('lastSync'))
-            ->orderBy('families.id')
-            ->paginate());
+        return $this->listModels($campaign, $campaign->families(), FamilyResource::class);
     }
 
-    /**
-     * @return resource
-     */
-    public function show(Campaign $campaign, Family $family)
+    public function show(Campaign $campaign, Family $family): FamilyResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $family->entity);
-
-        return new Resource($family);
+        return new FamilyResource($this->viewModel($campaign, $family));
     }
 
-    /**
-     * @return resource
-     *
-     * @throws AuthorizationException
-     */
-    public function store(Request $request, Campaign $campaign)
+    public function store(StoreFamily $request, Campaign $campaign): FamilyResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', [EntityType::find(config('entities.ids.family')), $campaign]);
-
-        $data = $request->validated();
-        $data['campaign_id'] = $campaign->id;
-        $model = $this->createStandardModel($campaign, $data, config('entities.ids.family'));
-        $this->crudSave($model, $request->validated());
-
-        return new Resource($model);
+        return new FamilyResource($this->storeModel($request, $campaign, config('entities.ids.family')));
     }
 
-    /**
-     * @return resource
-     */
-    public function update(Request $request, Campaign $campaign, Family $family)
+    public function update(StoreFamily $request, Campaign $campaign, Family $family): FamilyResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $family->entity);
-        $family->update($request->validated());
-        $this->crudSave($family, $request->validated());
-
-        return new Resource($family);
+        return new FamilyResource($this->updateModel($request, $campaign, $family));
     }
 
-    /**
-     * @return JsonResponse
-     *
-     * @throws AuthorizationException
-     */
-    public function destroy(Campaign $campaign, Family $family)
+    public function destroy(Campaign $campaign, Family $family): JsonResponse
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $family->entity);
-        $family->entity->delete();
-
-        return response()->json(null, 204);
+        return $this->deleteModel($campaign, $family);
     }
 }

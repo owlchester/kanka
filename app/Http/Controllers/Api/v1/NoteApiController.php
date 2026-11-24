@@ -2,88 +2,37 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreNote as Request;
-use App\Http\Resources\NoteResource as Resource;
+use App\Http\Requests\StoreNote;
+use App\Http\Resources\NoteResource;
 use App\Models\Campaign;
-use App\Models\EntityType;
 use App\Models\Note;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class NoteApiController extends MiscApiController
 {
-    /**
-     * @return AnonymousResourceCollection
-     *
-     * @throws AuthorizationException
-     */
-    public function index(Campaign $campaign)
+    public function index(Campaign $campaign): AnonymousResourceCollection
     {
-        $this->authorize('access', $campaign);
-
-        return Resource::collection($campaign
-            ->notes()
-            ->filter(request()->all())
-            ->withApi()
-            ->lastSync(request()->get('lastSync'))
-            ->orderBy('notes.id')
-            ->paginate());
+        return $this->listModels($campaign, $campaign->notes(), NoteResource::class);
     }
 
-    /**
-     * @return resource
-     */
-    public function show(Campaign $campaign, Note $note)
+    public function show(Campaign $campaign, Note $note): NoteResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $note->entity);
-
-        return new Resource($note);
+        return new NoteResource($this->viewModel($campaign, $note));
     }
 
-    /**
-     * @return resource
-     *
-     * @throws AuthorizationException
-     */
-    public function store(Request $request, Campaign $campaign)
+    public function store(StoreNote $request, Campaign $campaign): NoteResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', [EntityType::find(config('entities.ids.note')), $campaign]);
-
-        $data = $request->validated();
-        $data['campaign_id'] = $campaign->id;
-        $model = $this->createStandardModel($campaign, $data, config('entities.ids.note'));
-        $this->crudSave($model, $request->validated());
-
-        return new Resource($model);
+        return new NoteResource($this->storeModel($request, $campaign, config('entities.ids.note')));
     }
 
-    /**
-     * @return resource
-     */
-    public function update(Request $request, Campaign $campaign, Note $note)
+    public function update(StoreNote $request, Campaign $campaign, Note $note): NoteResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $note->entity);
-        $note->update($request->validated());
-        $this->crudSave($note, $request->validated());
-
-        return new Resource($note);
+        return new NoteResource($this->updateModel($request, $campaign, $note));
     }
 
-    /**
-     * @return JsonResponse
-     *
-     * @throws AuthorizationException
-     */
-    public function destroy(Campaign $campaign, Note $note)
+    public function destroy(Campaign $campaign, Note $note): JsonResponse
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $note->entity);
-        $note->entity->delete();
-
-        return response()->json(null, 204);
+        return $this->deleteModel($campaign, $note);
     }
 }

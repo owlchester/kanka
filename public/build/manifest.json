@@ -1,17 +1,21 @@
 {
-  "_Browser.vue_vue_type_script_setup_true_lang-BLrrr57P.js": {
-    "file": "assets/Browser.vue_vue_type_script_setup_true_lang-BLrrr57P.js",
+  "_Browser.vue_vue_type_script_setup_true_lang-DKcqrt8v.js": {
+    "file": "assets/Browser.vue_vue_type_script_setup_true_lang-DKcqrt8v.js",
     "name": "Browser.vue_vue_type_script_setup_true_lang",
     "imports": [
-      "_vue.esm-bundler-GXfi61Lw.js"
+      "_vue.esm-bundler-BwZUb5GN.js"
     ]
   },
-  "_LeafletCanvas-CgaF0vlH.js": {
-    "file": "assets/LeafletCanvas-CgaF0vlH.js",
+  "_LeafletCanvas-DCB_iKEC.css": {
+    "file": "assets/LeafletCanvas-DCB_iKEC.css",
+    "src": "_LeafletCanvas-DCB_iKEC.css"
+  },
+  "_LeafletCanvas-DhFcPtA4.js": {
+    "file": "assets/LeafletCanvas-DhFcPtA4.js",
     "name": "LeafletCanvas",
     "imports": [
       "_preload-helper-oofcKs94.js",
-      "_vue.esm-bundler-GXfi61Lw.js",
+      "_vue.esm-bundler-BwZUb5GN.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ],
     "dynamicImports": [
@@ -26,9 +30,12 @@
       "assets/marker-icon-hN30_KVU.png"
     ]
   },
-  "_LeafletCanvas-DCB_iKEC.css": {
-    "file": "assets/LeafletCanvas-DCB_iKEC.css",
-    "src": "_LeafletCanvas-DCB_iKEC.css"
+  "_MobileSheet.vue_vue_type_script_setup_true_lang-BNvCFs_I.js": {
+    "file": "assets/MobileSheet.vue_vue_type_script_setup_true_lang-BNvCFs_I.js",
+    "name": "MobileSheet.vue_vue_type_script_setup_true_lang",
+    "imports": [
+      "_vue.esm-bundler-BwZUb5GN.js"
+    ]
   },
   "__commonjsHelpers-Cpj98o6Y.js": {
     "file": "assets/_commonjsHelpers-Cpj98o6Y.js",
@@ -74,8 +81,8 @@
       "_jquery-CEMonh9Y.js"
     ]
   },
-  "_dialog-DkrH_pRQ.js": {
-    "file": "assets/dialog-DkrH_pRQ.js",
+  "_dialog-BQ1OI-Hf.js": {
+    "file": "assets/dialog-BQ1OI-Hf.js",
     "name": "dialog"
   },
   "_index-BCn5QfZZ.js": {
@@ -148,15 +155,22 @@
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
   },
-  "_vue-tippy.esm-browser-Dvd-iQ8z.js": {
-    "file": "assets/vue-tippy.esm-browser-Dvd-iQ8z.js",
-    "name": "vue-tippy.esm-browser",
+  "_vue-draggable-next.esm-bundler-7iQ_uQSe.js": {
+    "file": "assets/vue-draggable-next.esm-bundler-7iQ_uQSe.js",
+    "name": "vue-draggable-next.esm-bundler",
     "imports": [
-      "_vue.esm-bundler-GXfi61Lw.js"
+      "_vue.esm-bundler-BwZUb5GN.js"
     ]
   },
-  "_vue.esm-bundler-GXfi61Lw.js": {
-    "file": "assets/vue.esm-bundler-GXfi61Lw.js",
+  "_vue-tippy.esm-browser-C8LG3_oX.js": {
+    "file": "assets/vue-tippy.esm-browser-C8LG3_oX.js",
+    "name": "vue-tippy.esm-browser",
+    "imports": [
+      "_vue.esm-bundler-BwZUb5GN.js"
+    ]
+  },
+  "_vue.esm-bundler-BwZUb5GN.js": {
+    "file": "assets/vue.esm-bundler-BwZUb5GN.js",
     "name": "vue.esm-bundler"
   },
   "node_modules/@fontsource-variable/roboto/files/roboto-cyrillic-ext-wdth-normal.woff2": {
@@ -268,7 +282,7 @@
     "isDynamicEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app-CzfvkKkn.css",
+    "file": "assets/app-BxdfYJJX.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -277,7 +291,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-C82Dy8Ya.css",
+    "file": "assets/auth-BGkMUTXi.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -304,7 +318,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-DV4NIgnt.css",
+    "file": "assets/front-Br8wzdwt.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -349,7 +363,7 @@
     ]
   },
   "resources/css/themes/dark.css": {
-    "file": "assets/dark-Ca2hzX-3.css",
+    "file": "assets/dark-Cgyeew0b.css",
     "src": "resources/css/themes/dark.css",
     "isEntry": true,
     "name": "dark",
@@ -358,7 +372,7 @@
     ]
   },
   "resources/css/themes/light.css": {
-    "file": "assets/light-CEzydExU.css",
+    "file": "assets/light-DuWftE2-.css",
     "src": "resources/css/themes/light.css",
     "isEntry": true,
     "name": "light",
@@ -367,7 +381,7 @@
     ]
   },
   "resources/css/themes/midnight.css": {
-    "file": "assets/midnight-TW2Ls4f5.css",
+    "file": "assets/midnight-BMe7KwaS.css",
     "src": "resources/css/themes/midnight.css",
     "isEntry": true,
     "name": "midnight",
@@ -402,46 +416,51 @@
     "src": "resources/images/leaflet/icon.png"
   },
   "resources/js/abilities.js": {
-    "file": "assets/abilities-145DKfCv.js",
+    "file": "assets/abilities-Bl4XQZDg.js",
     "name": "abilities",
     "src": "resources/js/abilities.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-GXfi61Lw.js"
+      "_vue.esm-bundler-BwZUb5GN.js"
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-BjDKkYvr.js",
+    "file": "assets/app-CNCeOxJD.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
+      "_preload-helper-oofcKs94.js",
       "_index-BCn5QfZZ.js",
       "_coloris-CzWPJjQD.js",
-      "_preload-helper-oofcKs94.js",
       "_sortable.esm-DdTU3J9A.js",
-      "_dialog-DkrH_pRQ.js",
+      "_dialog-BQ1OI-Hf.js",
       "_coloris-DsKOFKq5.js",
-      "_vue.esm-bundler-GXfi61Lw.js",
+      "_vue.esm-bundler-BwZUb5GN.js",
       "__plugin-vue_export-helper-DlAUqK2U.js",
       "_tippy.esm-CnBRltuW.js",
+      "_MobileSheet.vue_vue_type_script_setup_true_lang-BNvCFs_I.js",
       "_v-click-outside.umd-Cl-Y_A58.js",
-      "_Browser.vue_vue_type_script_setup_true_lang-BLrrr57P.js",
+      "_Browser.vue_vue_type_script_setup_true_lang-DKcqrt8v.js",
       "_uploadRequest-BwrLJcjN.js",
-      "_vue-tippy.esm-browser-Dvd-iQ8z.js",
+      "_vue-tippy.esm-browser-C8LG3_oX.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ],
     "dynamicImports": [
-      "resources/js/maps/preview-runtime.js"
+      "resources/js/entities/reader.js",
+      "resources/js/events/participants.js",
+      "resources/js/maps/preview-runtime.js",
+      "resources/js/campaigns/sidebar.js"
     ]
   },
   "resources/js/attributes-manager.js": {
-    "file": "assets/attributes-manager-CaAM37SY.js",
+    "file": "assets/attributes-manager-sZMyuf4g.js",
     "name": "attributes-manager",
     "src": "resources/js/attributes-manager.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-GXfi61Lw.js",
+      "_vue.esm-bundler-BwZUb5GN.js",
+      "_vue-draggable-next.esm-bundler-7iQ_uQSe.js",
       "_v-click-outside.umd-Cl-Y_A58.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
@@ -465,6 +484,17 @@
     "isEntry": true,
     "imports": [
       "_index-BCn5QfZZ.js"
+    ]
+  },
+  "resources/js/campaigns/sidebar.js": {
+    "file": "assets/sidebar-DlXRzUMf.js",
+    "name": "sidebar",
+    "src": "resources/js/campaigns/sidebar.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vue.esm-bundler-BwZUb5GN.js",
+      "_vue-tippy.esm-browser-C8LG3_oX.js",
+      "_vue-draggable-next.esm-bundler-7iQ_uQSe.js"
     ]
   },
   "resources/js/campaigns/style-editor.js": {
@@ -491,18 +521,18 @@
     ]
   },
   "resources/js/components/maps/MarkerPanel.vue": {
-    "file": "assets/MarkerPanel-BsS2t3SO.js",
+    "file": "assets/MarkerPanel-BzHaPVpQ.js",
     "name": "MarkerPanel",
     "src": "resources/js/components/maps/MarkerPanel.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_vue.esm-bundler-GXfi61Lw.js",
-      "_LeafletCanvas-CgaF0vlH.js",
+      "_vue.esm-bundler-BwZUb5GN.js",
+      "_LeafletCanvas-DhFcPtA4.js",
       "resources/js/maps/explore.js",
       "_preload-helper-oofcKs94.js",
       "_coloris-CzWPJjQD.js",
       "__commonjsHelpers-Cpj98o6Y.js",
-      "_vue-tippy.esm-browser-Dvd-iQ8z.js",
+      "_vue-tippy.esm-browser-C8LG3_oX.js",
       "_tippy.esm-CnBRltuW.js",
       "_pusher-BcL8EwLT.js",
       "_coloris-DsKOFKq5.js"
@@ -512,12 +542,12 @@
     ]
   },
   "resources/js/connections/web.js": {
-    "file": "assets/web-FoTPnJZS.js",
+    "file": "assets/web-DLVFdwmt.js",
     "name": "web",
     "src": "resources/js/connections/web.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-GXfi61Lw.js",
+      "_vue.esm-bundler-BwZUb5GN.js",
       "_v-click-outside.umd-Cl-Y_A58.js",
       "_preload-helper-oofcKs94.js",
       "_tippy.esm-CnBRltuW.js",
@@ -535,15 +565,13 @@
     ]
   },
   "resources/js/conversation.js": {
-    "file": "assets/conversation-CxAMMEn5.js",
+    "file": "assets/conversation-HLowS9EJ.js",
     "name": "conversation",
     "src": "resources/js/conversation.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-GXfi61Lw.js",
-      "_v-click-outside.umd-Cl-Y_A58.js",
-      "__plugin-vue_export-helper-DlAUqK2U.js",
-      "__commonjsHelpers-Cpj98o6Y.js"
+      "_vue.esm-bundler-BwZUb5GN.js",
+      "_vue-tippy.esm-browser-C8LG3_oX.js"
     ]
   },
   "resources/js/cookieconsent.js": {
@@ -553,14 +581,14 @@
     "isEntry": true
   },
   "resources/js/dashboard.js": {
-    "file": "assets/dashboard-CB-Be9S5.js",
+    "file": "assets/dashboard-CuLDhuxX.js",
     "name": "dashboard",
     "src": "resources/js/dashboard.js",
     "isEntry": true,
     "imports": [
       "_sortable.esm-DdTU3J9A.js",
-      "_vue.esm-bundler-GXfi61Lw.js",
-      "_vue-tippy.esm-browser-Dvd-iQ8z.js",
+      "_vue.esm-bundler-BwZUb5GN.js",
+      "_vue-tippy.esm-browser-C8LG3_oX.js",
       "_v-click-outside.umd-Cl-Y_A58.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
@@ -572,12 +600,12 @@
     "isDynamicEntry": true
   },
   "resources/js/editors/tiptap/SourceEditor.vue": {
-    "file": "assets/SourceEditor-CvfvLpQw.js",
+    "file": "assets/SourceEditor-CnDh6ZDB.js",
     "name": "SourceEditor",
     "src": "resources/js/editors/tiptap/SourceEditor.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_vue.esm-bundler-GXfi61Lw.js",
+      "_vue.esm-bundler-BwZUb5GN.js",
       "_index-r54_Fi1d.js",
       "__plugin-vue_export-helper-DlAUqK2U.js",
       "_index-Vcq4gwWv.js"
@@ -587,13 +615,13 @@
     ]
   },
   "resources/js/editors/tiptap/Tiptap.vue": {
-    "file": "assets/Tiptap-BoSo3BKS.js",
+    "file": "assets/Tiptap-CFE7wHVP.js",
     "name": "Tiptap",
     "src": "resources/js/editors/tiptap/Tiptap.vue",
     "isDynamicEntry": true,
     "imports": [
       "_preload-helper-oofcKs94.js",
-      "_vue.esm-bundler-GXfi61Lw.js",
+      "_vue.esm-bundler-BwZUb5GN.js",
       "_index-Vcq4gwWv.js",
       "__plugin-vue_export-helper-DlAUqK2U.js",
       "_index-BCn5QfZZ.js"
@@ -603,16 +631,16 @@
       "resources/js/editors/tiptap/SourceEditor.vue"
     ],
     "css": [
-      "assets/Tiptap-Cng9-3FE.css"
+      "assets/Tiptap-_Yehj7jP.css"
     ]
   },
   "resources/js/editors/tiptap/extensions/gallery/GalleryDialog.vue": {
-    "file": "assets/GalleryDialog-BfFzZa6y.js",
+    "file": "assets/GalleryDialog-B7smzRfp.js",
     "name": "GalleryDialog",
     "src": "resources/js/editors/tiptap/extensions/gallery/GalleryDialog.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_vue.esm-bundler-GXfi61Lw.js",
+      "_vue.esm-bundler-BwZUb5GN.js",
       "_index-BCn5QfZZ.js",
       "__plugin-vue_export-helper-DlAUqK2U.js"
     ],
@@ -621,36 +649,75 @@
     ]
   },
   "resources/js/editors/tiptap/index.js": {
-    "file": "assets/index-DI-v6Ql9.js",
+    "file": "assets/index-VWnmhHYc.js",
     "name": "index",
     "src": "resources/js/editors/tiptap/index.js",
     "isEntry": true,
     "imports": [
       "_preload-helper-oofcKs94.js",
-      "_vue.esm-bundler-GXfi61Lw.js"
+      "_vue.esm-bundler-BwZUb5GN.js"
     ],
     "dynamicImports": [
       "resources/js/editors/tiptap/Tiptap.vue"
     ]
   },
   "resources/js/entities/explore.js": {
-    "file": "assets/explore-BwPtKfNA.js",
+    "file": "assets/explore-DyL6Syv_.js",
     "name": "explore",
     "src": "resources/js/entities/explore.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-GXfi61Lw.js",
-      "_vue-tippy.esm-browser-Dvd-iQ8z.js",
-      "_tippy.esm-CnBRltuW.js"
+      "_vue.esm-bundler-BwZUb5GN.js",
+      "_vue-tippy.esm-browser-C8LG3_oX.js",
+      "_tippy.esm-CnBRltuW.js",
+      "_MobileSheet.vue_vue_type_script_setup_true_lang-BNvCFs_I.js"
+    ]
+  },
+  "resources/js/entities/reader.js": {
+    "file": "assets/reader-BGFP308J.js",
+    "name": "reader",
+    "src": "resources/js/entities/reader.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vue.esm-bundler-BwZUb5GN.js",
+      "resources/js/app.js",
+      "_preload-helper-oofcKs94.js",
+      "_index-BCn5QfZZ.js",
+      "_coloris-CzWPJjQD.js",
+      "_sortable.esm-DdTU3J9A.js",
+      "_dialog-BQ1OI-Hf.js",
+      "_coloris-DsKOFKq5.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js",
+      "_tippy.esm-CnBRltuW.js",
+      "_MobileSheet.vue_vue_type_script_setup_true_lang-BNvCFs_I.js",
+      "_v-click-outside.umd-Cl-Y_A58.js",
+      "__commonjsHelpers-Cpj98o6Y.js",
+      "_Browser.vue_vue_type_script_setup_true_lang-DKcqrt8v.js",
+      "_uploadRequest-BwrLJcjN.js",
+      "_vue-tippy.esm-browser-C8LG3_oX.js"
+    ]
+  },
+  "resources/js/events/participants.js": {
+    "file": "assets/participants-B2N1Hgf3.js",
+    "name": "participants",
+    "src": "resources/js/events/participants.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vue.esm-bundler-BwZUb5GN.js",
+      "_vue-draggable-next.esm-bundler-7iQ_uQSe.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ],
+    "css": [
+      "assets/participants-JTu6XVSM.css"
     ]
   },
   "resources/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-h_e6TlBP.js",
+    "file": "assets/family-tree-vue-uvft43NB.js",
     "name": "family-tree-vue",
     "src": "resources/js/family-tree-vue.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-GXfi61Lw.js",
+      "_vue.esm-bundler-BwZUb5GN.js",
       "_index-BCn5QfZZ.js",
       "__plugin-vue_export-helper-DlAUqK2U.js"
     ]
@@ -662,28 +729,37 @@
     "isEntry": true
   },
   "resources/js/forms/character.js": {
-    "file": "assets/character-BYzNtBCs.js",
+    "file": "assets/character-BPK56NcF.js",
     "name": "character",
     "src": "resources/js/forms/character.js",
     "isEntry": true
   },
+  "resources/js/forms/entry-workspace.js": {
+    "file": "assets/entry-workspace-D8pzTrAD.js",
+    "name": "entry-workspace",
+    "src": "resources/js/forms/entry-workspace.js",
+    "isEntry": true,
+    "css": [
+      "assets/entry-workspace-Bm54M2pL.css"
+    ]
+  },
   "resources/js/front.js": {
-    "file": "assets/front-D--LX8JX.js",
+    "file": "assets/front-Cqr6xm-e.js",
     "name": "front",
     "src": "resources/js/front.js",
     "isEntry": true,
     "imports": [
       "_index-BCn5QfZZ.js",
-      "_dialog-DkrH_pRQ.js"
+      "_dialog-BQ1OI-Hf.js"
     ]
   },
   "resources/js/gallery/gallery.js": {
-    "file": "assets/gallery-BUaX2wL0.js",
+    "file": "assets/gallery-UT36U4f-.js",
     "name": "gallery",
     "src": "resources/js/gallery/gallery.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-GXfi61Lw.js",
+      "_vue.esm-bundler-BwZUb5GN.js",
       "_index-BCn5QfZZ.js",
       "_uploadRequest-BwrLJcjN.js",
       "_v-click-outside.umd-Cl-Y_A58.js",
@@ -712,20 +788,20 @@
     ]
   },
   "resources/js/location/map-v3.js": {
-    "file": "assets/map-v3-DXptJwJS.js",
+    "file": "assets/map-v3-cCxFQp1M.js",
     "name": "map-v3",
     "src": "resources/js/location/map-v3.js",
     "isEntry": true
   },
   "resources/js/maps/explore.js": {
-    "file": "assets/explore-BXf4q-B8.js",
+    "file": "assets/explore-pjv_W-2f.js",
     "name": "explore",
     "src": "resources/js/maps/explore.js",
     "isEntry": true,
     "imports": [
-      "_LeafletCanvas-CgaF0vlH.js",
-      "_vue.esm-bundler-GXfi61Lw.js",
-      "_vue-tippy.esm-browser-Dvd-iQ8z.js",
+      "_LeafletCanvas-DhFcPtA4.js",
+      "_vue.esm-bundler-BwZUb5GN.js",
+      "_vue-tippy.esm-browser-C8LG3_oX.js",
       "_preload-helper-oofcKs94.js",
       "_tippy.esm-CnBRltuW.js",
       "_pusher-BcL8EwLT.js",
@@ -741,27 +817,27 @@
     ]
   },
   "resources/js/maps/preview-runtime.js": {
-    "file": "assets/preview-runtime-BNqUgnJC.js",
+    "file": "assets/preview-runtime-CMXnnHIf.js",
     "name": "preview-runtime",
     "src": "resources/js/maps/preview-runtime.js",
     "isDynamicEntry": true,
     "imports": [
-      "_LeafletCanvas-CgaF0vlH.js",
-      "_vue.esm-bundler-GXfi61Lw.js",
+      "_LeafletCanvas-DhFcPtA4.js",
+      "_vue.esm-bundler-BwZUb5GN.js",
       "_preload-helper-oofcKs94.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
   },
   "resources/js/maps/preview.js": {
-    "file": "assets/preview-aLxSstAI.js",
+    "file": "assets/preview-BCXXj5A8.js",
     "name": "preview",
     "src": "resources/js/maps/preview.js",
     "isEntry": true,
     "imports": [
       "resources/js/maps/preview-runtime.js",
-      "_LeafletCanvas-CgaF0vlH.js",
+      "_LeafletCanvas-DhFcPtA4.js",
       "_preload-helper-oofcKs94.js",
-      "_vue.esm-bundler-GXfi61Lw.js",
+      "_vue.esm-bundler-BwZUb5GN.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
   },
@@ -772,23 +848,22 @@
     "isEntry": true
   },
   "resources/js/recovery/recovery.js": {
-    "file": "assets/recovery-D1hKL4IH.js",
+    "file": "assets/recovery-CozDTSrf.js",
     "name": "recovery",
     "src": "resources/js/recovery/recovery.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-GXfi61Lw.js",
-      "_v-click-outside.umd-Cl-Y_A58.js",
-      "__commonjsHelpers-Cpj98o6Y.js"
+      "_vue.esm-bundler-BwZUb5GN.js",
+      "_vue-tippy.esm-browser-C8LG3_oX.js"
     ]
   },
   "resources/js/relations.js": {
-    "file": "assets/relations-RXp6k9Wv.js",
+    "file": "assets/relations-COd2D0mS.js",
     "name": "relations",
     "src": "resources/js/relations.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-GXfi61Lw.js",
+      "_vue.esm-bundler-BwZUb5GN.js",
       "_preload-helper-oofcKs94.js"
     ],
     "dynamicImports": [
@@ -811,22 +886,22 @@
     "isEntry": true
   },
   "resources/js/subscription.js": {
-    "file": "assets/subscription-B1RqC2xL.js",
+    "file": "assets/subscription-Bcgj0CvS.js",
     "name": "subscription",
     "src": "resources/js/subscription.js",
     "isEntry": true
   },
   "resources/js/whiteboards.js": {
-    "file": "assets/whiteboards-Dz2Ijzxq.js",
+    "file": "assets/whiteboards-BseOgxdl.js",
     "name": "whiteboards",
     "src": "resources/js/whiteboards.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-GXfi61Lw.js",
+      "_vue.esm-bundler-BwZUb5GN.js",
       "_colours-Dh8441-n.js",
-      "_Browser.vue_vue_type_script_setup_true_lang-BLrrr57P.js",
+      "_Browser.vue_vue_type_script_setup_true_lang-DKcqrt8v.js",
       "_pusher-BcL8EwLT.js",
-      "_vue-tippy.esm-browser-Dvd-iQ8z.js",
+      "_vue-tippy.esm-browser-C8LG3_oX.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
   }

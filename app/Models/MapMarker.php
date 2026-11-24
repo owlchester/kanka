@@ -4,9 +4,7 @@ namespace App\Models;
 
 use App\Enums\MapMarkerShape;
 use App\Enums\Visibility;
-use App\Facades\Avatar;
 use App\Facades\CampaignLocalization;
-use App\Facades\MapMarkerCache;
 use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Copiable;
@@ -18,6 +16,9 @@ use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\AclScope;
 use App\Models\Scopes\VisibilityIDScope;
+use App\Observers\MapMarkerObserver;
+use App\Services\Images\Avatar;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -54,6 +55,7 @@ use Illuminate\Support\Str;
  * @property ?int $pin_size
  * @property MapGroup|null $group
  */
+#[ObservedBy(MapMarkerObserver::class)]
 class MapMarker extends Model
 {
     use Blameable;
@@ -111,10 +113,6 @@ class MapMarker extends Model
         'shape_id' => MapMarkerShape::class,
         'is_popupless' => 'boolean',
         'is_draggable' => 'boolean',
-    ];
-
-    protected array $suggestions = [
-        MapMarkerCache::class => 'clearSuggestion',
     ];
 
     protected array $sanitizable = [
@@ -305,7 +303,7 @@ class MapMarker extends Model
         if ($this->icon == 4 && $this->entity) {
             return [
                 'type' => 'avatar',
-                'value' => Avatar::entity($this->entity)->fallback()->size(276)->thumbnail(),
+                'value' => Avatar::for($this->entity)->fallback()->size(276)->thumbnail(),
             ];
         }
 

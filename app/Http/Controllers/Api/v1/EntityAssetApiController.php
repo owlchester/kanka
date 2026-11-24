@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Enums\EntityAssetType;
+use App\Exceptions\TranslatableException;
 use App\Http\Requests\StoreEntityAsset;
 use App\Http\Requests\UpdateEntityAsset;
 use App\Http\Resources\EntityAssetResource as Resource;
@@ -42,7 +43,7 @@ class EntityAssetApiController extends ApiController
     }
 
     /**
-     * @return resource
+     * @return resource|JsonResponse
      *
      * @throws AuthorizationException
      */
@@ -56,11 +57,23 @@ class EntityAssetApiController extends ApiController
         if ($request->get('type_id') == EntityAssetType::file->value) {
             /** @var EntityFileService $service */
             $service = app()->make(EntityFileService::class);
-            $files = $service
-                ->entity($entity)
-                ->campaign($campaign)
-                ->upload($request, 'file')
-                ->files();
+            try {
+                $files = $service
+                    ->entity($entity)
+                    ->campaign($campaign)
+                    ->upload($request, 'file')
+                    ->files();
+            } catch (TranslatableException $exception) {
+                if (! in_array($exception->getMessage(), [
+                    'crud.files.errors.max',
+                    'gallery.download.errors.gallery_full_free',
+                    'gallery.download.errors.gallery_full_premium',
+                ], true)) {
+                    throw $exception;
+                }
+
+                return response()->json(['error' => $exception->getTranslatedMessage()], 422);
+            }
 
             return new Resource($files[0]);
         }

@@ -119,6 +119,8 @@ To create an asset, use the following endpoint.
 
 > {success} Code 200 with JSON body of the new entity-asset.
 
+> {warning} Code 422 with JSON body `{"error":"..."}` when the entity file limit or gallery storage quota has been reached.
+
 
 <a name="delete-entity-asset"></a>
 ## Delete an Entity Asset

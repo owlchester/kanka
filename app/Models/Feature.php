@@ -79,6 +79,23 @@ class Feature extends Model
     }
 
     /**
+     * @return HasMany<FeatureChampion, $this>
+     */
+    public function champions(): HasMany
+    {
+        return $this->hasMany(FeatureChampion::class);
+    }
+
+    /**
+     * @return HasOne<FeatureChampion, $this>
+     */
+    public function userChampion(): HasOne
+    {
+        return $this->hasOne(FeatureChampion::class)
+            ->where('user_id', auth()->id());
+    }
+
+    /**
      * @return HasMany<FeatureFile, $this>
      */
     public function featureFiles(): HasMany
@@ -89,7 +106,9 @@ class Feature extends Model
     public function scopeApproved(Builder $builder): Builder
     {
         return $builder->whereIn('status_id', [FeatureStatusEnum::Approved])
-            ->orderBy('upvote_count', 'desc');
+            ->withCount('champions')
+            ->orderByDesc('champions_count')
+            ->orderByDesc('upvote_count');
     }
 
     public function scopeVisible(Builder $builder): Builder

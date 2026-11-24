@@ -53,21 +53,35 @@ const initConfirmListener = () => {
     }
 };
 
+const resetCouponPricing = () => {
+    const pricingNow = document.getElementById('pricing-now');
+    if (pricingNow?.dataset?.originalPrice !== undefined) {
+        pricingNow.textContent = pricingNow.dataset.originalPrice;
+    }
+    const pricingButton = document.getElementById('pricing-button');
+    if (pricingButton?.dataset?.originalPrice !== undefined) {
+        pricingButton.textContent = pricingButton.dataset.originalPrice;
+    }
+};
+
 const checkCoupon = (event) => {
     const element = event.target;
-    const coupon = element.value;
-    const url = element.dataset.url;
-
+    const coupon = element.value.trim();
     if (!coupon) {
-        formSubmitBtn.classList.remove('btn-disabled', 'loading');
-        formSubmitBtn.disabled = false;
+        couponValidating.classList.add('hidden');
+        couponSuccess.classList.add('hidden');
+        couponError.classList.add('hidden');
+        couponId.value = '';
+        subscribeModal.classList.remove('valid-coupon');
+        resetCouponPricing();
+        return Promise.resolve();
     }
+
+    const url = element.dataset.url;
     couponValidating.classList.remove('hidden');
-    fetch(url + '?coupon=' + coupon)
+    return fetch(url + '?coupon=' + encodeURIComponent(coupon))
         .then((response) => response.json())
         .then((result) => {
-            formSubmitBtn.classList.remove('btn-disabled', 'loading');
-            formSubmitBtn.disabled = false;
             couponValidating.classList.add('hidden');
 
             if (!result.valid) {
@@ -76,10 +90,15 @@ const checkCoupon = (event) => {
                 couponError.classList.remove('hidden');
                 couponId.value = '';
                 subscribeModal.classList.remove('valid-coupon');
+                resetCouponPricing();
                 return;
             }
 
             document.getElementById('pricing-now').innerHTML = result.price;
+            const pricingButton = document.getElementById('pricing-button');
+            if (pricingButton) {
+                pricingButton.textContent = result.price;
+            }
             couponError.classList.add('hidden');
             couponSuccess.innerHTML = result.discount;
             couponSuccess.classList.remove('hidden');
@@ -87,6 +106,7 @@ const checkCoupon = (event) => {
             subscribeModal.classList.add('valid-coupon');
         }).catch((result) => {
             couponValidating.classList.add('hidden');
+            resetCouponPricing();
             if (result.responseJSON) {
                 couponError.innerHTML = result.responseJSON.message;
                 couponError.classList.remove('hidden');
@@ -97,6 +117,8 @@ const checkCoupon = (event) => {
 const subscribe = (event) => {
     const form = event.target;
     event.preventDefault();
+    if (form.dataset.submitting === 'true') return;
+    form.dataset.submitting = 'true';
     disableSubmit(event);
 
     const errorMessage = document.querySelector('.alert-error');
@@ -119,7 +141,7 @@ const subscribe = (event) => {
     if (reasonInput && reasonInput.value) returnUrl.searchParams.set('reason', reasonInput.value);
     if (customReasonInput && customReasonInput.value) returnUrl.searchParams.set('reason_custom', customReasonInput.value);
 
-    stripe.confirmSetup({
+    return stripe.confirmSetup({
         elements,
         confirmParams: {
             return_url: returnUrl.toString(),
@@ -127,8 +149,9 @@ const subscribe = (event) => {
         redirect: 'if_required',
     }).then((result) => {
         if (result.error) {
+            delete form.dataset.submitting;
             formSubmitBtn.classList.remove('disabled', 'loading');
-            formSubmitBtn.disabled = '';
+            formSubmitBtn.disabled = false;
             errorMessage.innerHTML = result.error.message;
             errorMessage.classList.remove('hidden');
             return;
@@ -138,6 +161,12 @@ const subscribe = (event) => {
             cardID.value = result.setupIntent.payment_method;
             form.submit();
         }
+    }).catch((error) => {
+        delete form.dataset.submitting;
+        formSubmitBtn.classList.remove('disabled', 'loading');
+        formSubmitBtn.disabled = false;
+        errorMessage.textContent = error.message;
+        errorMessage.classList.remove('hidden');
     });
 };
 

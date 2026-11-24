@@ -16,13 +16,17 @@ class ReminderPolicy
         return $reminder->remindable_type === Entity::class && $reminder->remindable_id === $entity->id;
     }
 
-    public function update(?User $user, Reminder $reminder)
+    public function update(User $user, Reminder $reminder): bool
     {
-        return $user && $user->can('update', $reminder->calendar->entity);
+        $calendarEntity = $reminder->calendar?->entity;
+
+        return $calendarEntity !== null && $user->can('update', $calendarEntity);
     }
 
-    public function delete(?User $user, Reminder $reminder)
+    public function delete(User $user, Reminder $reminder): bool
     {
-        return $user && $user->can('update', $reminder->calendar->entity);
+        $calendarEntity = $reminder->calendar?->entity;
+
+        return $calendarEntity !== null && $user->can('update', $calendarEntity);
     }
 }

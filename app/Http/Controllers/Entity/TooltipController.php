@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Facades\Avatar;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\TooltipService;
+use App\Services\Images\Avatar;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 
@@ -31,7 +31,7 @@ class TooltipController extends Controller
             $tagClasses[] = 'kanka-tag-' . $tag->slug;
         }
         $render = request()->get('render');
-        $hasImage = Avatar::entity($entity)->hasImage();
+        $hasImage = Avatar::for($entity)->hasImage();
 
         $tooltipText = $this->tooltipService->entity($entity)->campaign($campaign)->tooltip();
 

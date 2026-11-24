@@ -32,9 +32,7 @@ class EventController extends Controller
     use HasDatagrid;
     use HasSubview;
 
-    public function __construct(protected CalendarService $calendarService, protected LengthValidatorService $lengthValidatorService)
-    {
-    }
+    public function __construct(protected CalendarService $calendarService, protected LengthValidatorService $lengthValidatorService) {}
 
     public function index(Campaign $campaign, Calendar $calendar)
     {

@@ -1,6 +1,5 @@
 <?php
 
-use App\Facades\EntityPermission;
 use App\Models\Map;
 use App\Models\User;
 use App\Models\Whiteboard;
@@ -14,7 +13,6 @@ Broadcast::channel('whiteboard.{id}', function (User $user, $id) {
     $whiteboard = Whiteboard::withInvisible()->findOrFail($id);
     $entity = $whiteboard->entity()->withInvisible()->firstOrFail();
 
-    EntityPermission::campaign($entity->campaign);
     if ($user->can('member', $entity->campaign) && $user->can('view', $entity)) {
         return [
             'id' => $user->id,
@@ -32,7 +30,6 @@ Broadcast::channel('map.{id}', function (User $user, $id) {
     $map = Map::withInvisible()->findOrFail($id);
     $entity = $map->entity()->withInvisible()->firstOrFail();
 
-    EntityPermission::campaign($entity->campaign);
     if ($user->can('member', $entity->campaign) && $user->can('view', $entity)) {
         return [
             'id' => $user->id,
@@ -49,8 +46,6 @@ Broadcast::channel('map.{id}', function (User $user, $id) {
 Broadcast::channel('map.{id}.admin', function (User $user, $id) {
     $map = Map::withInvisible()->findOrFail($id);
     $entity = $map->entity()->withInvisible()->firstOrFail();
-
-    EntityPermission::campaign($entity->campaign);
 
     return $user->can('member', $entity->campaign) && $user->can('update', $entity);
 });

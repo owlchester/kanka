@@ -3,89 +3,61 @@
 namespace App\Services\Permissions;
 
 use App\Enums\Permission;
-use App\Facades\RolePermission;
+use App\Facades\CampaignLocalization;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
+use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Models\User;
-use App\Traits\CampaignAware;
-use App\Traits\EntityAware;
-use App\Traits\EntityTypeAware;
-use App\Traits\UserAware;
-use Illuminate\Support\Collection;
 
 class EntityPermission
 {
-    use CampaignAware;
-    use EntityAware;
-    use EntityTypeAware;
-    use UserAware;
-
-    protected array $cached = [];
-
-    protected array|bool $roleIds;
-
     /**
-     * The roles of the user
+     * In-memory permission map keyed by "{campaignId}:{userId}" (0 for guest).
+     *
+     * @var array<string, array{isAdmin: bool, cached: array<string, bool>}>
      */
-    protected array|bool|Collection $roles = [];
+    protected array $cache = [];
 
-    protected array $cachedEntityIds = [];
-
-    /**
-     * @var bool is admin
-     */
-    protected bool $userIsAdmin;
-
-    /**
-     * Permissions were loaded
-     */
-    protected bool $loadedAll = false;
-
-    /**
-     * Campaign id of the loaded permissions (required for when moving entities between campaigns)
-     */
-    protected int $loadedCampaignId = 0;
-
-    public function can(Permission $permission): bool
+    public function canEntity(Entity $entity, Permission $permission, ?User $user = null, ?Campaign $campaign = null): bool
     {
-        $this->loadAllPermissions();
-        if ($this->userIsAdmin()) {
+        $resolvedCampaign = $this->resolveCampaign($campaign, $entity);
+        $state = $this->loadState($resolvedCampaign, $user);
+
+        if ($state['isAdmin']) {
             return true;
         }
 
-        // Check general module permissions
-        $module = isset($this->entityType) ? $this->entityType->id : $this->entity->type_id;
-        $key = '' . $module . '_' . $permission->value;
-        $perm = false;
-        if (isset($this->cached[$key]) && $this->cached[$key]) {
-            $perm = $this->cached[$key];
-        }
+        $moduleKey = $entity->type_id . '_' . $permission->value;
+        $perm = ! empty($state['cached'][$moduleKey]);
 
-        //        dump('module permission');
-        //        dump($key);
-        //        dump($this->cached);
-        if (! isset($this->entity)) {
-            //            dd('no entity');
-            return $perm;
-        }
-
-        // Search for entity
-        $entityKey = '_' . $permission->value . '_' . $this->entity->id;
-        //        dump('check entity');
-        //        dd($entityKey);
-        if (isset($this->cached[$entityKey])) {
-            return $this->cached[$entityKey];
+        $entityKey = '_' . $permission->value . '_' . $entity->id;
+        if (array_key_exists($entityKey, $state['cached'])) {
+            return $state['cached'][$entityKey];
         }
 
         return $perm;
     }
 
+    public function canEntityType(EntityType $entityType, Permission $permission, ?User $user = null, ?Campaign $campaign = null): bool
+    {
+        $resolvedCampaign = $this->resolveCampaign($campaign);
+        $state = $this->loadState($resolvedCampaign, $user);
+
+        if ($state['isAdmin']) {
+            return true;
+        }
+
+        $moduleKey = $entityType->id . '_' . $permission->value;
+
+        return ! empty($state['cached'][$moduleKey]);
+    }
+
     /**
-     * Determine the permission for a user to interact with an entity
+     * Determine the permission for a user to interact with an entity or campaign action.
      *
      * @param  MiscModel|Entity|null  $entity
      */
@@ -93,177 +65,42 @@ class EntityPermission
         int $entityType,
         int $action,
         $entity = null,
+        ?User $user = null,
+        ?Campaign $campaign = null,
     ): bool {
-        $this->loadAllPermissions();
+        $resolvedCampaign = $this->resolveCampaign($campaign, $entity);
+        $state = $this->loadState($resolvedCampaign, $user);
 
-        if ($this->userIsAdmin()) {
+        if ($state['isAdmin']) {
             return true;
         }
 
-        // Check if we have permission to `action` all the entities of this type first. The user
-        // might be able to view all quests, but have a specific quest set to denied. This is why
-        // we need to check the specific permissions too.
-        if ($entityType === 0) {
-            // Campaign permissions are a bit funky
-            $entityType = 'campaign';
-        }
-        $key = $entityType . '_' . $action;
+        $typeKey = $entityType === 0 ? 'campaign' : (string) $entityType;
+        $key = $typeKey . '_' . $action;
+        $perm = ! empty($state['cached'][$key]);
 
-        //        if ($action === Permission::Bookmarks->value) {
-        //            dump($key = $entityType . '_' . $action);
-        //            dump($this->cached);
-        //        }
-
-        $perm = false;
-        if (isset($this->cached[$key]) && $this->cached[$key]) {
-            $perm = $this->cached[$key];
-        }
-
-        // Check if we have permission to do this action for exactly this entity
         if (! empty($entity)) {
-            //            dump('i have an entity?');
-            //            dump($entity);
+            $entityKey = isset($entity->type_id)
+                ? '_' . $action . '_' . $entity->entity_id
+                : '_' . $action . '_' . $entity->id;
 
-            // Check if $entity is an entity type.
-            if (isset($entity->type_id)) {
-                $entityKey = '_' . $action . '_' . $entity->entity_id;
-            } else {
-                // dump('misc object');
-                $entityKey = '_' . $action . '_' . $entity->id;
-            }
-            //            dump('entity key ' . $entityKey);
-            if (isset($this->cached[$entityKey])) {
-                $perm = $this->cached[$entityKey];
+            if (array_key_exists($entityKey, $state['cached'])) {
+                $perm = $state['cached'][$entityKey];
             }
         }
 
-        // dump('have access? ' . ($perm ? 'yes' : 'no'));
         return $perm;
     }
 
     /**
-     * Check the roles of the user. If the user is an admin, always return true
+     * Determine if a user is part of a role that can do an action on all entities of a campaign.
      */
-    protected function getRoleIds(): array|bool
+    public function canRole(string $action, string $modelName, ?User $user = null, ?Campaign $campaign = null): bool
     {
-        // If we haven't built a list of roles yet, build it.
-        if (isset($this->roleIds)) {
-            return $this->roleIds;
-        }
+        $resolvedCampaign = $this->resolveCampaign($campaign);
+        $state = $this->loadState($resolvedCampaign, $user);
 
-        $this->roles = false;
-        // If we have a user, get the user's role for this campaign
-        if (isset($this->user)) {
-            $this->roles = UserCache::user($this->user)->campaign($this->campaign)->roles();
-        }
-
-        // If we don't have a user, or our user has no specified role yet, use the public role.
-        if ($this->roles === false || $this->roles->count() == 0) {
-            // Use the campaign's public role
-            $this->roles = $this->campaign->roles()->where('is_public', true)->get();
-        }
-
-        // Save all the role ids. If one of them is an admin, stop there.
-        $this->roleIds = [];
-        foreach ($this->roles as $role) {
-            if ($role['is_admin']) {
-                $this->roleIds = true;
-
-                return true;
-            }
-            $this->roleIds[] = $role['id'];
-        }
-
-        return $this->roleIds;
-    }
-
-    /**
-     * Determine if a user is part of a role that can do an action on all entities of a campaign
-     */
-    public function canRole(string $action, string $modelName): bool
-    {
-        $this->loadAllPermissions();
-        $key = $modelName . '_' . $action;
-
-        // We check if the role was set for global entity permissions
-        if (isset($this->cached[$key]) && $this->cached[$key]) {
-            return $this->cached[$key];
-        }
-
-        return false;
-    }
-
-    /**
-     * It's way easier to just load all permissions of the user once and "cache" them, rather than try and be
-     * optional on each query.
-     */
-    protected function loadAllPermissions(): void
-    {
-        // If no campaign was provided, get the one in the url. One is provided when moving entities between campaigns
-        if (! isset($this->campaign)) {
-            // Before we do that, we need to check if we're in a factory for unit tests
-            if (app()->environment('testing')) {
-                $this->userIsAdmin = true;
-
-                return;
-            } else {
-                abort(404);
-            }
-        }
-
-        if ($this->loadedAll === true && $this->campaign->id == $this->loadedCampaignId) {
-            return;
-        }
-
-        $this->resetPermissions();
-        $this->loadedCampaignId = $this->campaign->id;
-
-        // Loop through the roles to build a list of ids, and check if one of our roles is an admin
-        unset($this->roleIds);
-        $roleIds = $this->getRoleIds();
-        if ($roleIds === true) {
-            // If the role ids is simply true, it means the user is an admin
-            $this->userIsAdmin = true;
-
-            return;
-        }
-
-        $campaignRoleIDs = [];
-        /** @var CampaignRole $role */
-        foreach ($this->roles as $role) {
-            $campaignRoleIDs[] = $role['id'];
-        }
-        // dump('roles');
-        if (! empty($campaignRoleIDs)) {
-            $permissions = RolePermission::rolesPermissions($campaignRoleIDs);
-
-            /** @var CampaignPermission $permission */
-            foreach ($permissions as $permission) {
-                // dump($permission->id . ' - ' . $permission->key());
-                $this->cached[$permission->key()] = $permission->access;
-                if (! empty($permission->entity_id)) {
-                    $this->cachedEntityIds[$permission->entity_type_id][$permission->entity_id][$permission->action] = (bool) $permission->access;
-                }
-            }
-        }
-
-        // If a user is provided, get their permissions too
-        // dump('user');
-        if (isset($this->user)) {
-            $userPermissions = $this->user->permissions()->where('campaign_id', $this->campaign->id)->get();
-            /** @var CampaignPermission $permission */
-            foreach ($userPermissions as $permission) {
-                $this->cached[$permission->key()] = $permission->access;
-                // dump($permission->id . ' - ' . $permission->key());
-                if (! empty($permission->entity_id)) {
-                    $this->cachedEntityIds[$permission->entity_type_id][$permission->entity_id][$permission->action] = (bool) $permission->access;
-                }
-            }
-            unset($userPermissions);
-        }
-
-        // dump('finished loading entities:');
-        // dump($this->cachedEntityIds);
+        return ! empty($state['cached'][$modelName . '_' . $action]);
     }
 
     /**
@@ -271,14 +108,92 @@ class EntityPermission
      */
     public function resetPermissions(): void
     {
-        // Reset the values keeping score
-        $this->loadedAll = true;
-        $this->cached = [];
-        unset($this->roleIds, $this->userIsAdmin);
+        $this->cache = [];
     }
 
-    protected function userIsAdmin(): bool
+    /**
+     * @param  MiscModel|Entity|null  $entity
+     */
+    protected function resolveCampaign(?Campaign $campaign, $entity = null): ?Campaign
     {
-        return isset($this->userIsAdmin) && $this->userIsAdmin;
+        if ($campaign) {
+            return $campaign;
+        }
+
+        if ($entity instanceof Entity && $entity->campaign) {
+            return $entity->campaign;
+        }
+
+        if ($entity instanceof MiscModel && $entity->entity?->campaign) {
+            return $entity->entity->campaign;
+        }
+
+        if (CampaignLocalization::hasCampaign()) {
+            return CampaignLocalization::getCampaign();
+        }
+
+        return null;
+    }
+
+    /**
+     * @return array{isAdmin: bool, cached: array<string, bool>}
+     */
+    protected function loadState(?Campaign $campaign, ?User $user): array
+    {
+        if (! $campaign) {
+            if (app()->environment('testing')) {
+                return ['isAdmin' => true, 'cached' => []];
+            }
+
+            abort(404);
+        }
+
+        $cacheKey = $campaign->id . ':' . ($user->id ?? 0);
+
+        if (isset($this->cache[$cacheKey])) {
+            return $this->cache[$cacheKey];
+        }
+
+        $roles = $user
+            ? UserCache::user($user)->campaign($campaign)->roles()
+            : collect();
+
+        if ($roles->isEmpty()) {
+            $roles = $campaign->roles()->where('is_public', true)->get();
+        }
+
+        $campaignRoleIDs = [];
+        /** @var CampaignRole|array<string, mixed> $role */
+        foreach ($roles as $role) {
+            if ($role['is_admin']) {
+                return $this->cache[$cacheKey] = ['isAdmin' => true, 'cached' => []];
+            }
+            $campaignRoleIDs[] = $role['id'];
+        }
+
+        $cached = [];
+
+        if (! empty($campaignRoleIDs)) {
+            $permissions = app(RolePermission::class)->rolesPermissions($campaignRoleIDs);
+
+            /** @var CampaignPermission $permission */
+            foreach ($permissions as $permission) {
+                $cached[$permission->key()] = (bool) $permission->access;
+            }
+        }
+
+        if ($user) {
+            $userPermissions = $user->permissions()->where('campaign_id', $campaign->id)->get();
+
+            /** @var CampaignPermission $permission */
+            foreach ($userPermissions as $permission) {
+                $cached[$permission->key()] = (bool) $permission->access;
+            }
+        }
+
+        return $this->cache[$cacheKey] = [
+            'isAdmin' => false,
+            'cached' => $cached,
+        ];
     }
 }

@@ -3,11 +3,10 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Facades\ImportIdMapper;
-use App\Models\Entity;
 use App\Models\Quest;
 use App\Models\QuestElement;
 
-class QuestMapper extends MiscMapper
+class QuestMapper extends StandardTreeMapper
 {
     protected array $ignore = ['id', 'entry', 'type', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'quest_id', 'created_at', 'updated_at', 'location_id', 'instigator_id'];
 
@@ -63,28 +62,6 @@ class QuestMapper extends MiscMapper
             // @phpstan-ignore-next-line
             ->elements()
             ->entitySecond();
-    }
-
-    public function tree(): self
-    {
-        foreach ($this->parents as $parent => $entityIds) {
-            if (! isset($this->mapping[$parent])) {
-                continue;
-            }
-            $parentEntity = Entity::where('entity_id', $this->mapping[$parent])
-                ->where('type_id', config('entities.ids.quest'))
-                ->first();
-            if (! $parentEntity) {
-                continue;
-            }
-            $entities = Entity::whereIn('id', $entityIds)->get();
-            foreach ($entities as $entity) {
-                $entity->parent_id = $parentEntity->id;
-                $entity->saveQuietly();
-            }
-        }
-
-        return $this;
     }
 
     protected function elements(): self

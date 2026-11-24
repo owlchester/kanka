@@ -2,13 +2,13 @@
 
 namespace App\Renderers\CharacterSheets;
 
-use App\Facades\Avatar;
 use App\Facades\Mentions;
 use App\Models\Attribute;
 use App\Models\CampaignPlugin;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityAbility;
+use App\Services\Images\Avatar;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use Illuminate\Database\Eloquent\Collection;
@@ -182,7 +182,7 @@ abstract class Renderer
                 'note' => Mentions::mapAny($abi, 'note'),
                 'note_raw' => $abi->note,
                 'used_charges' => $abi->charges,
-                'thumb' => '<img src="' . Avatar::entity($abi->ability->entity)->size(40)->thumbnail() . '" class="ability-thumb"></i>',
+                'thumb' => '<img src="' . Avatar::for($abi->ability->entity)->size(40)->thumbnail() . '" class="ability-thumb"></i>',
                 'link' => '<a href="' . route('entities.show', [$this->campaign, $abi->ability->entity]) . '" class="ability-link">' . $abi->ability->entity->name . '</a>',
                 'tags' => $tags,
                 'parent' => $parent,

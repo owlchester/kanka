@@ -1,18 +1,19 @@
 <template>
-    <tr :data-id="entity.id" v-bind="dataAttributes"
+    <tr class="entity-list-row" :class="{ 'entity-list-row-selected': selecting && entity.selected }" :data-id="entity.id" v-bind="dataAttributes"
         @pointerdown="lpStart" @pointerup="lpCancel" @pointermove="lpMove" @pointercancel="lpCancel"
         @contextmenu="handleContextMenu" @click.capture="handleRowClick">
         <!-- Checkbox -->
-        <td class="w-8" :class="selecting ? '' : 'hidden sm:table-cell'">
+        <td class="entity-row-selection w-8" :class="selecting ? '' : 'hidden sm:table-cell'">
             <input
                 type="checkbox"
                 :checked="entity.selected"
+                :aria-label="i18n.select + ' ' + entity.name"
                 @change="handleCheckboxChange"
             />
         </td>
 
         <!-- Expand/collapse arrow (nested mode only) -->
-        <td v-if="showExpandColumn" class="w-8 text-center">
+        <td v-if="showExpandColumn" class="entity-row-expand w-8 text-center">
             <button v-if="entity.children > 0 && depth < maxDepth" @click="toggleExpand" class="text-link hover:text-primary">
                 <i v-if="loadingChildren" class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
                 <i v-else-if="expanded" class="fa-regular fa-angle-down" aria-hidden="true"></i>
@@ -24,7 +25,7 @@
         </td>
 
         <!-- Dynamic columns -->
-        <td v-for="col in visibleColumns" :key="col.key" :class="cellClass(col)">
+        <td v-for="col in visibleColumns" :key="col.key" :class="[cellClass(col), 'entity-cell-' + col.type]">
             <!-- Avatar -->
             <template v-if="col.type === 'avatar'">
                 <a :href="entity.urls.show" class="block avatar w-8 h-8 rounded-full cover-background"
@@ -33,11 +34,20 @@
 
             <!-- Name -->
             <template v-else-if="col.type === 'name'">
-                <a :href="entity.urls.show" class="text-link truncate"
+                <a :href="entity.urls.show" class="entity-row-name text-link truncate"
                    data-toggle="tooltip-ajax" :data-id="entity.id" :data-url="entity.urls.tooltip">
                     <span v-if="depth > 0" class="text-neutral-content mr-1" v-html="indentPrefix"></span>
                     <span v-html="entity.name"></span>
+                    <i v-if="entity.is_private" class="fa-regular fa-lock ml-1 text-xs text-neutral-content md:hidden" :aria-label="i18n.is_private"></i>
                 </a>
+                <div v-if="mobileStatus || mobileType" class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-neutral-content md:hidden">
+                    <span v-if="mobileStatus" class="inline-flex items-center gap-1.5">
+                        <i v-if="entity.status?.icon" :class="entity.status.icon" aria-hidden="true"></i>
+                        <span>{{ mobileStatus }}</span>
+                    </span>
+                    <span v-if="mobileStatus && mobileType" aria-hidden="true">·</span>
+                    <span v-if="mobileType" v-html="mobileType"></span>
+                </div>
             </template>
 
             <!-- Text -->
@@ -47,7 +57,11 @@
 
             <!-- Icon (boolean or mapped status) -->
             <template v-else-if="col.type === 'icon'">
-                <i v-if="entity[col.key]?.icon" :class="entity[col.key].icon" v-tippy="entity[col.key].tooltip" aria-hidden="true"></i>
+                <span v-if="col.key === 'status' && entity.status?.is_custom" class="inline-flex items-center gap-1">
+                    <i v-if="entity.status.icon" :class="entity.status.icon" v-tippy="entity.status.name" role="img" :aria-label="entity.status.name"></i>
+                    <span v-else>{{ entity.status.name }}</span>
+                </span>
+                <i v-else-if="entity[col.key]?.icon" :class="entity[col.key].icon" v-tippy="entity[col.key].tooltip" aria-hidden="true"></i>
                 <i v-else-if="col.icons && col.icons[entity[col.key]]" :class="col.icons[entity[col.key]].icon" v-tippy="col.icons[entity[col.key]].tooltip" aria-hidden="true"></i>
                 <i v-else-if="!col.icons && entity[col.key]" :class="col.icon" v-tippy="col.tooltip" aria-hidden="true"></i>
             </template>
@@ -110,9 +124,10 @@
         </td>
 
         <!-- Row actions -->
-        <td class="w-10 text-center">
+        <td class="entity-row-actions w-10 text-center">
             <div class="dropdown">
-                <button class="cursor-pointer rounded-full w-8 h-8 aspect-square hover:bg-base-200 flex items-center justify-center"
+                <button class="cursor-pointer rounded-full w-8 h-8 max-md:size-11 aspect-square hover:bg-base-200 flex items-center justify-center"
+                        :aria-label="i18n.actions + ' — ' + entity.name"
                         :ref="el => actionsBtnRef = el"
                         data-tree="escape">
                     <i class="fa-regular fa-ellipsis-v" data-tree="escape" aria-hidden="true"></i>
@@ -250,6 +265,9 @@ const indentPrefix = computed(() => {
     }
     return prefix + '└'
 })
+
+const mobileStatus = computed(() => props.visibleColumns.some(col => col.key === 'status') ? props.entity.status?.name : null)
+const mobileType = computed(() => props.visibleColumns.some(col => col.key === 'type') ? props.entity.type : null)
 
 const cellClass = (col: any): string => {
     if (col.type === 'avatar') return 'w-10'

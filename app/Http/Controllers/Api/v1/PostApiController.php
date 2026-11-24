@@ -7,12 +7,19 @@ use App\Http\Resources\PostResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Post;
+use App\Services\Entity\RemindableService;
+use App\Services\Entity\TagFormSyncService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PostApiController extends ApiController
 {
+    public function __construct(
+        protected TagFormSyncService $tagFormSyncService,
+        protected RemindableService $remindableService,
+    ) {}
+
     /**
      * @return AnonymousResourceCollection
      *
@@ -50,6 +57,8 @@ class PostApiController extends ApiController
         $data = $request->all();
         $data['entity_id'] = $entity->id;
         $model = Post::create($data);
+        $this->tagFormSyncService->sync($model, $request);
+        $this->remindableService->save($model, $request);
         $model->refresh();
 
         return new Resource($model);
@@ -67,6 +76,8 @@ class PostApiController extends ApiController
         $data = $request->all();
         unset($data['entity_id']);
         $post->update($data);
+        $this->tagFormSyncService->sync($post, $request);
+        $this->remindableService->save($post, $request);
 
         return new Resource($post);
     }

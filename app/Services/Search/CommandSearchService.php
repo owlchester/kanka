@@ -3,7 +3,6 @@
 namespace App\Services\Search;
 
 use App\Models\Entity;
-use App\Services\SearchService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 
@@ -13,15 +12,13 @@ class CommandSearchService
     use UserAware;
 
     public function __construct(
-        protected SearchService $searchService,
+        protected NameLookupService $searchService,
         protected EntitySearchService $entitySearchService,
         protected AdminPageService $adminPageService,
     ) {}
 
     /**
-     * Name mode: entity name search + mention search via Meilisearch.
-     * Follows the same pattern as FullTextController: if the term matches an entity
-     * exactly, also search for its mention code so we find everywhere it is referenced.
+     * Name mode: SQL name and alias lookup plus command pages.
      */
     public function name(string $term): array
     {
@@ -32,7 +29,7 @@ class CommandSearchService
             ->campaign($this->campaign)
             ->term($term)
             ->full()
-            ->v2()
+            ->v2(includePages: false)
             ->limit(8)
             ->find();
 
@@ -54,6 +51,9 @@ class CommandSearchService
      */
     public function fulltext(string $term): array
     {
+        if (config('scout.search_maintenance', false)) {
+            return ['results' => [], 'maintenance' => true, 'message' => __('search/fulltext.maintenance')];
+        }
         $term2 = null;
         $entity = Entity::with('entityType')
             ->where('campaign_id', $this->campaign->id)
@@ -67,6 +67,7 @@ class CommandSearchService
             'results' => $this->entitySearchService
                 ->campaign($this->campaign)
                 ->searchWithSnippets($term, $term2),
+            'maintenance' => false,
         ];
     }
 }

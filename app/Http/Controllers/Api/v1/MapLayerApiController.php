@@ -33,6 +33,7 @@ class MapLayerApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $map->entity);
+        $this->ensureLayerBelongsToMap($map, $mapLayer);
 
         return new Resource($mapLayer);
     }
@@ -46,7 +47,7 @@ class MapLayerApiController extends ApiController
             return response()->json(['error' => 'Max amount of map layers reached']);
         }
 
-        $model = MapLayer::create($request->all());
+        $model = $map->layers()->create($request->validated());
         $model->refresh();
 
         return new Resource($model);
@@ -65,7 +66,8 @@ class MapLayerApiController extends ApiController
     ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $map->entity);
-        $mapLayer->update($request->all());
+        $this->ensureLayerBelongsToMap($map, $mapLayer);
+        $mapLayer->update($request->validated());
 
         return new Resource($mapLayer);
     }
@@ -83,8 +85,14 @@ class MapLayerApiController extends ApiController
     ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $map->entity);
+        $this->ensureLayerBelongsToMap($map, $mapLayer);
         $mapLayer->delete();
 
         return response()->json(null, 204);
+    }
+
+    private function ensureLayerBelongsToMap(Map $map, MapLayer $mapLayer): void
+    {
+        abort_unless((int) $mapLayer->map_id === (int) $map->id, 404);
     }
 }

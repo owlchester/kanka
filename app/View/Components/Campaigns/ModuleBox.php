@@ -2,9 +2,9 @@
 
 namespace App\View\Components\Campaigns;
 
-use App\Facades\Img;
 use App\Models\Campaign;
 use App\Models\EntityType;
+use App\Services\Images\Img;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -44,7 +44,7 @@ class ModuleBox extends Component
     protected function image(): string
     {
         if (! empty($this->thumbnail)) {
-            return Img::crop(96, 96)->url($this->thumbnail);
+            return Img::for($this->thumbnail)->crop(96, 96)->url();
         }
 
         return '';

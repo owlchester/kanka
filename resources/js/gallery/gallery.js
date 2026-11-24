@@ -2,8 +2,10 @@ import { createApp } from 'vue'
 import Gallery from "./Gallery.vue"
 import vClickOutside from "click-outside-vue3"
 
-const app = createApp({})
-app.component('gallery', Gallery)
-app.use(vClickOutside)
+const element = document.getElementById('gallery')
 
-app.mount('#gallery');
+if (element) {
+    createApp(Gallery, { api: element.dataset.api })
+        .use(vClickOutside)
+        .mount(element)
+}

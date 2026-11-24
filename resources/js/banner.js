@@ -10,6 +10,10 @@ const initDismissableBanners = () => {
         .forEach((el) => {
        el.addEventListener('click', dismissTutorial, false);
     });
+    document.querySelectorAll('[data-v4-enable-modern]')
+        .forEach((el) => {
+       el.addEventListener('click', enableModernEntryForm, false);
+    });
 };
 
 function dismissPromo(e) {
@@ -46,6 +50,23 @@ function dismissTutorial(e) {
                 return;
             }
             el.classList.add('hidden');
+        });
+}
+
+function enableModernEntryForm(e) {
+    e.preventDefault();
+    const btn = e.currentTarget;
+    btn.classList.add('loading');
+    btn.disabled = true;
+
+    axios.post(btn.dataset.v4EnableModern)
+        .then(() => {
+            window.entityFormHasUnsavedChanges = false;
+            window.location.reload();
+        })
+        .catch(() => {
+            btn.classList.remove('loading');
+            btn.disabled = false;
         });
 }
 

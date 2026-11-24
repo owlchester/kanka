@@ -7,7 +7,6 @@ use App\Enums\Visibility;
 use App\Facades\CampaignLocalization;
 use App\Facades\Permissions;
 use App\Models\Entity;
-use App\Models\MiscModel;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -74,26 +73,25 @@ class AclScope implements Scope
             return $this->applyToPost($query, $model);
         }
 
+        if (! $model instanceof Entity) {
+            return $query;
+        }
+
         // Campaign admins don't have any restrictions on base
         Permissions::campaign(CampaignLocalization::getCampaign())
             ->action(Permission::View);
         if (auth()->check()) {
             Permissions::user(auth()->user());
+        } else {
+            Permissions::userless();
         }
-        /*if ($model instanceof MiscModel) {
-            Permissions::entityTypeID($model->entityTypeId());
-        }*/
 
         if (Permissions::isAdmin()) {
             // Check if this is a visibility entity or a global kanka entity
             return $query;
         }
 
-        if ($model instanceof Entity) {
-            return $this->applyToEntity($query, $model);
-        }
-
-        return $query;
+        return $this->applyToEntity($query, $model);
     }
 
     /**

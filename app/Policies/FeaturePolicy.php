@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\FeatureStatus;
 use App\Models\Feature;
 use App\Models\User;
 use Carbon\Carbon;
@@ -28,5 +29,15 @@ class FeaturePolicy
     public function vote(User $user): bool
     {
         return $user->isSubscriber();
+    }
+
+    public function champion(User $user, Feature $feature): bool
+    {
+        return $user->isElemental() && $feature->status_id === FeatureStatus::Approved;
+    }
+
+    public function unchampion(User $user, Feature $feature): bool
+    {
+        return $user->isElemental() && ! in_array($feature->status_id, [FeatureStatus::Done, FeatureStatus::Rejected], true);
     }
 }

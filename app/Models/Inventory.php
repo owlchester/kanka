@@ -6,6 +6,8 @@ use App\Enums\Visibility;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
+use App\Observers\InventoryObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -27,6 +29,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property ?Entity $entity
  * @property ?Image $image
  */
+#[ObservedBy(InventoryObserver::class)]
 class Inventory extends Model
 {
     use Blameable;

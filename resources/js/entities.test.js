@@ -2,8 +2,9 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { runInNewContext } from 'node:vm'
+import { postIdFromHash, scrollToSection } from './entities/reader/navigation.js'
 
-const source = readFileSync(new URL('./entities.js', import.meta.url), 'utf8')
+const source = readFileSync(new URL('./entities.js', import.meta.url), 'utf8').replace(/^import .*;$/m, '')
 
 test('post anchor loading waits until the application is ready', () => {
     let readyCallback
@@ -15,9 +16,12 @@ test('post anchor loading waits until the application is ready', () => {
 
     const sandbox = {
         URLSearchParams,
+        postIdFromHash,
+        scrollToSection,
         window: {
             location: { hash: '#post-123', search: '' },
             onEvent() {},
+            addEventListener() {},
             onReady: callback => { readyCallback = callback },
         },
         document: {
@@ -34,7 +38,7 @@ test('post anchor loading waits until the application is ready', () => {
     sandbox.axios = {
         get: url => {
             requestedUrl = url
-            return { then() {} }
+            return { then() { return this }, catch() { return this }, finally() {} }
         },
     }
     readyCallback()

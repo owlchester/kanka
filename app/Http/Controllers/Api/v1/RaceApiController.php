@@ -2,89 +2,37 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreRace as Request;
-use App\Http\Resources\RaceResource as Resource;
+use App\Http\Requests\StoreRace;
+use App\Http\Resources\RaceResource;
 use App\Models\Campaign;
-use App\Models\EntityType;
 use App\Models\Race;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class RaceApiController extends MiscApiController
 {
-    /**
-     * @return AnonymousResourceCollection
-     *
-     * @throws AuthorizationException
-     */
-    public function index(Campaign $campaign)
+    public function index(Campaign $campaign): AnonymousResourceCollection
     {
-        $this->authorize('access', $campaign);
-
-        return Resource::collection($campaign
-            ->races()
-            ->filter(request()->all())
-            ->withApi()
-            ->has('entity')
-            ->lastSync(request()->get('lastSync'))
-            ->orderBy('races.id')
-            ->paginate());
+        return $this->listModels($campaign, $campaign->races(), RaceResource::class);
     }
 
-    /**
-     * @return resource
-     */
-    public function show(Campaign $campaign, Race $race)
+    public function show(Campaign $campaign, Race $race): RaceResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $race->entity);
-
-        return new Resource($race);
+        return new RaceResource($this->viewModel($campaign, $race));
     }
 
-    /**
-     * @return resource
-     *
-     * @throws AuthorizationException
-     */
-    public function store(Request $request, Campaign $campaign)
+    public function store(StoreRace $request, Campaign $campaign): RaceResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', [EntityType::find(config('entities.ids.race')), $campaign]);
-
-        $data = $request->validated();
-        $data['campaign_id'] = $campaign->id;
-        $model = $this->createStandardModel($campaign, $data, config('entities.ids.race'));
-        $this->crudSave($model, $request->validated());
-
-        return new Resource($model);
+        return new RaceResource($this->storeModel($request, $campaign, config('entities.ids.race')));
     }
 
-    /**
-     * @return resource
-     */
-    public function update(Request $request, Campaign $campaign, Race $race)
+    public function update(StoreRace $request, Campaign $campaign, Race $race): RaceResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $race->entity);
-        $race->update($request->validated());
-        $this->crudSave($race, $request->validated());
-
-        return new Resource($race);
+        return new RaceResource($this->updateModel($request, $campaign, $race));
     }
 
-    /**
-     * @return JsonResponse
-     *
-     * @throws AuthorizationException
-     */
-    public function destroy(Campaign $campaign, Race $race)
+    public function destroy(Campaign $campaign, Race $race): JsonResponse
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $race->entity);
-        $race->entity->delete();
-
-        return response()->json(null, 204);
+        return $this->deleteModel($campaign, $race);
     }
 }

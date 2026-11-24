@@ -4,13 +4,13 @@ namespace App\Services\Layout;
 
 use App\Facades\Domain;
 use App\Facades\Identity;
-use App\Facades\Img;
-use App\Facades\ReleaseCache;
 use App\Facades\UserCache;
 use App\Models\AppRelease;
 use App\Models\Campaign;
 use App\Models\Pledge;
 use App\Notifications\Header;
+use App\Services\Caches\ReleaseCacheService;
+use App\Services\Images\Img;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -89,7 +89,7 @@ class NavigationService
         $data['urls'] = [
             'settings' => ['url' => route('settings.profile'), 'name' => __('header.user.settings')],
             'profile' => ['url' => route('users.profile', $this->user->id), 'name' => __('header.user.your-profile')],
-            'help' => ['url' => 'https://docs.kanka.io/en/latest', 'name' => __('crud.actions.help')],
+            'help' => ['url' => 'https://docs.kanka.io/en/latest', 'name' => __('footer.documentation')],
             'logout' => ['url' => route('logout'), 'name' => __('header.user.sign-out')],
             'subscription' => route('settings.subscription'),
         ];
@@ -113,9 +113,10 @@ class NavigationService
         $member = 0;
         foreach (UserCache::campaigns() as $campaign) {
             $data['member'][] = [
+                'id' => $campaign['id'] ?? null,
                 'name' => $campaign['name'],
                 'is_boosted' => $campaign['boosted'],
-                'image' => $campaign['image'] ? Img::crop(100, 96)->url($campaign['image']) : null,
+                'image' => $campaign['image'] ? Img::for($campaign['image'])->crop(100, 96)->url() : null,
                 'url' => $campaign['route'],
             ];
             $member++;
@@ -123,9 +124,10 @@ class NavigationService
 
         foreach (UserCache::follows() as $campaign) {
             $data['following'][] = [
+                'id' => $campaign['id'] ?? null,
                 'name' => $campaign['name'],
                 'is_boosted' => $campaign['boosted'],
-                'image' => $campaign['image'] ? Img::crop(100, 96)->url($campaign['image']) : null,
+                'image' => $campaign['image'] ? Img::for($campaign['image'])->crop(100, 96)->url() : null,
                 'url' => $campaign['route'],
             ];
         }
@@ -227,7 +229,7 @@ class NavigationService
 
     protected function releases(): array
     {
-        $releases = ReleaseCache::latest();
+        $releases = app(ReleaseCacheService::class)->latest();
         $unreadReleases = [];
         /** @var AppRelease $release */
         foreach ($releases as $release) {

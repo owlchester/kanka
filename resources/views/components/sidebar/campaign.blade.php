@@ -3,9 +3,17 @@
  * @var \App\Models\Campaign $campaign
  */
 ?>
-<aside class="main-sidebar main-sidebar-placeholder absolute z-840 h-auto min-h-full flex flex-col background-cover @can('member', $campaign)main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url('{{ Img::crop(240, 208)->url($campaign->image) }}')" @endif>
+<aside class="main-sidebar main-sidebar-placeholder z-840 flex flex-col transition-all duration-150 @can('member', $campaign)main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url('{{ Img::for($campaign->image)->crop(240, 208)->url() }}')" @endif>
+    <div class="flex shrink-0 items-center gap-2 px-3 py-2 md:hidden">
+        <button type="button" class="flex min-h-11 items-center gap-2 rounded-lg px-2" data-mobile-navigation="close">
+            <x-icon class="fa-regular fa-angle-left" />
+            {{ __('crud.actions.back') }}
+        </button>
+    </div>
 
     @include('layouts.sidebars._campaign')
+
+    @include('layouts.sidebars._actions')
 
     <section class="sidebar grow">
         <ul class="sidebar-menu overflow-hidden whitespace-no-wrap list-none m-0 p-0 flex flex-col gap-0.5">
@@ -82,4 +90,6 @@
             @endforeach
         </ul>
     </section>
+
+    @include('layouts.sidebars._user')
 </aside>

@@ -138,6 +138,7 @@ class ColumnDefinitionService
             'elements_count' => 'elements',
             'eras_count' => 'eras',
             'entities_count' => 'entities',
+            'participants_count' => 'participants',
         ];
 
         $needed = [];
@@ -150,6 +151,8 @@ class ColumnDefinitionService
                     $needed[$relation] = fn (Builder $query) => $query->where(fn (Builder $element) => $element
                         ->whereNull('entity_id')
                         ->orHas('entity'));
+                } elseif ($relation === 'participants' && (int) $entityType->id === (int) config('entities.ids.event')) {
+                    $needed[$relation] = fn (Builder $query) => $query->has('entity');
                 } else {
                     $needed[] = $relation;
                 }
@@ -441,6 +444,7 @@ class ColumnDefinitionService
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
             ['key' => 'date', 'type' => 'text', 'label' => __('events.fields.date'), 'sortable' => true],
             ['key' => 'calendar_date', 'type' => 'calendar_date', 'label' => __('crud.fields.calendar_date'), 'sortable' => true],
+            ['key' => 'participants_count', 'type' => 'count', 'label' => __('events.participants.title'), 'sortable' => true],
             ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
             ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],

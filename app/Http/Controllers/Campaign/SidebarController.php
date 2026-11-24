@@ -4,14 +4,16 @@ namespace App\Http\Controllers\Campaign;
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Campaigns\Boosted;
+use App\Http\Requests\Campaigns\SaveSidebarLayoutRequest;
 use App\Models\Campaign;
+use App\Services\Campaign\Sidebar\LayoutService;
 use App\Services\Campaign\Sidebar\SaveService;
 use App\Services\Campaign\Sidebar\SetupService;
 use Illuminate\Http\Request;
 
 class SidebarController extends Controller
 {
-    public function __construct(protected SetupService $service, protected SaveService $saveService)
+    public function __construct(protected SetupService $service, protected SaveService $saveService, protected LayoutService $layouts)
     {
         $this->middleware('auth');
         $this->middleware(Boosted::class, ['only' => ['save']]);
@@ -21,6 +23,46 @@ class SidebarController extends Controller
     {
         $this->authorize('update', $campaign);
 
+        $this->layouts->campaign($campaign);
+        $revision = $this->layouts->revision();
+        if ($this->layouts->enabled()) {
+            $this->authorize('admin', $campaign);
+            $target = request()->query('role', 'default');
+            abort_unless(is_string($target) && ($target === 'default' || (ctype_digit($target) && $campaign->roles()->whereKey($target)->exists())), 404);
+
+            $roles = $campaign->roles()->withCount('users')->get();
+            $customTargets = $this->layouts->customLayoutTargets();
+            $hasCustomLayout = $this->layouts->hasCustomLayout($target);
+            $selectedRole = $target === 'default' ? null : $roles->firstWhere('id', (int) $target);
+            $copySources = [];
+            foreach ($roles as $role) {
+                $roleKey = (string) $role->id;
+                if ($roleKey !== $target && in_array($roleKey, $customTargets, true)) {
+                    $copySources[] = [
+                        'id' => $roleKey,
+                        'label' => $role->name,
+                        'items' => $this->layouts->layout($roleKey)['items'],
+                    ];
+                }
+            }
+
+            return view('campaigns.sidebar.v2', [
+                'campaign' => $campaign,
+                'revision' => $revision,
+                'target' => $target,
+                'roles' => $roles,
+                'selectedRole' => $selectedRole,
+                'customTargets' => $customTargets,
+                'hasCustomLayout' => $hasCustomLayout,
+                'copySources' => $copySources,
+                'inaccessible' => $this->layouts->roleInaccessibleReasons($selectedRole),
+                'layout' => $this->layouts->layout($target),
+                'standard' => $this->layouts->standard(),
+                'default' => $this->layouts->layout(),
+                'catalog' => array_values($this->layouts->catalog()),
+            ]);
+        }
+
         $layout = $this->service->campaign($campaign)->withDisabled()->layout();
 
         return view(
@@ -28,8 +70,34 @@ class SidebarController extends Controller
             compact(
                 'campaign',
                 'layout',
+                'revision',
             )
         );
+    }
+
+    public function saveLayout(SaveSidebarLayoutRequest $request, Campaign $campaign)
+    {
+        if ($request->ajax() && ! $request->isJson()) {
+            return response()->json();
+        }
+
+        $data = $request->validated();
+        $this->layouts->campaign($campaign)->save($data, $request->user());
+
+        if ($request->header('X-Sidebar-Inline') === '1') {
+            $fresh = $campaign->fresh();
+            $this->layouts->campaign($fresh);
+
+            return response()->json([
+                'revision' => $this->layouts->revision(),
+                'hasCustomLayout' => $this->layouts->hasCustomLayout($data['target']),
+                'message' => __('campaigns/sidebar.success'),
+            ]);
+        }
+
+        return redirect()->route('campaign-sidebar', [
+            $campaign, 'role' => $data['target'],
+        ])->with('success', __('campaigns/sidebar.success'));
     }
 
     public function save(Request $request, Campaign $campaign)

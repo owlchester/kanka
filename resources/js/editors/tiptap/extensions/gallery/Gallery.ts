@@ -63,7 +63,8 @@ export const Gallery = Extension.create<GalleryOptions>({
                                 .focus()
                                 .setImage({
                                     src: response.data.src,
-                                    'data-uuid': response.data.uuid,
+                                    alt: response.data.name || null,
+                                    'data-gallery-id': String(response.data.uuid ?? response.data.id),
                                 })
                                 .run()
                         }

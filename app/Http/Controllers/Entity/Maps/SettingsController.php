@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Entity\Maps;
 
-use App\Facades\EntityPermission;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateMapSettings;
 use App\Http\Resources\Maps\Explore\MapResource;
@@ -22,10 +21,6 @@ class SettingsController extends Controller
         if (! $entity->isMap()) {
             abort(404);
         }
-        // See the comment in Entity\Maps\MarkerController::preview() - authorize() needs the
-        // permission service explicitly scoped to this campaign, otherwise it falls back to
-        // EntityPermission::loadAllPermissions()'s "no campaign set" admin bypass.
-        EntityPermission::campaign($campaign);
         $this->authorize('update', $entity);
 
         $map = $entity->child;

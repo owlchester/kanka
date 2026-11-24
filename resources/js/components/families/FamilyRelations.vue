@@ -20,9 +20,10 @@
 </template>
 
 <script>
-//import FamilyRelation from "./FamilyRelation.vue";
+import FamilyRelation from './FamilyRelation.vue'
 
 export default {
+    components: { FamilyRelation },
     props: {
         relations: undefined,
         entities: undefined,

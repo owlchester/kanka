@@ -105,6 +105,7 @@
 <script setup lang="ts">
 
 import {onMounted, ref} from "vue"
+import AttributesManagerMentionField from './MentionField.vue'
 
 const props = defineProps<{
     attribute: Object,

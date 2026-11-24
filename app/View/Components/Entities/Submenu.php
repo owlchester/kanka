@@ -18,6 +18,7 @@ class Submenu extends Component
         public Entity $entity,
         public Campaign $campaign,
         public ?string $active = null,
+        public bool $printing = false,
     ) {
         //
     }

@@ -106,7 +106,7 @@
         }
 
         @if ($marker->entity && $marker->icon == 4).marker-{{ $marker->id }} .marker-pin::after {
-            background-image: url('{{ \App\Facades\Avatar::entity($marker->entity)->fallback()->size(276)->thumbnail() }}');
+            background-image: url('{{ Avatar::for($marker->entity)->fallback()->size(276)->thumbnail() }}');
             @if (!empty($marker->pin_size))width: {{ $marker->pinSize(false) - 4 }}px;
             height: {{ $marker->pinSize(false) - 4 }}px;
             margin: 2px 0 0 -{{ ceil(($marker->pinSize(false) - 4) / 2) }}px;

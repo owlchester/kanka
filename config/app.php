@@ -3,41 +3,30 @@
 use App\Facades\AdCache;
 use App\Facades\ApiLog;
 use App\Facades\Attributes;
-use App\Facades\Avatar;
 use App\Facades\Breadcrumb;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Facades\Domain;
-use App\Facades\EntityCache;
-use App\Facades\EntityPermission;
-use App\Facades\EntitySetup;
 use App\Facades\FormCopy;
-use App\Facades\Img;
 use App\Facades\ImportIdMapper;
 use App\Facades\Limit;
 use App\Facades\Mentions;
 use App\Facades\UserCache;
 use App\Providers\AppServiceProvider;
-use App\Providers\AttributesServiceProvider;
-use App\Providers\AvatarServiceProvider;
-use App\Providers\BreadcrumbServiceProvider;
 use App\Providers\CampaignLocalizationServiceProvider;
-use App\Providers\DashboardServiceProvider;
 use App\Providers\DatagridRendererProvider;
 use App\Providers\DatalayerServiceProvider;
-use App\Providers\DomainServiceProvider;
 use App\Providers\EntitySetupServiceProvider;
 use App\Providers\EventServiceProvider;
 use App\Providers\ImgServiceProvider;
-use App\Providers\ImporterServiceProvider;
-use App\Providers\LimitServiceProvider;
-use App\Providers\Logs\ApiLogServiceProvider;
 use App\Providers\Logs\UserLoggerServiceProvider;
 use App\Providers\MentionsServiceProvider;
 use App\Providers\ModuleServiceProvider;
 use App\Providers\PermissionsServiceProvider;
 use App\Providers\RouteServiceProvider;
+use App\Services\Images\Avatar;
+use App\Services\Images\Img;
 use Illuminate\Auth\AuthServiceProvider;
 use Illuminate\Auth\Passwords\PasswordResetServiceProvider;
 use Illuminate\Broadcasting\BroadcastServiceProvider;
@@ -92,7 +81,6 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Validation\ValidationServiceProvider;
 use Illuminate\View\ViewServiceProvider;
-use Intervention\Image\Facades\Image;
 use Laravel\Passport\PassportServiceProvider;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\SocialiteServiceProvider;
@@ -331,27 +319,19 @@ return [
          */
         AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        AvatarServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
         EventServiceProvider::class,
         RouteServiceProvider::class,
         CampaignLocalizationServiceProvider::class,
         MentionsServiceProvider::class,
-        BreadcrumbServiceProvider::class,
         App\Providers\CacheServiceProvider::class,
         ImgServiceProvider::class,
-        AttributesServiceProvider::class,
-        DashboardServiceProvider::class,
         DatalayerServiceProvider::class,
         DatagridRendererProvider::class,
         PermissionsServiceProvider::class,
         EntitySetupServiceProvider::class,
         ModuleServiceProvider::class,
-        ApiLogServiceProvider::class,
         UserLoggerServiceProvider::class,
-        DomainServiceProvider::class,
-        LimitServiceProvider::class,
-        ImporterServiceProvider::class,
 
     ],
 
@@ -406,24 +386,20 @@ return [
         // Third party
         'Purify' => Purify::class,
         'Socialite' => Socialite::class,
-        'Image' => Image::class,
         'LaravelLocalization' => LaravelLocalization::class,
 
         // Kanka
         'Avatar' => Avatar::class,
         'CampaignLocalization' => CampaignLocalization::class,
-        'EntityPermission' => EntityPermission::class,
         'Mentions' => Mentions::class,
         'Breadcrumb' => Breadcrumb::class,
         'FormCopy' => FormCopy::class,
-        'EntityCache' => EntityCache::class,
         'CampaignCache' => CampaignCache::class,
         'AdCache' => AdCache::class,
         'UserCache' => UserCache::class,
         'Img' => Img::class,
         'Attributes' => Attributes::class,
         'Datagrid' => Datagrid::class,
-        'EntitySetup' => EntitySetup::class,
         'Google2FA' => Facade::class,
         'ApiLog' => ApiLog::class,
         'Domain' => Domain::class,

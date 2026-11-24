@@ -9,6 +9,7 @@
 
 @section('content')
     @include('partials.errors')
+    <x-entities.status-filter-warning :filters="$filterService->filters()" />
 
     @include('ads.top')
 
@@ -25,5 +26,4 @@
 @section('og')
     <meta property="og:description" content="{{ __('seo.entity-list', ['module' => $entityType->plural(), 'campaign' => $campaign->name]) }}" />
 @endsection
-
 

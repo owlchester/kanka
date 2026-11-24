@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\Sanitizable;
+use App\Observers\CampaignDashboardObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -20,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *
  * @method static Builder|self exclude(CampaignDashboard $campaignDashboard)
  */
+#[ObservedBy(CampaignDashboardObserver::class)]
 class CampaignDashboard extends Model
 {
     use HasCampaign;

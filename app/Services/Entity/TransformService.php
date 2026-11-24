@@ -6,17 +6,20 @@ use App\Facades\EntityLogger;
 use App\Models\CategoryStatus;
 use App\Models\Character;
 use App\Models\Entity;
+use App\Models\EntityType;
 use App\Models\Map;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
 use App\Models\Post;
 use App\Models\Quest;
 use App\Models\Timeline;
+use App\Services\CategoryStatusService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class TransformService
@@ -76,6 +79,18 @@ class TransformService
     }
 
     public function transform(): Entity
+    {
+        return DB::transaction(function (): Entity {
+            if ($this->entityType->isCustom()) {
+                app(CategoryStatusService::class)->authorizeCategory($this->entity->campaign, $this->entityType);
+                EntityType::whereKey($this->entityType->id)->lockForUpdate()->firstOrFail();
+            }
+
+            return $this->performTransform();
+        });
+    }
+
+    protected function performTransform(): Entity
     {
         // Custom to custom, just update the type_id
         if ($this->entity->entityType->isCustom() && $this->entityType->isCustom()) {
@@ -363,7 +378,7 @@ class TransformService
 
     protected function defaultStatusId(): ?int
     {
-        return CategoryStatus::where('category_id', $this->entityType->id)
+        return CategoryStatus::inCampaign($this->entity->campaign)->where('category_id', $this->entityType->id)
             ->where('is_default', true)
             ->value('id');
     }

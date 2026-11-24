@@ -4,7 +4,7 @@ namespace App\Services\Submenus;
 
 use App\Models\Ability;
 
-class AbilitySubmenu extends BaseSubmenu implements EntitySubmenu
+class AbilitySubmenu extends BaseSubmenu
 {
     public function extra(): array
     {

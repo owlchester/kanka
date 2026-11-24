@@ -19,12 +19,22 @@ use App\Enums\Widget;
 
 @section('og')
     <meta property="og:description" content="{{ $campaign->hasPreview() ? $campaign->preview() : __('seo.dashboard', ['campaign' => $campaign->name]) }}" />
-    @if ($campaign->image)<meta property="og:image" content="{{ Img::crop(50, 50)->url($campaign->image)  }}" />@endif
+    @if ($campaign->image)<meta property="og:image" content="{{ Img::for($campaign->image)->crop(50, 50)->url()  }}" />@endif
     <meta property="og:url" content="{{ route('dashboard', $campaign)  }}" />
 @endsection
 
 @section('content')
     <div class="max-w-7xl 2xl:mx-auto 2xl:min-w-7xl flex flex-col gap-4">
+        @if (\App\Services\TutorialService::eligibleForV4(auth()->user(), 'v4_dashboard_welcome'))
+            <div id="v4-dashboard-welcome">
+                <v4-walkthrough
+                    dismiss-url="{{ route('tutorials.dismiss', ['code' => 'v4_dashboard_welcome']) }}"
+                    :can-quick-create="{{ auth()->user()->can('member', $campaign) ? 'true' : 'false' }}"
+                    :texts='@json(__('tutorials/v4.dashboard'))'
+                ></v4-walkthrough>
+            </div>
+        @endif
+
         @if (empty($dashboard))
             @include('dashboard.widgets._campaign')
         @endif

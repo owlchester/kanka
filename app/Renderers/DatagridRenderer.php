@@ -2,7 +2,6 @@
 
 namespace App\Renderers;
 
-use App\Facades\Avatar;
 use App\Facades\Module;
 use App\Models\Bookmark;
 use App\Models\Entity;
@@ -10,6 +9,7 @@ use App\Models\Journal;
 use App\Models\Location;
 use App\Models\MiscModel;
 use App\Services\FilterService;
+use App\Services\Images\Avatar;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
@@ -436,11 +436,6 @@ class DatagridRenderer
             $type = $column['type'];
             if ($type == 'avatar') {
                 $who = ! empty($column['parent']) ? $model->{$column['parent']} : $model;
-                if ($who instanceof Entity) {
-                    Avatar::entity($who);
-                } else {
-                    Avatar::entity($who->entity);
-                }
                 $class = ! empty($column['parent']) ? $this->hidden : $class;
                 if (! empty($who)) {
                     $bookmarkId = isset($this->bookmark) ? $this->bookmark->id : null;
@@ -448,7 +443,7 @@ class DatagridRenderer
                     $route = $entity
                         ? $entity->url('show', $bookmarkId ? ['bookmark' => $bookmarkId] : [])
                         : $who->getLink($this->campaign);
-                    $content = '<a class="entity-image cover-background w-10 h-10" style="background-image: url(\'' . Avatar::size(40)->fallback()->thumbnail() .
+                    $content = '<a class="entity-image cover-background w-10 h-10" style="background-image: url(\'' . Avatar::for($entity)->size(40)->fallback()->thumbnail() .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
                 }
             } elseif ($type == 'location') {

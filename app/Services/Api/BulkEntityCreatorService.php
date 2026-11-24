@@ -4,6 +4,7 @@ namespace App\Services\Api;
 
 use App\Models\Entity;
 use App\Models\MiscModel;
+use App\Services\Entity\CreatorPermissionService;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\StandardEntityCreationService;
 use App\Traits\CampaignAware;
@@ -56,6 +57,10 @@ class BulkEntityCreatorService
         $this->entity->type_id = $this->entityType->id;
         $this->entity->campaign_id = $this->campaign->id;
         $this->entity->save();
+        app(CreatorPermissionService::class)
+            ->entity($this->entity)
+            ->user(auth()->user())
+            ->grant();
         $this->entitySaveService->campaign($this->campaign)->entity($this->entity)->save($this->data);
 
         return $this->entity;

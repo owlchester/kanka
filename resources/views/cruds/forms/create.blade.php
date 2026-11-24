@@ -37,7 +37,7 @@
         </div>
     @endif
     <x-form
-        :action="[$name . '.store', $campaign]"
+        :action="['entities.store', $campaign, $entityType]"
         files
         unsaved
         class="entity-form"
@@ -47,6 +47,10 @@
         <x-grid type="1/1">
             @include('cruds.forms._errors')
 
+            @if (auth()->user()->entry_form_layout === 'modern')
+                @include('entities.forms._workspace', ['creating' => true])
+            @else
+            @include('entities.forms._v4-layout-prompt')
             <div class="nav-tabs-custom bg-base-100 p-4 rounded-xl flex flex-col gap-6 relative">
                 <div class="flex gap-2 items-center justify-between sticky z-10 top-12 bg-base-100">
                     <div class="overflow-x-auto">
@@ -129,6 +133,7 @@
                     @endif
                 </div>
             </div>
+            @endif
         </x-grid>
     </x-form>
 @endsection

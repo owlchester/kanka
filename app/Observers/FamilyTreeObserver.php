@@ -9,6 +9,8 @@ class FamilyTreeObserver
 {
     public function saved(FamilyTree $familyTree)
     {
-        EntityLogger::entity($familyTree->family->entity)->updatedFamilyTree();
+        if ($familyTree->family?->entity && auth()->check()) {
+            EntityLogger::entity($familyTree->family->entity)->updatedFamilyTree();
+        }
     }
 }

@@ -11,6 +11,10 @@ class LogRole
 {
     public function handle(RoleCreated|RoleUpdated|RoleDeleted $event): void
     {
+        if (! $event->user) {
+            return;
+        }
+
         $action = match (true) {
             $event instanceof RoleCreated => 'created',
             $event instanceof RoleUpdated => 'updated',

@@ -13,6 +13,10 @@ class TimelineEraObserver
 
     public function creating(TimelineEra $timelineEra)
     {
+        if (! empty($timelineEra->position)) {
+            return;
+        }
+
         // Give it the last position
         $lastGroup = $timelineEra->timeline->eras()->max('position');
         if ($lastGroup) {

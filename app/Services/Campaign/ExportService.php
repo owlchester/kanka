@@ -3,10 +3,8 @@
 namespace App\Services\Campaign;
 
 use App\Enums\CampaignExportStatus;
-use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
-use App\Facades\Module;
 use App\Models\CampaignExport;
 use App\Models\Character;
 use App\Models\Entity;
@@ -19,7 +17,6 @@ use App\Notifications\Header;
 use App\Services\Entity\MarkdownExportService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use Avatar;
 use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
@@ -163,7 +160,14 @@ class ExportService
             return $this;
         }
 
-        $settings = $this->campaign->entityTypes->where('is_special', 1)->select('id', 'code', 'is_enabled', 'singular', 'plural', 'icon')->toArray();
+        $types = $this->campaign->entityTypes()->where('is_special', 1)->with('statuses')->get();
+        $moduleBookmarks = $this->campaign->bookmarks()->whereIn('entity_type_id', $types->modelKeys())
+            ->whereNull('filters')->whereNull('entity_id')->whereNull('dashboard_id')->whereNull('random_entity_type')
+            ->selectRaw('entity_type_id, MIN(id) AS id')->groupBy('entity_type_id')->pluck('id', 'entity_type_id');
+        $settings = $types->map(fn ($type) => $type->only(['id', 'code', 'is_enabled', 'singular', 'plural', 'icon']) + [
+            'bookmark_id' => $moduleBookmarks->get($type->id),
+            'statuses' => $type->statuses->map(fn ($status) => $status->only(['id', 'key', 'label', 'icon', 'sort_order', 'is_default']))->values()->all(),
+        ])->values()->all();
         $this->archive->addFromString('settings/custom-modules.json', json_encode($settings));
         $this->files++;
 
@@ -182,13 +186,9 @@ class ExportService
             Str::slug($this->campaign->name) . '_' .
             date('Ymd_His') . '.zip';
         Log::debug('Campaign export', ['action' => 'preparing', 'exportPath' => $this->exportPath, 'file' => $this->file]);
-        CampaignCache::campaign($this->campaign);
         if ($this->isMarkdown) {
-            CampaignCache::user($this->user);
             Mentions::campaign($this->campaign);
-            Avatar::campaign($this->campaign);
             CampaignLocalization::forceCampaign($this->campaign);
-            Module::campaign($this->campaign);
             $this->markdown->user($this->user);
         }
         $this->path = $saveFolder . $this->file;
@@ -242,7 +242,9 @@ class ExportService
         if ($this->isMarkdown) {
             $this->archive->addFromString('campaign.md', $this->markdown->campaign($this->campaign)->campaignMarkdown());
         } else {
-            $this->archive->addFromString('campaign.json', $this->campaign->makeHidden($hidden)->toJson());
+            $campaign = $this->campaign->makeHidden($hidden)->toArray();
+            $campaign['ui_settings'] = $this->portableSidebar($campaign['ui_settings'] ?? []);
+            $this->archive->addFromString('campaign.json', json_encode($campaign));
         }
 
         $this->files++;
@@ -258,6 +260,33 @@ class ExportService
         $this->progress();
 
         return $this;
+    }
+
+    protected function portableSidebar(array $settings): array
+    {
+        if (! is_array($settings['sidebar_v2']['layouts'] ?? null)) {
+            return $settings;
+        }
+        $roles = $this->campaign->roles()->get()->keyBy('id');
+        foreach ($settings['sidebar_v2']['layouts'] as $target => &$layout) {
+            if ($target === 'default' || ! ctype_digit((string) $target)) {
+                continue;
+            }
+            $role = $roles->get($target);
+            if (! $role) {
+                unset($settings['sidebar_v2']['layouts'][$target]);
+
+                continue;
+            }
+            $layout['target_role'] = [
+                'name' => $role->name,
+                'is_admin' => $role->is_admin,
+                'is_public' => $role->is_public,
+            ];
+        }
+        unset($layout);
+
+        return $settings;
     }
 
     protected function entities(): self

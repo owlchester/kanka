@@ -22,7 +22,7 @@ trait ThemeCache
             $theme = '';
             // @phpstan-ignore-next-line
             $plugins = CampaignPlugin::leftJoin('plugins as p', 'p.id', 'plugin_id')
-                ->where('campaign_id', $this->campaign->id)
+                ->where('campaign_id', $this->activeCampaign()->id)
                 ->where('p.type_id', 1)
                 ->where('is_active', true)
                 ->with('version')
@@ -58,6 +58,6 @@ trait ThemeCache
 
     protected function themeKey(): string
     {
-        return 'campaign_' . $this->campaign->id . '_theme';
+        return 'campaign_' . $this->activeCampaign()->id . '_theme';
     }
 }

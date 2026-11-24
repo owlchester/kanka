@@ -1,11 +1,10 @@
-<div class="flex gap-1 items-start" id="entities-explorer">
-    <entities-explorer
-        mode="{{ $mode }}"
-        api="{{ route('entities.index-api', $apiParams) }}"
-        module="{{ $title }}"
-        csrf="{{ csrf_token() }}"
-    ></entities-explorer>
-</div>
+<div
+    class="flex gap-1 items-start"
+    id="entities-explorer"
+    data-mode="{{ $mode }}"
+    data-api="{{ route('entities.index-api', $apiParams) }}"
+    data-module="{{ $title }}"
+></div>
 
 @section('scripts')
     @parent

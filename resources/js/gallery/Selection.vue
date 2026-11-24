@@ -284,7 +284,7 @@ import axios from "axios";
 import Browser from "./Browser.vue";
 import { createUploadRequest } from "./uploadRequest.js";
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
     file: string;
     url: string;
     accepts: string;
@@ -298,10 +298,15 @@ const props = defineProps<{
     premium: string;
     canUpload: string;
     canBrowse: string;
-    canFocus: string;
-    focusSave: string;
-    focusData: string;
-}>();
+    layout?: "cover";
+    canFocus?: string;
+    focusSave?: string;
+    focusData?: string;
+}>(), {
+    canFocus: "false",
+    focusSave: "",
+    focusData: "",
+});
 
 const loading = ref(true);
 const downloading = ref(false);
@@ -363,7 +368,8 @@ const zoneClass = () => {
     // justify-end pushes content (progress bar, image overlay) to the bottom;
     // justify-center vertically centers the empty/drag icon
     let css =
-        "relative rounded-xl overflow-hidden cursor-pointer flex flex-col items-center transition-all duration-150 bg-base-100 shadow p-0.5 ";
+        "relative rounded-xl overflow-hidden cursor-pointer flex flex-col items-center transition-all duration-150 bg-base-100 p-0.5 ";
+    css += props.layout === "cover" ? "w-full border border-base-300 " : "shadow ";
     css += isUploading || hasImg ? "justify-end " : "justify-center ";
     if (dragging.value) {
         css += "border border-dashed border-accent";
@@ -372,6 +378,9 @@ const zoneClass = () => {
 };
 
 const previewClass = () => {
+    if (props.layout === "cover") {
+        return "bg-cover bg-base-200 rounded-xl bg-center w-full h-32 md:h-40 flex items-center justify-center";
+    }
     return "bg-cover bg-base-200 rounded-xl bg-center  w-20 h-20 flex items-center justify-center ";
 };
 
@@ -750,7 +759,7 @@ const saveFocusPoint = async () => {
             focus_x: focusCoordinates.value?.x ?? null,
             focus_y: focusCoordinates.value?.y ?? null,
         });
-        if (response.data.thumbnail) {
+        if (response.data.thumbnail && props.layout !== "cover") {
             currentThumbnail.value = response.data.thumbnail;
         }
         window.showToast(response.data.toast);

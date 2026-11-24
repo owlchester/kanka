@@ -2,16 +2,12 @@
 
 namespace App\Observers;
 
-use App\Enums\Permission;
 use App\Enums\WebhookAction;
 use App\Events\Entities\EntityCreationCompleted;
 use App\Events\Entities\EntityRestored;
 use App\Events\Maps\Updated as MapUpdated;
 use App\Facades\Images;
-use App\Facades\Permissions;
-use App\Jobs\EntityUpdatedJob;
 use App\Jobs\EntityWebhookJob;
-use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\Image;
 use App\Models\Map;
@@ -21,32 +17,9 @@ class EntityObserver
 {
     public function created(Entity $entity)
     {
-        // If the user has created a new entity but doesn't have the permission to read or edit it,
-        // automatically create said permission.
-        if (! auth()->user()->can('view', $entity)) {
-            $this->grant($entity, Permission::View->value);
-        }
-        if (! auth()->user()->can('update', $entity)) {
-            $this->grant($entity, Permission::Update->value);
-        }
         if (! $entity->hasChild() || $entity->entity_id !== null) {
             EntityCreationCompleted::dispatch($entity, auth()->user());
         }
-    }
-
-    protected function grant(Entity $entity, int $action): CampaignPermission
-    {
-        $permission = new CampaignPermission;
-        $permission->entity_id = $entity->id;
-        $permission->entity_type_id = $entity->type_id;
-        $permission->campaign_id = $entity->campaign_id;
-        $permission->user_id = auth()->user()->id;
-        $permission->action = $action;
-        $permission->access = true;
-        $permission->save();
-        Permissions::grant($entity);
-
-        return $permission;
     }
 
     protected function maybeTriggerTiling(Entity $entity): void
@@ -93,9 +66,7 @@ class EntityObserver
             MapUpdated::dispatch($map);
         }
 
-        EntityUpdatedJob::dispatch($entity)->afterCommit();
-
-        if ($entity->campaign->premium()) {
+        if ($entity->campaign->premium() && auth()->check()) {
             EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED->value)->afterCommit();
         }
     }
@@ -105,7 +76,7 @@ class EntityObserver
         // When an entity is soft-deleted, we just want some webhooks to trigger,
         // not actually delete the entity and its image.
         if (! $entity->isForceDeleting()) {
-            if ($entity->campaign->premium()) {
+            if ($entity->campaign->premium() && auth()->check()) {
                 EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::DELETED->value)->afterCommit();
             }
 

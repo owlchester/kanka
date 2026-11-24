@@ -12,6 +12,15 @@ it('POSTS an invalid map layer form')
     ->postJson('/api/1.0/campaigns/1/maps/1/map_layers', [])
     ->assertStatus(422);
 
+it('requires an image when POSTing a map layer', function () {
+    $this->asUser()->withCampaign()->withMaps();
+
+    $response = $this->postJson('/api/1.0/campaigns/1/maps/1/map_layers', ['name' => 'Layer']);
+
+    expect($response->status())->toBe(422);
+    expect($response->json('fields'))->toHaveKey('image_uuid');
+});
+
 it('POSTS a new map layer')
     ->asUser()
     ->withCampaign()
@@ -29,6 +38,29 @@ it('POSTS a new map layer')
             'map_id',
         ],
     ]);
+
+it('POSTS a map layer owned by the URL map without requiring body map_id', function () {
+    $this->asUser()->withCampaign()->withImages()->withMaps();
+
+    $map = Map::findOrFail(1);
+    $response = $this->postJson('/api/1.0/campaigns/1/maps/1/map_layers', [
+        'name' => fake()->name(),
+        'image_uuid' => '16598f1b-7d93-36d9-bea5-212bfa1e354b',
+    ])->assertCreated();
+
+    expect($map->layers()->findOrFail($response->json('data.id')))->not->toBeNull();
+});
+
+it('ignores a conflicting body map_id when creating a map layer', function () {
+    $this->asUser()->withCampaign()->withImages()->withMaps();
+    $response = $this->postJson('/api/1.0/campaigns/1/maps/1/map_layers', [
+        'name' => fake()->name(),
+        'image_uuid' => '16598f1b-7d93-36d9-bea5-212bfa1e354b',
+        'map_id' => 999,
+    ])->assertCreated();
+
+    expect($response->json('data.map_id'))->toBe(1);
+});
 
 it('GETS all maps layers')
     ->asUser()
@@ -70,6 +102,44 @@ it('UPDATES a valid map layer')
     ->putJson('/api/1.0/campaigns/1/maps/1/map_layers/1', ['name' => 'Bob'])
     ->assertStatus(200)
     ->assertJsonFragment(['name' => 'Bob']);
+
+it('does not allow updating a map layer parent through the request body', function () {
+    $this->asUser()->withCampaign()->withMaps()->withMapLayers();
+    $layer = MapLayer::findOrFail(1);
+
+    $this->putJson('/api/1.0/campaigns/1/maps/1/map_layers/1', [
+        'name' => 'Updated',
+        'map_id' => 999,
+    ])->assertOk();
+
+    expect($layer->fresh()->map_id)->toBe(1);
+});
+
+it('does not expose a layer through a different map route', function (string $method) {
+    $this->asUser()->withCampaign()->withMaps()->withMapLayers();
+
+    $this->{$method}('/api/1.0/campaigns/1/maps/2/map_layers/1')
+        ->assertNotFound();
+})->with([
+    'show' => ['getJson'],
+    'update' => ['putJson'],
+    'delete' => ['deleteJson'],
+]);
+
+it('allows updating the gallery image of a legacy image_path layer', function () {
+    $this->asUser()->withCampaign()->withMaps();
+    $image = Image::factory()->create(['campaign_id' => 1]);
+    $layer = MapLayer::factory()->create(['map_id' => 1, 'image_uuid' => null]);
+    $layer->image_path = 'legacy/path.png';
+    $layer->saveQuietly();
+
+    $this->putJson("/api/1.0/campaigns/1/maps/1/map_layers/{$layer->id}", [
+        'name' => 'Legacy layer',
+        'image_uuid' => $image->id,
+    ])->assertOk();
+
+    expect($layer->fresh()->image_uuid)->toBe($image->id);
+});
 
 it('DELETES a map layer')
     ->asUser()

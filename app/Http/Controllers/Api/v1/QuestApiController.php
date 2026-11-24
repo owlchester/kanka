@@ -2,89 +2,37 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreQuest as Request;
-use App\Http\Resources\QuestResource as Resource;
+use App\Http\Requests\StoreQuest;
+use App\Http\Resources\QuestResource;
 use App\Models\Campaign;
-use App\Models\EntityType;
 use App\Models\Quest;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class QuestApiController extends MiscApiController
 {
-    /**
-     * @return AnonymousResourceCollection
-     *
-     * @throws AuthorizationException
-     */
-    public function index(Campaign $campaign)
+    public function index(Campaign $campaign): AnonymousResourceCollection
     {
-        $this->authorize('access', $campaign);
-
-        return Resource::collection($campaign
-            ->quests()
-            ->filter(request()->all())
-            ->withApi()
-            ->lastSync(request()->get('lastSync'))
-            ->orderBy('quests.id')
-            ->paginate());
+        return $this->listModels($campaign, $campaign->quests(), QuestResource::class);
     }
 
-    /**
-     * @return resource
-     */
-    public function show(Campaign $campaign, Quest $quest)
+    public function show(Campaign $campaign, Quest $quest): QuestResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $quest->entity);
-
-        return new Resource($quest);
+        return new QuestResource($this->viewModel($campaign, $quest));
     }
 
-    /**
-     * @return resource
-     *
-     * @throws AuthorizationException
-     */
-    public function store(Request $request, Campaign $campaign)
+    public function store(StoreQuest $request, Campaign $campaign): QuestResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', [EntityType::find(config('entities.ids.quest')), $campaign]);
-
-        $data = $request->validated();
-        $data['campaign_id'] = $campaign->id;
-        /** @var Quest $model */
-        $model = $this->createStandardModel($campaign, $data, config('entities.ids.quest'));
-        $this->crudSave($model, $request->validated());
-
-        return new Resource($model);
+        return new QuestResource($this->storeModel($request, $campaign, config('entities.ids.quest')));
     }
 
-    /**
-     * @return resource
-     */
-    public function update(Request $request, Campaign $campaign, Quest $quest)
+    public function update(StoreQuest $request, Campaign $campaign, Quest $quest): QuestResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $quest->entity);
-        $quest->update($request->validated());
-        $this->crudSave($quest, $request->validated());
-
-        return new Resource($quest);
+        return new QuestResource($this->updateModel($request, $campaign, $quest));
     }
 
-    /**
-     * @return JsonResponse
-     *
-     * @throws AuthorizationException
-     */
-    public function destroy(Campaign $campaign, Quest $quest)
+    public function destroy(Campaign $campaign, Quest $quest): JsonResponse
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $quest->entity);
-        $quest->entity->delete();
-
-        return response()->json(null, 204);
+        return $this->deleteModel($campaign, $quest);
     }
 }

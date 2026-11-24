@@ -5,11 +5,11 @@
      */
 @endphp
 @if($user->subscribedToPrice($tier->monthlyPlans(), 'kanka'))
-    <a class="btn2 btn-block disabled">
+    <a class="btn2 btn-block disabled price-monthly">
         {{ __('tiers.current') }}
     </a>
 @elseif ($user->subscribedToPrice($tier->plans(), 'kanka'))
-    <a class="btn2 btn-block disabled">
+    <a class="btn2 btn-block disabled price-monthly">
         {{ __('settings.subscription.subscription.actions.downgrading') }}
     </a>
 @else

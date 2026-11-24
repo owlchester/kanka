@@ -128,10 +128,6 @@ return [
             'role'          => 'Rola',
             'roles'         => 'Role',
         ],
-        'impersonating'         => [
-            'message'   => 'Widzisz i używasz :campaign jak :name. Część funkcji nie jest dostępna, ale reszta wygląda jak z perspektywytej osoby.',
-            'title'     => 'Podszywasz się pod :name',
-        ],
         'invite'                => [
             'description'   => 'Możesz włączać znajomych do udziału w kampanii przekazując im link z zaproszeniem. Po zaakceptowaniu, zostaną dodani do kampanii w przydzielonej roli. Możesz też zapraszać graczy mailem.',
             'more'          => 'Możesz dodawać nowe role na stronie: :link.',

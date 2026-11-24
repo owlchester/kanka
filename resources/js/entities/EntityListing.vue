@@ -22,9 +22,45 @@
             </div>
         </div>
     </div>
-    <div class="flex flex-col gap-4 w-full" v-else ref="listingRef">
+    <div class="entity-listing flex flex-col gap-4 w-full" :class="bulkActions.selecting.value ? 'max-md:pb-28' : ''" v-else ref="listingRef">
+        <div class="flex flex-col gap-4 md:hidden">
+            <div class="flex items-center justify-between gap-3">
+                <div class="flex min-w-0 items-baseline gap-2">
+                    <h1 class="text-2xl category-title truncate" v-html="props.module"></h1>
+                    <span v-if="entityApi.entitiesData.value?.meta.total !== undefined" class="text-sm text-neutral-content">{{ entityApi.entitiesData.value.meta.total }}</span>
+                </div>
+                <div v-if="!bulkActions.selecting.value" class="flex shrink-0 items-center gap-1">
+                    <a v-if="hasPermissions() && permissions.create" :href="urls.create" class="btn2 btn-primary btn-sm gap-2 px-3">
+                        <i class="fa-regular fa-plus" aria-hidden="true"></i>
+                        <span>{{ i18n.add }}</span>
+                    </a>
+                    <button type="button" class="flex size-11 items-center justify-center rounded-xl text-neutral-content hover:bg-base-200" :aria-label="i18n.actions" @click="mobilePanel = 'options'">
+                        <i class="fa-regular fa-ellipsis-v" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div v-if="!bulkActions.selecting.value" class="flex items-center gap-2">
+                <form class="entity-list-search flex min-w-0 flex-1 items-center gap-2 rounded-xl border border-base-300 bg-base-100 px-3 focus-within:outline-2 focus-within:outline-primary/30" role="search" @submit.prevent="applyNameFilter">
+                    <i class="fa-regular fa-magnifying-glass pointer-events-none shrink-0 text-sm text-neutral-content" aria-hidden="true"></i>
+                    <input v-model="nameFilter" type="search" class="min-h-11 min-w-0 w-full flex-1 appearance-none border-0! bg-transparent! p-0! outline-none!" :placeholder="i18n.findInList" :aria-label="i18n.findInList" @search="applyNameFilter" />
+                </form>
+                <button type="button" class="flex min-h-11 shrink-0 items-center gap-2 rounded-xl border border-base-300 bg-base-100 px-3 text-xs font-medium" :class="filters > 0 ? 'text-primary' : ''" @click="openFilters">
+                    <i class="fa-regular fa-sliders" aria-hidden="true"></i>
+                    <span>{{ i18n.filterSort }}</span>
+                    <span v-if="filters > 0" class="rounded-full bg-primary px-1.5 text-primary-content">{{ filters }}</span>
+                </button>
+            </div>
+            <div v-if="filters > 0 && !bulkActions.selecting.value" class="flex flex-wrap items-center gap-2">
+                <button type="button" class="flex min-h-11 items-center gap-2 rounded-xl bg-base-200 px-3 text-xs text-neutral-content" @click="clearFilters">
+                    <span>{{ i18n.clearFilters }}</span><i class="fa-regular fa-times" aria-hidden="true"></i>
+                </button>
+                <button v-if="bookmarkable" type="button" class="flex min-h-11 items-center gap-2 px-3 text-xs text-link" @click="bookmark">
+                    <i class="fa-regular fa-bookmark" aria-hidden="true"></i><span>{{ i18n.bookmark }}</span>
+                </button>
+            </div>
+        </div>
         <!-- Toolbar -->
-        <div class="flex gap-2 justify-between items-center flex-wrap">
+        <div class="entity-listing-toolbar gap-2 justify-between items-center flex-wrap" :class="bulkActions.selecting.value ? 'flex max-md:fixed max-md:inset-x-0 max-md:bottom-[var(--mobile-navigation-height)] max-md:z-850 max-md:border-t max-md:border-base-300 max-md:bg-base-100 max-md:p-3' : 'hidden md:flex'">
             <!-- Left: title + filters -->
             <div
                 class="flex gap-2 items-center flex-wrap"
@@ -44,7 +80,7 @@
                     @click="openFilters"
                 >
                     <i class="fa-regular fa-filter" aria-hidden="true"></i>
-                    <span class="hidden sm:inline" v-html="i18n.filters"></span>
+                    <span class="hidden lg:inline" v-html="i18n.filters"></span>
                 </button>
 
                 <!-- Filter pill: active filters -->
@@ -55,7 +91,7 @@
                     <button class="btn2 btn-sm join-item" @click="openFilters">
                         <i class="fa-regular fa-filter" aria-hidden="true"></i>
                         <span
-                            class="hidden sm:inline"
+                            class="hidden lg:inline"
                             v-html="i18n.filters"
                         ></span>
                         <span
@@ -111,10 +147,10 @@
                         !criteriaActive &&
                         !orderingComposable.ordering.value
                     "
-                    class="flex items-center rounded-xl bg-base-200 overflow-hidden p-0.5 gap-0.5"
+                    class="hidden lg:flex items-center rounded-xl bg-base-200 overflow-hidden p-0.5 gap-0.5"
                 >
                     <button
-                        @click="nestingComposable.switchMode()"
+                        @click="nestingComposable.selectMode(true)"
                         class="flex items-center justify-center rounded-lg px-2 py-2 text-sm transition-all"
                         :class="
                             nestingComposable.nested.value
@@ -129,7 +165,7 @@
                         ></i>
                     </button>
                     <button
-                        @click="nestingComposable.switchMode()"
+                        @click="nestingComposable.selectMode(false)"
                         class="flex items-center justify-center rounded-lg px-2 py-2 text-sm transition-all"
                         :class="
                             !nestingComposable.nested.value
@@ -151,13 +187,10 @@
                         entityType.has_table &&
                         !orderingComposable.ordering.value
                     "
-                    class="flex items-center rounded-xl bg-base-200 overflow-hidden p-0.5 gap-0.5"
+                    class="hidden lg:flex items-center rounded-xl bg-base-200 overflow-hidden p-0.5 gap-0.5"
                 >
                     <button
-                        @click="
-                            !layoutComposable.isGrid() &&
-                            layoutComposable.switchLayout()
-                        "
+                        @click="layoutComposable.selectLayout(true)"
                         class="flex items-center justify-center rounded-lg px-2 py-2 text-sm transition-all"
                         :class="
                             layoutComposable.isGrid()
@@ -169,10 +202,7 @@
                         <i class="fa-regular fa-grid-2" aria-hidden="true"></i>
                     </button>
                     <button
-                        @click="
-                            layoutComposable.isGrid() &&
-                            layoutComposable.switchLayout()
-                        "
+                        @click="layoutComposable.selectLayout(false)"
                         class="flex items-center justify-center rounded-lg px-2 py-2 text-sm transition-all"
                         :class="
                             !layoutComposable.isGrid()
@@ -194,23 +224,24 @@
                     >
                         <i class="fa-regular fa-gear" aria-hidden="true"></i>
                         <span
-                            class="hidden sm:inline"
+                            class="hidden lg:inline"
                             v-html="i18n.display"
                         ></span>
                     </button>
                 </div>
 
-                <!-- Select button (hidden on mobile) -->
+                <!-- Keep bulk selection discoverable on touch devices; long-press remains a shortcut. -->
                 <button
                     v-if="hasPermissions()"
                     @click="bulkActions.toggleSelecting()"
-                    class="btn2 hidden btn-sm sm:flex"
+                    class="btn2 btn-sm"
+                    :aria-label="i18n.select"
                 >
                     <i
                         class="fa-regular fa-check-square"
                         aria-hidden="true"
                     ></i>
-                    <span class="hidden sm:inline" v-html="i18n.select"></span>
+                    <span class="hidden lg:inline" v-html="i18n.select"></span>
                 </button>
 
                 <!-- Create + template caret -->
@@ -221,7 +252,7 @@
                     >
                         <i class="fa-regular fa-plus" aria-hidden="true"></i>
                         <span
-                            class="hidden md:inline"
+                            class="hidden lg:inline"
                             v-html="entityType.singular"
                         ></span>
                     </a>
@@ -244,16 +275,17 @@
             </div>
 
             <!-- Bulk action bar (selecting mode) -->
-            <div class="flex gap-2 items-center flex-wrap w-full" v-else>
+            <div class="flex gap-2 max-md:gap-2 items-center flex-wrap w-full" v-else>
                 <span
-                    class="rounded-full bg-primary text-primary-content px-3 py-1 text-xs font-bold"
+                    aria-live="polite"
+                    class="rounded-full bg-primary text-primary-content px-3 max-md:px-2 py-1 text-xs font-bold"
                 >
                     {{ bulkActions.selectedEntityIds().length }}
-                    {{ i18n.selected }}
+                    <span class="sr-only md:not-sr-only">{{ i18n.selected }}</span>
                 </span>
                 <button
                     @click="bulkActions.toggleAll()"
-                    class="btn2 btn-sm"
+                    class="btn2 btn-outline btn-sm"
                     v-html="i18n.selectAll"
                 ></button>
                 <div class="flex-1"></div>
@@ -264,8 +296,9 @@
                         @click="bulkActions.bulkDialog(urls.batch, actionsBtn)"
                     >
                         <i class="fa-regular fa-pencil" aria-hidden="true"></i>
+                        <span class="md:hidden" v-html="i18n.edit"></span>
                         <span
-                            class="hidden md:inline"
+                            class="hidden lg:inline"
                             v-html="i18n.bulkEdit"
                         ></span>
                     </button>
@@ -273,7 +306,7 @@
                         <button
                             ref="actionsBtn"
                             type="button"
-                            class="btn2 btn-primary btn-sm join-item"
+                            class="btn2 btn-primary btn-sm join-item max-md:min-w-11"
                             aria-expanded="false"
                             aria-label="More bulk actions"
                             aria-haspopup="menu"
@@ -293,7 +326,7 @@
                     >
                         <i class="fa-regular fa-print" aria-hidden="true"></i>
                         <span
-                            class="hidden md:inline"
+                            class="hidden lg:inline"
                             v-html="i18n.bulkPrint"
                         ></span>
                     </button>
@@ -301,7 +334,7 @@
                         <button
                             ref="actionsBtn"
                             type="button"
-                            class="btn2 btn-primary join-item"
+                            class="btn2 btn-primary join-item max-md:min-w-11"
                             aria-expanded="false"
                             aria-label="More bulk actions"
                             aria-haspopup="menu"
@@ -315,13 +348,37 @@
                 </div>
                 <button
                     @click="bulkActions.toggleSelecting()"
-                    class="btn2 btn-ghost btn-sm"
+                    class="btn2 btn-outline btn-sm max-md:size-11! max-md:p-0!"
+                    :aria-label="i18n.done"
                 >
                     <i class="fa-regular fa-times" aria-hidden="true"></i>
-                    <span v-html="i18n.done"></span>
+                    <span class="hidden md:inline" v-html="i18n.done"></span>
                 </button>
             </div>
         </div>
+
+        <MobileSheet :model-value="mobilePanel !== null" :title="mobilePanelTitle" :close-label="i18n.close" @update:model-value="value => { if (!value) mobilePanel = null }">
+            <div v-if="mobilePanel === 'options'" class="flex flex-col gap-1">
+                <button v-if="hasPermissions()" type="button" class="flex min-h-12 items-center gap-3 rounded-xl px-3 text-left hover:bg-base-200" @click="startMobileSelecting">
+                    <i class="fa-regular fa-check-square text-neutral-content" aria-hidden="true"></i><span>{{ i18n.select }}</span>
+                </button>
+                <button type="button" class="flex min-h-12 items-center gap-3 rounded-xl px-3 text-left hover:bg-base-200" @click="mobilePanel = 'display'">
+                    <i class="fa-regular fa-gear text-neutral-content" aria-hidden="true"></i><span>{{ i18n.listSettings }}</span>
+                </button>
+                <button v-if="permissions?.create && permissions?.template" type="button" class="flex min-h-12 items-center gap-3 rounded-xl px-3 text-left hover:bg-base-200" @click="mobilePanel = 'templates'">
+                    <i class="fa-regular fa-star text-neutral-content" aria-hidden="true"></i><span>{{ i18n.fromTemplate }}</span>
+                </button>
+            </div>
+            <MobileListSettings v-else-if="mobilePanel === 'display'" :entity-type="entityType" :criteria-active="criteriaActive" :i18n="i18n" :ordering="orderingComposable" :nesting="nestingComposable" :layout="layoutComposable" :columns="columnsComposable" :per-page="perPageComposable" :toggleable-columns="toggleableColumns" @nest="nestingComposable.selectMode" @layout="layoutComposable.selectLayout" @per-page="handleSelectPerPage" />
+            <div v-else-if="mobilePanel === 'templates'" class="flex flex-col gap-1">
+                <a v-for="template in templates" :key="template.id" :href="template.url" class="flex min-h-12 items-center gap-3 rounded-xl px-3 hover:bg-base-200">
+                    <i class="fa-regular fa-star text-neutral-content" aria-hidden="true"></i><span v-html="template.name"></span>
+                </a>
+                <a href="https://docs.kanka.io/en/latest/guides/archetypes.html" class="flex min-h-12 items-center gap-3 rounded-xl px-3 text-sm text-link">
+                    <i class="fa-regular fa-external-link" aria-hidden="true"></i><span>{{ i18n.templates }}</span>
+                </a>
+            </div>
+        </MobileSheet>
 
         <!-- Content area -->
         <div class="flex gap-1 items-start">
@@ -436,6 +493,34 @@
         <div ref="hiddenMenus" style="display: none">
             <!-- Display menu: sort + per page + columns -->
             <div ref="displayMenu" class="flex flex-col gap-3 p-1 min-w-56">
+                <div class="flex flex-col gap-3 lg:hidden">
+                    <div v-if="entityType.is_nested && !criteriaActive && !orderingComposable.ordering.value">
+                        <div class="flex rounded-lg bg-base-200 p-0.5 gap-0.5">
+                            <button type="button" class="flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md px-2 text-sm" :class="nestingComposable.nested.value ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content'" :aria-pressed="nestingComposable.nested.value" @click="switchNestingMode(true)">
+                                <i class="fa-regular fa-layer-group" aria-hidden="true"></i>
+                                <span v-html="i18n.nestShort"></span>
+                            </button>
+                            <button type="button" class="flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md px-2 text-sm" :class="!nestingComposable.nested.value ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content'" :aria-pressed="!nestingComposable.nested.value" @click="switchNestingMode(false)">
+                                <i class="fa-regular fa-boxes-stacked" aria-hidden="true"></i>
+                                <span v-html="i18n.flattenShort"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div v-if="entityType.has_table && !orderingComposable.ordering.value">
+                        <div class="flex rounded-lg bg-base-200 p-0.5 gap-0.5">
+                            <button type="button" class="flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md px-2 text-sm" :class="layoutComposable.isGrid() ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content'" :aria-pressed="layoutComposable.isGrid()" @click="switchLayoutMode(true)">
+                                <i class="fa-regular fa-grid-2" aria-hidden="true"></i>
+                                <span v-html="i18n.gridShort"></span>
+                            </button>
+                            <button type="button" class="flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md px-2 text-sm" :class="!layoutComposable.isGrid() ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content'" :aria-pressed="!layoutComposable.isGrid()" @click="switchLayoutMode(false)">
+                                <i class="fa-regular fa-list-ul" aria-hidden="true"></i>
+                                <span v-html="i18n.listShort"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <hr v-if="(entityType.is_nested || entityType.has_table) && !orderingComposable.ordering.value" class="border-base-300 -mx-1" />
+                </div>
+
                 <!-- Sort by -->
                 <div v-if="sortableColumns.length > 0">
                     <div
@@ -595,7 +680,7 @@
                     @click="
                         bulkActions.bulkDialog(urls.permissions, actionsBtn)
                     "
-                    class="flex items-center gap-2 px-2 py-1 cursor-pointer text-nowrap hover:text-primary"
+                    class="flex items-center gap-2 px-2 py-2 md:py-1 cursor-pointer text-nowrap hover:text-primary"
                 >
                     <i class="fa-regular fa-lock" aria-hidden="true"></i>
                     <span v-html="i18n.bulkPermissions"></span>
@@ -603,7 +688,7 @@
                 <button
                     v-if="permissions?.admin"
                     @click="bulkActions.bulkDialog(urls.transform, actionsBtn)"
-                    class="flex items-center gap-2 px-2 py-1 cursor-pointer text-nowrap hover:text-primary"
+                    class="flex items-center gap-2 px-2 py-2 md:py-1 cursor-pointer text-nowrap hover:text-primary"
                 >
                     <i
                         class="fa-regular fa-exchange-alt"
@@ -613,7 +698,7 @@
                 </button>
                 <button
                     @click="bulkActions.bulkDialog(urls.copy, actionsBtn)"
-                    class="flex items-center gap-2 px-2 py-1 cursor-pointer text-nowrap hover:text-primary"
+                    class="flex items-center gap-2 px-2 py-2 md:py-1 cursor-pointer text-nowrap hover:text-primary"
                 >
                     <i class="fa-regular fa-clone" aria-hidden="true"></i>
                     <span v-html="i18n.bulkCopy"></span>
@@ -621,7 +706,7 @@
                 <button
                     v-if="permissions?.admin"
                     @click="bulkActions.bulkDialog(urls.template, actionsBtn)"
-                    class="flex items-center gap-2 px-2 py-1 cursor-pointer text-nowrap hover:text-primary"
+                    class="flex items-center gap-2 px-2 py-2 md:py-1 cursor-pointer text-nowrap hover:text-primary"
                 >
                     <i class="fa-regular fa-table" aria-hidden="true"></i>
                     <span v-html="i18n.bulkTemplate"></span>
@@ -629,7 +714,7 @@
                 <button
                     v-if="permissions?.admin"
                     @click="bulkActions.bulkPrint(printForm, actionsBtn)"
-                    class="flex items-center gap-2 px-2 py-1 cursor-pointer text-nowrap hover:text-primary"
+                    class="flex items-center gap-2 px-2 py-2 md:py-1 cursor-pointer text-nowrap hover:text-primary"
                 >
                     <i class="fa-regular fa-print" aria-hidden="true"></i>
                     <span v-html="i18n.bulkPrint"></span>
@@ -637,7 +722,7 @@
                 <button
                     v-if="permissions?.delete"
                     @click="bulkActions.bulkDialog(urls.delete, actionsBtn)"
-                    class="flex items-center gap-2 px-2 py-1 cursor-pointer text-error-content hover:bg-error rounded"
+                    class="flex items-center gap-2 px-2 py-2 md:py-1 cursor-pointer text-error-content hover:bg-error rounded"
                 >
                     <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
                     <span v-html="i18n.bulkDelete"></span>
@@ -673,6 +758,8 @@ import { TailwindPagination } from "laravel-vue-pagination";
 import tippy from "tippy.js";
 import EntityGrid from "./EntityGrid.vue";
 import EntityTable from "./EntityTable.vue";
+import MobileSheet from "../components/layout/MobileSheet.vue";
+import MobileListSettings from "./MobileListSettings.vue";
 import { useEntityApi } from "./composables/useEntityApi";
 import { useBulkActions } from "./composables/useBulkActions";
 import { useOrdering } from "./composables/useOrdering";
@@ -700,6 +787,9 @@ const features = ref<any>({});
 const i18n = ref<any>({});
 const emptyState = ref<any>(null);
 const loading = ref(true);
+const mobilePanel = ref<string | null>(null);
+const nameFilter = ref("");
+const mobilePanelTitle = computed(() => mobilePanel.value === "display" ? i18n.value.listSettings : mobilePanel.value === "templates" ? i18n.value.fromTemplate : i18n.value.actions);
 
 // Template refs
 const listingRef = ref<HTMLElement | null>(null);
@@ -785,6 +875,19 @@ const openFilters = () => {
     (window as any).openDialog("datagrid-filters", filterUrls.value.form);
 };
 
+const applyNameFilter = () => {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("reset-filter");
+    url.searchParams.delete("page");
+    url.searchParams.set("name", nameFilter.value.trim());
+    window.location.href = url.toString();
+};
+
+const startMobileSelecting = () => {
+    mobilePanel.value = null;
+    bulkActions.toggleSelecting();
+};
+
 const bookmark = () => {
     (window as any).openDialog("primary-dialog", urls.value.bookmark);
 };
@@ -855,8 +958,41 @@ const handleGridBack = () => {
     });
 };
 
+const handlePopState = () => {
+    const params = new URLSearchParams(window.location.search);
+    layoutComposable.layout.value = params.get("m") ?? props.mode;
+    const url = entityApi.currentApiUrl();
+
+    entityApi.fetchEntities(url).then((response: any) => {
+        if (!response) return;
+        entityApi.parent.value = response.parent ?? null;
+        nestingComposable.setNested(
+            params.has("n")
+                ? params.get("n") !== "0"
+                : (response.nested ?? nestingComposable.nested.value),
+        );
+    });
+};
+
 // Tippy dropdowns
 let tippyInstances: any[] = [];
+
+const closeDisplayMenu = () => {
+    const instance = tippyInstances.find(
+        (dropdown) => dropdown.reference === displayBtn.value,
+    );
+    instance?.hide();
+};
+
+const switchNestingMode = (nested: boolean) => {
+    nestingComposable.selectMode(nested);
+    closeDisplayMenu();
+};
+
+const switchLayoutMode = (grid: boolean) => {
+    layoutComposable.selectLayout(grid);
+    closeDisplayMenu();
+};
 
 const destroyAllTippy = () => {
     tippyInstances.forEach((instance) => {
@@ -900,6 +1036,7 @@ onMounted(() => {
         }
         // Import state from API response
         filters.value = response.filters?.count ?? 0;
+        nameFilter.value = response.filters?.name ?? "";
         criteriaActive.value = response.filters?.active ?? false;
         filterUrls.value = response.filters?.urls ?? {};
         i18n.value = response.i18n;
@@ -948,6 +1085,7 @@ onMounted(() => {
         loading.value = false;
     });
     window.addEventListener("keydown", handleKeydown);
+    window.addEventListener("popstate", handlePopState);
 });
 
 watch(loading, (val) => {
@@ -979,6 +1117,7 @@ const handleKeydown = (e: KeyboardEvent) => {
 
 onBeforeUnmount(() => {
     window.removeEventListener("keydown", handleKeydown);
+    window.removeEventListener("popstate", handlePopState);
     destroyAllTippy();
 });
 

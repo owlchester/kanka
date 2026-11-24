@@ -7,6 +7,10 @@ parameters to be set.
 
 `SCOUT_QUEUE` tells scout if it should use the jobs queue if set to true or not if set to false/not set.
 
+`SCOUT_SEARCH_MAINTENANCE` temporarily disables full-text search reads when set to `true` (defaults to `false`). SQL/name searches and indexing continue to work. Enable it before maintenance and set it back to `false` when ready. If configuration is cached, refresh it with `sail artisan config:cache` (or clear it with `sail artisan config:clear`) and reload long-running web/queue workers so they load the new configuration. Index updates are queued/asynchronous when `SCOUT_QUEUE=true`; wait for queued indexing to finish before re-enabling full-text reads.
+
+While enabled, the full-text API endpoint (`/1.0/campaigns/{campaign}/fulltext-search`) returns HTTP `503` with a JSON `message` containing the localized maintenance notice. Before disabling the flag, confirm both queued jobs have drained and Meilisearch reports its index update tasks as successful.
+
 `MEILISEARCH_HOST` is the url of the meilisearch server, where the requests will be sent to, by default its set to: `http://localhost:7700` which is usually the route for a local test setup.
 
 `MEILISEARCH_KEY` is the key/password which authorizes read/write to the meilisearch database, information on how to set it up can be found on Meilisearch's docs: `https://www.meilisearch.com/docs/learn/security/master_api_keys`.
@@ -42,4 +46,3 @@ It's also important to run this following command the first time meilisearch is 
 Call the following api endpoint with a valid token
 
 > http://api.kanka.test:8081/1.0/campaigns/xxx/fulltext-search?term=adam
-

@@ -60,8 +60,9 @@ if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'bas
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
 <body class=" @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif
+@if(!empty($campaign)) has-mobile-navigation @endif
 @if(isset($entity)){{ $entity->bodyClasses() }}@endif
-@if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->can('admin', $campaign)) is-admin @endif @guest is-guest @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif @if(!$showSidebar || $sidebarCollapsed) sidebar-collapse @endif antialiased" data-theme="{{ $specificTheme }}" @if (!empty($campaign)) data-user-member="{{ auth()->check() && auth()->user()->can('member', $campaign) ? 1 : 0 }}" @endif >
+@if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->can('admin', $campaign)) is-admin @endif @guest is-guest @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif @if($showSidebar) has-sidebar @endif @if(!$showSidebar || $sidebarCollapsed) sidebar-collapse @endif antialiased" data-theme="{{ $specificTheme }}" @if (!empty($campaign)) data-user-member="{{ auth()->check() && auth()->user()->can('member', $campaign) ? 1 : 0 }}" @endif >
 
 <a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute mx-2 top-0 btn2 btn-primary btn-sm rounded-t-none" tabindex="0">
     {{ __('crud.navigation.skip_to_content') }}
@@ -69,6 +70,7 @@ if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'bas
     <div id="app" class="wrapper min-h-screen relative mt-12 flex flex-col">
         @include('layouts.header', ['toggle' => $showSidebar])
         @includeWhen(isset($campaign) || (isset($sidebar) && $sidebar === 'settings'), 'layouts.sidebars.' . ($sidebar ?? 'app'))
+        @includeWhen($showSidebar, 'layouts.sidebars._floating-nav')
 
         <div class="content-wrapper transition-all duration-150 grow" id="{{ isset($contentId) ? $contentId : "main-content" }}">
             @includeWhen(isset($campaign) && auth()->check() && auth()->user()->can('member', $campaign), 'campaigns.partials.copyright-banner')
@@ -91,7 +93,6 @@ if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'bas
             @yield('content-header')
 
             <section class="content p-4 flex flex-col gap-2 lg:flex-gap-5 @if (isset($centered) && $centered) max-w-7xl mx-auto  @endif" role="main">
-                @includeWhen (auth()->check() && \App\Facades\Identity::isImpersonating(), 'partials.impersonate')
                 @include('partials.success')
 
                 @yield('entity-header')

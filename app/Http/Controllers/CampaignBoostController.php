@@ -59,7 +59,6 @@ class CampaignBoostController extends Controller
         $campaignId = $request->get('campaign_id');
         /** @var Campaign $campaign */
         $campaign = Campaign::findOrFail($campaignId);
-        CampaignCache::campaign($campaign);
         $this->authorize('access', $campaign);
 
         if ($request->ajax()) {

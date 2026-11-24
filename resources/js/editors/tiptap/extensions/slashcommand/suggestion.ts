@@ -4,6 +4,7 @@ import { posToDOMRect, VueRenderer } from '@tiptap/vue-3'
 import SlashCommandList from './SlashCommandList.vue'
 import type { Editor } from '@tiptap/core'
 import { suggestionPopupDimensions } from '../suggestionPopup.js'
+import { t } from '../../i18n.js'
 
 export interface SlashCommandItem {
     title: string
@@ -11,6 +12,14 @@ export interface SlashCommandItem {
     icon: string
     searchTerms?: string[]
     command: (editor: Editor) => void
+}
+
+export interface SlashCommandCallbacks {
+    onSourceMode?: () => void
+    onFullscreen?: () => void
+    onOpenEmbed?: () => void
+    onOpenImageUrl?: () => void
+    hasGallery?: boolean
 }
 
 // A native <dialog> shown via showModal() renders in the browser's "top layer", above
@@ -69,10 +78,28 @@ const tableHTML = `
     </tbody>
   </table>`
 
-const commands: SlashCommandItem[] = [
+const buildCommands = (callbacks: SlashCommandCallbacks): SlashCommandItem[] => [
+    ...(import.meta.env.DEV ? [{
+        title: 'Lorem',
+        description: 'Insert two paragraphs of placeholder text',
+        icon: 'fa-regular fa-file-lines',
+        searchTerms: ['lorem', 'ipsum', 'placeholder'],
+        command: (editor: Editor) => {
+            editor.chain().focus().insertContent([
+                {
+                    type: 'paragraph',
+                    content: [{ type: 'text', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque luctus quam lorem, ut iaculis nulla pellentesque eget. Sed sed ex tincidunt, interdum nisi vel, accumsan lectus. Etiam laoreet ligula ac urna pharetra blandit quis at sapien. Sed rutrum neque id tristique pulvinar. Vestibulum orci justo, imperdiet sit amet pellentesque imperdiet, feugiat at eros. Suspendisse dignissim imperdiet turpis id placerat. Sed consequat vulputate sem nec facilisis. Pellentesque arcu erat, lacinia sit amet metus id, bibendum tincidunt leo. Praesent quis ligula a neque suscipit euismod quis non justo. Suspendisse pharetra mauris non imperdiet aliquet. Sed quis erat eu sem ultrices consectetur. Fusce suscipit ornare elit eu mattis. Nullam dolor dolor, maximus sit amet urna sed, rhoncus imperdiet nulla. Aliquam tempus nisl metus, eu semper lectus semper eget.' }],
+                },
+                {
+                    type: 'paragraph',
+                    content: [{ type: 'text', text: 'Nunc a nulla tortor. Maecenas molestie cursus ligula ut molestie. Sed ultrices sem ut leo lobortis, vel ultrices ex facilisis. Duis sit amet magna non erat hendrerit ullamcorper at ac enim. Fusce eget ullamcorper nisi. Curabitur sed lorem in velit cursus efficitur. Fusce convallis egestas eros vitae eleifend. Etiam luctus interdum justo eu gravida. Nam euismod mi quam, vitae convallis magna pulvinar sed. Aenean condimentum dui vitae nibh ultricies, sed pretium ipsum ornare. Mauris ultricies ex hendrerit est porta pulvinar. Duis sagittis quis nulla ut eleifend. Duis hendrerit diam urna. Suspendisse eget sollicitudin neque. Sed porttitor sem nisi, eu sodales orci aliquam eget.' }],
+                },
+            ]).run()
+        },
+    }] : []),
     {
-        title: 'Help',
-        description: 'Open the editor documentation',
+        title: t('slash_help_title', 'Help'),
+        description: t('slash_help_desc', 'Open the editor documentation'),
         icon: 'fa-regular fa-question-circle',
         searchTerms: ['docs', 'documentation', 'guide'],
         command: () => {
@@ -80,34 +107,72 @@ const commands: SlashCommandItem[] = [
         },
     },
     {
-        title: 'Source',
-        description: 'Edit raw HTML source',
+        title: t('slash_source_title', 'Source'),
+        description: t('slash_source_desc', 'Edit raw HTML source'),
         icon: 'fa-regular fa-code',
-        command: (editor: Editor) => {
-            window.dispatchEvent(new CustomEvent('tiptap:source-mode'))
+        command: () => {
+            callbacks.onSourceMode?.()
         },
     },
     {
-        title: 'Gallery',
-        description: 'Insert an image from gallery',
-        icon: 'fa-regular fa-images',
-        searchTerms: ['image', 'photo', 'picture', 'media'],
-        command: (editor: Editor) => {
-            editor.commands.openGallery()
+        title: t('slash_fullscreen_title', 'Fullscreen'),
+        description: t('slash_fullscreen_desc', 'Toggle fullscreen mode'),
+        icon: 'fa-regular fa-expand',
+        searchTerms: ['expand', 'maximize', 'zen'],
+        command: () => {
+            callbacks.onFullscreen?.()
         },
     },
     {
-        title: 'Insert Media',
-        description: 'Upload an image from your device',
-        icon: 'fa-regular fa-upload',
-        searchTerms: ['image', 'photo', 'picture', 'media', 'upload', 'file'],
+        title: t('slash_toc_title', 'Table of Contents'),
+        description: t('slash_toc_desc', 'Insert a table of contents placeholder'),
+        icon: 'fa-regular fa-list-tree',
+        searchTerms: ['toc', 'contents', 'index'],
         command: (editor: Editor) => {
-            editor.commands.uploadMedia()
+            editor.chain().focus().insertContent('<p>{table-of-contents}</p>').run()
+        },
+    },
+    ...(callbacks.hasGallery ? [
+        {
+            title: t('slash_gallery_title', 'Gallery'),
+            description: t('slash_gallery_desc', 'Insert an image from gallery'),
+            icon: 'fa-regular fa-images',
+            searchTerms: ['image', 'photo', 'picture', 'media'],
+            command: (editor: Editor) => {
+                editor.commands.openGallery()
+            },
+        },
+        {
+            title: t('slash_upload_title', 'Insert Media'),
+            description: t('slash_upload_desc', 'Upload an image from your device'),
+            icon: 'fa-regular fa-upload',
+            searchTerms: ['image', 'photo', 'picture', 'media', 'upload', 'file'],
+            command: (editor: Editor) => {
+                editor.commands.uploadMedia()
+            },
+        },
+    ] : []),
+    {
+        title: t('slash_image_url_title', 'Image from URL'),
+        description: t('slash_image_url_desc', 'Insert an image from an external URL'),
+        icon: 'fa-regular fa-image',
+        searchTerms: ['image', 'url', 'link', 'photo', 'picture'],
+        command: () => {
+            callbacks.onOpenImageUrl?.()
         },
     },
     {
-        title: 'Table',
-        description: 'Insert a table',
+        title: t('slash_embed_title', 'Embed'),
+        description: t('slash_embed_desc', 'Insert an iframe or video embed'),
+        icon: 'fa-regular fa-photo-film',
+        searchTerms: ['iframe', 'video', 'youtube', 'spotify'],
+        command: () => {
+            callbacks.onOpenEmbed?.()
+        },
+    },
+    {
+        title: t('slash_table_title', 'Table'),
+        description: t('slash_table_desc', 'Insert a table'),
         icon: 'fa-regular fa-table',
         command: (editor: Editor) => {
             editor
@@ -118,48 +183,48 @@ const commands: SlashCommandItem[] = [
         },
     },
     {
-        title: 'Heading 1',
-        description: 'Huge heading',
+        title: t('slash_h1_title', 'Heading 1'),
+        description: t('slash_h1_desc', 'Huge heading'),
         icon: 'fa-regular fa-heading',
         command: (editor: Editor) => {
             editor.chain().focus().toggleHeading({ level: 1 }).run()
         },
     },
     {
-        title: 'Heading 2',
-        description: 'Large heading',
+        title: t('slash_h2_title', 'Heading 2'),
+        description: t('slash_h2_desc', 'Large heading'),
         icon: 'fa-regular fa-heading',
         command: (editor: Editor) => {
             editor.chain().focus().toggleHeading({ level: 2 }).run()
         },
     },
     {
-        title: 'Heading 3',
-        description: 'Medium heading',
+        title: t('slash_h3_title', 'Heading 3'),
+        description: t('slash_h3_desc', 'Medium heading'),
         icon: 'fa-regular fa-heading',
         command: (editor: Editor) => {
             editor.chain().focus().toggleHeading({ level: 3 }).run()
         },
     },
     {
-        title: 'Bullet List',
-        description: 'Create a bullet list',
+        title: t('slash_bullet_title', 'Bullet List'),
+        description: t('slash_bullet_desc', 'Create a bullet list'),
         icon: 'fa-regular fa-list-ul',
         command: (editor: Editor) => {
             editor.chain().focus().toggleBulletList().run()
         },
     },
     {
-        title: 'Numbered List',
-        description: 'Create a numbered list',
+        title: t('slash_ordered_title', 'Numbered List'),
+        description: t('slash_ordered_desc', 'Create a numbered list'),
         icon: 'fa-regular fa-list-ol',
         command: (editor: Editor) => {
             editor.chain().focus().toggleOrderedList().run()
         },
     },
     {
-        title: 'Task List',
-        description: 'Create a checklist',
+        title: t('slash_task_title', 'Task List'),
+        description: t('slash_task_desc', 'Create a checklist'),
         icon: 'fa-regular fa-square-check',
         searchTerms: ['checkbox', 'checklist', 'todo', 'task'],
         command: (editor: Editor) => {
@@ -167,24 +232,24 @@ const commands: SlashCommandItem[] = [
         },
     },
     {
-        title: 'Quote',
-        description: 'Insert a quote block',
+        title: t('slash_quote_title', 'Quote'),
+        description: t('slash_quote_desc', 'Insert a quote block'),
         icon: 'fa-regular fa-quote-right',
         command: (editor: Editor) => {
             editor.chain().focus().toggleBlockquote().run()
         },
     },
     {
-        title: 'Code Block',
-        description: 'Insert a code block',
+        title: t('slash_code_title', 'Code Block'),
+        description: t('slash_code_desc', 'Insert a code block'),
         icon: 'fa-regular fa-code',
         command: (editor: Editor) => {
             editor.chain().focus().toggleCodeBlock().run()
         },
     },
     {
-        title: 'Horizontal Rule',
-        description: 'Insert a divider',
+        title: t('slash_hr_title', 'Horizontal Rule'),
+        description: t('slash_hr_desc', 'Insert a divider'),
         icon: 'fa-regular fa-minus',
         command: (editor: Editor) => {
             editor.chain().focus().setHorizontalRule().run()
@@ -192,11 +257,11 @@ const commands: SlashCommandItem[] = [
     },
 ]
 
-export default () => {
+export default (callbacks: SlashCommandCallbacks = {}) => {
     return {
         items: ({ query }: { query: string }): SlashCommandItem[] => {
             const q = query.toLowerCase()
-            return commands.filter(item =>
+            return buildCommands(callbacks).filter(item =>
                 item.title.toLowerCase().includes(q)
                 || item.searchTerms?.some(term => term.includes(q))
             )
@@ -239,6 +304,8 @@ export default () => {
 
                 onKeyDown(props: any) {
                     if (props.event.key === 'Escape') {
+                        props.event.preventDefault()
+                        props.event.stopPropagation()
                         component.destroy()
                         return true
                     }

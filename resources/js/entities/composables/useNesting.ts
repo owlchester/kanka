@@ -25,9 +25,10 @@ export function useNesting(options: NestingOptions) {
         return apiUrl.toString()
     }
 
-    const switchMode = () => {
+    const selectMode = (value: boolean) => {
+        if (nested.value === value) return
         nesting.value = true
-        nested.value = !nested.value
+        nested.value = value
 
         const url = options.addToUrl(currentApiUrl(), 'n', nested.value ? '1' : '0')
         options.fetchEntities(url).then(() => {
@@ -56,6 +57,6 @@ export function useNesting(options: NestingOptions) {
         nested,
         nesting,
         setNested,
-        switchMode,
+        selectMode,
     }
 }

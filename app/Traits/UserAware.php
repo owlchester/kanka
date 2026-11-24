@@ -20,14 +20,13 @@ trait UserAware
 
     public function userless(): self
     {
-        // @phpstan-ignore-next-line
-        unset($this->user);
+        $this->user = null;
 
         return $this;
     }
 
     public function hasUser(): bool
     {
-        return $this->user !== null;
+        return isset($this->user);
     }
 }

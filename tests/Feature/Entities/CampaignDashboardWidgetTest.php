@@ -2,6 +2,22 @@
 
 use App\Models\CampaignDashboardWidget;
 use App\Models\Quest;
+use App\Models\Tag;
+
+it('syncs widget tags through the API', function () {
+    $this->asUser()->withCampaign();
+    $tag = Tag::factory()->create(['campaign_id' => 1]);
+    $url = '/api/1.0/campaigns/1/campaign_dashboard_widgets';
+
+    $id = $this->postJson($url, ['widget' => 'recent', 'save_tags' => 1, 'tags' => [$tag->id]])
+        ->assertCreated()
+        ->assertJsonPath('data.tags', [$tag->id])
+        ->json('data.id');
+
+    $this->putJson("$url/$id", ['widget' => 'recent', 'save_tags' => 1])
+        ->assertOk()
+        ->assertJsonPath('data.tags', []);
+});
 
 it('POSTS an invalid widget form')
     ->asUser()

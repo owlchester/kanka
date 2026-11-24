@@ -9,8 +9,10 @@ class DiceRollResultObserver
 {
     public function __construct(protected DiceRollerService $diceRollerService) {}
 
-    public function saving(DiceRollResult $model)
+    public function creating(DiceRollResult $model)
     {
-        $model->results = $this->diceRollerService->roll($model->diceRoll);
+        if (empty($model->results)) {
+            $model->results = $this->diceRollerService->roll($model->diceRoll);
+        }
     }
 }

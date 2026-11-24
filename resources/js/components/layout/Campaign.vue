@@ -1,23 +1,45 @@
 <template>
-    <a :class="campaignClass()" v-bind:href="campaign.url" :style="{backgroundImage: backgroundImage()}" :title="campaign.name">
-        <div class="absolute top-2 right-2 text-sm text-boost" v-if="campaign.is_boosted">
-            <i class="fa-regular fa-gem" aria-label="Premium campaign"></i>
+    <a
+        :href="campaign.url"
+        :title="campaign.name"
+        class="group flex items-center gap-3 p-2 rounded-xl transition-colors"
+        :class="active
+            ? 'bg-primary/10 ring-1 ring-primary/30 text-base-content font-semibold'
+            : 'hover:bg-base-200 text-base-content'"
+    >
+        <div class="size-9 rounded-lg shrink-0 overflow-hidden bg-base-200 flex items-center justify-center">
+            <div
+                v-if="campaign.image"
+                class="size-full cover-background"
+                :style="{ backgroundImage: `url(${campaign.image})` }"
+            ></div>
+            <i v-else class="fa-regular fa-earth-americas text-base-content/45 text-sm" aria-hidden="true"></i>
         </div>
-        <div class="flex items-end justify-center name w-full text-xs p-2 pt-6 text-center" v-html="campaign.name">
+        <span class="grow min-w-0 truncate text-sm" v-html="campaign.name"></span>
+        <div class="flex items-center gap-2 shrink-0">
+            <i
+                v-if="campaign.is_boosted"
+                class="fa-regular fa-gem text-boost text-xs"
+                aria-label="Premium campaign"
+            ></i>
+            <i
+                v-if="active"
+                class="fa-solid fa-check text-primary text-xs"
+                aria-hidden="true"
+            ></i>
         </div>
     </a>
 </template>
 
-
 <script setup lang="ts">
-
-const props = defineProps<{
-    campaign: Object,
-}>()
-const backgroundImage = () => {
-    return props.campaign.image ? 'url(' + props.campaign.image + ')' : '';
-}
-const campaignClass = () => {
-    return 'campaign flex items-end border border-solid rounded-lg cover-background relative h-24 overflow-hidden text-break shadow-xs hover:shadow-md border-0'
-}
+defineProps<{
+    campaign: {
+        id?: number | string | null;
+        name: string;
+        url: string;
+        image?: string | null;
+        is_boosted?: boolean;
+    };
+    active?: boolean;
+}>();
 </script>

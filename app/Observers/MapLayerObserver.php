@@ -33,7 +33,7 @@ class MapLayerObserver
 
     public function saved(MapLayer $mapLayer)
     {
-        $mapLayer->map->entity->touchSilently();
+        $mapLayer->map?->entity?->touchSilently();
     }
 
     public function created(MapLayer $mapLayer): void
@@ -53,12 +53,16 @@ class MapLayerObserver
     public function deleted(MapLayer $mapLayer)
     {
         Images::model($mapLayer)->cleanup();
-        $mapLayer->map->entity->touchSilently();
+        $mapLayer->map?->entity?->touchSilently();
         $this->broadcastContents($mapLayer->map);
     }
 
-    protected function broadcastContents(Map $map): void
+    protected function broadcastContents(?Map $map): void
     {
+        if (! $map || (app()->runningInConsole() && ! app()->runningUnitTests())) {
+            return;
+        }
+
         ContentsChanged::dispatch($map);
         ContentsChanged::dispatch($map, true);
     }

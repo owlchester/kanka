@@ -21,6 +21,6 @@ class ApiLog extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'api_log';
+        return ApiLogService::class;
     }
 }

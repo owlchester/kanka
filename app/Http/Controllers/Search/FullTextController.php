@@ -22,9 +22,10 @@ class FullTextController extends Controller
             'models' => [],
             'term' => $term,
             'route' => 'search.fulltext',
+            'searchMaintenance' => config('scout.search_maintenance', false),
         ];
 
-        if (empty($term)) {
+        if (empty($term) || $data['searchMaintenance']) {
             return view('search.fulltext')->with($data);
         }
 

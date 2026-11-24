@@ -8,6 +8,8 @@ use App\Models\Concerns\HasUser;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
+use App\Observers\DiceRollResultObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -17,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int|bool $is_private
  * @property string $results
  */
+#[ObservedBy(DiceRollResultObserver::class)]
 class DiceRollResult extends Model
 {
     use Blameable;

@@ -25,11 +25,7 @@ if ($folder) {
 ])
 
 @section('content')
-    <div id="gallery">
-        <gallery
-            api="{{ route('gallery.setup', [$campaign]) }}"
-        ></gallery>
-    </div>
+    <div id="gallery" data-api="{{ route('gallery.setup', [$campaign]) }}"></div>
 
 @endsection
 

@@ -1,9 +1,76 @@
 <?php
 
+use App\Models\Calendar;
+use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityLog;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Support\Facades\DB;
+
+it('syncs post tags and reminders through the API', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $calendar = Calendar::factory()->create(['campaign_id' => 1]);
+    $tag = Tag::factory()->create(['campaign_id' => 1]);
+    $url = '/api/1.0/campaigns/1/entities/1/posts';
+
+    $id = $this->postJson($url, [
+        'name' => 'Tagged post', 'position' => 1, 'save_tags' => 1, 'tags' => [$tag->id],
+        'calendar_id' => $calendar->id, 'calendar_day' => 4, 'calendar_year' => 1000,
+    ])->assertCreated()
+        ->assertJsonPath('data.tags', [$tag->id])
+        ->assertJsonPath('data.calendar_id', $calendar->id)
+        ->json('data.id');
+
+    $this->putJson("$url/$id", ['name' => 'Omitted fields'])
+        ->assertOk()
+        ->assertJsonPath('data.tags', [$tag->id])
+        ->assertJsonPath('data.calendar_id', $calendar->id);
+
+    $this->putJson("$url/$id", ['name' => 'Cleared fields', 'save_tags' => 1, 'calendar_id' => null])
+        ->assertOk()
+        ->assertJsonPath('data.tags', [])
+        ->assertJsonPath('data.calendar_id', null);
+});
+
+it('applies post form tags and reminders only to the post being saved', function () {
+    $this->asUser()->withCampaign();
+    $entity = Character::factory()->create(['campaign_id' => 1])->entity;
+    $unrelated = Character::factory()->create(['campaign_id' => 1]);
+    $calendar = Calendar::factory()->create(['campaign_id' => 1]);
+    $tag = Tag::factory()->create(['campaign_id' => 1]);
+    $post = Post::factory()->create(['entity_id' => $entity->id]);
+
+    Post::saving(function () use ($unrelated) {
+        $unrelated->update(['title' => 'Saved during the post request']);
+    });
+
+    $url = route('entities.posts.update', [1, $entity, $post]);
+    $this->patch($url, [
+        'name' => 'Updated post',
+        'save_tags' => 1,
+        'tags' => [$tag->id],
+        'calendar_id' => $calendar->id,
+        'calendar_day' => 4,
+        'calendar_year' => 1000,
+    ])->assertRedirect();
+
+    expect($unrelated->fresh()->title)->toBe('Saved during the post request')
+        ->and($unrelated->entity->fresh()->calendarReminder())->toBeNull()
+        ->and($post->fresh()->tags->modelKeys())->toBe([$tag->id])
+        ->and($post->fresh()->calendarReminder()?->calendar_id)->toBe($calendar->id);
+
+    $this->patch($url, ['name' => 'Omitted fields'])->assertRedirect();
+    $this->patch($url, ['name' => 'Skipped reminder', 'calendar_skip' => 1, 'calendar_id' => null])->assertRedirect();
+
+    expect($post->fresh()->tags->modelKeys())->toBe([$tag->id])
+        ->and($post->fresh()->calendarReminder()?->calendar_id)->toBe($calendar->id);
+
+    $this->patch($url, ['name' => 'Cleared fields', 'save_tags' => 1, 'calendar_id' => null])->assertRedirect();
+
+    expect($post->fresh()->tags)->toBeEmpty()
+        ->and($post->fresh()->calendarReminder())->toBeNull();
+});
 
 it('POSTS an invalid posts form')
     ->asUser()

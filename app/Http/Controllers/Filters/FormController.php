@@ -2,27 +2,30 @@
 
 namespace App\Http\Controllers\Filters;
 
-use App\Datagrids\Filters\CharacterFilter;
 use App\Datagrids\Filters\CustomEntityFilter;
+use App\Datagrids\Filters\DatagridFilter;
+use App\Datagrids\Filters\StandardTreeFilter;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Relation;
+use App\Services\Entity\ColumnDefinitionService;
 use App\Services\FilterService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use ReflectionClass;
 
 class FormController extends Controller
 {
     use CampaignAware;
     use EntityTypeAware;
 
-    public function __construct(protected FilterService $filterService)
-    {
+    public function __construct(
+        protected FilterService $filterService,
+        protected ColumnDefinitionService $columnDefinitionService,
+    ) {
         $this->middleware(['auth']);
     }
 
@@ -39,7 +42,7 @@ class FormController extends Controller
                 ->request($request)
                 ->entityType($entityType)
                 ->campaign($campaign)
-                ->build();
+                ->build($this->columnDefinitionService->sortableFields($entityType, $campaign));
 
             /** @var CustomEntityFilter $filters */
             $filters = app()->make(CustomEntityFilter::class);
@@ -49,6 +52,7 @@ class FormController extends Controller
                 ->with('filters', $filters->filters())
                 ->with('campaign', $campaign)
                 ->with('entityType', $entityType)
+                ->with('sortColumns', $this->columnDefinitionService->columns($entityType, $campaign))
                 ->with('filterService', $this->filterService);
         }
         $model = $entityType->getClass();
@@ -85,7 +89,7 @@ class FormController extends Controller
             $this->filterService
                 ->entityType($this->entityType)
                 ->campaign($this->campaign)
-                ->build();
+                ->build($this->columnDefinitionService->sortableFields($this->entityType, $this->campaign));
         } else {
             $this->filterService
                 ->campaign($this->campaign)
@@ -94,13 +98,16 @@ class FormController extends Controller
         }
         $mode = request()->get('m');
 
-        $reflect = new ReflectionClass($model);
-        $filtersClass = 'App\Datagrids\Filters\\' . $reflect->getShortName() . 'Filter';
-        /** @var CharacterFilter $filters */
+        $filtersClass = match ($this->entityType->code ?? null) {
+            'ability', 'calendar', 'note', 'timeline' => StandardTreeFilter::class,
+            default => 'App\Datagrids\Filters\\' . class_basename($model) . 'Filter',
+        };
+        /** @var DatagridFilter $filters */
         $filters = app()->make($filtersClass);
-        if ($filters) {
-            $filters->campaign($this->campaign)->build();
+        if (isset($this->entityType)) {
+            $filters->entityType($this->entityType);
         }
+        $filters->campaign($this->campaign)->build();
 
         return view('filters.form')
             ->with('campaign', $this->campaign)
@@ -109,6 +116,9 @@ class FormController extends Controller
             ->with('route', $route)
             ->with('entityModel', $model)
             ->with('entityType', $this->entityType ?? null)
+            ->with('sortColumns', isset($this->entityType) && $this->entityType->hasEntity()
+                ? $this->columnDefinitionService->columns($this->entityType, $this->campaign)
+                : [])
             ->with('count', 0)
             ->with('langKey', $langKey ?? $plural)
             ->with('hasAttributeFilters', false)

@@ -17,7 +17,6 @@ return [
         'main'  => 'Kontroluj wygląd Kanki. Ustawienia konkretnych kampanii mają pierwszeństwo przed ogólnymi.',
     ],
     'editors'           => [
-        'default'   => 'Domyślny (:name)',
         'helpers'   => [
             'feedback'  => 'Pomóż nam wprowadzać usprawnienia dzieląc się opinią (2 min)',
             'legacy'    => 'Starszy edytor tekstu (TinyMCE) nie pozwala robić wzmianek na urządzeniach mobilnych, w galerii kampanii i innych zaawansowancych funkcjach.',

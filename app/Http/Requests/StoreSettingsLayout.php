@@ -24,6 +24,7 @@ class StoreSettingsLayout extends FormRequest
     public function rules()
     {
         return [
+            'entry_form_layout' => 'sometimes|required|in:legacy,modern',
             'date_format' => 'nullable|string|max:5',
             'theme' => 'nullable',
             //            'editor' => 'in:,summernote,markdown',

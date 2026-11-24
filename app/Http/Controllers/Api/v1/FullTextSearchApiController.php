@@ -24,6 +24,9 @@ class FullTextSearchApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
+        if (config('scout.search_maintenance', false)) {
+            return response()->json(['message' => __('search/fulltext.maintenance')], 503);
+        }
         $term = request()->term;
         $term2 = null;
         /** @var ?Entity $entity */

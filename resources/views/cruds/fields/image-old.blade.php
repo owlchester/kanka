@@ -20,7 +20,7 @@ if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($mode
     $previewThumbnail = $model->entity->image->getUrl(192, 144);
     $canDelete = false;
 } elseif (!empty($entity) && !empty($entity->image_path)) {
-    $previewThumbnail = Avatar::entity($entity)->size(192, 144)->thumbnail();
+    $previewThumbnail = Avatar::for($entity)->size(192, 144)->thumbnail();
 } elseif (isset($model) && method_exists($model, 'thumbnail') && !empty($model->image)) {
     $previewThumbnail = $model->thumbnail(200, 160);
 } elseif (isset($image)) {
@@ -51,7 +51,7 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
             </div>
             @if(!isset($isModule))
                 <div class="image-url field">
-                    <input type="text" name="image_url" value="{{ old('image_url', ((!empty($source) && $source->entity->image_path) ? Avatar::entity($source->entity)->original() : '')) }}" placeholder="{{ __('crud.placeholders.image_url') }}" class="w-full" />
+                    <input type="text" name="image_url" value="{{ old('image_url', ((!empty($source) && $source->entity->image_path) ? Avatar::for($source->entity)->original() : '')) }}" placeholder="{{ __('crud.placeholders.image_url') }}" class="w-full" />
                 </div>
             @endif
             @php

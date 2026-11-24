@@ -2,7 +2,12 @@ import { createApp } from 'vue'
 import VueTippy from 'vue-tippy'
 import EntityListing from './EntityListing.vue'
 
-const app = createApp({})
-app.use(VueTippy, { theme: 'kanka' })
-app.component('entities-explorer', EntityListing)
-app.mount('#entities-explorer')
+const element = document.getElementById('entities-explorer')
+
+if (element) {
+    const { api, mode, module } = element.dataset
+
+    createApp(EntityListing, { api, mode, module })
+        .use(VueTippy, { theme: 'kanka' })
+        .mount(element)
+}

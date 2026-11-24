@@ -42,37 +42,41 @@ use App\Http\Controllers\Api\v1\VisibilityController;
 |
 */
 
+Route::scopeBindings()->group(function () {
+    Route::apiResources([
+        'campaigns.abilities' => 'AbilityApiController',
+        'campaigns.attribute_templates' => 'AttributeTemplateApiController',
+        'campaigns.calendars' => 'CalendarApiController',
+        'campaigns.characters' => 'CharacterApiController',
+        'campaigns.conversations' => 'ConversationApiController',
+        'campaigns.creatures' => 'CreatureApiController',
+        'campaigns.dice_rolls' => 'DiceRollApiController',
+        'campaigns.events' => 'EventApiController',
+        'campaigns.families' => 'FamilyApiController',
+        'campaigns.items' => 'ItemApiController',
+        'campaigns.journals' => 'JournalApiController',
+        'campaigns.locations' => 'LocationApiController',
+        'campaigns.maps' => 'MapApiController',
+        'campaigns.notes' => 'NoteApiController',
+        'campaigns.organisations' => 'OrganisationApiController',
+        'campaigns.quests' => 'QuestApiController',
+        'campaigns.races' => 'RaceApiController',
+        'campaigns.tags' => 'TagApiController',
+        'campaigns.timelines' => 'TimelineApiController',
+    ]);
+});
+
 Route::apiResources([
     'campaigns' => 'CampaignApiController',
-    'campaigns.abilities' => 'AbilityApiController',
-    'campaigns.attribute_templates' => 'AttributeTemplateApiController',
     'campaigns.bookmarks' => 'BookmarkApiController',
-    // 'campaigns.campaign_users' => 'CampaignUserApiController',
-    'campaigns.calendars' => 'CalendarApiController',
     'campaigns.calendars.calendar_weather' => 'CalendarWeatherApiController',
-    'campaigns.characters' => 'CharacterApiController',
-    'campaigns.creatures' => 'CreatureApiController',
-    'campaigns.dice_rolls' => 'DiceRollApiController',
-    'campaigns.events' => 'EventApiController',
-    'campaigns.families' => 'FamilyApiController',
-    'campaigns.items' => 'ItemApiController',
-    'campaigns.journals' => 'JournalApiController',
-    'campaigns.locations' => 'LocationApiController',
-    'campaigns.maps' => 'MapApiController',
     'campaigns.maps.map_layers' => 'MapLayerApiController',
     'campaigns.maps.map_groups' => 'MapGroupApiController',
     'campaigns.maps.map_markers' => 'MapMarkerApiController',
-    'campaigns.notes' => 'NoteApiController',
-    'campaigns.organisations' => 'OrganisationApiController',
     'campaigns.organisations.organisation_members' => 'OrganisationMemberApiController',
-    'campaigns.quests' => 'QuestApiController',
     'campaigns.quests.quest_elements' => 'QuestElementApiController',
-    'campaigns.races' => 'RaceApiController',
-    'campaigns.tags' => 'TagApiController',
-    'campaigns.timelines' => 'TimelineApiController',
     'campaigns.timelines.timeline_eras' => 'TimelineEraApiController',
     'campaigns.timelines.timeline_elements' => 'TimelineElementApiController',
-    'campaigns.conversations' => 'ConversationApiController',
     'campaigns.conversations.conversation_participants' => 'ConversationParticipantApiController',
     'campaigns.conversations.conversation_messages' => 'ConversationMessageApiController',
     // 'campaigns.' => 'ApiController',
@@ -104,6 +108,11 @@ Route::delete('campaigns/{campaign}/entities/{entity}/image', [EntityImageApiCon
 Route::get('campaigns/{campaign}/roles', 'CampaignRoleApiController@index');
 
 Route::get('campaigns/{campaign}/category_statuses', [CategoryStatusController::class, 'index']);
+Route::get('campaigns/{campaign}/entity_types/{entity_type}/statuses', [CategoryStatusController::class, 'category']);
+Route::post('campaigns/{campaign}/entity_types/{entity_type}/statuses', [CategoryStatusController::class, 'store']);
+Route::put('campaigns/{campaign}/entity_types/{entity_type}/statuses/order', [CategoryStatusController::class, 'reorder']);
+Route::patch('campaigns/{campaign}/entity_types/{entity_type}/statuses/{status}', [CategoryStatusController::class, 'update']);
+Route::delete('campaigns/{campaign}/entity_types/{entity_type}/statuses/{status}', [CategoryStatusController::class, 'destroy']);
 
 Route::get('campaigns/{campaign}/relations', [RelationApiController::class, 'index']);
 Route::get('campaigns/{campaign}/search/{query}', [SearchApiController::class, 'index']);
@@ -122,11 +131,6 @@ Route::put('campaigns/{campaign}/entities/{entity}', [EntityApiController::class
 Route::patch('campaigns/{campaign}/entities/{entity}', [EntityApiController::class, 'patch']);
 Route::delete('campaigns/{campaign}/entities/{entity}', [EntityApiController::class, 'destroy']);
 Route::get('campaigns/{campaign}/entities/{entity}/mentions', [EntityMentionApiController::class, 'index']);
-
-Route::get('campaigns/{campaign}/users', 'Campaigns\UserApiController@index');
-Route::get('campaigns/{campaign}/users/{user}', 'Campaigns\UserApiController@show');
-Route::post('campaigns/{campaign}/users', 'Campaigns\UserApiController@add');
-Route::delete('campaigns/{campaign}/users', 'Campaigns\UserApiController@remove');
 
 Route::get('campaigns/{campaign}/users', [UserApiController::class, 'index']);
 Route::get('campaigns/{campaign}/users/{user}', [UserApiController::class, 'show']);

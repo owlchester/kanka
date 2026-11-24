@@ -16,7 +16,7 @@ class ClearMcpCampaignContext
             return $next($request);
         } finally {
             CampaignLocalization::clearCampaign();
-            Permissions::reload()->reset();
+            Permissions::reset();
         }
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Entity;
 use App\Models\Event;
 use App\Models\Reminder;
 use App\Services\Campaign\Import\Mappers\CalendarMapper;
+use App\Services\Entity\MoveService;
 use Carbon\Carbon;
 
 it('POSTS an invalid calendar form')
@@ -119,6 +120,51 @@ it('reads existing calendar JSON without encoding it again', function () {
         ->and($calendar->eraYearName(1005))->toBeNull();
 });
 
+it('copies a calendar to another campaign without double-encoding its configuration', function () {
+    $this->asUser()->withCampaign()->withCampaigns();
+    $calendar = Calendar::factory()->create([
+        'campaign_id' => 1,
+        'date' => '2026-01-02',
+        'years' => [2026 => 'Year of the Owl'],
+    ]);
+
+    app(MoveService::class)
+        ->entity($calendar->entity)
+        ->campaign($calendar->campaign)
+        ->user(auth()->user())
+        ->to(2)
+        ->copy(true)
+        ->validate()
+        ->process();
+
+    $copy = Calendar::where('campaign_id', 2)->sole();
+    expect($copy->months)->toBe($calendar->months)
+        ->and($copy->weekdays)->toBe($calendar->weekdays)
+        ->and($copy->seasons)->toBe($calendar->seasons)
+        ->and($copy->years)->toBe($calendar->years);
+
+    $this->get(route('entities.show', [$copy->campaign, $copy->entity]))
+        ->assertSuccessful()
+        ->assertSee('2 January, Year of the Owl');
+});
+
+it('opens an existing calendar with double-encoded configuration', function () {
+    $this->asUser()->withCampaign();
+    $calendar = Calendar::factory()->create([
+        'campaign_id' => 1,
+        'date' => '2026-01-02',
+        'months' => '[{"name":"January","length":31}]',
+        'weekdays' => '["Monday","Tuesday"]',
+        'years' => '{"2026":"Named year"}',
+        'eras' => '[{"name":"Common Era","suffix":"CE","start_year":1}]',
+    ]);
+
+    $this->get(route('entities.show', [$calendar->campaign, $calendar->entity]))
+        ->assertSuccessful()
+        ->assertSee('02 01, 2026 AD')
+        ->assertSee(__('calendars.show.missing_details'));
+});
+
 it('preserves named year maps as objects in the calendar API', function () {
     $this->asUser()->withCampaign();
     $calendar = Calendar::factory()->create(['campaign_id' => 1, 'years' => [0 => 'Origin']]);
@@ -214,7 +260,7 @@ it('rejects an unsupported weekly reset value', function () {
 
     $this->putJson('/api/1.0/campaigns/1/calendars/' . $calendar->id, ['reset' => 'week'])
         ->assertUnprocessable()
-        ->assertJsonValidationErrors('reset');
+        ->assertJsonValidationErrors('reset', 'fields');
 
     expect($calendar->fresh()->reset)->toBe('month');
 });
@@ -381,8 +427,8 @@ it('renders a recurring intermediate moon phase reminder on its phase date', fun
             ['id' => 1, 'name' => 'Luna', 'fullmoon' => 16, 'offset' => 0, 'colour' => 'grey'],
         ],
     ]);
-    $event = Event::factory()->create(['campaign_id' => 1]);
-    $reminder = Reminder::factory()->create([
+    $event = Event::factory()->create(['campaign_id' => 1, 'name' => 'Lunar gathering']);
+    Reminder::factory()->create([
         'calendar_id' => $calendar->id,
         'year' => 1,
         'month' => 1,
@@ -395,5 +441,28 @@ it('renders a recurring intermediate moon phase reminder on its phase date', fun
 
     $this->get(route('entities.show', [$calendar->campaign, $calendar->entity]))
         ->assertSuccessful()
-        ->assertSee('Luna waning gibbous', false);
+        ->assertSee('Luna waning gibbous', false)
+        ->assertSee('Lunar gathering');
 });
+
+it('renders an inherited multi-day reminder spilling into the next year without a year zero', function (string $layout) {
+    $this->asUser()->withCampaign();
+    $parent = Calendar::factory()->create(['campaign_id' => 1, 'date' => '-1-12-31']);
+    $calendar = Calendar::factory()->create(['campaign_id' => 1, 'date' => '1-1-1']);
+    $calendar->entity->update(['parent_id' => $parent->entity->id]);
+    $event = Event::factory()->create(['campaign_id' => 1, 'name' => 'Year-end festival']);
+    Reminder::factory()->create([
+        'calendar_id' => $parent->id,
+        'year' => -1,
+        'month' => 12,
+        'day' => 31,
+        'length' => 2,
+        'is_recurring' => false,
+        'remindable_id' => $event->entity->id,
+        'remindable_type' => Entity::class,
+    ]);
+
+    $this->get(route('entities.show', [$calendar->campaign, $calendar->entity, 'layout' => $layout]))
+        ->assertOk()
+        ->assertSeeInOrder(['data-date="1-1-1"', 'Year-end festival', __('calendars.events.end')], false);
+})->with(['month', 'year']);

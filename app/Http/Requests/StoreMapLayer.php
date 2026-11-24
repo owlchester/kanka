@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\MapLayer;
+use App\Facades\Domain;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -36,11 +36,12 @@ class StoreMapLayer extends FormRequest
             'type_id' => 'nullable|integer',
         ];
 
-        // If editing, don't need a new image
-        /** @var MapLayer $self */
-        $self = request()->route('map_layer');
-        if ($self && ! empty($self->image_path)) {
+        $mapLayer = request()->route('map_layer');
+        if ($mapLayer && ! empty($mapLayer->image_path)) {
             unset($rules['image_uuid']);
+            if ((Domain::isApi() || request()->is('api/*')) && request()->exists('image_uuid')) {
+                $rules['image_uuid'] = 'nullable|exists:images,id';
+            }
         }
 
         return $this->clean($rules);

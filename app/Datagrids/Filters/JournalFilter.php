@@ -25,16 +25,6 @@ class JournalFilter extends DatagridFilter
                 'model' => Entity::class,
             ])
             ->locations()
-            ->isPrivate()
-            ->template()
-            ->archived()
-            ->hasImage()
-            ->hasEntry()
-            ->hasPosts()
-            ->hasEntityFiles()
-            ->hasAttributes()
-            ->tags()
-            ->attributes()
-            ->connections();
+            ->standardFilters();
     }
 }

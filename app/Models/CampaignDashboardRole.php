@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Observers\CampaignDashboardRoleObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -16,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property CampaignDashboard $dashboard
  * @property CampaignRole $role
  */
+#[ObservedBy(CampaignDashboardRoleObserver::class)]
 class CampaignDashboardRole extends Model
 {
     public $fillable = [

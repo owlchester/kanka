@@ -1,9 +1,27 @@
+import { postIdFromHash, scrollToSection } from './entities/reader/navigation';
+
+const mountReaders = () => {
+    const nodes = document.querySelectorAll('.js-entity-reader:not([data-reader-mounted])');
+    if (nodes.length) {
+        import('./entities/reader').then(({ mountReaders }) => mountReaders(nodes));
+    }
+};
+mountReaders();
+
 /**
  * Mount the Vue map preview on any `field:map` mention rendered inline in an entity's
  * or post's entry. Kept out of the main bundle (dynamic import) so pages without a map
  * mention never pull in Leaflet. Re-run on the `kanka.default` pub-sub so mentions that
  * arrive later (paginated/anchor-loaded posts) still get mounted.
  */
+const mountEventParticipants = () => {
+    if (document.querySelector('.js-event-participants')) {
+        import('./events/participants').then(({ mountParticipants }) => mountParticipants());
+    }
+};
+mountEventParticipants();
+window.onEvent(mountEventParticipants);
+
 const scanAndMountMapPreviews = () => {
     const nodes = document.querySelectorAll('.js-map-preview:not(.js-map-preview-mounted)');
     if (!nodes.length) {
@@ -21,7 +39,7 @@ const registerStoryActions = () => {
     const collapse = document.querySelector('.btn-post-collapse');
     collapse?.addEventListener('click', function (e) {
         e.preventDefault();
-        let elements = document.querySelectorAll('.element-toggle');
+        let elements = document.querySelectorAll('.post-block .element-toggle');
         elements.forEach((e) => {
             e.classList.add('animate-collapsed');
             let target = document.querySelector(e.dataset.target);
@@ -32,7 +50,7 @@ const registerStoryActions = () => {
     const expand = document.querySelector('.btn-post-expand');
     expand?.addEventListener('click', function (e) {
         e.preventDefault();
-        let elements = document.querySelectorAll('.element-toggle');
+        let elements = document.querySelectorAll('.post-block .element-toggle');
         elements.forEach((e) => {
             e.classList.remove('animate-collapsed');
             let target = document.querySelector(e.dataset.target);
@@ -182,35 +200,41 @@ const highlightSearchTerm = () => {
 /**
  * When loading an entity, a post anchor might be set but not visible due to pagination
  */
+const loadingAnchorPosts = new Set();
 const registerLoadAnchorPost = () => {
-    let postId = window.location.hash.substring(1); // Remove the '#' character
-    if (!postId) {
+    const id = postIdFromHash(window.location.hash);
+    if (!id) {
         return;
     }
+    const postId = `post-${id}`;
     let selector = document.getElementById(postId);
     if (selector) {
+        scrollToSection(selector);
         return;
     }
 
     // Try loading from the backend
     let config = document.getElementById('post-anchor-loader');
-    if (!config) {
+    if (!config || loadingAnchorPosts.has(id)) {
         return;
     }
 
-    let realPostId = postId.match(/\d+$/);
-    let url = config.dataset.url.replace('/0', '/' + realPostId);
+    loadingAnchorPosts.add(id);
+    const url = config.dataset.url.replace(/\/0(?=\/|\?|$)/, '/' + id);
     axios.get(url)
         .then(res => {
             config.insertAdjacentHTML('afterbegin', res.data);
             window.triggerEvent();
 
             selector = document.getElementById(postId);
-            window.scrollTo({
-                top: selector.offsetTop,
-                behavior: 'smooth'
-            });
-        });
+            if (selector && postIdFromHash(window.location.hash) === id) {
+                scrollToSection(selector);
+            }
+        })
+        .catch(() => {
+            // An inaccessible or deleted post must not break the rest of the reader.
+        })
+        .finally(() => loadingAnchorPosts.delete(id));
 };
 
 
@@ -219,7 +243,10 @@ registerStoryLoadMore();
 registerTrustDomain();
 // Axios is assigned on `window` by app.js after imported modules have executed.
 // Defer anchor loading until the application bundle has finished initializing.
-window.onReady(registerLoadAnchorPost);
+window.onReady(() => {
+    window.addEventListener('hashchange', registerLoadAnchorPost);
+    registerLoadAnchorPost();
+});
 scanAndMountMapPreviews();
 highlightSearchTerm();
 window.onEvent(scanAndMountMapPreviews);

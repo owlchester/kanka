@@ -21,6 +21,7 @@ class ClearUserCache
     {
         $user = $event->campaignRoleUser->user
             ?? $event->application->user
+            ?? $event->campaignFollower->user
             ?? $event->user
             ?? null;
 

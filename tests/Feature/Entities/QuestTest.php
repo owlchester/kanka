@@ -24,6 +24,24 @@ it('POSTS a new quest')
         ],
     ]);
 
+it('persists canonical quest dates through the API and rejects other formats', function () {
+    $this->asUser()->withCampaign();
+
+    $response = $this->postJson('/api/1.0/campaigns/1/quests', [
+        'name' => 'API dated quest',
+        'date' => '2024-03-14',
+    ])->assertCreated();
+
+    $quest = Quest::findOrFail($response->json('data.id'));
+    expect($quest->date)->toBe('2024-03-14');
+    expect($response->json('data.date'))->toBe('2024-03-14');
+
+    $this->postJson('/api/1.0/campaigns/1/quests', [
+        'name' => 'Noncanonical API date',
+        'date' => '03/14/2024',
+    ])->assertUnprocessable();
+});
+
 it('GETS all quests')
     ->asUser()
     ->withCampaign()
@@ -166,6 +184,45 @@ it('saves quest locations through the web form', function () {
     $quest = Quest::whereHas('entity', fn ($query) => $query->where('name', 'Web quest'))->firstOrFail();
     expect($quest->entity->locations()->pluck('locations.id')->sort()->values()->all())
         ->toBe([$locations[0]->id, $locations[1]->id]);
+});
+
+it('persists quest dates through the web form', function () {
+    $this->asUser()->withCampaign()->withQuests();
+
+    $this->post(route('quests.store', [1]), [
+        'name' => 'Dated web quest',
+        'date' => '2024-03-14',
+    ])->assertRedirect();
+
+    $quest = Quest::whereHas('entity', fn ($query) => $query->where('name', 'Dated web quest'))->firstOrFail();
+    expect($quest->date)->toBe('2024-03-14');
+
+    $this->patch(route('entities.update', [1, $quest->entity]), [
+        'name' => 'Dated web quest',
+        'date' => '2025-06-09',
+    ])->assertRedirect();
+    expect($quest->fresh()->date)->toBe('2025-06-09');
+
+    $this->patch(route('entities.update', [1, $quest->entity]), [
+        'name' => 'Dated web quest',
+        'date' => '',
+    ])->assertRedirect();
+    expect($quest->fresh()->date)->toBeNull();
+
+    $this->patch(route('entities.update', [1, $quest->entity]), [
+        'name' => 'Dated web quest',
+        'date' => '2025-06-09',
+    ])->assertRedirect();
+    $this->patch(route('entities.update', [1, $quest->entity]), [
+        'name' => 'Dated web quest',
+    ])->assertRedirect();
+    expect($quest->fresh()->date)->toBe('2025-06-09');
+
+    $this->patch(route('entities.update', [1, $quest->entity]), [
+        'name' => 'Dated web quest',
+        'date' => 'not-a-date',
+    ])->assertSessionHasErrors('date');
+    expect($quest->fresh()->date)->toBe('2025-06-09');
 });
 
 it('filters quests by locations', function () {

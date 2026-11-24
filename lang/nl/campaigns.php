@@ -94,10 +94,6 @@ return [
             'role'          => 'Rol',
             'roles'         => 'Rollen',
         ],
-        'impersonating'         => [
-            'message'   => 'Je bekijkt de campaign als een andere gebruiker. Sommige functies zijn uitgeschakeld, maar de rest werkt precies zoals de gebruiker het zou zien. Om terug te schakelen naar jouw gebruiker, gebruik je de knop Wissel Terug op de plaats waar de knop Uitloggen zich gewoonlijk bevindt.',
-            'title'     => ':name aan het imiteren',
-        ],
         'invite'                => [
             'description'   => 'Je kunt vrienden uitnodigen om deel te nemen aan je campaign door hen een Uitnodiging Link te geven. Na het accepteren van hun uitnodiging, worden ze toegevoegd als lid in de gevraagde rol. Je kunt ze ook een verzoek per e-mail sturen.',
             'more'          => 'Je kunt meer rollen toevoegen via de :link.',

@@ -11,8 +11,12 @@ class CampaignInviteObserver
 {
     public function creating(CampaignInvite $campaignInvite)
     {
-        $campaignInvite->token = sha1(Str::random(50)) . time() . uniqid();
-        $campaignInvite->is_active = true;
+        if (empty($campaignInvite->token)) {
+            $campaignInvite->token = sha1(Str::random(50)) . time() . uniqid();
+        }
+        if ($campaignInvite->is_active === null) {
+            $campaignInvite->is_active = true;
+        }
     }
 
     public function created(CampaignInvite $campaignInvite)

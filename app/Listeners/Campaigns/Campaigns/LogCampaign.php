@@ -9,6 +9,10 @@ class LogCampaign
 {
     public function handle(Updated $event): void
     {
+        if (! $event->user) {
+            return;
+        }
+
         if ($event->campaign->wasChanged('is_open')) {
             UserLogger::user($event->user)->campaign(
                 $event->campaign->id,

@@ -237,6 +237,8 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
 
                 onKeyDown(props: any) {
                     if (props.event.key === 'Escape') {
+                        props.event.preventDefault()
+                        props.event.stopPropagation()
                         component.destroy()
 
                         return true

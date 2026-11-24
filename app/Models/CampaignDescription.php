@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Facades\Mentions;
+use App\Observers\CampaignDescriptionObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -13,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property ?string $excerpt
  * @property Campaign $campaign
  */
+#[ObservedBy(CampaignDescriptionObserver::class)]
 class CampaignDescription extends Model
 {
     protected $fillable = [

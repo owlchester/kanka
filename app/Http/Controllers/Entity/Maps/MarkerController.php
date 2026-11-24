@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Entity\Maps;
 
-use App\Facades\EntityPermission;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMapMarker;
 use App\Http\Resources\Maps\Explore\PinPreviewResource;
@@ -22,11 +21,6 @@ class MarkerController extends Controller
     {
         $this->campaign($campaign)->authEntityView($entity);
         $this->guardMarker($entity, $mapMarker);
-        // Explicitly scope the shared permission service to this campaign (mirroring
-        // GuestAuthTrait/CampaignPolicy/MiscPolicy) so `can('update', ...)` inside
-        // PinPreviewResource evaluates the user's actual role rather than falling back to
-        // EntityPermission::loadAllPermissions()'s "no campaign set" admin bypass.
-        EntityPermission::campaign($campaign);
 
         return response()->json(new PinPreviewResource($mapMarker)->campaign($campaign));
     }
@@ -37,8 +31,6 @@ class MarkerController extends Controller
         if (! $entity->isMap()) {
             abort(404);
         }
-        // See the comment in preview() above.
-        EntityPermission::campaign($campaign);
         $this->authorize('update', $entity);
 
         $marker = MapMarker::create($request->validated() + ['map_id' => $entity->child->id]);
@@ -50,8 +42,6 @@ class MarkerController extends Controller
     {
         $this->campaign($campaign)->authEntityView($entity);
         $this->guardMarker($entity, $mapMarker);
-        // See the comment in preview() above.
-        EntityPermission::campaign($campaign);
         $this->authorize('update', $entity);
 
         $mapMarker->update($request->validated());
@@ -63,8 +53,6 @@ class MarkerController extends Controller
     {
         $this->campaign($campaign)->authEntityView($entity);
         $this->guardMarker($entity, $mapMarker);
-        // See the comment in preview() above.
-        EntityPermission::campaign($campaign);
         $this->authorize('update', $entity);
 
         $mapMarker->delete();

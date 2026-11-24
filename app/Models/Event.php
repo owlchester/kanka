@@ -5,12 +5,12 @@ namespace App\Models;
 use App\Enums\EntityEventTypes;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Event
@@ -23,7 +23,6 @@ class Event extends MiscModel
     use ExportableTrait;
     use HasCampaign;
     use HasFactory;
-    use HasFilters;
     use Sanitizable;
     use SortableTrait;
 
@@ -79,10 +78,31 @@ class Event extends MiscModel
         'date',
     ];
 
+    protected array $foreignExport = ['groups', 'participants'];
+
     protected array $sanitizable = [
         'name',
         'date',
     ];
+
+    /** @return HasMany<EventGroup, $this> */
+    public function groups(): HasMany
+    {
+        return $this->hasMany(EventGroup::class)->orderBy('position')->orderByDesc('id');
+    }
+
+    /** @return HasMany<EventParticipant, $this> */
+    public function participants(): HasMany
+    {
+        return $this->hasMany(EventParticipant::class)->orderBy('position')->orderByDesc('id');
+    }
+
+    /** Detach event-local data when the event is moved to another campaign. */
+    public function detach(): void
+    {
+        $this->groups()->delete();
+        $this->participants()->delete();
+    }
 
     public function scopeFilteredEvents(Builder $query): Builder
     {
@@ -118,6 +138,10 @@ class Event extends MiscModel
             return true;
         }
 
+        if (($this->relationLoaded('groups') && $this->groups->isNotEmpty()) || ($this->relationLoaded('participants') && $this->participants->isNotEmpty())) {
+            return true;
+        }
+
         if ($this->entity->locations->isNotEmpty() || ! empty($this->entity->calendarReminder())) {
             return true;
         }
@@ -135,6 +159,7 @@ class Event extends MiscModel
         return [
             'date',
             'locations',
+            'participants',
         ];
     }
 }

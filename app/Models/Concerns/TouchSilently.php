@@ -10,9 +10,9 @@ trait TouchSilently
     public function touchSilently()
     {
         return static::withoutEvents(function () {
-            if (in_array('updated_by', $this->getFillable())) {
+            if (in_array('updated_by', $this->getFillable()) && auth()->check()) {
                 // Still log who edited the entity
-                $this->updated_by = auth()->user()->id;
+                $this->updated_by = auth()->id();
             }
 
             return $this->touch();

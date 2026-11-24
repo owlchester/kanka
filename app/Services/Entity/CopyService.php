@@ -5,6 +5,7 @@ namespace App\Services\Entity;
 use App\Models\CharacterRace;
 use App\Models\CharacterTrait;
 use App\Models\Entity;
+use App\Models\Event;
 use App\Models\MapMarker;
 use App\Models\TimelineElement;
 use App\Traits\EntityAware;
@@ -176,6 +177,37 @@ class CopyService
                 $new->character_id = $this->entity->entity_id;
                 $new->save();
             }
+        }
+
+        return $this;
+    }
+
+    public function event(): self
+    {
+        if (! $this->source->isEvent() || (isset($this->request) && $this->request->has('event_participants'))) {
+            return $this;
+        }
+
+        /** @var Event $source */
+        $source = $this->source->child;
+        /** @var Event $target */
+        $target = $this->entity->child;
+        $groups = [];
+        foreach ($source->groups->reverse() as $group) {
+            $groups[$group->id] = $target->groups()->create([
+                'name' => $group->name,
+                'colour' => $group->colour,
+                'position' => $group->position,
+            ]);
+        }
+
+        foreach ($source->participants->reverse() as $participant) {
+            $target->participants()->create([
+                'entity_id' => $participant->entity_id,
+                'group_id' => $participant->group_id ? $groups[$participant->group_id]->id : null,
+                'role' => $participant->role,
+                'position' => $participant->position,
+            ]);
         }
 
         return $this;

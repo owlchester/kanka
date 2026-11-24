@@ -21,16 +21,6 @@ class CharacterFilter extends DatagridFilter
             ->add('sex')
             ->add('pronouns')
             ->add('status_id')
-            ->isPrivate()
-            ->template()
-            ->archived()
-            ->hasImage()
-            ->hasEntry()
-            ->hasPosts()
-            ->hasEntityFiles()
-            ->hasAttributes()
-            ->tags()
-            ->attributes()
-            ->connections();
+            ->standardFilters();
     }
 }

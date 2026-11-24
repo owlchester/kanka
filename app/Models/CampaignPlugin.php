@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Observers\CampaignPluginObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,6 +23,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @method static self|Builder templates(Campaign $campaign)
  */
+#[ObservedBy(CampaignPluginObserver::class)]
 class CampaignPlugin extends Model
 {
     public $casts = [
@@ -53,10 +56,10 @@ class CampaignPlugin extends Model
 
     public function scopeTemplates(Builder $builder, Campaign $campaign): Builder
     {
-        return $builder->leftJoin('plugins as p', 'p.id', 'plugin_id')
-            ->where('campaign_id', $campaign->id)
+        return $builder->leftJoin('plugins as p', 'p.id', 'campaign_plugins.plugin_id')
+            ->where('campaign_plugins.campaign_id', $campaign->id)
             ->where('p.type_id', 2)
-            ->where('is_active', true)
+            ->where('campaign_plugins.is_active', true)
             ->with('version')
             ->orderBy('p.name');
     }

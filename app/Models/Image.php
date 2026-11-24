@@ -3,15 +3,17 @@
 namespace App\Models;
 
 use App\Enums\Visibility;
-use App\Facades\Img;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasUser;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Sanitizable;
+use App\Observers\ImageObserver;
+use App\Services\Images\Img;
 use App\Traits\ExportableTrait;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -61,6 +63,7 @@ use Illuminate\Support\Str;
  * @method static Builder|self imageFolder(string|null $folder)
  * @method static Builder|self search(?string $folder, ?string $term)
  */
+#[ObservedBy(ImageObserver::class)]
 class Image extends Model
 {
     use Blameable;
@@ -344,7 +347,7 @@ class Image extends Model
 
     public function getImagePath($width = 40, $height = 40): string
     {
-        return Img::resetCrop()->crop($width, $height)->url($this->path);
+        return Img::for($this->path)->crop($width, $height)->url();
     }
 
     public function isFolder(): bool
@@ -519,26 +522,23 @@ class Image extends Model
         if ($this->isSvg()) {
             return $this->url();
         }
-        Img::reset();
-
         if (! $sizeY && $sizeX) {
             $sizeY = $sizeX;
         } elseif (! $sizeX && $sizeY) {
             $sizeX = $sizeY;
         }
+
+        $img = Img::for($this->path);
+
         if ($sizeX && $sizeY) {
-            if (! $this->focus_x && ! $this->focus_y) {
-                return Img::crop($sizeX, $sizeY)->url($this->path);
-            }
-
-            return Img::focus($this->focus_x, $this->focus_y)->crop($sizeX, $sizeY)->url($this->path);
+            $img->crop($sizeX, $sizeY);
         }
 
-        if ($this->focus_x && $this->focus_y) {
-            return Img::focus($this->focus_x, $this->focus_y)->url($this->path);
+        if ($this->focus_x || $this->focus_y) {
+            $img->focus($this->focus_x, $this->focus_y);
         }
 
-        return Img::url($this->path);
+        return $img->url();
     }
 
     public function isSvg(): bool

@@ -35,8 +35,10 @@
 </template>
 
 <script>
+import FamilyParentChildrenLine from './FamilyParentChildrenLine.vue'
 
 export default {
+    components: { FamilyParentChildrenLine },
     props: {
         children: {
             type: Array

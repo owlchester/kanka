@@ -2,90 +2,37 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreItem as Request;
-use App\Http\Resources\ItemResource as Resource;
+use App\Http\Requests\StoreItem;
+use App\Http\Resources\ItemResource;
 use App\Models\Campaign;
-use App\Models\EntityType;
 use App\Models\Item;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ItemApiController extends MiscApiController
 {
-    /**
-     * @return AnonymousResourceCollection
-     *
-     * @throws AuthorizationException
-     */
-    public function index(Campaign $campaign)
+    public function index(Campaign $campaign): AnonymousResourceCollection
     {
-        $this->authorize('access', $campaign);
-
-        return Resource::collection($campaign
-            ->items()
-            ->has('entity')
-            ->filter(request()->all())
-            ->withApi()
-            ->lastSync(request()->get('lastSync'))
-            ->orderBy('items.id')
-            ->paginate());
+        return $this->listModels($campaign, $campaign->items(), ItemResource::class);
     }
 
-    /**
-     * @return resource
-     */
-    public function show(Campaign $campaign, Item $item)
+    public function show(Campaign $campaign, Item $item): ItemResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $item->entity);
-
-        return new Resource($item);
+        return new ItemResource($this->viewModel($campaign, $item));
     }
 
-    /**
-     * @return resource
-     *
-     * @throws AuthorizationException
-     */
-    public function store(Request $request, Campaign $campaign)
+    public function store(StoreItem $request, Campaign $campaign): ItemResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', [EntityType::find(config('entities.ids.item')), $campaign]);
-
-        $data = $request->validated();
-        $data['campaign_id'] = $campaign->id;
-        /** @var Item $model */
-        $model = $this->createStandardModel($campaign, $data, config('entities.ids.item'));
-        $this->crudSave($model, $request->validated());
-
-        return new Resource($model);
+        return new ItemResource($this->storeModel($request, $campaign, config('entities.ids.item')));
     }
 
-    /**
-     * @return resource
-     */
-    public function update(Request $request, Campaign $campaign, Item $item)
+    public function update(StoreItem $request, Campaign $campaign, Item $item): ItemResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $item->entity);
-        $item->update($request->validated());
-        $this->crudSave($item, $request->validated());
-
-        return new Resource($item);
+        return new ItemResource($this->updateModel($request, $campaign, $item));
     }
 
-    /**
-     * @return JsonResponse
-     *
-     * @throws AuthorizationException
-     */
-    public function destroy(Campaign $campaign, Item $item)
+    public function destroy(Campaign $campaign, Item $item): JsonResponse
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $item->entity);
-        $item->entity->delete();
-
-        return response()->json(null, 204);
+        return $this->deleteModel($campaign, $item);
     }
 }

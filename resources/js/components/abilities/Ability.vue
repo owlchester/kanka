@@ -24,7 +24,6 @@
                     <div v-if="permission" class="">
                         <a role="button"
                             v-on:click="updateAbility(ability)"
-                            v-if="canDelete"
                             class="btn2 btn-ghost btn-sm"
                             v-bind:title="ability.i18n.edit">
                             <i class="fa-regular fa-pencil " aria-hidden="true"></i>
@@ -76,15 +75,11 @@ const details = ref(false)
 
 const props = defineProps<{
     ability: Object,
-    permission: String,
+    permission: boolean,
 }>()
 
 const hasAttribute = () => {
     return props.ability.attributes.length > 0;
-}
-
-const canDelete = () => {
-    return props.permission.value;
 }
 
 const backgroundImage = () => {

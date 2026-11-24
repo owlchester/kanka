@@ -3,10 +3,10 @@
 namespace App\Services\Families;
 
 use App\Enums\Visibility;
-use App\Facades\Avatar;
 use App\Models\Entity;
 use App\Models\Family;
 use App\Models\FamilyTree;
+use App\Services\Images\Avatar;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Str;
@@ -203,7 +203,7 @@ class FamilyTreeService
             'id' => $entity->id,
             'name' => $entity->name,
             'url' => $entity->url(),
-            'thumb' => Avatar::entity($entity)->size(80)->fallback()->thumbnail(),
+            'thumb' => Avatar::for($entity)->size(80)->fallback()->thumbnail(),
             'status' => $status,
             'death' => $death,
             'birth' => $birth,

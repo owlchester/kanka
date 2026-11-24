@@ -178,6 +178,7 @@ class FilterService
             [
                 'tags',
                 'locations',
+                'participants',
                 'organisations',
                 'races',
                 'families',

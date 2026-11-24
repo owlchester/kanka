@@ -132,10 +132,11 @@ class UploadService
 
         // Check if file is too big
         $copiedFileSize = ceil(filesize($tempImage) / 1024);
+        $limit = Limit::user($this->user)->campaign($this->campaign);
         if ($this->request->has('map')) {
-            Limit::map();
+            $limit = $limit->map();
         }
-        $max = Limit::upload();
+        $max = $limit->upload();
         if ($copiedFileSize > $max) {
             unlink($tempImage);
             throw ValidationException::withMessages([__('gallery.download.errors.too_big', [

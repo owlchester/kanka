@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Facades\Domain;
 use App\Models\MapGroup;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
@@ -34,6 +35,10 @@ class StoreMapGroup extends FormRequest
             'parent_id' => 'nullable|integer|exists:map_groups,id',
             'colour' => 'nullable|string|max:7',
         ];
+
+        if (Domain::isApi() || request()->is('api/*')) {
+            $rules['is_shown'] = 'boolean';
+        }
 
         /** @var MapGroup $self */
         $self = request()->route('map_group');

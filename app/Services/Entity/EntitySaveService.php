@@ -12,6 +12,7 @@ use App\Services\PermissionService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
+use Illuminate\Http\Request;
 use Stevebauman\Purify\Facades\Purify;
 
 class EntitySaveService
@@ -25,6 +26,7 @@ class EntitySaveService
     public function __construct(
         protected TagService $tagService,
         protected PermissionService $permissionService,
+        protected EntryDateService $entryDateService,
     ) {}
 
     public function skipPermissions(): self
@@ -34,8 +36,9 @@ class EntitySaveService
         return $this;
     }
 
-    public function save(array $data): Entity
+    public function save(array $data, ?Request $form = null): Entity
     {
+        $this->saveEntryDates($data['entry_dates'] ?? []);
         // Pre-save: scalar entity fields — must all be set before save() so HasEntry fires once
         if (array_key_exists('name', $data)) {
             $this->entity->name = $data['name'];
@@ -61,6 +64,9 @@ class EntitySaveService
         $this->applyGalleryFields($data);
 
         $this->entity->save();
+        if ($form !== null) {
+            app(RemindableService::class)->save($this->entity, $form);
+        }
 
         // Post-save: image file cleanup (safe after save — doesn't affect entity record)
         if (($data['remove-image'] ?? null) == '1') {
@@ -72,12 +78,22 @@ class EntitySaveService
             $this->entity->saveQuietly();
         }
 
+        if ($form?->has('save_tags')) {
+            $data['save-tags'] = true;
+        }
         $this->saveTags($data);
         if ($this->permissions) {
             $this->savePermissions($data);
         }
 
         return $this->entity;
+    }
+
+    public function saveEntryDates(array $dates): void
+    {
+        if ($dates !== []) {
+            $this->entryDateService->save($this->entity, $dates, $this->user ?? auth()->user());
+        }
     }
 
     protected function applyGalleryFields(array $data): void

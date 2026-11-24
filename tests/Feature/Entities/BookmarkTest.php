@@ -1,5 +1,24 @@
 <?php
 
+use App\Models\Bookmark;
+use App\Models\Tag;
+
+it('syncs bookmark tags through the API', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $tag = Tag::factory()->create(['campaign_id' => 1]);
+    $url = '/api/1.0/campaigns/1/bookmarks';
+
+    $id = $this->postJson($url, [
+        'name' => 'Tagged bookmark', 'entity_id' => 1, 'save_tags' => 1, 'tags' => [$tag->id],
+    ])->assertCreated()->json('data.id');
+    $bookmark = Bookmark::findOrFail($id);
+    expect($bookmark->tags()->pluck('tags.id')->all())->toBe([$tag->id]);
+
+    $this->putJson("$url/$id", ['name' => 'Cleared bookmark', 'entity_id' => 1, 'save_tags' => 1])
+        ->assertOk();
+    expect($bookmark->tags()->exists())->toBeFalse();
+});
+
 it('POSTS an invalid bookmark form')
     ->asUser()
     ->withCampaign()

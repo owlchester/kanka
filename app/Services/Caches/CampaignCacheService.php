@@ -2,6 +2,8 @@
 
 namespace App\Services\Caches;
 
+use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\Services\Caches\Traits\Campaign\ApplicationCache;
 use App\Services\Caches\Traits\Campaign\DashboardCache;
 use App\Services\Caches\Traits\Campaign\FlagCache;
@@ -12,8 +14,6 @@ use App\Services\Caches\Traits\Campaign\StyleCache;
 use App\Services\Caches\Traits\Campaign\ThemeCache;
 use App\Services\Caches\Traits\Campaign\ThumbnailCache;
 use App\Services\Caches\Traits\PrimaryCache;
-use App\Traits\CampaignAware;
-use App\Traits\UserAware;
 
 /**
  * Class CampaignCacheService
@@ -21,7 +21,6 @@ use App\Traits\UserAware;
 class CampaignCacheService extends BaseCache
 {
     use ApplicationCache;
-    use CampaignAware;
     use DashboardCache;
     use FlagCache;
     use MemberCache;
@@ -31,7 +30,22 @@ class CampaignCacheService extends BaseCache
     use StyleCache;
     use ThemeCache;
     use ThumbnailCache;
-    use UserAware;
+
+    private ?Campaign $explicitCampaign = null;
+
+    public function campaign(Campaign $campaign): self
+    {
+        $this->primaryStore();
+        $scoped = clone $this;
+        $scoped->explicitCampaign = $campaign;
+
+        return $scoped;
+    }
+
+    protected function activeCampaign(): Campaign
+    {
+        return $this->explicitCampaign ?? CampaignLocalization::getCampaign();
+    }
 
     protected function primaryData(): array
     {
@@ -48,12 +62,12 @@ class CampaignCacheService extends BaseCache
 
     protected function primaryKey(): string
     {
-        return 'campaign_' . $this->campaign->id;
+        return 'campaign_' . $this->activeCampaign()->id;
     }
 
     public function clearSidebar(): self
     {
-        $this->forget('campaign_' . $this->campaign->id . '_sidebar');
+        $this->forget('campaign_' . $this->activeCampaign()->id . '_sidebar');
 
         return $this;
     }

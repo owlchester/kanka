@@ -7,7 +7,7 @@ $attributes = $entity->starredAttributes();
 ?>
 @if (count($attributes) > 0)
     @foreach ($attributes as $attribute)
-        <div class="pinned-attribute flex gap-2 flex-wrap @if ($attribute->isSection()) border-t pinned-attribute-section text-center @elseif ($attribute->value == null) pinned-attribute-empty @endif" data-attribute="{{ $attribute->name }}" data-target="{{ $attribute->id }}" @if ($attribute->is_private) data-private="true" @endif>
+        <div class="pinned-attribute flex gap-2 flex-wrap @if ($attribute->isSection()) pinned-attribute-section text-center @elseif ($attribute->value == null) pinned-attribute-empty @endif" data-attribute="{{ $attribute->name }}" data-target="{{ $attribute->id }}" @if ($attribute->is_private) data-private="true" @endif>
             <strong>
                 {!! $attribute->name() !!}
             </strong>

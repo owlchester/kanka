@@ -4,7 +4,6 @@ namespace App\Services\Maps;
 
 use App\Enums\Visibility;
 use App\Facades\CampaignCache;
-use App\Facades\EntityPermission;
 use App\Http\Resources\Maps\Explore\GroupResource;
 use App\Http\Resources\Maps\Explore\LayerResource;
 use App\Http\Resources\Maps\Explore\MapResource;
@@ -70,12 +69,6 @@ class ExploreApiService
         if (! $this->hasUser()) {
             return [];
         }
-
-        // Explicitly scope EntityPermission to this campaign first (mirroring
-        // Entity/Maps/MarkerController's store/update/destroy) so `can('update', ...)` checks
-        // the user's actual role instead of falling back to EntityPermission::loadAllPermissions()'s
-        // "no campaign set" admin bypass.
-        EntityPermission::campaign($this->campaign);
 
         if (! $this->user->can('update', $this->map->entity)) {
             return [];

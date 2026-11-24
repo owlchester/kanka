@@ -6,12 +6,15 @@ use App\Http\Requests\StoreBookmark as Request;
 use App\Http\Resources\BookmarkResource as Resource;
 use App\Models\Bookmark;
 use App\Models\Campaign;
+use App\Services\Entity\TagFormSyncService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class BookmarkApiController extends ApiController
 {
+    public function __construct(protected TagFormSyncService $tagFormSyncService) {}
+
     /**
      * @return AnonymousResourceCollection
      *
@@ -52,6 +55,7 @@ class BookmarkApiController extends ApiController
         $data['campaign_id'] = $campaign->id;
         /** @var Bookmark $model */
         $model = Bookmark::create($data);
+        $this->tagFormSyncService->sync($model, $request);
 
         return new Resource($model);
     }
@@ -64,6 +68,7 @@ class BookmarkApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $bookmark);
         $bookmark->update($request->all());
+        $this->tagFormSyncService->sync($bookmark, $request);
 
         return new Resource($bookmark);
     }

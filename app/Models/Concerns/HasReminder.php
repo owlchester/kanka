@@ -3,7 +3,6 @@
 namespace App\Models\Concerns;
 
 use App\Models\Reminder;
-use App\Observers\Remindable;
 use Illuminate\Support\Arr;
 
 /**
@@ -18,15 +17,6 @@ use Illuminate\Support\Arr;
  */
 trait HasReminder
 {
-    /**
-     * On boot of the trait, inject the fillable fields.
-     */
-    public static function bootHasReminder()
-    {
-        $observer = app(Remindable::class);
-        static::saved([$observer, 'saved']);
-    }
-
     public function hasCalendar(): bool
     {
         return $this->hasCalendarDate() && $this->calendarDate->calendar !== null;

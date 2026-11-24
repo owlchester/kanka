@@ -7,7 +7,7 @@
 @include('cruds.fields.entry2')
 
 @if ($campaign->enabled('characters'))
-    <x-forms.field field="members">
+    <x-forms.field field="members" :label="__('organisations.fields.members')" id="members">
         <input type="hidden" name="sync_family_members" value="1">
         @include('components.form.family_members', ['options' => [
             'model' => $model ?? FormCopy::model(),
@@ -19,4 +19,3 @@
 @include('cruds.fields.status')
 
 @include('cruds.fields.tags')
-

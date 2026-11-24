@@ -4,19 +4,22 @@ namespace App\Models;
 
 use App\Enums\UserAction;
 use App\Facades\Identity;
-use App\Facades\ReleaseCache;
-use App\Facades\SingleUserCache;
 use App\Models\Concerns\HasImage;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\UserBenefits;
 use App\Models\Relations\UserRelations;
 use App\Models\Scopes\UserScope;
+use App\Observers\UserObserver;
+use App\Services\Caches\ReleaseCacheService;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Billable;
@@ -49,6 +52,7 @@ use Laravel\Passport\HasApiTokens;
  * @property Campaign $campaign
  * @property ?string $stripe_id
  */
+#[ObservedBy(UserObserver::class)]
 class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
 {
     use Billable;
@@ -250,7 +254,13 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
      */
     public function createdEntitiesCount(): string
     {
-        return (string) Number::format(SingleUserCache::user($this)->entitiesCreatedCount());
+        $count = (int) Cache::remember(
+            "user_{$this->id}_entities_created_count",
+            86400,
+            fn () => DB::table('entities')->where('created_by', $this->id)->count()
+        );
+
+        return (string) Number::format($count);
     }
 
     /**
@@ -335,7 +345,7 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
         }
 
         // Unread notifications
-        $releases = ReleaseCache::latest();
+        $releases = app(ReleaseCacheService::class)->latest();
         /** @var AppRelease $release */
         foreach ($releases as $release) {
             if (! $release->alreadyRead()) {

@@ -34,12 +34,6 @@ class CampaignObserver
         }
     }
 
-    public function creating(Campaign $campaign)
-    {
-        $campaign->entity_visibility = false;
-        $campaign->entity_personality_visibility = false;
-    }
-
     public function saved(Campaign $campaign)
     {
         Saved::dispatch($campaign, auth()->user());

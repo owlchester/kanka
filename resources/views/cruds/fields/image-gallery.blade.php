@@ -10,7 +10,7 @@ $inputFileTypes = '.jpg, .jpeg, .png, .gif, .webp';
 $max = Limit::user(auth()->user())->campaign($campaign);
 $from = null;
 if (isset($size) && $size == 'map') {
-    $max->map();
+    $max = $max->map();
     $formats = 'PNG, JPG, GIF, SVG, WebP';
     $inputFileTypes = '.jpg, .jpeg, .png, .gif, .webp, .svg';
     $from = 'map';
@@ -23,7 +23,7 @@ $canFocus = !empty($entity) && $campaign->boosted() && auth()->user()->can('upda
 
 $previewThumbnail = null;
 if (!empty($entity) && $entity->hasImage()) {
-    $previewThumbnail = Avatar::entity($entity)->size(160, 160)->thumbnail();
+    $previewThumbnail = Avatar::for($entity)->size(160, 160)->thumbnail();
 } elseif (isset($model) && method_exists($model, 'thumbnail') && !empty($model->image)) {
     $previewThumbnail = $model->thumbnail(160, 160);
 } elseif (isset($source) && !empty($source->entity->image_uuid) && !empty($source->entity->image)) {
@@ -127,7 +127,7 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
             @if ($isUnlimited)
                 {{ __('crud.hints.image_formats', ['formats' => $formats]) }}
             @else
-                {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? Limit::readable()->map()->upload() : Limit::readable()->upload())]) }}
+                {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => $max]) }}
                 @includeWhen(config('services.stripe.enabled'), 'cruds.fields.helpers.share')
             @endif
             @if (isset($recommended)) {{ __('crud.hints.image_dimension', ['dimension' => $recommended]) }} @endif

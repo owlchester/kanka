@@ -1,87 +1,157 @@
 <template>
-    <div v-if="!model.is_hidden && !model.url" :class="modelClass()" @click="click">
-        <div class="flex gap-2 items-center">
-            <div class="flex-none flex items-center">
-                <input v-if="!model.url" type="checkbox" v-model="model.is_selected" @click="startBulking"/>
+    <div
+        v-if="!model.url"
+        :class="cardClass"
+        @click="toggleSelection"
+    >
+        <div class="flex items-start gap-3 min-w-0">
+            <div class="w-9 h-9 rounded-lg bg-base-200 flex items-center justify-center shrink-0 text-neutral-content">
+                <i :class="model.icon || 'fa-regular fa-cube'" aria-hidden="true" />
             </div>
-            <div class="grow font-extrabold truncate" v-html="model.name"></div>
-            <div class="rounded-xl px-3 py-1 text-xs bg-base-200" v-html="model.type_name"></div>
+            <div class="min-w-0 grow flex flex-col gap-0.5">
+                <div class="font-semibold text-base-content truncate" :title="model.name">
+                    {{ model.name }}
+                </div>
+                <div class="text-xs text-neutral-content truncate">
+                    <span>{{ model.type_name }}</span>
+                    <span v-if="model.parent_name">
+                        · {{ parentEntityLabel }}
+                    </span>
+                </div>
+            </div>
+            <input
+                type="checkbox"
+                v-model="model.is_selected"
+                :aria-label="model.name"
+                class="mt-1 shrink-0 cursor-pointer"
+                @click.stop
+            />
         </div>
-        <hr />
-        <div class="flex items-center gap-2 md:gap-4">
-            <div class="grow text-neutral-content">
-                <span class="text-xs" v-html="trans('deleted_at', [model.date, model.deleted_name])"></span>
+
+        <div class="flex items-end justify-between gap-3 pt-1">
+            <div class="min-w-0 flex flex-col gap-1 text-xs">
+                <span class="text-neutral-content truncate w-fit max-w-full" v-tippy="model.deleted_at_formatted">
+                    {{ deletedAtLabel }}
+                </span>
+                <span
+                    v-if="model.expires_label"
+                    :class="[expiryClass, 'w-fit cursor-help']"
+                    v-tippy="model.expires_tooltip"
+                >
+                    {{ model.expires_label }}
+                </span>
             </div>
-            <div v-if="!model.url" class="flex-none">
-                <button :class="buttonClass()" @click="restoreElement()" v-html="trans('recover')" ></button>
-            </div>
+            <button
+                type="button"
+                :class="buttonClass"
+                :disabled="disabled || model.is_recovering"
+                @click.stop="restoreElement"
+            >
+                <i v-if="model.is_recovering" class="fa-solid fa-spinner fa-spin" aria-hidden="true" />
+                <i v-else class="fa-regular fa-rotate-left" aria-hidden="true" />
+                <span>{{ trans('recover') }}</span>
+            </button>
         </div>
     </div>
 
-    <div v-if="!model.is_hidden && model.url" class="rounded shadow-sm p-4 flex gap-2 items-center bg-base-200 hover:shadow-lg">
-        <div class="flex-none">
-            <i class="fa-solid text-green-500 fa-circle-check" aria-hidden="true" />
+    <div
+        v-else
+        class="rounded-xl bg-base-100 border border-success/40 p-4 flex flex-col justify-between gap-3"
+    >
+        <div class="flex items-start gap-3 min-w-0">
+            <div class="w-9 h-9 rounded-lg bg-success text-success-content flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-circle-check" aria-hidden="true" />
+            </div>
+            <div class="min-w-0 grow flex flex-col gap-0.5">
+                <a
+                    :href="model.url"
+                    class="font-semibold text-link hover:underline truncate"
+                    :title="model.name"
+                >
+                    {{ model.name }}
+                </a>
+                <div class="text-xs text-neutral-content truncate">
+                    <span>{{ model.type_name }}</span>
+                    <span v-if="model.parent_name">
+                        · {{ parentEntityLabel }}
+                    </span>
+                </div>
+            </div>
+            <span class="rounded-full bg-success text-success-content px-2 py-0.5 text-xs font-medium shrink-0">
+                {{ trans('recovered_badge') }}
+            </span>
         </div>
-        <div class="grow" v-html="trans('recovery_success', [model.url, model.name])"></div>
-        <div class="rounded-xl px-3 py-1 text-xs bg-base-300" v-html="model.type_name"></div>
-    </div>
 
+        <div class="flex justify-end">
+            <a :href="model.url" class="btn2 btn-ghost btn-xs">
+                <span>{{ trans('view_recovered') }}</span>
+                <i class="fa-regular fa-arrow-right" aria-hidden="true" />
+            </a>
+        </div>
+    </div>
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted, watch, onBeforeMount} from 'vue'
+import { computed } from 'vue';
 
-const emit = defineEmits(['recover'])
+const emit = defineEmits(['recover']);
 
 const props = defineProps<{
-    model: Object,
-    i18n: Object
-}>()
+    model: Record<string, any>;
+    i18n: Record<string, string>;
+    disabled?: boolean;
+}>();
 
-const click = () => {
-    if (!props.model.url) {
-        props.model.is_selected = !props.model.is_selected
+const trans = (key: string): string => {
+    return props.i18n?.[key] ?? key;
+};
+
+const deletedAtLabel = computed(() => {
+    return trans('deleted_at')
+        .replace('placeholder', props.model.date ?? '')
+        .replace('placeholder', props.model.deleted_name ?? '');
+});
+
+const parentEntityLabel = computed(() => {
+    if (!props.model.parent_name) {
+        return '';
     }
-}
+    return trans('parent_entity').replace(':name', props.model.parent_name);
+});
 
-const modelClass = () => {
-    let css = 'rounded-xl shadow-xs bg-base-100 flex flex-col gap-2 md:gap-4 p-4 hover:shadow'
-
-    if (!props.model.url) {
-        css = css + ' cursor-pointer'
+const cardClass = computed(() => {
+    const base = 'rounded-xl p-4 flex flex-col justify-between gap-3 transition cursor-pointer border';
+    if (props.model.is_selected) {
+        return `${base} border-primary ring-2 ring-primary/20 bg-primary/5`;
     }
+    return `${base} bg-base-100 border-base-300/60 hover:border-base-300 hover:shadow-sm`;
+});
 
-    if (!props.model.is_selected) {
-        return css + '  '
+const expiryClass = computed(() => {
+    if (typeof props.model.days_left === 'number' && props.model.days_left <= 1) {
+        return 'bg-error text-error-content px-2 py-0.5 rounded-full font-medium';
     }
-
-    return css + ' bg-base-200'
-}
-
-const trans = (key, replace = []) => {
-    if (!props.i18n[key]) {
-        console.error('Missing trans', key, props.i18n)
-        return 'MISSING'
+    if (typeof props.model.days_left === 'number' && props.model.days_left <= 7) {
+        return 'bg-warning text-warning-content px-2 py-0.5 rounded-full font-medium';
     }
+    return 'text-neutral-content';
+});
 
-    let translation = props.i18n[key]
-    replace.forEach(f => {
-        translation = translation.replace("placeholder", f)
-    })
-
-    return translation
-}
-
-const buttonClass = () => {
-    let css = 'btn2 btn-default btn-sm'
+const buttonClass = computed(() => {
+    let css = 'btn2 btn-default btn-sm shrink-0';
     if (props.model.is_recovering) {
-        css += ' loading btn-disabled'
+        css += ' btn-disabled';
     }
-    return css
-}
+    return css;
+});
+
+const toggleSelection = () => {
+    if (!props.model.url) {
+        props.model.is_selected = !props.model.is_selected;
+    }
+};
 
 const restoreElement = () => {
-    emit('recover', props.model)
-}
-
+    emit('recover', props.model);
+};
 </script>

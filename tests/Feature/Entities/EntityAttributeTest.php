@@ -1,5 +1,8 @@
 <?php
 
+use App\Enums\AttributeType;
+use App\Models\Attribute;
+
 it('POSTS an invalid attributes form')
     ->asUser()
     ->withCampaign()
@@ -76,6 +79,41 @@ it('UPDATES a valid attribute without a name')
     ->putJson('/api/1.0/campaigns/1/entities/1/attributes/1', ['value' => 'Magic'])
     ->assertStatus(200)
     ->assertJsonFragment(['value' => 'Magic']);
+
+it('PATCHES an existing attribute without changing its type when type_id is omitted', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+
+    $attribute = Attribute::factory()->create([
+        'entity_id' => 1,
+        'type_id' => AttributeType::Checkbox->value,
+        'name' => 'Existing checkbox',
+        'value' => 'Old value',
+    ]);
+
+    $this->patchJson('/api/1.0/campaigns/1/entities/1/attributes', [
+        'attribute' => [[
+            'id' => $attribute->id,
+            'name' => 'Updated checkbox',
+            'value' => 'New value',
+        ]],
+    ])->assertSuccessful();
+
+    expect($attribute->fresh()->name)->toBe('Updated checkbox')
+        ->and($attribute->fresh()->value)->toBe('New value')
+        ->and($attribute->fresh()->type_id)->toBe(AttributeType::Checkbox);
+
+    $this->patchJson('/api/1.0/campaigns/1/entities/1/attributes', [
+        'attribute' => [[
+            'id' => $attribute->id,
+            'name' => 'Updated checkbox',
+            'type_id' => AttributeType::Standard->value,
+            'value' => 'Explicit type',
+        ]],
+    ])->assertSuccessful();
+
+    expect($attribute->fresh()->type_id)->toBe(AttributeType::Standard)
+        ->and($attribute->fresh()->value)->toBe('Explicit type');
+});
 
 it('DELETES an attribute')
     ->asUser()

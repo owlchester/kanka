@@ -2,10 +2,10 @@
 
 namespace App\View\Components\Widgets\Previews;
 
-use App\Facades\Avatar;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Entity;
+use App\Services\Images\Avatar;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -59,10 +59,10 @@ class Head extends Component
             ];
         } elseif ($this->entity->hasImage()) {
             return [
-                'wide_xl' => Avatar::entity($this->entity)->size(800, 450)->thumbnail(),
-                'wide_sm' => Avatar::entity($this->entity)->size(480, 270)->thumbnail(),
-                'square_xl' => Avatar::entity($this->entity)->size(800, 800)->thumbnail(),
-                'square_sm' => Avatar::entity($this->entity)->size(480, 480)->thumbnail(),
+                'wide_xl' => Avatar::for($this->entity)->size(800, 450)->thumbnail(),
+                'wide_sm' => Avatar::for($this->entity)->size(480, 270)->thumbnail(),
+                'square_xl' => Avatar::for($this->entity)->size(800, 800)->thumbnail(),
+                'square_sm' => Avatar::for($this->entity)->size(480, 480)->thumbnail(),
             ];
         }
 

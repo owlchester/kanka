@@ -128,10 +128,6 @@ return [
             'role'          => 'Cargo',
             'roles'         => 'Cargos',
         ],
-        'impersonating'         => [
-            'message'   => 'Você está vendo a campanha como outro usuário. Alguns recursos foram desabilitados, mas o resto age exatamente como o usuário veria. Para voltar ao seu usuário, use o botão Trocar de Volta localizado onde o botão Logout normalmente está localizado.',
-            'title'     => 'Personificando :name',
-        ],
         'invite'                => [
             'description'   => 'Você pode convidar amigos para se juntar a sua campanha fornecendo o endereço de email deles. Assim que eles aceitarem o convite, serão adicionados como um "Espectador". Você também pode cancelar o convite a qualquer momento.',
             'more'          => 'Você pode adicionar novos cargos em :link',

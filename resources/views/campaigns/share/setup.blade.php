@@ -27,15 +27,14 @@
 
 @section('content')
 
-<div id="campaign-share-container">
-    <campaign-share-modal
-        initial-visibility="{{ $campaign->visibility_id->name }}"
-        url="{{ route('dashboard', $campaign) }}"
-        save-endpoint="{{ route('campaign.share.save', $campaign) }}"
-        settings-url="{{ route('campaign-visibility', $campaign) }}"
-        :can-change-visibility="@js($canChangeVisibility)"
-        :trans='@json($shareTranslations)'
-    ></campaign-share-modal>
-</div>
+<div
+    id="campaign-share-container"
+    data-initial-visibility="{{ $campaign->visibility_id->name }}"
+    data-url="{{ route('dashboard', $campaign) }}"
+    data-save-endpoint="{{ route('campaign.share.save', $campaign) }}"
+    data-settings-url="{{ route('campaign-visibility', $campaign) }}"
+    data-can-change-visibility="{{ $canChangeVisibility ? '1' : '0' }}"
+    data-trans="{{ json_encode($shareTranslations) }}"
+></div>
 
 @endsection

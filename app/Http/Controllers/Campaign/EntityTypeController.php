@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\DeleteEntityType;
 use App\Http\Requests\StoreEntityType;
 use App\Models\Campaign;
+use App\Models\Entity;
 use App\Models\EntityType;
 use App\Services\EntityTypeService;
 use Exception;
@@ -21,14 +22,16 @@ class EntityTypeController extends Controller
         $this->authorize('setting', $campaign);
 
         if (! $campaign->premium()) {
-            return view('campaigns.entity-types.not-premium')
+            return view('campaigns.entity-types.unavailable')
+                ->with('reason', 'campaigns.entity-types.not-premium')
                 ->with('campaign', $campaign);
         }
 
         $limit = $this->limit($campaign);
 
         if ($campaign->entityTypes->count() >= $limit) {
-            return view('campaigns.entity-types.max-reached')
+            return view('campaigns.entity-types.unavailable')
+                ->with('reason', 'campaigns.entity-types.max-reached')
                 ->with('campaign', $campaign)
                 ->with('limit', $limit)
                 ->with('isPremiumUnlocker', $this->isPremiumUnlocker($campaign));
@@ -49,7 +52,8 @@ class EntityTypeController extends Controller
 
         $limit = $this->limit($campaign);
         if ($campaign->entityTypes->count() >= $limit) {
-            return view('campaigns.entity-types.max-reached')
+            return view('campaigns.entity-types.unavailable')
+                ->with('reason', 'campaigns.entity-types.max-reached')
                 ->with('campaign', $campaign)
                 ->with('limit', $limit)
                 ->with('isPremiumUnlocker', $this->isPremiumUnlocker($campaign));
@@ -73,6 +77,16 @@ class EntityTypeController extends Controller
         $this->authorize('setting', $campaign);
         $this->authorize('update', [$entityType, $campaign]);
 
+        $entityType->load('statuses');
+
+        $statusCounts = Entity::withTrashed()
+            ->where('campaign_id', $campaign->id)
+            ->where('type_id', $entityType->id)
+            ->whereNotNull('status_id')
+            ->groupBy('status_id')
+            ->selectRaw('status_id, count(*) as aggregate')
+            ->pluck('aggregate', 'status_id');
+
         $image = null;
         $thumbnails = $campaign->defaultImages();
         foreach ($thumbnails as $thumbnail) {
@@ -84,6 +98,7 @@ class EntityTypeController extends Controller
         return view('campaigns.entity-types.edit')
             ->with('campaign', $campaign)
             ->with('image', $image)
+            ->with('statusCounts', $statusCounts)
             ->with('entityType', $entityType);
     }
 

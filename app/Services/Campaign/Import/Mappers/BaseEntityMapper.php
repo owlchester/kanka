@@ -297,7 +297,7 @@ trait BaseEntityMapper
                 }
                 $ab->$field = $data[$field];
             }
-            $ab->save();
+            $ab->saveQuietly();
         }
 
         return $this;
@@ -337,7 +337,7 @@ trait BaseEntityMapper
                 }
                 $inv->$field = $data[$field];
             }
-            $inv->save();
+            $inv->saveQuietly();
         }
 
         return $this;

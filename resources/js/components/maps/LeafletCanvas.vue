@@ -639,6 +639,11 @@ function buildPin(pin) {
 }
 
 function buildPins() {
+    // Capture visibility before removing the cluster layer, which can remove its groups too.
+    const groupVisibility = new Map([...groupLayers].map(([id, { leafletLayer }]) => [
+        id, leafletMap.hasLayer(leafletLayer),
+    ]))
+
     renderedPins.clear()
     if (pinLayer) {
         leafletMap.removeLayer(pinLayer)
@@ -682,7 +687,7 @@ function buildPins() {
             pinLayer.checkIn(leafletLayer)
         }
 
-        if (group.is_shown) {
+        if (groupVisibility.get(group.id) ?? group.is_shown) {
             leafletLayer.addTo(leafletMap)
         }
     })

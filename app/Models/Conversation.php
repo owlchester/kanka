@@ -5,8 +5,9 @@ namespace App\Models;
 use App\Enums\ConversationTarget;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Sanitizable;
+use App\Observers\ConversationObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -23,12 +24,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property ConversationParticipant[]|Collection $participants
  * @property ConversationMessage[]|Collection $messages
  */
+#[ObservedBy(ConversationObserver::class)]
 class Conversation extends MiscModel
 {
     use Acl;
     use HasCampaign;
     use HasFactory;
-    use HasFilters;
     use Sanitizable;
 
     protected $fillable = [
@@ -122,11 +123,23 @@ class Conversation extends MiscModel
     }
 
     /**
-     * @return false|string
+     * @return array<int, Entity>
      */
-    public function jsonParticipants()
+    public function postingParticipants(User $user): array
     {
-        return json_encode($this->participantsList());
+        if (! $this->forEntities()) {
+            return [];
+        }
+
+        $participants = [];
+        foreach ($this->participants->sortBy('id') as $row) {
+            $entity = $row->participant;
+            if ($entity instanceof Entity && $entity->campaign_id === $this->campaign_id && $user->can('update', $entity)) {
+                $participants[$entity->id] = $entity;
+            }
+        }
+
+        return $participants;
     }
 
     /**

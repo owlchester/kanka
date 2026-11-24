@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Facades\Module;
 use App\Models\Concerns\Sanitizable;
+use App\Observers\EntityTypeObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -32,6 +34,7 @@ use Illuminate\Support\Str;
  * @method static self|Builder exclude(array $ids)
  * @method static self|Builder inCampaign(Campaign|int $campaign)
  */
+#[ObservedBy(EntityTypeObserver::class)]
 class EntityType extends Model
 {
     use Sanitizable;
@@ -93,6 +96,12 @@ class EntityType extends Model
     public function entities(): HasMany
     {
         return $this->hasMany(Entity::class, 'type_id');
+    }
+
+    /** @return HasMany<CategoryStatus, $this> */
+    public function statuses(): HasMany
+    {
+        return $this->hasMany(CategoryStatus::class, 'category_id')->orderBy('sort_order')->orderBy('id');
     }
 
     /**

@@ -6,13 +6,10 @@ use App\Enums\UserAction;
 use App\Events\Users\EmailChanged;
 use App\Facades\UserCache;
 use App\Facades\UserLogger;
-use App\Jobs\Emails\MailSettingsChangeJob;
-use App\Jobs\Emails\WelcomeEmailJob;
 use App\Jobs\Users\UnsubscribeUser;
 use App\Jobs\Users\UpdateEmail;
 use App\Models\User;
 use Exception;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class UserObserver
 {
@@ -47,7 +44,7 @@ class UserObserver
 
     public function updated(User $user)
     {
-        // Tell mailchimp about the user's new email
+        // Tell the newsletter provider about the user's new email
         if (! $user->wasRecentlyCreated && $user->isDirty('email') && $user->hasNewsletter()) {
             UpdateEmail::dispatch($user);
             EmailChanged::dispatch($user, $user->getOriginal('email'));
@@ -56,50 +53,27 @@ class UserObserver
             UserCache::user($user)->clearName();
         }
 
-        // Todo: move to the controller
-        if ($user->isDirty('email')) {
-            UserLogger::user($user)->log(UserAction::emailUpdate);
-        } elseif ($user->isDirty('provider')) {
-            UserLogger::user($user)->log(UserAction::socialSwitch);
-        } elseif ($user->isDirty('password')) {
-            UserLogger::user($user)->log(UserAction::passwordUpdate);
+        if (auth()->check()) {
+            if ($user->isDirty('email')) {
+                UserLogger::user($user)->log(UserAction::emailUpdate);
+            } elseif ($user->isDirty('provider')) {
+                UserLogger::user($user)->log(UserAction::socialSwitch);
+            } elseif ($user->isDirty('password')) {
+                UserLogger::user($user)->log(UserAction::passwordUpdate);
+            }
         }
     }
 
     public function creating(User $user)
     {
-        $user->locale = LaravelLocalization::getCurrentLocale();
-        $settings = [];
-
-        if (session()->has('tracking')) {
-            $settings['tracking'] = session()->get('tracking');
-            session()->remove('tracking');
+        if (empty($user->locale)) {
+            $user->locale = config('app.locale', 'en');
         }
 
-        if (session()->has('invite_token')) {
-            $settings['invited'] = true;
-        }
-
-        if (count($settings) > 0) {
-            $user->settings = $settings;
-        }
-    }
-
-    public function created(User $user)
-    {
-        if (! app()->environment('testing')) {
-            WelcomeEmailJob::dispatch($user->id)
-                ->delay(now()->addMinutes(1));
-        }
-        session()->put('user_registered', true);
-
-        if (request()->filled('newsletter')) {
-            $user
-                ->updateSettings(['mail_release' => 1])
-                ->save();
-
-            MailSettingsChangeJob::dispatch($user, true);
-        }
+        $user->settings = array_merge([
+            'editor' => 'tiptap',
+            'entry_form_layout' => 'modern',
+        ], $user->settings ?? []);
     }
 
     /**

@@ -8,9 +8,11 @@ use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Taggable;
+use App\Observers\CampaignDashboardWidgetObserver;
 use App\Services\FilterService;
 use Exception;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -42,6 +44,7 @@ use Illuminate\Support\Str;
  * @method static self|Builder positioned()
  * @method static self|Builder onDashboard(?CampaignDashboard $dashboard = null)
  */
+#[ObservedBy(CampaignDashboardWidgetObserver::class)]
 class CampaignDashboardWidget extends Model
 {
     use Blameable;

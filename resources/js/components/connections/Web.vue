@@ -91,9 +91,9 @@ import { cssVariable } from '../../utility/colours';
 
 
 const props = defineProps<{
-    api: String,
-    premium: Boolean,
-    creator: Boolean,
+    api: string,
+    premium: boolean,
+    creator: boolean,
 }>()
 
 const ready = ref(false)
