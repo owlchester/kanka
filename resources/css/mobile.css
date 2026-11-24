@@ -77,13 +77,13 @@
     .has-mobile-navigation.sidebar-open {
         &::before {
             top: 0;
-            z-index: 930;
+            z-index: 1030;
         }
 
         .main-sidebar {
             top: 0;
             height: 100dvh;
-            z-index: 940;
+            z-index: 1040;
             padding-bottom: env(safe-area-inset-bottom, 0px);
         }
     }
