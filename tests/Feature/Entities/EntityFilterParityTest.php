@@ -575,3 +575,46 @@ it('ignores empty selections for participant matching operators', function (stri
         expect(Entity::query()->where('type_id', $type->id)->filter($filters, $type)->pluck('entities.entity_id')->all())->toEqualCanonicalizing($events->pluck('id')->all());
     }
 })->with(['any' => '', 'all' => 'all', 'exclude' => 'exclude', 'exclude_all' => 'exclude_all']);
+
+it('handles private intermediate ancestors when filtering relation children as a non-admin', function () {
+    $this->asUser()->withCampaign();
+
+    $rootLocation = Location::factory()->create(['campaign_id' => 1]);
+    $middleLocation = Location::factory()->create(['campaign_id' => 1]);
+    $grandchildLocation = Location::factory()->create(['campaign_id' => 1]);
+    $middleLocation->entity->update(['parent_id' => $rootLocation->entity->id, 'is_private' => true]);
+    $grandchildLocation->entity->update(['parent_id' => $middleLocation->entity->id]);
+
+    $rootRace = Race::factory()->create(['campaign_id' => 1]);
+    $middleRace = Race::factory()->create(['campaign_id' => 1]);
+    $grandchildRace = Race::factory()->create(['campaign_id' => 1]);
+    $middleRace->entity->update(['parent_id' => $rootRace->entity->id, 'is_private' => true]);
+    $grandchildRace->entity->update(['parent_id' => $middleRace->entity->id]);
+
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    EntityLocation::create(['entity_id' => $character->entity->id, 'location_id' => $grandchildLocation->id]);
+    $character->races()->attach($grandchildRace->id);
+
+    $this->asPlayer();
+
+    $characterType = EntityType::findOrFail(config('entities.ids.character'));
+
+    expect(
+        Entity::query()
+            ->where('entities.type_id', $characterType->id)
+            ->filter(['locations' => [$rootLocation->id], 'locations_option' => 'children'], $characterType)
+            ->pluck('entities.entity_id')
+            ->all()
+    )->toBe([$character->id]);
+
+    $raceFilters = ['races' => [$rootRace->id], 'races_option' => 'children'];
+    expect(Character::query()->filter($raceFilters)->pluck('characters.id')->all())
+        ->toBe([$character->id])
+        ->and(
+            Entity::query()
+                ->where('entities.type_id', $characterType->id)
+                ->filter($raceFilters, $characterType)
+                ->pluck('entities.entity_id')
+                ->all()
+        )->toBe([$character->id]);
+});
