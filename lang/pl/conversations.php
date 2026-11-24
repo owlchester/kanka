@@ -20,14 +20,16 @@ return [
         'empty' => 'Spisuj rozmowy, listy i wymianę poglodów między postaciami i całymi frakcjami.',
     ],
     'messages'      => [
-        'destroy'       => [
+        'confirm_delete'    => 'Usunąć tę wiadomość?',
+        'destroy'           => [
             'success'   => 'Usunięto wiadomość.',
         ],
-        'is_updated'    => 'Zaktualizowano',
-        'load_previous' => 'Załaduj starsze wiadomości',
-        'placeholders'  => [
+        'is_updated'        => 'Zaktualizowano',
+        'load_previous'     => 'Załaduj starsze wiadomości',
+        'placeholders'      => [
             'message'   => 'Twoja wiadomość',
         ],
+        'request_failed'    => 'Nie zrealizowano polecenia. Spróbuj jeszcze raz.',
     ],
     'participants'  => [
         'create'    => [
@@ -51,6 +53,7 @@ return [
         'participants'  => 'Uczestnicy',
     ],
     'targets'       => [
+        'entities'  => 'Elementy',
         'members'   => 'Gracze',
     ],
 ];

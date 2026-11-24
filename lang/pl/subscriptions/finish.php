@@ -16,6 +16,10 @@ return [
     'next'      => 'Twoje wsparcie pomaga nam rosnąć i ulepszać Kankę. Oto jak możesz skorzystać z korzyści związanych z subskrypcją:',
     'premium'   => [
         'action'    => 'Odblokuj',
+        'enabled'   => [
+            'helper'    => 'Kampania :campaign posiada teraz funkcje premium.',
+            'title'     => 'Włączono funkcje premium',
+        ],
         'helper'    => 'Odblokuj funkcje premium, w tym własne kategorie, dostęp do :plugins i nie tylko.',
         'title'     => 'Używaj funkcji premium kampanii',
     ],

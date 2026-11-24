@@ -24,6 +24,7 @@ return [
         'limit'                 => 'Ponieważ wciąż pracujemy nad tą funkcją, kampania może na razie posiadać :max kategorii dodatkowych.',
         'limit-title'           => 'Osagnięto limit kategorii dodatkowych',
         'subscription-limit'    => 'Kampania osiągnęła limit kategorii dodatkowych. By go zwiększyć, osoba która odblokowała funkcje premium musi podnieść poziom subskrybcji.',
+        'subscription-upgrade'  => 'Zwiększ subskrybcję do poziomu Wyvern by stworzyć do :wyvern własnych kategorii, albo do poziomu Elemental by stworzyć do :elemental kategorii w każdej kampanii premium.',
     ],
     'fields'        => [
         'icon'          => 'Ikona kategorii',
@@ -47,6 +48,11 @@ return [
     'pitch-title'   => 'Odblokuj kategorie dodatkowe',
     'rename'        => [
         'helper'    => 'Zmień sposob wyświetlania kategorii w kampanii. Pozostaw puste, by używać opcji domyślnej.',
+        'premium'   => [
+            'description'   => 'W kampanii premium możesz zmienić nazwę kategorii, wybrać jej formę liczby mnogiej oraz własną ikonę, pasującą do świata.',
+            'title'         => 'Uczyń tę kategorię własną',
+            'upgrade'       => 'Ulepsz :campaign',
+        ],
         'success'   => 'Dostosowano kategorię.',
         'title'     => 'Dostosowanie kategorii :module',
     ],

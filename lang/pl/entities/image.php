@@ -6,6 +6,7 @@ return [
         'change_visibility' => 'Zmień widoczność',
         'copy_url'          => 'Skopiuj adres obrazu',
         'copy_url_success'  => 'Adres obrazu skopiowano do schowka.',
+        'remove_focus'      => 'Usuń punkt centralny',
         'replace_image'     => 'Zamień obraz',
         'save-replace'      => 'Zamień obraz',
         'save_focus'        => 'Zapisz punkt centralny',
@@ -15,7 +16,9 @@ return [
     'focus'                 => [
         'breadcrumb'    => 'Punkt centralny',
         'helper'        => 'Kliknij na obraz by wskazać punkt centralny. Kliknij na punkt centralny, by go usunąć.',
+        'load_error'    => 'Nie udało się wczytać punktu centralnego.',
         'panel_title'   => 'Punkt centralny',
+        'save_error'    => 'Nie udało się zapisać punktu centralnego.',
         'success'       => 'Zmieniono punkt centralny.',
         'title'         => 'Punkt centralny :name',
         'unboosted'     => 'Punkt centalny można ustawiać tylko w :boosted-campaigns',

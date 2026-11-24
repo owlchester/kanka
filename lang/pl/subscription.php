@@ -11,5 +11,6 @@ return [
             'brl'   => 'Niestety, posiadacze brazylijskich kart kredytowych mogą płacić wyłącznie w BRL. Jeśli uważasz to za błąd, napisz do nas na adres :email.',
         ],
         'invalid_currency'      => 'Poprzednia subskrypcja w :old uniemożliwia nową w :new. Przełącz walutę na :old albo napisz do nas na adres: email, jeżeli chcesz ją zmienić.',
+        'legacy_paypal'         => 'Twoją subsktybcję obsługuje wycofywany system PayPal i pozostanie aktywna do :date. Potem możesz zasubskrybować z pomocą Stripe. Nie utracisz żadnych danych.',
     ],
 ];

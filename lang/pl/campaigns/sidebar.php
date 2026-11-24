@@ -5,6 +5,10 @@ return [
         'reset' => 'Przywróć domyślne',
     ],
     'call-to-action'    => 'Zmieniaj kolejność, ikony i nazwy elementów w menu kampanii.',
+    'cta'               => [
+        'lead'  => 'Zmieniaj kolejność, ikony i nazwy elementów w menu kampanii.',
+        'title' => 'Dostosuj menu kampanii do swoich potrzeb.',
+    ],
     'helpers'           => [
         'bookmarks' => 'Nie uwzględniono tu skrótów ponieważ każdy posiada własną :position określającą w którym miejscu menu się pojawia.',
         'image'     => 'Dodaj ilustrację symbolizującą kampanię. Będzie wyświetlana w menu bocznym oraz menu przełączania kampanii. Możesz je potem zmienić w dowolnej chwili, edytując kampanię.',

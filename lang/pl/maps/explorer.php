@@ -12,6 +12,7 @@ return [
         'create_group'              => 'Stwórz kategorię',
         'error_group_name_required' => 'Wpisz nazwę tej kategorii.',
         'error_save_group'          => 'Nie można zapisać kategorii.',
+        'limit_reached'             => '{1} Osiągnięto limit :count kategorii dla tej mapy.|[2,*] {1} Osiągnięto limit :count kategorii dla tej mapy.',
         'name_placeholder'          => 'Nazwa kategorii...',
         'new_group'                 => 'Nowa kategoria',
         'parent_group'              => 'Kategoria źródłowa',

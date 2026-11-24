@@ -106,15 +106,19 @@ return [
         'fields'                    => [
             'class'             => 'Klasa CSS',
             'dashboard'         => 'Pulpit',
+            'dashboard-link'    => 'Link do pulpitu',
+            'link'              => 'Cel linku',
             'name'              => 'Nazwa widżetu',
+            'no-link'           => 'Brak linku',
             'optional-entity'   => 'Link do elementu',
             'order'             => 'Kolejność',
             'size'              => 'Rozmiar',
             'width'             => 'Szerokość',
         ],
         'helpers'                   => [
-            'class'     => 'Określ własną klasę css dodaną do widżetu',
-            'filters'   => 'Kliknij by poznać dostępne opcje filtrowania.',
+            'class'                     => 'Określ własną klasę css dodaną do widżetu',
+            'filters'                   => 'Kliknij by poznać dostępne opcje filtrowania.',
+            'premium-dashboard-target'  => 'Kampania nie ma już statusu premium. Istniejące pulpity zostaną zachowanie póki ich nie zmienisz lub nie usuniesz.',
         ],
         'orders'                    => [
             'name_asc'  => 'Nazwa rosnąco',
@@ -171,6 +175,9 @@ return [
         ],
         'update'                    => [
             'success'   => 'Zmieniono widżet.',
+        ],
+        'validation'                => [
+            'premium-dashboard-target'  => 'Link do własnego pulpitu wymaga kampanii premium.',
         ],
         'widths'                    => [
             '0' => 'Automatyczna',

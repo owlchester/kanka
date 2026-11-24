@@ -74,6 +74,17 @@ return [
     'sections'      => [
         'unorganised'   => 'Nieprzypisane',
     ],
+    'sheets'        => [
+        'add'               => 'Dodaj kartę postaci',
+        'all_added'         => 'Dodano wszystkie zainstalowane karty postaci. Poszukaj kolejnych w bibliotece dodatków.',
+        'choose'            => 'Wybierz zainstalowaną kartę postaci i dodaj do tego elementu.',
+        'description'       => 'Wybierz których kart używa element. Wszystkie mają te same właściwości.',
+        'library'           => 'Przeglądaj karty postaci',
+        'none_installed'    => 'Tu pojawiają się karty postaci zainstalowane za pomocą dodatków.',
+        'remove'            => 'Usuń kartę postaci',
+        'reorder'           => 'Przeciągnij by zmienić kolejność kart postaci',
+        'title'             => 'Kart postaci',
+    ],
     'show'          => [
         'hidden'    => 'Ukryte cechy',
         'title'     => 'Cechy :name',

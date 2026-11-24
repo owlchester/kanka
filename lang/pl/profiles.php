@@ -47,6 +47,12 @@ return [
         'title'     => 'Newslettery',
         'updated'   => 'Zmieniono ustawienia newslettera.',
     ],
+    'options'                       => [
+        'dont_share_last_login' => 'Ukryj czas mojego ostatniego logowania',
+        'hide_subscription'     => 'Ukryj mnie w Galerii Sław',
+        'share_last_login'      => 'Pokaż moje ostatnie logowanie innym członkom kampanii',
+        'show_subscription'     => 'Pokaż mnie w Galerii Sław',
+    ],
     'password'                      => [
         'success'   => 'Zmieniono hasło',
     ],

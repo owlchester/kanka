@@ -127,12 +127,18 @@ return [
         'title'         => 'Patreon',
     ],
     'profile'       => [
-        'actions'   => [
+        'actions'           => [
             'update_profile'    => 'Aktualizuj profil',
         ],
-        'avatar'    => 'Zdjęcie profilowe',
-        'success'   => 'Zmieniono profil.',
-        'title'     => 'Profil osobisty',
+        'add_photo'         => 'Dodaj zdjęcie',
+        'avatar'            => 'Zdjęcie profilowe',
+        'avatar_alt'        => 'Zdjęcie profilowe',
+        'avatar_menu'       => 'Dodaje lub zmienia zdjęcie profilowe',
+        'avatar_success'    => 'Sukces',
+        'remove_image'      => 'Usuń zdjęcie',
+        'select_image'      => 'Wybierz zdjęcie',
+        'success'           => 'Zmieniono profil.',
+        'title'             => 'Profil osobisty',
     ],
     'referrals'     => [
         'title' => 'Skierowania',
@@ -233,8 +239,11 @@ return [
             'reason'            => 'Jeżeli chcesz, powiedz nam dlaczego rezygnujesz ze wspierania Kanki.',
         ],
         'plans'                 => [
-            'cost_monthly'  => ':currency :amount rozliczane miesięcznie',
-            'cost_yearly'   => ':currency :amount rozliczane rocznie',
+            'cost_monthly'      => ':currency :amount rozliczane miesięcznie',
+            'cost_yearly'       => ':currency :amount rozliczane rocznie',
+            'grandfathered'     => 'Cena gwarantowana',
+            'standard_monthly'  => 'Cena standardowa: :currency :amount rozliczane miesięcznie',
+            'standard_yearly'   => 'Cena standardowa: :currency :amount rozliczane rocznie',
         ],
         'sub_status'            => 'Informacje o subskrypcji',
         'subscription'          => [

@@ -1,10 +1,11 @@
 <?php
 
 return [
+    'draft'     => 'Karta postaci :name to szkic, co znaczy że wersję wyrenderowaną widzą tylko jej autorzy.',
     'errors'    => [
         'marketplace'   => [
             'hint'      => 'Błąd',
-            'rendering' => 'Podczas aplikowania wtyczki wystąpił błąd. Skontaktuj się z twórcą wtyczki.',
+            'rendering' => 'Podczas rendrowania karty postaci :name wystąpił błąd. Skontaktuj się z twórcą.',
         ],
     ],
     'helpers'   => [],

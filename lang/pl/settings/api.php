@@ -25,6 +25,12 @@ return [
         'secret'        => 'Tajne',
         'token_name'    => 'Nazwa klucza',
     ],
+    'mcp'               => [
+        'badge'         => 'MCP- tylko odczyt',
+        'description'   => 'Połącz asystentów AI z Kanką, by przeszukiwali elementy twoich światów za pośrednictwem protokołu MCP. Dodaj ten URL do swojego klienta jako serwer MCP obsługujący strumieniowe połączenia HTTP.',
+        'more'          => 'Dowiedz się więcej na stronie :mcp',
+        'title'         => 'Serwer MCP',
+    ],
     'new'               => [
         'copy'  => 'Klucz skopiowano do schowka',
         'title' => 'Twój nowy osobisty klucz dostępu:',

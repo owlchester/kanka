@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add_epoch'         => 'Dodaj epokę',
+        'add_era'           => 'Era',
         'add_intercalary'   => 'Dodaj dni dodatkowe',
         'add_month'         => 'Dodaj miesiąc',
         'add_moon'          => 'Dodaj księżyc',
@@ -66,6 +67,7 @@ return [
         'date'              => 'Obecna data',
         'day'               => 'Dzień',
         'default_layout'    => 'Domyślny układ',
+        'era'               => 'Era',
         'format'            => 'Zapis',
         'is_incrementing'   => 'Upływ czasu',
         'is_recurring'      => 'Cykliczne',
@@ -164,6 +166,7 @@ return [
         ],
     ],
     'panels'        => [
+        'eras'          => 'Ery',
         'intercalary'   => 'Dni dodatkowe',
         'leap_year'     => 'Rok przestępny',
         'months'        => 'Miesiące',
@@ -171,6 +174,12 @@ return [
         'years'         => 'Lata specjalne',
     ],
     'parameters'    => [
+        'era'           => [
+            'end_year'      => 'Rok zakończenia',
+            'name'          => 'Nazwa ery',
+            'start_year'    => 'Rok rozpoczęcia',
+            'suffix'        => 'Skrót nazwy',
+        ],
         'intercalary'   => [
             'length'    => 'Długość w dniach',
             'month'     => 'Po którym miesiącu',
@@ -239,6 +248,7 @@ return [
         'before'=> 'Dziś i później',
     ],
     'validators'    => [
+        'era_overlap'   => 'Ery nie mogą się na siebie nakładać.',
         'format'        => 'Taki zapis jest niemożliwy.',
         'moon_offset'   => 'Przesunięcie pierwszej pełni nie może być większe, niż długość pierwszego miesiąca w kalendarzu.',
     ],
