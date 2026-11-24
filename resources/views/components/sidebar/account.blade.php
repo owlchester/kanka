@@ -1,4 +1,4 @@
-<aside class="main-sidebar main-sidebar-placeholder z-840 flex flex-col transition-all duration-150" @if ($user->avatar) style="--sidebar-placeholder: url('{{ Img::for($user->avatar)->crop(240, 208)->url() }}')" @endif>
+<aside class="main-sidebar main-sidebar-placeholder z-840 flex flex-col transition-all duration-150" @if ($user->avatar) style="--sidebar-placeholder: url('{{ Img::for($user->avatar)->crop(240, 144)->url() }}')" @endif>
     <section class="sidebar-campaign relative h-36 flex-none overflow-hidden flex items-end">
         <div class="hidden md:flex absolute top-2 right-2 items-center gap-1 z-10">
             @if (auth()->check() && !\App\Facades\Identity::isImpersonating())
