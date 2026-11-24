@@ -8,7 +8,7 @@ if (auth()->check() && auth()->user()->can('update', $entity)) {
     $forceShow = true;
 }
 @endphp
-<aside class="entity-sidebar relative grid grid-cols-2 lg:flex lg:flex-col gap-3 items-stretch lg:w-56 flex-none scroll-mt-32 lg:sticky lg:top-32 lg:self-start" id="entity-details-{{ $entity->id }}" aria-label="Details" tabindex="-1">
+<aside class="entity-sidebar relative grid grid-cols-2 lg:flex lg:flex-col gap-3 items-stretch lg:w-56 flex-none scroll-mt-32 lg:sticky lg:top-18 lg:self-start" id="entity-details-{{ $entity->id }}" aria-label="Details" tabindex="-1">
     <div class="entity-reader-details contents in-[.entity-details-sheet]:flex in-[.entity-details-sheet]:flex-col in-[.entity-details-sheet]:gap-3" data-reader-details-content>
         @if ($forceShow || $entity->hasPins())
             <div class="col-span-2 sidebar-section-box entity-pins overflow-hidden flex flex-col gap-2 {{ $entity->hasPins() ? '' : 'entity-empty-pin' }}">
