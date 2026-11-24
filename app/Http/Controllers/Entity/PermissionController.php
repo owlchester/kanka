@@ -22,6 +22,11 @@ class PermissionController extends Controller
     public function view(Request $request, Campaign $campaign, Entity $entity)
     {
         $user = $request->user();
+
+        if (! $user) {
+            abort(403);
+        }
+
         $canTogglePrivacy = $user->can('privacy', [$entity, $campaign]);
         $canEditPermissions = $user->can('permissions', $entity);
 
