@@ -43,7 +43,9 @@ class AssetController extends Controller
         $assets = $entity->assets()
             ->withoutAliases()
             ->with('image')
-            ->get();
+            ->get()
+            ->reject(fn (EntityAsset $asset): bool => $asset->hiddenImage())
+            ->values();
 
         return view('entities.pages.assets.index', compact(
             'campaign',
