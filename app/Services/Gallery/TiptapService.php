@@ -29,6 +29,7 @@ class TiptapService
         $images = Image::acl($canBrowse)
             ->search($this->request->get('folder'), $this->request->get('term'))
             ->where('is_default', false)
+            ->withoutFonts()
             ->orderBy('is_folder', 'desc')
             ->orderBy('updated_at', 'desc')
             ->paginate(50);

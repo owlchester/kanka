@@ -49,7 +49,8 @@ class BrowseService
         $images = Image::acl($canBrowse)
             ->search($this->folder, $this->term)
             ->where('is_default', false)
-            ->withCount(['images as images_count' => fn ($q) => $q->where('is_folder', false)->where('is_default', false)])
+            ->withoutFonts()
+            ->withCount(['images as images_count' => fn ($q) => $q->where('is_folder', false)->where('is_default', false)->withoutFonts()])
             ->orderBy('is_folder', 'desc')
             ->orderBy('updated_at', 'desc')
             ->paginate(40);

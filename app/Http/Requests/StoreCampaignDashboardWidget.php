@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Enums\Widget;
 use App\Models\CampaignDashboard;
+use App\Models\Image;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Enum;
@@ -43,7 +44,13 @@ class StoreCampaignDashboardWidget extends FormRequest
             'config.order' => 'nullable|string|in:name_asc,name_desc,oldest',
             'entity_type_id' => 'nullable|exists:entity_types,id',
             'config.folder_id' => ['required_if:widget,gallery', Rule::exists('images', 'id')->where('is_folder', true)],
-            'config.image_uuid' => ['nullable', Rule::exists('images', 'id')->where('campaign_id', $this->route('campaign')?->id)->where('is_folder', false)],
+            'config.image_uuid' => [
+                'nullable',
+                Rule::exists('images', 'id')
+                    ->where('campaign_id', $this->route('campaign')?->id)
+                    ->where('is_folder', 0)
+                    ->whereNotIn('ext', Image::FONT_EXTENSIONS),
+            ],
         ];
     }
 

@@ -18,6 +18,7 @@ class ImageController extends Controller
         /** @var Image[] $images */
         $images = Image::where('is_default', false)
             ->where('is_folder', false)
+            ->withoutFonts()
             ->where('name', 'like', '%' . request()->get('q') . '%')
             ->limit(10)
             ->get();

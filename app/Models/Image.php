@@ -62,6 +62,7 @@ use Illuminate\Support\Str;
  * @method static Builder|self named(string|null $term)
  * @method static Builder|self imageFolder(string|null $folder)
  * @method static Builder|self search(?string $folder, ?string $term)
+ * @method static Builder|self withoutFonts()
  */
 #[ObservedBy(ImageObserver::class)]
 class Image extends Model
@@ -104,6 +105,8 @@ class Image extends Model
     public const TILING_FINISHED = 2;
 
     public const TILING_ERROR = 3;
+
+    public const FONT_EXTENSIONS = ['woff', 'woff2'];
 
     protected string $userField = 'created_by';
 
@@ -340,6 +343,14 @@ class Image extends Model
         return $query->named($term);
     }
 
+    public function scopeWithoutFonts(Builder $query): Builder
+    {
+        return $query->where(function (Builder $query): void {
+            $query->whereNull($this->getTable() . '.ext')
+                ->orWhereNotIn($this->getTable() . '.ext', self::FONT_EXTENSIONS);
+        });
+    }
+
     public function hasNoFolders(): bool
     {
         return $this->images()->where('is_folder', '1')->count() == 0;
@@ -357,7 +368,7 @@ class Image extends Model
 
     public function isFont(): bool
     {
-        return in_array($this->ext, ['woff', 'woff2']);
+        return in_array($this->ext, self::FONT_EXTENSIONS);
     }
 
     public function hasThumbnail(): bool
