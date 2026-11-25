@@ -456,7 +456,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-DNF5IOFb.js",
+    "file": "assets/app-DpBXT9LO.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -735,7 +735,7 @@
     ]
   },
   "resources/js/entities/reader.js": {
-    "file": "assets/reader-OOlJYp_B.js",
+    "file": "assets/reader-87VthFx0.js",
     "name": "reader",
     "src": "resources/js/entities/reader.js",
     "isDynamicEntry": true,

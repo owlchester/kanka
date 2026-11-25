@@ -114,3 +114,44 @@ it('returns entity images for full-text command search results', function () {
         ->and($results->get($legacyEntity->id)['image'])->toContain('test-avatar.png')
         ->and($results->get($fallbackEntity->id)['image'])->toBe($expectedFallbackImage);
 });
+
+it('returns matching helper pages in full-text command search', function (string $query, string $expectedRouteName) {
+    $stubService = new class extends EntitySearchService
+    {
+        protected function runMultiSearch(array $queries): array
+        {
+            return [
+                'results' => [
+                    ['hits' => []],
+                ],
+            ];
+        }
+    };
+
+    $this->app->instance(EntitySearchService::class, $stubService);
+
+    $response = $this->getJson(route('search.command', [
+        'campaign' => $this->campaign,
+        'q' => $query,
+        'mode' => 'fulltext',
+    ]))->assertSuccessful();
+
+    $pages = collect($response->json('pages'));
+
+    expect($pages->pluck('url'))->toContain(route($expectedRouteName, $this->campaign));
+})->with([
+    'roles' => ['roles', 'campaign_roles.index'],
+    'css' => ['css', 'campaign_styles.index'],
+    'theme' => ['theme', 'campaign_styles.index'],
+]);
+
+it('returns empty pages for short queries in full-text command search', function () {
+    $this->getJson(route('search.command', [
+        'campaign' => $this->campaign,
+        'q' => 'r',
+        'mode' => 'fulltext',
+    ]))
+        ->assertSuccessful()
+        ->assertJsonPath('results', [])
+        ->assertJsonPath('pages', []);
+});

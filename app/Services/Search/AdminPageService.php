@@ -3,6 +3,7 @@
 namespace App\Services\Search;
 
 use App\Traits\CampaignAware;
+use Illuminate\Support\Facades\Route;
 
 class AdminPageService
 {
@@ -77,12 +78,12 @@ class AdminPageService
                 'url' => route('campaign.modules', $campaign),
                 'group' => 'admin',
             ],
-            [
+            ...(Route::has('campaign_plugins.index') ? [[
                 'name' => __('campaigns.show.tabs.plugins'),
                 'icon' => 'fa-regular fa-puzzle-piece',
                 'url' => route('campaign_plugins.index', $campaign),
                 'group' => 'admin',
-            ],
+            ]] : []),
             [
                 'name' => __('campaigns/recovery.title'),
                 'icon' => 'fa-regular fa-trash-restore',

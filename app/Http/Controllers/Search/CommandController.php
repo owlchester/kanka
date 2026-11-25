@@ -22,6 +22,7 @@ class CommandController extends Controller
         if (mb_strlen($term) < 2) {
             return response()->json($mode === 'fulltext' ? [
                 'results' => [],
+                'pages' => [],
                 'maintenance' => config('scout.search_maintenance', false),
                 'message' => config('scout.search_maintenance', false) ? __('search/fulltext.maintenance') : null,
             ] : ['entities' => [], 'pages' => []]);

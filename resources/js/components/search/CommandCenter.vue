@@ -209,6 +209,7 @@ export default {
                         );
                     }
                     this.results = data.results ?? [];
+                    this.pages = data.pages ?? [];
                 } else {
                     this.entities = data.entities ?? [];
                     this.pages = data.pages ?? [];
