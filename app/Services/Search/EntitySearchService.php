@@ -131,9 +131,7 @@ class EntitySearchService
         }
 
         try {
-            $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
-            $client->getKeys();
-            $results = $client->multiSearch($queries);
+            $results = $this->runMultiSearch($queries);
         } catch (ExceptionInterface) {
             return [];
         }
@@ -148,7 +146,7 @@ class EntitySearchService
         }
 
         $entityIds = array_column($hits, 'entity_id');
-        $entities = Entity::select(['id', 'name', 'is_private', 'type_id'])
+        $entities = Entity::select(['id', 'campaign_id', 'name', 'is_private', 'type_id', 'image_uuid', 'image_path', 'focus_x', 'focus_y'])
             ->with(['image', 'entityType'])
             ->whereIn('id', $entityIds)
             ->get()
@@ -180,7 +178,7 @@ class EntitySearchService
                 'id' => $entity->id,
                 'name' => $entity->name,
                 'is_private' => $entity->is_private,
-                'image' => Avatar::for($entity)->fallback()->size(64)->thumbnail(),
+                'image' => Avatar::for($entity)->campaign($this->campaign)->fallback()->size(64)->thumbnail(),
                 'link' => $entity->url(),
                 'type' => $entity->entityType->name() ?? '',
                 'icon' => $entity->entityType->icon() ?? '',
@@ -190,6 +188,20 @@ class EntitySearchService
         }
 
         return $output;
+    }
+
+    /**
+     * Execute a Meilisearch multi-search request.
+     *
+     * @param  array<int, SearchQuery>  $queries
+     * @return array<string, mixed>
+     */
+    protected function runMultiSearch(array $queries): array
+    {
+        $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
+        $client->getKeys();
+
+        return $client->multiSearch($queries);
     }
 
     /**
