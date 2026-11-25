@@ -1,6 +1,8 @@
 <?php
 
+use App\Enums\CampaignVisibility;
 use App\Enums\Permission;
+use App\Http\Middleware\ReplicationSwitcher;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\Character;
@@ -146,5 +148,22 @@ it('forbids unauthorized players from accessing the share sheet', function () {
     $entity = Character::findOrFail(1)->entity;
 
     $this->get(route('entities.permissions', [$campaign, $entity]))
+        ->assertForbidden();
+});
+
+it('forbids guests from accessing the share sheet on public campaigns', function () {
+    $this->withoutMiddleware(ReplicationSwitcher::class);
+    $this->asUser()->withCampaign(['visibility_id' => CampaignVisibility::public])->withCharacters();
+
+    $campaign = Campaign::findOrFail(1);
+    $entity = Character::findOrFail(1)->entity;
+
+    auth()->forgetGuards();
+    $this->app['auth']->guard('web')->logout();
+
+    $this->get(route('entities.permissions', [$campaign, $entity]))
+        ->assertForbidden();
+
+    $this->get(route('entities.quick-privacy', [$campaign, $entity]))
         ->assertForbidden();
 });
