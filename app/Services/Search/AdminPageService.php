@@ -115,6 +115,41 @@ class AdminPageService
                 'group' => 'admin',
                 'keywords' => ['css', 'style', 'theme', 'design'],
             ],
+            [
+                'name' => __('campaigns/applications.title'),
+                'icon' => 'fa-regular fa-inbox',
+                'url' => route('applications.index', $campaign),
+                'group' => 'admin',
+                'keywords' => ['applications', 'apply', 'requests', 'players'],
+            ],
+            [
+                'name' => __('campaigns.show.tabs.sidebar'),
+                'icon' => 'fa-regular fa-bars-staggered',
+                'url' => route('campaign-sidebar', $campaign),
+                'group' => 'admin',
+                'keywords' => ['menu', 'navigation', 'layout'],
+            ],
+            [
+                'name' => __('campaigns.show.tabs.defaults'),
+                'icon' => 'fa-regular fa-sliders',
+                'url' => route('campaign-defaults', $campaign),
+                'group' => 'admin',
+                'keywords' => ['settings', 'templates', 'privacy'],
+            ],
+            [
+                'name' => __('campaigns.show.tabs.export'),
+                'icon' => 'fa-regular fa-download',
+                'url' => route('campaign.export', $campaign),
+                'group' => 'admin',
+                'keywords' => ['backup', 'download', 'data'],
+            ],
+            [
+                'name' => __('campaigns.show.tabs.import'),
+                'icon' => 'fa-regular fa-upload',
+                'url' => route('campaign.import', $campaign),
+                'group' => 'admin',
+                'keywords' => ['upload', 'csv', 'data'],
+            ],
 
             [
                 'name' => __('bug-report.title'),

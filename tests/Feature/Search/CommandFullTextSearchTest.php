@@ -5,6 +5,7 @@ use App\Models\Character;
 use App\Models\Image;
 use App\Services\Images\Avatar;
 use App\Services\Search\EntitySearchService;
+use App\Services\Search\NameLookupService;
 
 beforeEach(function () {
     $this->asUser()->withCampaign();
@@ -143,6 +144,43 @@ it('returns matching helper pages in full-text command search', function (string
     'roles' => ['roles', 'campaign_roles.index'],
     'css' => ['css', 'campaign_styles.index'],
     'theme' => ['theme', 'campaign_styles.index'],
+    'sidebar' => ['sidebar', 'campaign-sidebar'],
+    'join requests' => ['join requests', 'applications.index'],
+    'applications' => ['applications', 'applications.index'],
+    'import' => ['import', 'campaign.import'],
+    'export' => ['export', 'campaign.export'],
+    'defaults' => ['defaults', 'campaign-defaults'],
+]);
+
+it('returns matching helper pages in name command search', function (string $query, string $expectedRouteName) {
+    $stubNameLookup = new class extends NameLookupService
+    {
+        public function __construct() {}
+
+        public function find(): array
+        {
+            return ['entities' => []];
+        }
+    };
+
+    $this->app->instance(NameLookupService::class, $stubNameLookup);
+
+    $response = $this->getJson(route('search.command', [
+        'campaign' => $this->campaign,
+        'q' => $query,
+        'mode' => 'name',
+    ]))->assertSuccessful();
+
+    $pages = collect($response->json('pages'));
+
+    expect($pages->pluck('url'))->toContain(route($expectedRouteName, $this->campaign));
+})->with([
+    'sidebar' => ['sidebar', 'campaign-sidebar'],
+    'join requests' => ['join requests', 'applications.index'],
+    'applications' => ['applications', 'applications.index'],
+    'import' => ['import', 'campaign.import'],
+    'export' => ['export', 'campaign.export'],
+    'defaults' => ['defaults', 'campaign-defaults'],
 ]);
 
 it('returns empty pages for short queries in full-text command search', function () {
