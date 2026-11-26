@@ -1,1037 +1,985 @@
 <template>
-    <div v-if="!initiated" class="text-center text-4xl p-4">
-        <i class="fa-solid fa-spinner fa-spin" aria-label="Loading" />
+    <div v-if="!initiated" class="text-center text-4xl p-8">
+        <i class="fa-solid fa-spinner fa-spin" aria-label="Loading"></i>
     </div>
-    <div v-else class="flex flex-col gap-4 md:gap-5">
-        <div class="flex gap-4 items-end">
-            <div class="flex flex-col gap-1 grow">
-                <div class="flex gap-1 items-center">
-                    <i class="fa-regular fa-cloud text-xl" aria-hidden="true"></i>
-                    <span class="font-extrabold" v-html="trans('storage')"></span>
-                </div>
-                <div class="flex gap-1 items-center">
-                    <span v-html="usedSpace()"></span>
-                    <span v-html="trans('of')"></span>
-                    <span v-html="totalSpace()"></span>
-                </div>
-                <div class="bg-base-300 rounded h-2 w-full overflow-hidden transition-all duration-300 ">
-                    <div :class="usedClasses()" :style="{width: usedPercentage() + '%'}"></div>
-                </div>
-            </div>
-            <div v-if="!premium || (usedPercentage() > 89) && (isWyvern || isElemental)">
-                <a :href="upgradeLink" v-html="trans('upgrade')" class="btn2 btn-default"></a>
-            </div>
-        </div>
 
-        <div class="flex gap-4 flex-wrap sticky top-14 z-50">
-            <div class="flex gap-2 grow">
-                <div class="flex gap-0.5">
-                    <input type="text" placeholder="Search" @input="handleSearchInput" />
-                </div>
-                <div class="relative">
-                    <button class="btn2 btn-default btn-sm" @click="toggleFilters">
-                        <i class="fa-regular fa-filter" aria-hidden="true" />
-                        <span v-html="trans('filters')" class="hidden md:inline"></span>
-                        <span v-if="showUnused">(1)</span>
-                    </button>
-                    <div class="border border-base-100 shadow-sm rounded-lg bg-base-100 p-4 absolute right-0 flex flex-col gap-5 w-60" v-if="showFilters"  v-click-outside="onClickOutside">
-                        <div class="flex gap-2 items-center">
-                            <input type="checkbox" v-model="showUnused" value="1" id="_show_unused" @change="toggleUnused" />
-                            <label for="_show_unused" class="cursor-pointer" v-html="trans('filter_only_unused')">
-                            </label>
-                        </div>
-                    </div>
-                </div>
+    <div
+        v-else
+        class="flex flex-col gap-3 md:gap-4 relative"
+        @dragenter.prevent="onGalleryDragEnter"
+        @dragover.prevent
+        @dragleave="onGalleryDragLeave"
+        @drop.prevent="onGalleryDrop"
+    >
+        <!-- Full-area OS File Drop Overlay -->
+        <Teleport to="body">
+            <div
+                v-if="osDragging && setup?.acl.upload"
+                class="fixed inset-0 z-[1120] bg-primary/15 backdrop-blur-[2px] border-4 border-dashed border-primary rounded-2xl m-3 flex flex-col items-center justify-center gap-3 pointer-events-none"
+            >
+                <i class="fa-regular fa-cloud-arrow-up text-5xl text-primary" aria-hidden="true"></i>
+                <p class="text-lg font-semibold text-base-content">
+                    {{ trans('drop_to_upload') }}
+                    <span v-if="currentFolder" class="text-primary">({{ currentFolder.name }})</span>
+                </p>
+            </div>
+        </Teleport>
 
-                <div class="relative">
-                    <button class="btn2 btn-default btn-sm" @click="toggleSort">
-                        <i class="fa-regular fa-arrow-up-arrow-down" aria-hidden="true" />
-                        <span v-html="trans('sort')" class="hidden md:inline"></span>
-                        <span v-if="sortAsc || sortDesc">(1)</span>
-                    </button>
-                    <div
-                        class="border border-base-100 shadow-sm rounded-lg bg-base-100 p-2 absolute right-0 top-full flex flex-col gap-1 w-60 z-50"
-                        v-if="showSort"
-                        v-click-outside="onClickOutside"
+        <!-- Storage Bar -->
+        <StorageBar
+            v-if="setup"
+            :used="usedSpace"
+            :total="setup.space.total"
+            :premium="setup.acl.premium"
+            :isWyvern="setup.acl.wyvern"
+            :isElemental="setup.acl.elemental"
+            :upgradeLink="setup.upgrade"
+            :trans="trans"
+            @cleanup="applyCleanupPreset"
+        />
+
+        <!-- Sticky Toolbar -->
+        <GalleryToolbar
+            v-if="setup"
+            ref="toolbarRef"
+            :q="state.q"
+            :scope="state.scope"
+            :usage="state.usage"
+            :type="state.type"
+            :orientation="state.orientation"
+            :visibilityId="state.visibilityId"
+            :createdBy="state.createdBy"
+            :sort="state.sort"
+            :view="state.view"
+            :currentFolderId="state.folderId"
+            :sidebarOpen="state.sidebarOpen"
+            :canManage="setup.acl.manage"
+            :canUpload="setup.acl.upload"
+            :mobileSelectMode="mobileSelectMode"
+            :activeFilterCount="activeFilterCount"
+            :visibilities="setup.visibilities"
+            :uploaders="setup.uploaders"
+            :trans="trans"
+            @update:q="v => { state.q = v; state.page = 1; fetchItems() }"
+            @update:scope="v => { state.scope = v; state.page = 1; persistPrefs(); fetchItems() }"
+            @update:usage="v => { state.usage = v; state.page = 1; fetchItems() }"
+            @update:type="v => { state.type = v; state.page = 1; fetchItems() }"
+            @update:orientation="v => { state.orientation = v; state.page = 1; fetchItems() }"
+            @update:visibilityId="v => { state.visibilityId = v; state.page = 1; fetchItems() }"
+            @update:createdBy="v => { state.createdBy = v; state.page = 1; fetchItems() }"
+            @update:sort="v => { state.sort = v; state.page = 1; persistPrefs(); fetchItems() }"
+            @update:view="v => { state.view = v; persistPrefs() }"
+            @reset-filters="resetFilters"
+            @toggle-sidebar="state.sidebarOpen = !state.sidebarOpen; persistPrefs()"
+            @toggle-mobile-select="mobileSelectMode = !mobileSelectMode"
+            @open-folder-details="openFolderDetails"
+            @new-folder="openNewFolderModal"
+            @trigger-upload="fileInputRef?.click()"
+            @open-url-upload="openUrlUploadModal"
+        />
+
+        <!-- Hidden Upload Input -->
+        <input
+            ref="fileInputRef"
+            type="file"
+            multiple
+            accept="image/*, .svg, font/woff2, .woff2"
+            class="hidden"
+            @change="onFilesSelected"
+        />
+
+        <!-- Mobile Folder Jump + Breadcrumbs -->
+        <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-1.5 flex-wrap text-sm md:text-base">
+                <button
+                    type="button"
+                    class="px-2 py-1 rounded-lg hover:bg-base-100 cursor-pointer flex items-center gap-1.5 transition-colors"
+                    :class="[
+                        !state.folderId ? 'font-semibold text-base-content' : 'text-neutral-content',
+                        breadcrumbDragOver === 'home' ? 'ring-2 ring-primary bg-primary/10' : ''
+                    ]"
+                    @click="navigateToFolder(null)"
+                    @dragover.prevent="breadcrumbDragOver = 'home'"
+                    @dragleave="breadcrumbDragOver === 'home' && (breadcrumbDragOver = null)"
+                    @drop.prevent="onBreadcrumbDrop($event, null)"
+                >
+                    <i class="fa-regular fa-house text-xs" aria-hidden="true"></i>
+                    <span>{{ trans('home') }}</span>
+                </button>
+
+                <template v-for="crumb in breadcrumbs" :key="crumb.id">
+                    <i class="fa-solid fa-chevron-right text-xs text-neutral-content" aria-hidden="true"></i>
+                    <button
+                        type="button"
+                        class="px-2 py-1 rounded-lg hover:bg-base-100 cursor-pointer text-neutral-content transition-colors"
+                        :class="breadcrumbDragOver === crumb.id ? 'ring-2 ring-primary bg-primary/10' : ''"
+                        @click="navigateToFolder(crumb.id)"
+                        @dragover.prevent="breadcrumbDragOver = crumb.id"
+                        @dragleave="breadcrumbDragOver === crumb.id && (breadcrumbDragOver = null)"
+                        @drop.prevent="onBreadcrumbDrop($event, crumb.id)"
                     >
-                        <ul class="flex flex-col gap-1 list-none m-0 p-0">
-                            <li>
-                            <span class="cursor-pointer flex items-center gap-2 px-2 py-2 rounded hover:bg-gray-100 transition" @click="sort('default')">
-                                <i v-if="sortDefault" class="fa-regular fa-check" aria-hidden="true" />
-                                <span v-html="trans('sort_default')" class="inline"></span>
-                            </span>
-                            </li>
+                        {{ crumb.name }}
+                    </button>
+                </template>
 
-                            <li>
-                            <span class="cursor-pointer flex items-center gap-2 px-2 py-2 rounded hover:bg-gray-100 transition" @click="sort('asc')">
-                                <i v-if="sortAsc" class="fa-regular fa-check" aria-hidden="true" />
-                                <span v-html="trans('sort_asc')" class="inline"></span>
-                            </span>
-                            </li>
-
-                            <li>
-                            <span class="cursor-pointer flex items-center gap-2 px-2 py-2 rounded hover:bg-gray-100 transition" @click="sort('desc')">
-                                <i v-if="sortDesc" class="fa-regular fa-check" aria-hidden="true" />
-                                <span v-html="trans('sort_desc')" class="inline"></span>
-                            </span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <template v-if="currentFolder">
+                    <i class="fa-solid fa-chevron-right text-xs text-neutral-content" aria-hidden="true"></i>
+                    <span class="px-2 py-1 font-semibold">{{ currentFolder.name }}</span>
+                </template>
             </div>
-            <div class="flex gap-2 self-end flex-wrap">
 
-                <button class="btn2 btn-default btn-sm" v-if="!isBulking && folder" @click="openFolderDetails">
-                    <i class="fa-regular fa-clipboard" aria-hidden="true" />
-                    <span v-html="trans('details')"></span>
-                </button>
-                <button class="btn2 btn-default btn-sm" v-if="!isBulking && canManage" @click="openNewFolder">
-                    <i class="fa-regular fa-plus" aria-hidden="true" />
-                    <span v-html="trans('new_folder')"></span>
-                </button>
-                <button class="btn2 btn-default btn-sm" v-if="!isBulking && canManage" @click="startBulking">
-                    <i class="fa-regular fa-list-check" aria-hidden="true" />
-                    <span v-html="trans('select')"></span>
-                </button>
-                <button class="btn2 btn-primary btn-sm" v-if="isBulking" @click="openUpdate">
-                    <i class="fa-regular fa-pencil" aria-hidden="true" />
-                    <span v-html="trans('update')"></span>
-                    <span v-html="countSelected()"></span>
-                </button>
-                <button class="btn2 btn-error btn-sm" v-if="isBulking" @click="deleteBulk">
-                    <i class="fa-regular fa-trash-can" aria-hidden="true" />
-                    <span v-html="trans('remove')"></span>
-                    <span v-html="countSelected()"></span>
-                </button>
-                <button class="btn2 btn-default btn-sm" v-if="isBulking" @click="stopBulking" >
-                    <i class="fa-solid fa-xmark" aria-hidden="true" />
-                    <span v-html="trans('cancel')"></span>
-                </button>
+            <!-- Mobile folder jump -->
+            <select
+                v-if="setup && setup.folder_tree.length > 0"
+                class="lg:hidden text-xs bg-base-100 rounded-lg px-2.5 py-1.5 shadow-xs max-w-[180px]"
+                :value="state.folderId || ''"
+                @change="navigateToFolder(($event.target as HTMLSelectElement).value || null)"
+            >
+                <option value="">{{ trans('home') }}</option>
+                <option v-for="f in setup.folder_tree" :key="f.id" :value="f.id">{{ f.name }}</option>
+            </select>
+        </div>
 
+        <!-- Main Layout: Folder Tree + Content -->
+        <div class="flex gap-4 items-start">
+            <FolderTree
+                v-if="setup"
+                :folders="setup.folder_tree"
+                :currentFolderId="state.folderId"
+                :open="state.sidebarOpen"
+                :trans="trans"
+                @select="navigateToFolder"
+                @toggle="state.sidebarOpen = !state.sidebarOpen; persistPrefs()"
+                @drop-items="moveDraggedToFolder"
+                @drop-files="enqueueFiles"
+            />
+
+            <div class="flex-1 min-w-0 flex flex-col gap-3">
+                <div v-if="loading" class="bg-base-100 rounded-xl p-12 text-center text-3xl shadow-sm">
+                    <i class="fa-solid fa-spinner fa-spin" aria-label="Loading"></i>
+                </div>
+
+                <template v-else-if="setup">
+                    <GalleryTable
+                        v-if="state.view === 'table'"
+                        :files="files"
+                        :sort="state.sort"
+                        :canManage="setup.acl.manage"
+                        :hasFilters="hasActiveFiltersOrSearch"
+                        :trans="trans"
+                        @open="openItem"
+                        @toggle-select="toggleSelect"
+                        @toggle-select-all="toggleSelectAll"
+                        @update:sort="v => { state.sort = v; state.page = 1; persistPrefs(); fetchItems() }"
+                        @copy-url="copyUrl"
+                        @copy-admin-link="copyAdminLink"
+                        @delete="requestDeleteSingle"
+                        @drag-start="onItemDragStart"
+                        @drop-items="moveDraggedToFolder"
+                        @drop-files="enqueueFiles"
+                    />
+
+                    <GalleryGrid
+                        v-else
+                        :files="files"
+                        :compact="state.view === 'grid-sm'"
+                        :canManage="setup.acl.manage"
+                        :canUpload="setup.acl.upload"
+                        :mobileSelectMode="mobileSelectMode"
+                        :hasFilters="hasActiveFiltersOrSearch"
+                        :trans="trans"
+                        @open="openItem"
+                        @toggle-select="toggleSelect"
+                        @lightbox="openLightbox"
+                        @copy-url="copyUrl"
+                        @copy-admin-link="copyAdminLink"
+                        @delete="requestDeleteSingle"
+                        @drag-start="onItemDragStart"
+                        @drop-items="moveDraggedToFolder"
+                        @drop-files="enqueueFiles"
+                    />
+
+                    <PaginationBar
+                        :pagination="pagination"
+                        :perPage="state.perPage"
+                        :trans="trans"
+                        @page="p => { state.page = p; fetchItems() }"
+                        @per-page="pp => { state.perPage = pp; state.page = 1; persistPrefs(); fetchItems() }"
+                    />
+                </template>
             </div>
         </div>
 
-        <div class="text-center text-4xl p-4" v-if="loading">
-            <i class="fa-solid fa-spinner fa-spin" aria-label="Loading" />
-        </div>
-        <div class="flex flex-col gap-4" v-else>
-            <div v-if="folder" class="flex gap-1 flex-wrap text-xl">
-                <a @click="home" v-html="trans('home')" class="text-base-content cursor-pointer"></a>
-                <span class="flex gap-1 items-center" v-for="(breadcrumb, index) in breadcrumbs">
-                    <i class="fa-solid fa-chevron-right text-base" aria-hidden="true" />
-                    <a @click="openFolder(breadcrumb)" v-html="breadcrumb.name" class="text-base-content cursor-pointer"></a>
-                </span>
-            </div>
-            <div class="flex gap-2 flex-row">
-                <div :class="gridClass()">
-                    <div v-if="canUpload && !showUnused" class="rounded-xl shadow bg-base-100 overflow-hidden col-span-2 sm:col-span-3 md:w-48 cursor-pointer flex justify-center items-center flex-col gap-4" @click="selectFiles">
-                        <div class="flex flex-col gap-4 p-2" v-if="!uploading">
-                            <div class="flex flex-col gap-2 items-center">
-                                <i class="fa-regular fa-image text-4xl text-neutral-content" aria-hidden="true"></i>
-                                <span>Upload files</span>
-                            </div>
-                            <div class="text-center text-xs">
-                                <i class="fa-regular fa-info-circle mr-1 text-base" aria-hidden="true" />
-                                <span v-html="trans('upload_hint')" class="text-neutral-content"></span>
-                            </div>
-                        </div>
-                        <div v-else-if="hasPreview()" class="cover-background w-full h-full flex p-2" :style="{backgroundImage: 'url(\'' + imagePreview + '\')'}">
-                            <div class="progress h-1 w-full self-end">
-                                <div class="h-1 bg-accent shadow-xs" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" :style="{'width': progressPercentage()}">
-                                    <span class="sr-only"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="file" multiple accept="image/*, font/woff2, .woff2" class="hidden" @change="filesSelected" ref="fileField" />
-                    </div>
+        <!-- Slide-over Inspector -->
+        <ImageInspector
+            v-if="setup"
+            :file="currentFile"
+            :visibilities="setup.visibilities"
+            :folderTree="setup.folder_tree"
+            :trans="trans"
+            @close="closeInspector"
+            @updated="onFileUpdated"
+            @replaced="onFileReplaced"
+            @delete="requestDeleteSingle"
+            @focus="focusTarget = $event"
+            @lightbox="openLightbox"
+            @copy-url="copyUrl"
+            @copy-admin-link="copyAdminLink"
+        />
 
-                    <Preview
-                        v-for="file in files"
-                        :file="file"
-                        :isBulking="isBulking"
-                        :i18n="i18n"
-                        @select="selectFile(file)"
-                    >
-                    </Preview>
-                </div>
+        <!-- Lightbox -->
+        <ImageLightbox
+            :open="Boolean(lightboxFile)"
+            :file="lightboxFile"
+            :hasPrev="lightboxIndex > 0"
+            :hasNext="lightboxIndex >= 0 && lightboxIndex < lightboxCandidates.length - 1"
+            :trans="trans"
+            @close="lightboxFile = null"
+            @prev="stepLightbox(-1)"
+            @next="stepLightbox(1)"
+            @copy-url="copyUrl"
+        />
 
-                <div class="fixed bottom-0 w-full left-0 right-0 shadow-md md:shadow-none md:relative md:basis-1/4 " v-if="currentFile">
-                    <File
-                        :file="currentFile"
-                        :visibilities="visibilities"
-                        :premium="premium"
-                        :canManage="canManage"
-                        :i18n="i18n"
-                        @updated="updatedFile"
-                        @deleted="deletedFile"
-                        @closed="closeFile"
-                    ></File>
+        <!-- Focus Point Modal -->
+        <FocusPointModal
+            v-if="setup"
+            :open="Boolean(focusTarget)"
+            :file="focusTarget"
+            :premium="setup.acl.premium"
+            :trans="trans"
+            @close="focusTarget = null"
+            @updated="onFileUpdated($event, false)"
+        />
+
+        <!-- Bulk Action Bar -->
+        <BulkActionBar
+            :selectedFiles="selectedFiles"
+            :trans="trans"
+            @open-bulk-update="openBulkUpdateModal"
+            @delete-selected="requestDeleteBulk"
+            @clear="clearSelection"
+        />
+
+        <!-- Upload Queue Tray -->
+        <UploadQueue
+            :items="uploadQueue"
+            :trans="trans"
+            @cancel="cancelUploadItem"
+            @retry="retryUploadItem"
+            @clear-finished="clearFinishedUploads"
+        />
+
+        <!-- Delete Confirmation & Impact Modal -->
+        <DeleteConfirmModal
+            v-if="setup"
+            :open="deleteModalOpen"
+            :ids="deleteTargetIds"
+            :previewApi="setup.api.deletePreview"
+            :deleting="deleting"
+            :trans="trans"
+            @close="deleteModalOpen = false"
+            @confirm="confirmDelete"
+        />
+
+        <!-- New Folder Modal -->
+        <dialog ref="newFolderDialogRef" class="dialog rounded-2xl bg-base-100 text-base-content p-0 w-full! max-w-md!" @click.self="newFolderDialogRef?.close()">
+            <header class="flex items-center justify-between p-4 md:p-5">
+                <h4 class="text-lg font-medium">{{ trans('new_folder') }}</h4>
+                <button type="button" class="text-base-content cursor-pointer" @click="newFolderDialogRef?.close()" aria-label="Close">
+                    <i class="fa-regular fa-circle-xmark text-lg" aria-hidden="true"></i>
+                </button>
+            </header>
+            <article class="px-4 md:px-6 pb-4 flex flex-col gap-3 text-sm">
+                <div class="flex flex-col gap-1">
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ trans('name') }}</label>
+                    <input ref="newFolderInputRef" type="text" autofocus class="w-full bg-base-200 rounded-lg px-3 py-1.5" v-model="newFolderName" @keyup.enter="createFolder" />
                 </div>
-            </div>
-        </div>
+                <div v-if="setup" class="flex flex-col gap-1">
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ trans('visibility') }}</label>
+                    <select class="w-full bg-base-200 rounded-lg px-2.5 py-1.5" v-model="newFolderVisibility">
+                        <option v-for="(label, id) in setup.visibilities" :key="id" :value="Number(id)">{{ label }}</option>
+                    </select>
+                </div>
+            </article>
+            <footer class="px-4 md:px-6 py-3 flex justify-end gap-2">
+                <button type="button" class="btn2 btn-default btn-sm" @click="newFolderDialogRef?.close()">{{ trans('cancel') }}</button>
+                <button type="button" class="btn2 btn-primary btn-sm" :disabled="creatingFolder || !newFolderName.trim()" @click="createFolder">
+                    <i v-if="creatingFolder" class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+                    <span>{{ trans('create') }}</span>
+                </button>
+            </footer>
+        </dialog>
+
+        <!-- Bulk Move / Visibility Modal -->
+        <dialog ref="bulkUpdateDialogRef" class="dialog rounded-2xl bg-base-100 text-base-content p-0 w-full! max-w-md!" @click.self="bulkUpdateDialogRef?.close()">
+            <header class="flex items-center justify-between p-4 md:p-5">
+                <h4 class="text-lg font-medium">{{ trans('update') }} ({{ selectedFiles.length }})</h4>
+                <button type="button" class="text-base-content cursor-pointer" @click="bulkUpdateDialogRef?.close()" aria-label="Close">
+                    <i class="fa-regular fa-circle-xmark text-lg" aria-hidden="true"></i>
+                </button>
+            </header>
+            <article class="px-4 md:px-6 pb-4 flex flex-col gap-3 text-sm" v-if="setup">
+                <div class="flex flex-col gap-1">
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ trans('visibility') }}</label>
+                    <select class="w-full bg-base-200 rounded-lg px-2.5 py-1.5" v-model="bulkVisibility">
+                        <option value="">—</option>
+                        <option v-for="(label, id) in setup.visibilities" :key="id" :value="String(id)">{{ label }}</option>
+                    </select>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ trans('folder') }}</label>
+                    <select class="w-full bg-base-200 rounded-lg px-2.5 py-1.5" v-model="bulkFolder">
+                        <option value="">—</option>
+                        <option value="0">{{ trans('home') }}</option>
+                        <option v-for="f in setup.folder_tree" :key="f.id" :value="f.id">{{ f.name }}</option>
+                    </select>
+                </div>
+            </article>
+            <footer class="px-4 md:px-6 py-3 flex justify-end gap-2">
+                <button type="button" class="btn2 btn-default btn-sm" @click="bulkUpdateDialogRef?.close()">{{ trans('cancel') }}</button>
+                <button type="button" class="btn2 btn-primary btn-sm" :disabled="bulkUpdating" @click="submitBulkUpdate">
+                    <i v-if="bulkUpdating" class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+                    <span>{{ trans('change') }}</span>
+                </button>
+            </footer>
+        </dialog>
+
+        <!-- Upload from URL Modal -->
+        <dialog ref="urlDialogRef" class="dialog rounded-2xl bg-base-100 text-base-content p-0 w-full! max-w-md!" @click.self="urlDialogRef?.close()">
+            <header class="flex items-center justify-between p-4 md:p-5">
+                <h4 class="text-lg font-medium">{{ trans('upload_url_title') }}</h4>
+                <button type="button" class="text-base-content cursor-pointer" @click="urlDialogRef?.close()" aria-label="Close">
+                    <i class="fa-regular fa-circle-xmark text-lg" aria-hidden="true"></i>
+                </button>
+            </header>
+            <article class="px-4 md:px-6 pb-4 flex flex-col gap-2 text-sm">
+                <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ trans('upload_url_hint') }}</label>
+                <input
+                    ref="urlInputRef"
+                    type="url"
+                    autofocus
+                    class="w-full bg-base-200 rounded-lg px-3 py-1.5"
+                    placeholder="https://..."
+                    v-model="urlUploadValue"
+                    @keyup.enter="submitUrlUpload"
+                />
+            </article>
+            <footer class="px-4 md:px-6 py-3 flex justify-end gap-2">
+                <button type="button" class="btn2 btn-default btn-sm" @click="urlDialogRef?.close()">{{ trans('cancel') }}</button>
+                <button type="button" class="btn2 btn-primary btn-sm" :disabled="uploadingUrl || !urlUploadValue.trim()" @click="submitUrlUpload">
+                    <i v-if="uploadingUrl" class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+                    <span>{{ trans('upload_url') }}</span>
+                </button>
+            </footer>
+        </dialog>
     </div>
-
-    <div ref="infiniteScrollTrigger" class="h-4">
-        <div v-if="loadingMore" class="text-center text-4xl p-4">
-            <i class="fa-solid fa-spinner fa-spin" aria-label="Loading" />
-        </div>
-    </div>
-
-    <dialog ref="newDialog" class="dialog rounded-2xl text-center bg-base-100 text-base-content" v-if="initiated">
-        <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
-            <h4 v-html="trans('new_folder')" class="text-lg font-normal"></h4>
-            <button type="button" class="text-base-content" @click="closeModal(newDialog)" title="Close">
-                <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
-                <span class="sr-only">Close</span>
-            </button>
-        </header>
-        <article class="max-w-4xl flex flex-col gap-2 text-left p-4 md:px-6">
-            <div class="flex flex-col gap-1 w-full">
-                <label v-html="trans('name')"></label>
-                <input type="text" class="w-full" v-model="folderName" ref="folderNameField" @keyup.enter="createFolder">
-            </div>
-            <div class="flex flex-col gap-1 w-full">
-                <label v-html="trans('visibility')"></label>
-                <select class="w-full" v-model="folderVisibility">
-                    <option v-for="(name, id) in visibilities" :value="id" v-html="name"></option>
-                </select>
-            </div>
-        </article>
-        <footer class="p-2 md:p-4">
-            <menu class="">
-                <button type="submit" class="btn2 btn-primary" @click="createFolder" v-html="trans('create')">
-                </button>
-            </menu>
-        </footer>
-    </dialog>
-
-    <dialog ref="updateDialog" class="dialog rounded-2xl text-center bg-base-100 text-base-content" v-if="initiated">
-        <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
-            <h4 v-html="trans('update')" class="text-lg font-normal"></h4>
-            <button type="button" class="text-base-content" @click="closeModal(updateDialog)" title="Close">
-                <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
-                <span class="sr-only">Close</span>
-            </button>
-        </header>
-        <article class="max-w-4xl flex flex-col gap-2 text-left p-4 md:px-6">
-            <div class="flex flex-col gap-1 w-full">
-                <label v-html="trans('visibility')"></label>
-                <select class="w-full" v-model="bulkVisibility">
-                    <option v-for="(name, id) in bulkVisibilities" :value="id" v-html="name"></option>
-                </select>
-            </div>
-            <div class="flex flex-col gap-1 w-full">
-                <label v-html="trans('folder')"></label>
-                <select class="w-full" v-model="bulkFolder">
-                    <option v-for="(name, id) in folders" :value="id" v-html="name"></option>
-                </select>
-            </div>
-        </article>
-        <footer class="p-2 md:p-4">
-            <menu class="">
-                <button type="submit" class="btn2 btn-primary" @click="updateFiles" v-html="trans('change')">
-                </button>
-            </menu>
-        </footer>
-    </dialog>
 </template>
 
 <script setup lang="ts">
-
-import {onMounted, onUnmounted, onBeforeUnmount, ref, nextTick} from "vue";
-import axios from "axios";
-import Preview from "./Preview.vue";
-import File from "./File.vue";
-import {createUploadRequest} from "./uploadRequest.js";
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
+import axios from 'axios'
+import { useGalleryState } from './composables/useGalleryState'
+import { createUploadRequest } from './uploadRequest.js'
+import StorageBar from './components/StorageBar.vue'
+import GalleryToolbar from './components/GalleryToolbar.vue'
+import FolderTree from './components/FolderTree.vue'
+import GalleryGrid from './components/GalleryGrid.vue'
+import GalleryTable from './components/GalleryTable.vue'
+import PaginationBar from './components/PaginationBar.vue'
+import ImageInspector from './components/ImageInspector.vue'
+import ImageLightbox from './components/ImageLightbox.vue'
+import FocusPointModal from './components/FocusPointModal.vue'
+import UploadQueue from './components/UploadQueue.vue'
+import BulkActionBar from './components/BulkActionBar.vue'
+import DeleteConfirmModal from './components/DeleteConfirmModal.vue'
+import type { GalleryFileItem, UploadQueueItem } from './types'
 
 const props = defineProps<{
-    api: String
+    api: string
 }>()
 
-const initiated = ref(false)
-const loading = ref(false)
-const deleteApi = ref()
+const {
+    state,
+    initiated,
+    loading,
+    setup,
+    files,
+    currentFolder,
+    breadcrumbs,
+    currentFile,
+    pagination,
+    activeFilterCount,
+    hasActiveFiltersOrSearch,
+    trans,
+    persistPrefs,
+    syncUrl,
+    fetchItems,
+    loadSetup,
+    resetFilters,
+    applyPopstate,
+} = useGalleryState()
+
+const toolbarRef = ref<InstanceType<typeof GalleryToolbar> | null>(null)
+const fileInputRef = ref<HTMLInputElement | null>(null)
+const usedSpace = ref(0)
+const mobileSelectMode = ref(false)
+const lastSelectedIndex = ref<number | null>(null)
+
+// Lightbox & Focus
+const lightboxFile = ref<GalleryFileItem | null>(null)
+const focusTarget = ref<GalleryFileItem | null>(null)
+
+// Drag & Drop
+const osDragging = ref(false)
+let osDragCounter = 0
+const breadcrumbDragOver = ref<string | null>(null)
+const draggingItemIds = ref<string[]>([])
+
+// Upload Queue
+const uploadQueue = ref<UploadQueueItem[]>([])
+let activeUploads = 0
+const MAX_CONCURRENT_UPLOADS = 3
+
+// Delete Modal
+const deleteModalOpen = ref(false)
+const deleteTargetIds = ref<string[]>([])
 const deleting = ref(false)
-const loadingMore = ref(false)
-const canUpload = ref(false)
-const isBulking = ref(false)
-const premium = ref(false)
-const isWyvern = ref(false)
-const isElemental = ref(false)
-const canManage = ref(false)
-const breadcrumbs = ref()
-const nextPage = ref()
-const currentFile = ref()
 
-// Search stuff
-const searchTerm = ref()
-const lastTerm = ref()
-const searching = ref(false)
-const typingTimeout = ref(null)
-const searchApi = ref()
-const apiParameters = ref([])
+// New Folder Modal
+const newFolderDialogRef = ref<HTMLDialogElement | null>(null)
+const newFolderInputRef = ref<HTMLInputElement | null>(null)
+const newFolderName = ref('')
+const newFolderVisibility = ref(1)
+const creatingFolder = ref(false)
 
-const files = ref([])
-const homeFiles = ref([])
-const folder = ref()
-const i18n = ref()
-const isHome = ref(true)
-const homeUrl = ref()
+// Bulk Update Modal
+const bulkUpdateDialogRef = ref<HTMLDialogElement | null>(null)
+const bulkVisibility = ref('')
+const bulkFolder = ref('')
+const bulkUpdating = ref(false)
 
-// New folder
-const creating = ref(false)
-const createApi = ref()
-const newDialog = ref()
-const folderName = ref()
-const folderNameField = ref()
-const folderVisibility = ref(1)
-const visibilities = ref()
-const bulkVisibilities = ref()
+// URL Upload Modal
+const urlDialogRef = ref<HTMLDialogElement | null>(null)
+const urlInputRef = ref<HTMLInputElement | null>(null)
+const urlUploadValue = ref('')
+const uploadingUrl = ref(false)
 
-// Visibility folder
-const updateDialog = ref()
-const bulkVisibility = ref()
-const bulkFolder = ref()
+const selectedFiles = computed(() => files.value.filter(f => f.is_selected))
 
-// Move
-const folders = ref()
-const updateApi = ref()
-
-// Upload
-const moving = ref(false)
-const uploadApi = ref()
-const fileField = ref()
-const uploading = ref(false)
-const imagePreview = ref(null)
-let uploadAbortController: AbortController | null = null
-const progress = ref(0)
-
-// Filters
-const showFilters = ref(false)
-const showUnused = ref(false)
-const showSort = ref(false)
-const sortAsc = ref(false)
-const sortDesc = ref(false)
-const sortDefault = ref(true)
-
-// Space
-const total = ref()
-const used = ref()
-const upgradeLink = ref()
-
-//Infinite Scrolling
-const infiniteScrollTrigger = ref(null)
-let observer: IntersectionObserver | null = null
-let viewRequestId = 0
-let homeNextPage = null
-
-onMounted(() => {
-    axios.get(props.api)
-        .then((res) => {
-            initiated.value = true
-            files.value = res.data.files
-            homeFiles.value = res.data.files
-            homeUrl.value = res.data.url
-            i18n.value = res.data.i18n
-            searchApi.value = res.data.api.search
-            deleteApi.value = res.data.api.delete
-            updateApi.value = res.data.api.update
-            createApi.value = res.data.api.create
-            uploadApi.value = res.data.api.upload
-            nextPage.value = res.data.next
-            homeNextPage = res.data.next
-            visibilities.value = res.data.visibilities
-            bulkVisibilities.value = res.data.bulkVisibilities
-            canUpload.value = res.data.acl.upload
-            premium.value = res.data.acl.premium
-            isWyvern.value = res.data.acl.wyvern
-            isElemental.value = res.data.acl.elemental
-            canManage.value = res.data.acl.manage
-            folders.value = res.data.folders
-
-            total.value = res.data.space.total
-            used.value = res.data.space.used
-            upgradeLink.value = res.data.upgrade
-
-            // Set up infinite scroll observer after data is loaded
-            nextTick(() => {
-                observer = new IntersectionObserver(entries => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            openNextPage()
-                        }
-                    })
-                })
-
-                if (infiniteScrollTrigger.value) {
-                    observer.observe(infiniteScrollTrigger.value)
-                }
-            })
-        })
-
-    window.addEventListener('keydown', handleEscapeKey)
+const lightboxCandidates = computed(() => files.value.filter(f => !f.is_folder && Boolean(f.original)))
+const lightboxIndex = computed(() => {
+    if (!lightboxFile.value) return -1
+    return lightboxCandidates.value.findIndex(f => f.id === lightboxFile.value!.id)
 })
 
-onBeforeUnmount(() => {
-    uploadAbortController?.abort()
-
-    if (observer && infiniteScrollTrigger.value) {
-        observer.unobserve(infiniteScrollTrigger.value)
-    }
-})
-
-onUnmounted(() => {
-    window.removeEventListener('keydown', handleEscapeKey);
-})
-
-const handleEscapeKey = (event) => {
-    if (event.key === 'Escape' || event.key === 'Esc') {
-        if (uploading.value) {
-            cancelUpload()
-        }
-        if (currentFile.value) {
-            currentFile.value = null
-        }
-        if (isBulking.value) {
-            isBulking.value = null
-        }
-        else if (showFilters.value) {
-            showFilters.value = false
-        }
-    }
+const navigateToFolder = (folderId: string | null) => {
+    state.folderId = folderId
+    state.page = 1
+    currentFile.value = null
+    state.imageId = null
+    mobileSelectMode.value = false
+    lastSelectedIndex.value = null
+    fetchItems()
 }
 
-
-const trans = (key) => {
-    if (!i18n.value[key]) {
-        console.error('Missing trans', key, i18n)
-        return 'MISSING'
-    }
-    return i18n.value[key]
-}
-
-const startBulking = () => {
-    isBulking.value = true;
-}
-
-const stopBulking = () => {
-    isBulking.value = false;
-}
-
-const openUpdate = () => {
-    openDialog(updateDialog.value)
-    bulkVisibility.value = null
-    bulkFolder.value = null
-}
-
-const gridClass = () => {
-    let css = 'grid grid-cols-2 sm:grid-cols-3 md:flex gap-2 sm:gap-3 md:gap-4 md:flex-wrap'
-    if (currentFile.value) {
-        css += ' basis-2/4 md:basis-3/4'
-    }
-    return css
-}
-
-const deleteBulk = () => {
-    let ids = files.value.filter(f => f.is_selected).map(f => f.id)
-    if (ids.length === 0) {
+const openItem = (file: GalleryFileItem) => {
+    if (file.is_folder) {
+        navigateToFolder(file.id)
         return
     }
-
-    deleting.value = true
-    axios
-        .post(deleteApi.value, {images: ids})
-        .then(res => {
-            files.value = files.value.filter(i => !i.is_selected)
-            // If we are on the home page, reset the home files
-            if (isHome.value) {
-                homeFiles.value = files.value
-            }
-            used.value = res.data.used;
-
-            isBulking.value = false
-            window.showToast(res.data.toast)
-        })
-}
-
-const selectFile = (file) => {
-    // Bulking? Do nothing
-    if (isBulking.value) {
-        let f = files.value.find(f => f.id === file.id)
-        f.is_selected = !f.is_selected
-        return;
-    }
-    // Open a folder
-    if (file.is_folder) {
-        openFolder(file);
-        return;
-    }
-
-    // Open a file
-    if (currentFile.value && currentFile.value.id === file.id) {
-        currentFile.value = null
+    if (currentFile.value?.id === file.id) {
+        closeInspector()
     } else {
-        currentFile.value = file;
+        currentFile.value = file
+        state.imageId = file.id
+        syncUrl(false)
     }
 }
 
-const openFolder = (file) => {
-    const requestId = ++viewRequestId
-    loadingMore.value = false
-    loading.value = true
-    axios.get(file.open)
-        .then(res => {
-            if (requestId !== viewRequestId) {
-                return
-            }
-            folder.value = file
-            breadcrumbs.value = res.data.breadcrumbs
-            files.value = res.data.files
-            nextPage.value = res.data.next
-            loading.value = false
-            isHome.value = false
-
-            //window.history.pushState({}, "", res.data.url);
-        })
-}
-
-const home = () => {
-    ++viewRequestId
-    loadingMore.value = false
-    loading.value = true
-    files.value = homeFiles.value
-    nextPage.value = homeNextPage
+const closeInspector = () => {
     currentFile.value = null
-    folder.value = null
-    loading.value = false
-    isHome.value = true
-    isBulking.value = false
-
-    //window.history.pushState({}, "", homeUrl.value);
-}
-
-const handleSearchInput = (event) => {
-    searchTerm.value = event.target.value
-    if (typingTimeout.value) {
-        clearTimeout(typingTimeout.value)
-    }
-
-    typingTimeout.value = setTimeout(() => {
-        search()
-    }, 300)
-}
-
-const search = () => {
-    if (lastTerm.value == searchTerm.value) {
-        return
-    }
-    lastTerm.value = searchTerm.value
-
-    // Nothing? Go back home
-    if (!searchTerm.value) {
-        apiParameters.value['searchParam'] = '';
-        home()
-        return;
-    }
-
-    loading.value = true
-
-    apiParameters.value['searchParam'] = 'term=' + searchTerm.value;
-
-    var params = '';
-
-    if (apiParameters.value['searchParam']) {
-        params += apiParameters.value['searchParam'] + '&';
-    }
-
-    if (apiParameters.value['sortParam']) {
-        params += apiParameters.value['sortParam'] + '&';
-    }
-
-    if (apiParameters.value['toggleParam']) {
-        params += apiParameters.value['toggleParam'] + '&';
-    }
-
-    axios.get(searchApi.value + '/?' + params).then(res => {
-        showSearchResults(res.data)
-    })
-}
-
-const openNextPage = () => {
-    if (nextPage.value == null || loadingMore.value == true) {
-        return
-    }
-    loadingMore.value = true
-    const requestId = viewRequestId
-    const requestedPage = nextPage.value
-
-    var params = '';
-
-    if (apiParameters.value['searchParam']) {
-        params += apiParameters.value['searchParam'] + '&';
-    }
-
-    if (apiParameters.value['sortParam']) {
-        params += apiParameters.value['sortParam'] + '&';
-    }
-
-    if (apiParameters.value['toggleParam']) {
-        params += apiParameters.value['toggleParam'] + '&';
-    }
-
-    axios.get(requestedPage + '&' + params).then(res => {
-        if (requestId !== viewRequestId || requestedPage !== nextPage.value) {
-            return
-        }
-        res.data.files.forEach(file => {
-            files.value.push(file)
-        })
-        nextPage.value = res.data.next
-        if (isHome.value) {
-            homeNextPage = res.data.next
-        }
-    }).finally(() => {
-        if (requestId === viewRequestId) {
-            loadingMore.value = false
-        }
-    })
-}
-
-const openNewFolder = () => {
-    openDialog(newDialog.value)
-    folderNameField.value.focus()
-}
-
-const openDialog = (dialog) => {
-    dialog.showModal()
-    dialog.addEventListener('click', clickOutside);
-}
-
-const clickOutside = (event) => {
-    let rect = event.target.getBoundingClientRect()
-    let isInDialog = (rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
-        rect.left <= event.clientX && event.clientX <= rect.left + rect.width)
-    if (!isInDialog && event.target.tagName === 'DIALOG') {
-        closeModal(event.target)
-    }
-}
-
-const closeModal = (modal) => {
-    // DOn't close the modal while it's thinking
-    if (creating.value) {
-        return
-    }
-    modal.removeEventListener('click', clickOutside)
-    modal.close()
-}
-
-const createFolder = () => {
-    if (creating.value) {
-        return
-    }
-    let data = {}
-    creating.value = true
-    data.name = folderName.value
-    data.visibility_id = folderVisibility.value
-    if (folder.value?.id) {
-        data.folder_id = folder.value.id
-    }
-
-    axios.post(createApi.value, data).then(res => {
-        folderName.value = null
-        folderVisibility.value = 1
-        creating.value = false
-
-        files.value.unshift(res.data.folder)
-        folders.value[res.data.folder.id] = res.data.folder.name
-        closeModal(newDialog.value)
-    })
-}
-
-// const moveFiles = () => {
-//     if (moving.value) {
-//         return
-//     }
-//     let ids = files.value.filter(f => f.is_selected).map(f => f.id)
-//     if (ids.length === 0) {
-//         alert('select at least one image')
-//     }
-//
-//     moving.value = true
-//     let data = {}
-//     data.folder_id = targetFolder.value
-//     data.images = ids
-//
-//     axios.post(moveApi.value, data).then(res => {
-//         targetFolder.value = null
-//         moving.value = false
-//
-//         // Remove selected files from current folder
-//         files.value = files.value.filter(i => !i.is_selected)
-//
-//         // If the files were moved to the homepage... do something?
-//         isBulking.value = false
-//
-//         window.showToast(res.data.toast)
-//         closeModal(moveDialog.value)
-//     })
-// }
-const updateFiles = () => {
-    if (moving.value) {
-        return
-    }
-    let ids = files.value.filter(f => f.is_selected).map(f => f.id)
-    if (ids.length === 0) {
-        return
-    }
-
-    moving.value = true
-    let data = {}
-    if (bulkFolder.value) {
-        if (bulkFolder.value === '0') {
-            data.folder_home = 1
-        } else {
-            data.folder_id = bulkFolder.value
-        }
-    }
-    if (bulkVisibility.value) {
-        data.visibility_id = bulkVisibility.value
-    }
-    data.files = ids
-
-    axios.post(updateApi.value, data).then(res => {
-        moving.value = false
-
-
-        // If the files were moved to the homepage... do something?
-        if (data.folder_home) {
-            console.log(
-                'move home'
-            )
-            let selectedFiles = files.value.filter(i => i.is_selected)
-            selectedFiles.forEach(f => {
-                homeFiles.value.unshift(f)
-            })
-        }
-
-        // Remove selected files from current folder
-        if (bulkFolder.value) {
-            files.value = files.value.filter(i => !i.is_selected)
-            // If we're currently on the home folder, remove if
-            if (isHome.value) {
-                homeFiles.value = homeFiles.value.filter(i => !i.is_selected)
-            }
-        }
-        if (bulkVisibility.value) {
-            files.value.forEach(f => {
-                if (ids.includes(f.id)) {
-                    f.visibility_id = bulkVisibility.value
-                }
-            })
-        }
-
-        bulkFolder.value = null
-        bulkVisibility.value = null
-        isBulking.value = false
-
-        // Remove old selected files from the home folder
-        let selectedFiles = homeFiles.value.filter(i => i.is_selected)
-        selectedFiles.forEach(f => {
-            f.is_selected = false
-        })
-
-        window.showToast(res.data.toast)
-        closeModal(updateDialog.value)
-    })
-}
-
-const selectFiles = () => {
-    fileField.value.click()
-}
-
-const filesSelected = async (event) => {
-    const file = event.target.files[0]
-    const selectedFiles = event.target.files
-    if (!selectedFiles) {
-        uploading.value = false
-        return
-    }
-    const reader = new FileReader()
-    reader.onload = (e) => {
-        imagePreview.value = e.target.result
-    }
-    reader.readAsDataURL(file)
-
-    uploading.value = true
-
-    fileField.value.disabled = true
-
-    const formData = new FormData()
-    if (folder.value?.id) {
-        formData.append('folder_id', folder.value.id)
-    }
-    Array.from(selectedFiles).forEach(f => {
-        formData.append('files[]', f)
-    })
-
-    const request = createUploadRequest(function (progressEvent) {
-        progress.value = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-    })
-    uploadAbortController = request.controller
-
-    axios.post(uploadApi.value, formData, request.config)
-        .then(res => {
-            uploading.value = false
-            fileField.value.disabled = false
-            fileField.value = null
-            imagePreview.value = null
-            // Find the index of the last folder
-            const matchCriterion = f => f.is_folder;
-            const lastIndex = files.value.map((file, index) => matchCriterion(file) ? index : -1)
-                .filter(index => index !== -1)
-                .pop();
-
-            res.data.files.forEach(f => {
-                if (lastIndex !== undefined) {
-                    files.value.splice(lastIndex + 1, 0, f);
-                } else {
-                    // If no match is found, you can push the item to the end or handle accordingly
-                    files.value.push(f);
-                }
-            })
-
-            used.value = res.data.used
-            //console.log(used.value, res.data.used)
-        })
-        .catch (err => {
-            uploading.value = false
-            fileField.value.disabled = false
-            imagePreview.value = null
-            if (request.controller.signal.aborted) {
-                fileField.value = null
-            } else {
-                console.error(err)
-                showErrors(err)
-            }
-        })
-        .finally(() => {
-            if (uploadAbortController === request.controller) {
-                uploadAbortController = null
-            }
-        })
-}
-
-const showErrors = (err) => {
-    if (!err.response) {
-        return
-    }
-    if (err.response.data.error) {
-        window.showToast(err.response.data.error, 'error')
-        return
-    }
-
-    if (err.response && err.response.status === 403 && err.response.data.message) {
-        window.showToast(trans.value.unauthorized, 'error')
-        return
-    }
-
-    const errorKeys = Object.keys(err.response.data.errors)
-    errorKeys.forEach(i => {
-        window.showToast(err.response.data.errors[i][0], 'error')
-    })
-}
-
-const countSelected = () => {
-    let count = files.value.filter(f => f.is_selected).length
-    if (count === 0) {
-        return
-    }
-    return '(' + count + ')'
-}
-
-const progressPercentage = () => {
-    return progress.value + '%'
-}
-
-
-const cancelUpload = () => {
-    uploadAbortController?.abort()
-}
-
-// A file has been updated in the side panel, update our main reference?
-const updatedFile = (file) => {
-    // No need as it's editing the reactive component, apparently
-}
-
-const deletedFile = (file, newSpace) => {
-    files.value = files.value.filter(f => f.id !== file.id)
-    currentFile.value = null
-
-    if (file.is_folder) {
-        if (file.folder_id) {
-
-        } else {
-            home()
-        }
-    }
-
-    used.value = newSpace
-}
-
-const closeFile = () => {
-    currentFile.value = null
+    state.imageId = null
+    syncUrl(false)
 }
 
 const openFolderDetails = () => {
-    if (currentFile.value === folder.value) {
-        currentFile.value = null
-        return
+    if (!currentFolder.value) return
+    if (currentFile.value?.id === currentFolder.value.id) {
+        closeInspector()
+    } else {
+        currentFile.value = currentFolder.value
     }
-    currentFile.value = folder.value;
 }
 
-const toggleFilters = () => {
-    showFilters.value = !showFilters.value;
+const applyCleanupPreset = () => {
+    state.usage = 'unused'
+    state.sort = 'size_desc'
+    state.scope = 'all'
+    state.page = 1
+    persistPrefs()
+    fetchItems()
 }
 
-const toggleSort = () => {
-    showSort.value = !showSort.value;
+const toggleSelect = (file: GalleryFileItem, event: MouseEvent) => {
+    const idx = files.value.findIndex(f => f.id === file.id)
+    if (event.shiftKey && lastSelectedIndex.value !== null && idx !== -1) {
+        const start = Math.min(lastSelectedIndex.value, idx)
+        const end = Math.max(lastSelectedIndex.value, idx)
+        const targetState = !file.is_selected
+        for (let i = start; i <= end; i++) {
+            files.value[i].is_selected = targetState
+        }
+    } else {
+        file.is_selected = !file.is_selected
+    }
+    lastSelectedIndex.value = idx !== -1 ? idx : null
 }
 
-const onClickOutside = () => {
-    showFilters.value = false;
-    showSort.value = false;
-}
-
-const toggleUnused = () => {
-    if (!showUnused.value) {
-        apiParameters.value['toggleParam'] = '';
-        home()
-        return
-    }
-    console.log('filter')
-    loading.value = true
-
-    apiParameters.value['toggleParam'] = 'unused=1';
-
-    var params = '';
-
-    if (apiParameters.value['searchParam']) {
-        params += apiParameters.value['searchParam'] + '&';
-    }
-
-    if (apiParameters.value['sortParam']) {
-        params += apiParameters.value['sortParam'] + '&';
-    }
-
-    if (apiParameters.value['toggleParam']) {
-        params += apiParameters.value['toggleParam'] + '&';
-    }
-
-    axios.get(searchApi.value + '/?' + params).then(res => {
-        showSearchResults(res.data)
+const toggleSelectAll = () => {
+    const all = files.value.length > 0 && files.value.every(f => f.is_selected)
+    files.value.forEach(f => {
+        f.is_selected = !all
     })
 }
 
-const sort = (order = 'default') => {
-
-    if (order == 'asc') {
-        sortDesc.value = false;
-        sortDefault.value = false;
-        sortAsc.value = true;
-    } else if (order == 'desc') {
-        sortAsc.value = false;
-        sortDefault.value = false;
-        sortDesc.value = true;
-    } else if (order == 'default') {
-        sortAsc.value = false;
-        sortDesc.value = false;
-        sortDefault.value = true;
-    }
-
-    loading.value = true
-
-    apiParameters.value['sortParam'] = 'sort=' + order;
-
-    var params = '';
-
-    if (apiParameters.value['searchParam']) {
-        params += apiParameters.value['searchParam'] + '&';
-    }
-
-    if (apiParameters.value['sortParam']) {
-        params += apiParameters.value['sortParam'] + '&';
-    }
-
-    if (apiParameters.value['toggleParam']) {
-        params += apiParameters.value['toggleParam'] + '&';
-    }
-
-    let api = searchApi.value
-
-    if (folder.value?.open) {
-        api = folder.value.open
-    }
-
-    axios.get(api + '/?' + params).then(res => {
-        showFilterResults(res.data)
+const clearSelection = () => {
+    files.value.forEach(f => {
+        f.is_selected = false
     })
+    mobileSelectMode.value = false
+    lastSelectedIndex.value = null
 }
 
-const showFilterResults = (data) => {
-    files.value = data.files
-    nextPage.value = data.next
-    loading.value = false
+const onFileUpdated = (updated: GalleryFileItem, movedFolderChanged: boolean) => {
+    if (movedFolderChanged) {
+        closeInspector()
+        refreshSetupFolders()
+        fetchItems({ pushUrl: false })
+        return
+    }
+    const idx = files.value.findIndex(f => f.id === updated.id)
+    if (idx !== -1) {
+        files.value[idx] = { ...updated, is_selected: files.value[idx].is_selected }
+    }
+    if (currentFile.value?.id === updated.id) {
+        currentFile.value = updated
+    }
+    if (updated.is_folder) {
+        refreshSetupFolders()
+    }
 }
 
-const showSearchResults = (data) => {
-    files.value = data.files
-    nextPage.value = data.next
-    folder.value = null
-    loading.value = false
+const onFileReplaced = (updated: GalleryFileItem, newUsed: number) => {
+    usedSpace.value = newUsed
+    onFileUpdated(updated, false)
 }
 
-const usedSpace = () => {
-    return human(used.value)
-}
-const totalSpace = () => {
-    if (total.value === 0) {
-        return '∞'
-    }
-    return human(total.value)
+const copyUrl = async (file: GalleryFileItem) => {
+    await navigator.clipboard.writeText(file.link)
+    window.showToast?.(trans('copied'))
 }
 
-const human = (kb) => {
-    if (kb == 0) {
-        return '0';
-    }
-    else if (kb > 1000000) {
-        return (kb / (1024 * 1024)).toFixed(2) + ' GiB'
-    }
-    else if (kb > 1000) {
-        return (kb / (1024)).toFixed(2) + ' MiB'
-    }
-    return (kb * 1).toFixed(2) + ' KiB'
+const copyAdminLink = async (file: GalleryFileItem) => {
+    await navigator.clipboard.writeText(file.admin_url)
+    window.showToast?.(trans('copied'))
 }
 
-const usedClasses = () => {
-    let css = 'rounded h-2 transition-all duration-300'
-    let per = usedPercentage()
-    if (per < 60) {
-        return css + ' bg-primary'
-    } else if (per < 90) {
-        return css + ' bg-orange-400'
-    }
-    return css + ' bg-red-500';
-}
-const usedPercentage = () => {
-    if (total.value === 0) {
-        return 0
-    }
-    return Math.round((used.value / total.value) * 100)
+const openLightbox = (file: GalleryFileItem) => {
+    lightboxFile.value = file
 }
 
-const hasPreview = () => {
-    return imagePreview.value !== null
+const stepLightbox = (delta: number) => {
+    const nextIdx = lightboxIndex.value + delta
+    if (nextIdx >= 0 && nextIdx < lightboxCandidates.value.length) {
+        lightboxFile.value = lightboxCandidates.value[nextIdx]
+    }
 }
+
+// Drag & Drop (Internal Move + OS Upload)
+const onItemDragStart = (file: GalleryFileItem, e: DragEvent) => {
+    const ids = file.is_selected && selectedFiles.value.length > 0
+        ? selectedFiles.value.map(f => f.id)
+        : [file.id]
+    draggingItemIds.value = ids
+    if (e.dataTransfer) {
+        e.dataTransfer.effectAllowed = 'move'
+        e.dataTransfer.setData('application/x-kanka-gallery', JSON.stringify(ids))
+    }
+}
+
+const moveDraggedToFolder = async (targetFolderId: string | null) => {
+    if (!setup.value || draggingItemIds.value.length === 0) return
+    const ids = draggingItemIds.value.filter(id => id !== targetFolderId)
+    draggingItemIds.value = []
+    if (ids.length === 0) return
+
+    try {
+        const payload: Record<string, any> = { files: ids }
+        if (targetFolderId === null) {
+            payload.folder_home = 1
+        } else {
+            payload.folder_id = targetFolderId
+        }
+        const res = await axios.post(setup.value.api.update, payload)
+        window.showToast?.(res.data.toast)
+        refreshSetupFolders()
+        fetchItems({ pushUrl: false })
+    } catch (err: any) {
+        const msg = err.response?.data?.errors?.folder_id?.[0] ?? err.response?.data?.message ?? 'Move failed'
+        window.showToast?.(msg, 'error')
+    }
+}
+
+const onGalleryDragEnter = (e: DragEvent) => {
+    if (!setup.value?.acl.upload) return
+    if (e.dataTransfer?.types.includes('Files')) {
+        osDragCounter++
+        osDragging.value = true
+    }
+}
+
+const onGalleryDragLeave = () => {
+    if (osDragCounter > 0) osDragCounter--
+    if (osDragCounter === 0) osDragging.value = false
+}
+
+const onGalleryDrop = (e: DragEvent) => {
+    osDragCounter = 0
+    osDragging.value = false
+    if (!setup.value?.acl.upload) return
+    if (e.dataTransfer?.files && e.dataTransfer.files.length > 0) {
+        enqueueFiles(e.dataTransfer.files, state.folderId)
+    }
+}
+
+const onBreadcrumbDrop = (e: DragEvent, targetFolderId: string | null) => {
+    breadcrumbDragOver.value = null
+    if (e.dataTransfer?.files && e.dataTransfer.files.length > 0) {
+        enqueueFiles(e.dataTransfer.files, targetFolderId)
+        return
+    }
+    if (e.dataTransfer?.types.includes('application/x-kanka-gallery')) {
+        moveDraggedToFolder(targetFolderId)
+    }
+}
+
+// Upload Queue
+const onFilesSelected = (e: Event) => {
+    const input = e.target as HTMLInputElement
+    if (input.files && input.files.length > 0) {
+        enqueueFiles(input.files, state.folderId)
+    }
+    input.value = ''
+}
+
+const enqueueFiles = (fileList: FileList | File[], targetFolderId: string | null) => {
+    if (!setup.value?.acl.upload) return
+    Array.from(fileList).forEach(file => {
+        uploadQueue.value.push({
+            uid: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+            file,
+            name: file.name,
+            folderId: targetFolderId,
+            progress: 0,
+            status: 'queued',
+            error: null,
+            preview: null,
+            controller: null,
+        })
+    })
+    processUploadQueue()
+}
+
+const processUploadQueue = () => {
+    while (activeUploads < MAX_CONCURRENT_UPLOADS) {
+        const next = uploadQueue.value.find(i => i.status === 'queued')
+        if (!next) break
+        startSingleUpload(next)
+    }
+}
+
+const startSingleUpload = async (item: UploadQueueItem) => {
+    if (!setup.value) return
+    activeUploads++
+    item.status = 'uploading'
+    item.error = null
+    item.progress = 0
+
+    const formData = new FormData()
+    formData.append('files[]', item.file)
+    if (item.folderId) {
+        formData.append('folder_id', item.folderId)
+    }
+
+    const req = createUploadRequest((ev: ProgressEvent) => {
+        if (ev.total > 0) {
+            item.progress = Math.round((ev.loaded * 100) / ev.total)
+        }
+    })
+    item.controller = req.controller
+
+    try {
+        const res = await axios.post(setup.value.api.upload, formData, req.config)
+        if (res.data.used !== undefined) {
+            usedSpace.value = res.data.used
+        }
+        const uploadedFiles = res.data.files || []
+        if (uploadedFiles.length === 0) {
+            item.status = 'error'
+            item.error = 'Insufficient storage space'
+        } else {
+            item.status = 'done'
+            item.progress = 100
+            if (item.folderId === state.folderId) {
+                fetchItems({ pushUrl: false })
+            }
+            refreshSetupFolders()
+        }
+    } catch (err: any) {
+        if (req.controller.signal.aborted) {
+            item.status = 'cancelled'
+        } else {
+            item.status = 'error'
+            item.error = err.response?.data?.error
+                ?? err.response?.data?.errors?.['files.0']?.[0]
+                ?? err.response?.data?.message
+                ?? 'Upload failed'
+        }
+    } finally {
+        activeUploads--
+        processUploadQueue()
+    }
+}
+
+const cancelUploadItem = (uid: string) => {
+    const item = uploadQueue.value.find(i => i.uid === uid)
+    if (!item) return
+    if (item.status === 'queued') {
+        item.status = 'cancelled'
+    } else if (item.status === 'uploading') {
+        item.controller?.abort()
+    }
+}
+
+const retryUploadItem = (uid: string) => {
+    const item = uploadQueue.value.find(i => i.uid === uid)
+    if (!item) return
+    item.status = 'queued'
+    item.error = null
+    processUploadQueue()
+}
+
+const clearFinishedUploads = () => {
+    uploadQueue.value = uploadQueue.value.filter(i => i.status === 'uploading' || i.status === 'queued')
+}
+
+// Delete Flow
+const requestDeleteSingle = (file: GalleryFileItem) => {
+    deleteTargetIds.value = [file.id]
+    deleteModalOpen.value = true
+}
+
+const requestDeleteBulk = () => {
+    if (selectedFiles.value.length === 0) return
+    deleteTargetIds.value = selectedFiles.value.map(f => f.id)
+    deleteModalOpen.value = true
+}
+
+const confirmDelete = async () => {
+    if (!setup.value || deleting.value || deleteTargetIds.value.length === 0) return
+    deleting.value = true
+    try {
+        const res = await axios.post(setup.value.api.delete, { images: deleteTargetIds.value })
+        usedSpace.value = res.data.used
+        window.showToast?.(res.data.toast)
+        if (currentFile.value && deleteTargetIds.value.includes(currentFile.value.id)) {
+            closeInspector()
+        }
+        deleteModalOpen.value = false
+        clearSelection()
+        refreshSetupFolders()
+        fetchItems({ pushUrl: false })
+    } catch (err: any) {
+        window.showToast?.(err.response?.data?.message ?? 'Delete failed', 'error')
+    } finally {
+        deleting.value = false
+    }
+}
+
+// New Folder
+const openNewFolderModal = () => {
+    newFolderName.value = ''
+    newFolderVisibility.value = 1
+    newFolderDialogRef.value?.showModal()
+    requestAnimationFrame(() => newFolderInputRef.value?.focus())
+}
+
+const createFolder = async () => {
+    if (!setup.value || creatingFolder.value || !newFolderName.value.trim()) return
+    creatingFolder.value = true
+    try {
+        await axios.post(setup.value.api.create, {
+            name: newFolderName.value.trim(),
+            visibility_id: newFolderVisibility.value,
+            folder_id: state.folderId,
+        })
+        newFolderDialogRef.value?.close()
+        refreshSetupFolders()
+        fetchItems({ pushUrl: false })
+    } catch (err: any) {
+        window.showToast?.(err.response?.data?.message ?? 'Failed to create folder', 'error')
+    } finally {
+        creatingFolder.value = false
+    }
+}
+
+// Bulk Update
+const openBulkUpdateModal = () => {
+    bulkVisibility.value = ''
+    bulkFolder.value = ''
+    bulkUpdateDialogRef.value?.showModal()
+}
+
+const submitBulkUpdate = async () => {
+    if (!setup.value || bulkUpdating.value || selectedFiles.value.length === 0) return
+    bulkUpdating.value = true
+    try {
+        const payload: Record<string, any> = {
+            files: selectedFiles.value.map(f => f.id),
+        }
+        if (bulkVisibility.value) payload.visibility_id = Number(bulkVisibility.value)
+        if (bulkFolder.value === '0') {
+            payload.folder_home = 1
+        } else if (bulkFolder.value) {
+            payload.folder_id = bulkFolder.value
+        }
+
+        const res = await axios.post(setup.value.api.update, payload)
+        window.showToast?.(res.data.toast)
+        bulkUpdateDialogRef.value?.close()
+        clearSelection()
+        refreshSetupFolders()
+        fetchItems({ pushUrl: false })
+    } catch (err: any) {
+        const msg = err.response?.data?.errors?.folder_id?.[0] ?? err.response?.data?.message ?? 'Update failed'
+        window.showToast?.(msg, 'error')
+    } finally {
+        bulkUpdating.value = false
+    }
+}
+
+// URL Upload
+const openUrlUploadModal = () => {
+    urlUploadValue.value = ''
+    urlDialogRef.value?.showModal()
+    requestAnimationFrame(() => urlInputRef.value?.focus())
+}
+
+const submitUrlUpload = async () => {
+    if (!setup.value || uploadingUrl.value || !urlUploadValue.value.trim()) return
+    uploadingUrl.value = true
+    try {
+        const res = await axios.post(setup.value.api.uploadUrl, {
+            url: urlUploadValue.value.trim(),
+            folder_id: state.folderId,
+        })
+        if (res.data.used !== undefined) {
+            usedSpace.value = res.data.used
+        }
+        urlDialogRef.value?.close()
+        fetchItems({ pushUrl: false })
+    } catch (err: any) {
+        const msg = err.response?.data?.error ?? err.response?.data?.message ?? 'Failed to download URL'
+        window.showToast?.(msg, 'error')
+    } finally {
+        uploadingUrl.value = false
+    }
+}
+
+const refreshSetupFolders = async () => {
+    try {
+        const res = await axios.get(props.api)
+        if (setup.value) {
+            setup.value.folder_tree = res.data.folder_tree
+            setup.value.folders = res.data.folders
+        }
+    } catch {
+        // Non-fatal
+    }
+}
+
+// Keyboard Shortcuts & Clipboard Paste
+const handleKeydown = (e: KeyboardEvent) => {
+    const tag = (e.target as HTMLElement)?.tagName
+    const isInput = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT'
+
+    if (e.key === 'Escape') {
+        if (lightboxFile.value) {
+            lightboxFile.value = null
+            return
+        }
+        if (focusTarget.value) {
+            focusTarget.value = null
+            return
+        }
+        if (currentFile.value) {
+            closeInspector()
+            return
+        }
+        if (selectedFiles.value.length > 0) {
+            clearSelection()
+        }
+        return
+    }
+
+    if (lightboxFile.value) {
+        if (e.key === 'ArrowLeft') stepLightbox(-1)
+        if (e.key === 'ArrowRight') stepLightbox(1)
+        return
+    }
+
+    if (isInput) return
+
+    if (e.key === '/') {
+        e.preventDefault()
+        toolbarRef.value?.focusSearch()
+    } else if ((e.key === 'Delete' || e.key === 'Backspace') && selectedFiles.value.length > 0) {
+        e.preventDefault()
+        requestDeleteBulk()
+    }
+}
+
+const handlePaste = (e: ClipboardEvent) => {
+    const tag = (e.target as HTMLElement)?.tagName
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || !setup.value?.acl.upload) return
+    const items = e.clipboardData?.items
+    if (!items) return
+
+    const pastedFiles: File[] = []
+    for (const item of Array.from(items)) {
+        if (item.kind === 'file' && item.type.startsWith('image/')) {
+            const f = item.getAsFile()
+            if (f) pastedFiles.push(f)
+        }
+    }
+    if (pastedFiles.length > 0) {
+        enqueueFiles(pastedFiles, state.folderId)
+    }
+}
+
+onMounted(async () => {
+    await loadSetup(props.api)
+    if (setup.value) {
+        usedSpace.value = setup.value.space.used
+    }
+    window.addEventListener('popstate', applyPopstate)
+    window.addEventListener('keydown', handleKeydown)
+    window.addEventListener('paste', handlePaste)
+})
+
+onBeforeUnmount(() => {
+    window.removeEventListener('popstate', applyPopstate)
+    window.removeEventListener('keydown', handleKeydown)
+    window.removeEventListener('paste', handlePaste)
+})
 </script>

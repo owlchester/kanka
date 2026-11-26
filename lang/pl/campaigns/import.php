@@ -6,6 +6,7 @@ return [
     ],
     'csv'               => [
         'continue'          => 'Kontynuuj',
+        'encoding_error'    => 'Plik CSV musi być kodowany w UTF-8.',
         'fields_helper'     => 'Wybierz kolumnę przypisaną każdemu aktywnemu polu elementu.',
         'no_preview'        => 'Brak danych podglądu',
         'preview'           => 'Podgląd',

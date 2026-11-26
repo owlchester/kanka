@@ -8,7 +8,7 @@
     </div>
 
     <div class="flex flex-col gap-0.5">
-        <a href="https://kanka.io/premium?utm_source=subscription&utm_medium=referral&utm_campaign=elemental" class="text-link">
+        <a href="https://kanka.io/premium?utm_source=subscription&utm_medium=referral&utm_campaign=elemental" class="text-link" target="_blank" rel="noopener noreferrer">
             @if (auth()->user()->hasLegacyBoosterNomenclature())
             10 {{ __('tiers.features.boosters') }}
         @else
@@ -27,59 +27,18 @@
     </div>
     {{ __('tiers.features.file_size', ['size' => config('limits.filesize.image.elemental') . ' MiB']) }}
 </div>
+
+<hr class="my-2" />
+
+<div class="text-xs font-semibold uppercase tracking-wide text-neutral-content">
+    {{ __('tiers.includes.wyvern') }}
+</div>
+
 <div class="flex gap-1">
     <div class="w-8 shrink-0 text-center">
         <x-icon class="check" />
     </div>
-    {{ __('tiers.features.no_ads') }}
-</div>
-
-<hr class="my-4" />
-
-<div class="flex gap-1">
-    <div class="w-8 shrink-0 text-center">
-        <x-icon class="fa-regular fa-upload" />
-    </div>
-    <a href="https://docs.kanka.io/en/latest/features/campaigns/import.html" class="text-link">
-        {{ __('tiers.features.import') }}
+    <a href="https://docs.kanka.io/en/latest/guides/roadmap.html#champion" class="text-link" target="_blank" rel="noopener noreferrer">
+        {{ __('tiers.features.feature_influence') }}
     </a>
-</div>
-
-<div class="flex gap-1">
-    <div class="w-8 shrink-0 text-center">
-        <x-icon class="fa-regular fa-webhook" />
-    </div>
-    <a href="{{ route('larecipe.index') }}" class="text-link">
-        {{ __('tiers.features.api_requests', ['amount' => config('limits.api.throttle.subscriber')]) }}
-    </a>
-</div>
-
-<div class="flex gap-1">
-    <div class="w-8 shrink-0 text-center">
-        <x-icon class="check" />
-    </div>
-    {{ __('tiers.features.nice_image') }}
-</div>
-
-<div class="flex gap-1">
-    <div class="w-8 shrink-0 text-center">
-        <x-icon class="check" />
-    </div>
-    <a href="{{ route('roadmap', ['utm_source' => 'subscription', 'utm_campaign' => 'elemental']) }}" class="text-link">{{ __('tiers.features.roadmap') }}</a>
-</div>
-
-<div class="flex gap-1">
-    <div class="w-8 shrink-0 text-center">
-        <x-icon class="check" />
-    </div>
-    <div>
-        {!! __('tiers.features.discord', ['discord' => '<a href="https://kanka.io/go/discord" class="text-link">Discord</a>',]) !!}
-    </div>
-</div>
-
-<div class="flex gap-1">
-    <div class="w-8 shrink-0 text-center">
-        <x-icon class="check" />
-    </div>
-    {{ __('tiers.features.feature_influence') }}
 </div>

@@ -22,13 +22,26 @@ class DeleteController extends Controller
         $this->storage = $storageService;
     }
 
+    public function preview(Campaign $campaign, DeleteImages $request)
+    {
+        $this->authorize('gallery', $campaign);
+
+        $preview = $this->service
+            ->campaign($campaign)
+            ->user($request->user())
+            ->preview($request->validated('images'));
+
+        return response()->json($preview);
+    }
+
     public function destroy(Campaign $campaign, DeleteImages $request)
     {
         $this->authorize('gallery', $campaign);
 
         $count = $this->service
             ->campaign($campaign)
-            ->delete($request->get('images'));
+            ->user($request->user())
+            ->delete($request->validated('images'));
 
         $this->storage->campaign($campaign)->clearCache();
 
@@ -40,7 +53,11 @@ class DeleteController extends Controller
 
     public function file(Campaign $campaign, Image $image)
     {
-        $this->authorize('gallery', $campaign);
+        if ($image->campaign_id !== $campaign->id) {
+            abort(404);
+        }
+
+        $this->authorize('delete', [$image, $campaign]);
 
         $image->delete();
         $this->storage->campaign($campaign)->clearCache();

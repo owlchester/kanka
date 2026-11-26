@@ -35,9 +35,9 @@ trait FiltersEntityFields
 
         return Entity::whereIn('entity_id', $ids)
             ->where('type_id', config('entities.ids.' . $type))
-            ->with('descendants')
+            ->with('descendantsAndSelf')
             ->get()
-            ->flatMap(fn ($entity) => [$entity->entity_id, ...$entity->descendants->pluck('entity_id')->all()])
+            ->flatMap(fn ($entity) => $entity->descendantsAndSelf->pluck('entity_id')->all())
             ->unique()
             ->values()
             ->all();

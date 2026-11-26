@@ -2,13 +2,17 @@
 
 return [
     'actions'   => [
-        'add_url'       => 'Add from URL',
-        'change'        => 'Change',
-        'gallery'       => 'From gallery',
-        'paste_error'   => 'Invalid URL',
-        'upload'        => 'Upload from device',
-        'url'           => 'Upload an image from a URL',
-        'url_hint'      => 'Paste an image URL',
+        'add_url'           => 'Add from URL',
+        'change'            => 'Change',
+        'copied'            => 'Copied to clipboard',
+        'copy_admin_link'   => 'Copy admin link',
+        'copy_url'          => 'Copy URL',
+        'download'          => 'Download',
+        'gallery'           => 'From gallery',
+        'paste_error'       => 'Invalid URL',
+        'upload'            => 'Upload from device',
+        'url'               => 'Upload an image from a URL',
+        'url_hint'          => 'Paste an image URL',
     ],
     'browse'    => [
         'folder_count'      => ':count images',
@@ -31,8 +35,23 @@ return [
         'helper'    => 'Unlock up to :size GiB storage space with a :premium-campaign.',
         'title'     => 'Storage full',
     ],
+    'bulk'      => [
+        'clear'             => 'Clear selection',
+        'move_to'           => 'Move to folder',
+        'select_all'        => 'Select all on page',
+        'selected_count'    => ':count selected',
+    ],
     'delete'    => [
         'success'   => '[0] Deleted 0 elements|[1] Deleted one element|{2,*} Deleted :count elements',
+    ],
+    'delete_modal'  => [
+        'asset_warning'     => 'Deleting an image attached to an entity asset will permanently delete that asset record.',
+        'checking'          => 'Checking where this item is used...',
+        'confirm_button'    => 'Delete permanently',
+        'entry_warning'     => 'This image is embedded in entries or articles. Deleting it will NOT edit those entries and will leave broken images behind.',
+        'folder_warning'    => 'Deleting folders will permanently remove all nested subfolders and files inside them.',
+        'title'             => 'Confirm deletion',
+        'unused_note'       => 'These files are not used anywhere in your campaign.',
     ],
     'download'  => [
         'errors'    => [
@@ -48,19 +67,110 @@ return [
     'drop'      => [
         'active'    => 'Drop to upload',
         'hint'      => 'Click or drag image here',
+        'overlay'   => 'Drop files to upload',
+    ],
+    'empty'     => [
+        'filtered'  => 'No files match your current search or filters.',
+        'title'     => 'This folder is empty',
+    ],
+    'fields'    => [
+        'dimensions'    => 'Dimensions',
+        'updated_at'    => 'Modified',
     ],
     'file'      => [
         'saved' => 'Saved',
     ],
     'filters'   => [
-        'only_unused'   => 'Only show unused files',
-        'sort'          => 'Sort by',
+        'all'                   => 'All',
+        'only_unused'           => 'Only show unused files',
+        'orientation'           => 'Orientation',
+        'orientation_all'       => 'All orientations',
+        'orientation_landscape' => 'Landscape',
+        'orientation_portrait'  => 'Portrait',
+        'orientation_square'    => 'Square',
+        'reset'                 => 'Reset filters',
+        'sort'                  => 'Sort by',
+        'type'                  => 'File type',
+        'type_all'              => 'All types',
+        'type_font'             => 'Fonts (WOFF2)',
+        'type_image'            => 'Images',
+        'type_svg'              => 'Vector (SVG)',
+        'uploader'              => 'Uploaded by',
+        'usage'                 => 'Usage',
+        'usage_all'             => 'All files',
+        'usage_unused'          => 'Unused only',
+        'usage_used'            => 'Used only',
+    ],
+    'focus'     => [
+        'description'       => 'Click or drag to set the focal point used when Kanka crops this image into avatars, cards, and banners.',
+        'preview_avatar'    => 'Avatar (1:1)',
+        'preview_card'      => 'Card (4:3)',
+        'preview_header'    => 'Header (16:9)',
+    ],
+    'folders'   => [
+        'title' => 'Folders',
+    ],
+    'font'      => [
+        'copy_css'  => 'Copy @font-face CSS',
+        'sample'    => 'The quick brown fox jumps over the lazy dog',
     ],
     'move'      => [
         'success'   => '[0] Moved 0 elements|[1] Moved one element|{2,*} Moved :count elements',
     ],
+    'pagination' => [
+        'next'      => 'Next',
+        'per_page'  => 'Per page',
+        'previous'  => 'Previous',
+        'showing'   => 'Showing :from–:to of :total',
+    ],
+    'replace'   => [
+        'button'    => 'Replace file',
+        'errors'    => [
+            'folder'    => 'Folders cannot be replaced.',
+        ],
+        'hint'      => 'Replaces this image everywhere it is used without changing its link or UUID.',
+        'success'   => 'File replaced.',
+    ],
+    'search'    => [
+        'placeholder'   => 'Search name, description, author, or type...',
+        'scope_all'     => 'All folders',
+        'scope_folder'  => 'This folder',
+    ],
+    'sort'      => [
+        'oldest'        => 'Oldest first',
+        'size_asc'      => 'Smallest first',
+        'size_desc'     => 'Largest first',
+        'updated_asc'   => 'Modified (oldest)',
+        'updated_desc'  => 'Modified (newest)',
+        'used_asc'      => 'Least used',
+        'used_desc'     => 'Most used',
+    ],
+    'storage'   => [
+        'cleanup_unused'    => 'Find large unused files',
+    ],
     'update'    => [
+        'errors'    => [
+            'folder_cycle'  => 'A folder cannot be moved into itself or one of its subfolders.',
+        ],
         'home'      => 'Home folder',
         'success'   => '[0] Updated 0 elements|[1] Updated one element|{2,*} Updated :count elements',
+    ],
+    'upload'    => [
+        'files' => 'Upload files',
+    ],
+    'usage'     => [
+        'default'               => 'Campaign default placeholder',
+        'entity_assets'         => 'Entity assets',
+        'entity_headers'        => 'Entity headers',
+        'entity_images'         => 'Entry images',
+        'entry_mentions'        => 'Entries & articles',
+        'entry_mentions_note'   => 'Embedded in text — deleting this image will leave a broken image.',
+        'inventories'           => 'Inventory items',
+        'map_layers'            => 'Map layers',
+    ],
+    'views'     => [
+        'compact'   => 'Compact',
+        'grid'      => 'Grid',
+        'table'     => 'Table',
     ],
 ];

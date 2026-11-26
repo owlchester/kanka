@@ -50,6 +50,7 @@ class GalleryController extends Controller
         $canBrowse = auth()->user()->can('browse', [Image::class, $campaign]);
         $images = Image::acl($canBrowse)
             ->where('is_default', false)
+            ->withoutFonts()
             ->orderBy('is_folder', 'desc')
             ->orderBy('updated_at', 'desc')
             ->offset($offset)

@@ -3,6 +3,7 @@
 return [
     'fields'            => [
         'element'   => 'Nazwa elementu',
+        'mentioned' => 'Wzmianki',
         'type'      => 'Rodzaj',
     ],
     'helper'            => 'Poniżej znajduje się lista elementów, w których opisie znajduje się wzmianka o tym elemencie.',

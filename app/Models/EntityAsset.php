@@ -113,7 +113,7 @@ class EntityAsset extends Model
      */
     public function isImage(): bool
     {
-        return $this->isFile() && Str::startsWith($this->metadata['type'], 'image/');
+        return $this->isFile() && Str::startsWith($this->metadata['type'] ?? '', 'image/');
     }
 
     /**
@@ -121,19 +121,49 @@ class EntityAsset extends Model
      */
     public function isAudio(): bool
     {
-        return $this->isFile() && Str::startsWith($this->metadata['type'], 'audio/');
+        return $this->isFile() && Str::startsWith($this->metadata['type'] ?? '', 'audio/');
     }
 
     /**
      * Get the image's url
      */
-    public function imageUrl(): string
+    public function imageUrl(int $size = 320): string
     {
         if ($this->image) {
-            return $this->image->getUrl(128, 80);
+            return $this->image->getUrl($size, $size);
         }
 
-        return Img::for($this->metadata['path'])->crop(128, 80)->url();
+        return Img::for($this->metadata['path'])->crop($size, $size)->url();
+    }
+
+    /**
+     * Get the file's lowercase extension, if available.
+     */
+    public function fileExtension(): ?string
+    {
+        if ($this->image?->ext) {
+            return strtolower($this->image->ext);
+        }
+
+        $extension = strtolower(pathinfo($this->metadata['path'] ?? '', PATHINFO_EXTENSION));
+
+        return $extension !== '' ? $extension : null;
+    }
+
+    /**
+     * Get the file's size in bytes, if available.
+     */
+    public function fileSize(): ?int
+    {
+        if (! empty($this->metadata['size'])) {
+            return (int) $this->metadata['size'];
+        }
+
+        if (! empty($this->image->size)) {
+            return (int) $this->image->size * 1024;
+        }
+
+        return null;
     }
 
     /**

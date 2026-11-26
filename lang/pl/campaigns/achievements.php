@@ -4,6 +4,10 @@ return [
     'congratulations'   => 'Gratulacje!',
     'connections'       => '{0} Nie ma żadnych powiązań|{1} Stworzono jedno powiązanie|[2,4] Stworzono :amount powiązania|[5,] Dodano :amount powiązań',
     'created'           => '{0} Nie stworzono elementów :plural|{1} Stworzono jednen element :singular|[2,*] Stworzono :amount elementów :plural',
+    'cta'               => [
+        'lead'  => 'Śledź rozwój, angażuj graczy i świętuj rozbudowę świata za pomocą osiągnięć.',
+        'title' => 'Uczcij kamienie milowe rozwoju kampanii.',
+    ],
     'dead'              => '{0} Brak tajemniczych zgonów|{1} Jeden tajemniczy zgon|[2,4] :amount tajemnicze zgony|[5,] :amount tajemniczych zgonów',
     'goal'              => 'Cel :number',
     'goal_reached'      => 'Kampania uzyskała następujące osiągnięcie:',

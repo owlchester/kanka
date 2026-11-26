@@ -171,7 +171,24 @@
                         </div>
                     </div>
                 </div>
-                <div v-else-if="!maintenanceMessage" class="text-neutral-content text-center" v-html="noResultsHtml"></div>
+
+                <div v-if="pages.length > 0">
+                    <div class="text-neutral-content text-xs uppercase">{{ texts.pages }}</div>
+                    <a
+                        v-for="(item, i) in pages"
+                        :key="'page-' + i"
+                        :href="item.url"
+                        data-nav-item
+                        class="cursor-pointer flex items-center gap-2 rounded-lg p-2 border border-base-100"
+                        :class="{ 'border-base-300 shadow-xs': focusedIndex === results.length + i }"
+                        @mouseenter="focusedIndex = results.length + i"
+                    >
+                        <span class="cmd-item-icon"><i :class="item.icon"></i></span>
+                        <span class="cmd-item-name">{{ item.name }}</span>
+                    </a>
+                </div>
+
+                <div v-if="results.length === 0 && pages.length === 0" class="text-neutral-content text-center" v-html="noResultsHtml"></div>
             </template>
         </template>
     </div>
@@ -256,7 +273,10 @@ export default {
                     ...this.pages.map(p => ({ ...p, link: p.url })),
                 ];
             }
-            return this.results;
+            return [
+                ...this.results,
+                ...this.pages.map(p => ({ ...p, link: p.url, isPage: true })),
+            ];
         },
     },
 
@@ -305,7 +325,7 @@ export default {
 
         resultUrl(item) {
             const url = item.link || item.url;
-            if (!url || this.mode !== 'fulltext') {
+            if (!url || this.mode !== 'fulltext' || item.isPage) {
                 return url;
             }
 

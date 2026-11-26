@@ -53,12 +53,33 @@ const initConfirmListener = () => {
     }
 };
 
+const resetCouponPricing = () => {
+    const pricingNow = document.getElementById('pricing-now');
+    if (pricingNow?.dataset?.originalPrice !== undefined) {
+        pricingNow.textContent = pricingNow.dataset.originalPrice;
+    }
+    const pricingButton = document.getElementById('pricing-button');
+    if (pricingButton?.dataset?.originalPrice !== undefined) {
+        pricingButton.textContent = pricingButton.dataset.originalPrice;
+    }
+};
+
 const checkCoupon = (event) => {
     const element = event.target;
-    const coupon = element.value;
+    const coupon = element.value.trim();
+    if (!coupon) {
+        couponValidating.classList.add('hidden');
+        couponSuccess.classList.add('hidden');
+        couponError.classList.add('hidden');
+        couponId.value = '';
+        subscribeModal.classList.remove('valid-coupon');
+        resetCouponPricing();
+        return Promise.resolve();
+    }
+
     const url = element.dataset.url;
     couponValidating.classList.remove('hidden');
-    return fetch(url + '?coupon=' + coupon)
+    return fetch(url + '?coupon=' + encodeURIComponent(coupon))
         .then((response) => response.json())
         .then((result) => {
             couponValidating.classList.add('hidden');
@@ -69,10 +90,15 @@ const checkCoupon = (event) => {
                 couponError.classList.remove('hidden');
                 couponId.value = '';
                 subscribeModal.classList.remove('valid-coupon');
+                resetCouponPricing();
                 return;
             }
 
             document.getElementById('pricing-now').innerHTML = result.price;
+            const pricingButton = document.getElementById('pricing-button');
+            if (pricingButton) {
+                pricingButton.textContent = result.price;
+            }
             couponError.classList.add('hidden');
             couponSuccess.innerHTML = result.discount;
             couponSuccess.classList.remove('hidden');
@@ -80,6 +106,7 @@ const checkCoupon = (event) => {
             subscribeModal.classList.add('valid-coupon');
         }).catch((result) => {
             couponValidating.classList.add('hidden');
+            resetCouponPricing();
             if (result.responseJSON) {
                 couponError.innerHTML = result.responseJSON.message;
                 couponError.classList.remove('hidden');

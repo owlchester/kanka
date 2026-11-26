@@ -44,8 +44,8 @@ class InviteService
             throw new Exception(__('campaigns.invites.error.invalid_token'));
         }
 
-        // Inactive (removed campaigns won't have their token still in the db)
-        if (! $this->invite->is_active) {
+        // Inactive or soft-deleted campaign
+        if (! $this->invite->is_active || ! $this->invite->campaign) {
             throw new Exception(__('campaigns.invites.error.inactive_token'));
         }
 

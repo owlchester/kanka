@@ -3,7 +3,7 @@
  * Supports: ctrl, alt, shift, meta (or cmd) as modifiers + any key name.
  * Key names are matched against event.key (case-insensitive for letters).
  */
-const parseShortcut = (shortcut) => {
+export const parseShortcut = (shortcut) => {
     const parts = shortcut
         .toLowerCase()
         .split("+")
@@ -25,14 +25,30 @@ const parseShortcut = (shortcut) => {
 /**
  * Check if a keyboard event matches a parsed shortcut descriptor.
  */
-const matchesShortcut = (event, desc) => {
+export const matchesShortcut = (event, desc) => {
     if (!desc.key) {
         return false;
     }
+
+    const keyMatch = event.key.toLowerCase() === desc.key;
+    const isUnmodifiedSymbol =
+        !desc.ctrl &&
+        !desc.alt &&
+        !desc.shift &&
+        desc.key.length === 1 &&
+        !/^[a-z0-9]$/.test(desc.key);
+
+    if (isUnmodifiedSymbol) {
+        // Allow Shift / Option / AltGr since non-US layouts often require them to type symbols like ]
+        if (event.metaKey || (event.ctrlKey && !event.altKey)) {
+            return false;
+        }
+        return keyMatch;
+    }
+
     const ctrlMatch = desc.ctrl === (event.ctrlKey || event.metaKey);
     const altMatch = desc.alt === event.altKey;
     const shiftMatch = desc.shift === event.shiftKey;
-    const keyMatch = event.key.toLowerCase() === desc.key;
     return ctrlMatch && altMatch && shiftMatch && keyMatch;
 };
 
@@ -202,12 +218,14 @@ const initPasting = () => {
     });
 };
 
-initKeyboardSave();
-initKeyboardShortcuts();
-initPasting();
-
-window.onEvent(function () {
-    initPasting();
-    initKeyboardShortcuts();
+if (typeof document !== "undefined" && typeof window !== "undefined") {
     initKeyboardSave();
-});
+    initKeyboardShortcuts();
+    initPasting();
+
+    window.onEvent(function () {
+        initPasting();
+        initKeyboardShortcuts();
+        initKeyboardSave();
+    });
+}

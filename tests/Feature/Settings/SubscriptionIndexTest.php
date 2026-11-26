@@ -104,3 +104,80 @@ it('rejects a private campaign the user is not a member of', function () {
     $this->get(route('settings.subscription', ['f' => 'cta', 'w' => $campaign->id]))
         ->assertNotFound();
 });
+
+it('hides the recap and free tier for non-subscribers and shows conversion sections', function () {
+    config(['services.stripe.enabled' => true]);
+
+    $kobold = Tier::factory()->create([
+        'code' => 'kobold',
+        'name' => 'Kobold',
+        'position' => 1,
+    ]);
+    $wyvern = Tier::factory()->create([
+        'code' => 'wyvern',
+        'name' => 'Wyvern',
+        'position' => 2,
+    ]);
+    TierPrice::factory()->for($wyvern)->create([
+        'currency' => 'usd',
+        'period' => PricingPeriod::Monthly,
+        'cost' => 9.99,
+        'stripe_id' => 'price_wyvern_monthly',
+    ]);
+    TierPrice::factory()->for($wyvern)->create([
+        'currency' => 'usd',
+        'period' => PricingPeriod::Yearly,
+        'cost' => 99.99,
+        'stripe_id' => 'price_wyvern_yearly',
+    ]);
+
+    $user = User::factory()->create(['settings' => ['currency' => 'usd']]);
+
+    $this->actingAs($user)
+        ->get(route('settings.subscription'))
+        ->assertOk()
+        ->assertDontSee($kobold->name)
+        ->assertDontSee(__('settings.subscription.fields.plan'))
+        ->assertSee(__('tiers.ribbons.best-value'))
+        ->assertSee(__('tiers.reassurance.refund'))
+        ->assertSee(__('tiers.premium_summary.title'))
+        ->assertSee('8.33')
+        ->assertSee('99.99 yearly');
+});
+
+it('adds period classes to disabled current-plan buttons on Wyvern and Elemental', function () {
+    config(['services.stripe.enabled' => true]);
+
+    $wyvern = Tier::factory()->create([
+        'code' => 'wyvern',
+        'name' => 'Wyvern',
+        'position' => 2,
+    ]);
+    $wyvernMonthly = TierPrice::factory()->for($wyvern)->create([
+        'currency' => 'usd',
+        'period' => PricingPeriod::Monthly,
+        'cost' => 9.99,
+        'stripe_id' => 'price_wyvern_m',
+    ]);
+    TierPrice::factory()->for($wyvern)->create([
+        'currency' => 'usd',
+        'period' => PricingPeriod::Yearly,
+        'cost' => 99.99,
+        'stripe_id' => 'price_wyvern_y',
+    ]);
+
+    $user = User::factory()->create(['settings' => ['currency' => 'usd'], 'pledge' => 'Wyvern']);
+    Subscription::forceCreate([
+        'user_id' => $user->id,
+        'type' => 'kanka',
+        'stripe_id' => 'sub_wyvern_m',
+        'stripe_status' => 'active',
+        'stripe_price' => $wyvernMonthly->stripe_id,
+        'quantity' => 1,
+    ]);
+
+    $this->actingAs($user)
+        ->get(route('settings.subscription'))
+        ->assertOk()
+        ->assertSee('btn2 btn-block disabled price-monthly', false);
+});

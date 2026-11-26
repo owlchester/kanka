@@ -30,6 +30,7 @@ return [
     ],
     'campaign'  => [
         'boosted'       => 'Doładowana przez :user od :time',
+        'members'       => ':amount członek zmieni natychmiast status|:amount członków zmieni natychmiast status',
         'premium'       => 'Odlokowano premium dzięki :user od :time',
         'standard'      => 'Standardowa',
         'superboosted'  => 'Turbodoładowana przez :user od :time',

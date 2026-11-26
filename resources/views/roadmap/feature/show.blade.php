@@ -15,7 +15,13 @@
             @if ($feature->category){!! $feature->category->name !!}@endif
         </p>
 
-        <div class="self-end flex align-center items-center justify-center gap-2">
+        <div class="self-end flex align-center items-center justify-center gap-3">
+            @livewire('roadmap.champion', [
+                'feature' => $feature,
+                'count' => (int) ($feature->champions_count ?? 0),
+                'isChampioned' => (bool) $feature->userChampion,
+                'inline' => true,
+            ], key("modal-champion-{$feature->id}"))
             @livewire('roadmap.upvote', ['feature' => $feature, 'col' => false])
         </div>
     </div>

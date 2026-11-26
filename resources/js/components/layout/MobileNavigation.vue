@@ -7,19 +7,19 @@
                 </span>
                 <span class="whitespace-nowrap text-xs font-medium tracking-normal">{{ exploreLabel }}</span>
             </button>
-            <button type="button" class="flex min-h-12 min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-xl text-neutral-content hover:bg-base-200" @click="search">
+            <button type="button" data-tour="search" class="flex min-h-12 min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-xl text-neutral-content hover:bg-base-200" @click="search">
                 <span class="flex size-6 shrink-0 items-center justify-center" aria-hidden="true">
                     <i class="fa-regular fa-magnifying-glass text-xl leading-none"></i>
                 </span>
                 <span class="whitespace-nowrap text-xs font-medium tracking-normal">{{ searchLabel }}</span>
             </button>
-            <button v-if="quickCreateUrl" type="button" class="flex min-h-12 min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-xl text-neutral-content hover:bg-base-200" @click="quickCreate">
+            <button v-if="quickCreateUrl" type="button" data-tour="create" class="flex min-h-12 min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-xl text-neutral-content hover:bg-base-200" @click="quickCreate">
                 <span class="flex size-6 shrink-0 items-center justify-center" aria-hidden="true">
                     <i class="fa-regular fa-bolt text-xl leading-none"></i>
                 </span>
                 <span class="whitespace-nowrap text-xs font-medium tracking-normal">{{ createLabel }}</span>
             </button>
-            <button type="button" class="flex min-h-12 min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-xl text-neutral-content hover:bg-base-200" :aria-label="impersonation?.label ?? (authenticated ? accountTexts.title : loginLabel)" :aria-describedby="authenticated && !impersonation && hasUnread ? 'mobile-account-alert' : undefined" aria-haspopup="dialog" @click="account">
+            <button type="button" data-tour="profile" class="flex min-h-12 min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-xl text-neutral-content hover:bg-base-200" :aria-label="impersonation?.label ?? (authenticated ? accountTexts.title : loginLabel)" :aria-describedby="authenticated && !impersonation && hasUnread ? 'mobile-account-alert' : undefined" aria-haspopup="dialog" @click="account">
                 <span class="relative flex size-6 shrink-0 items-center justify-center" aria-hidden="true">
                     <template v-if="authenticated">
                         <img v-if="avatar && !avatar.startsWith('/images/')" :src="avatar" alt="" class="size-5 rounded-full object-cover" />

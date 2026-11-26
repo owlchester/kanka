@@ -5,7 +5,12 @@
         'staged' => $staged,
         'saveUrl' => isset($event) && $event->exists ? route('events.participants.update', [$campaign, $event]) : null,
         'searchUrl' => route('search.live', [$campaign]),
-        'labels' => __('events.participants'),
+        'labels' => array_merge(__('events.participants'), [
+            'cancel' => __('crud.cancel'),
+            'close' => __('crud.actions.close'),
+            'colour' => __('crud.fields.colour'),
+            'confirm_delete_group_action' => __('crud.remove'),
+        ]),
     ], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
     <div class="js-participant-app"><p class="text-sm opacity-70" role="status">{{ __('events.participants.loading') }}</p></div>
 </div>

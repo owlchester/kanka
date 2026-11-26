@@ -6,8 +6,10 @@ return [
     ],
     'csv'               => [
         'continue'          => 'Continuer',
+        'download_error'    => 'Impossible de télécharger le fichier CSV.',
         'encoding_error'    => 'Le fichier CSV doit être encodé en UTF-8.',
         'fields_helper'     => 'Sélectionne une colonne à assigner à chacun des champs de l\'entrée.',
+        'local_write_error' => 'Impossible d’enregistrer le fichier CSV pour le traiter.',
         'no_preview'        => 'Aucune donnée d\'aperçu disponible',
         'preview'           => 'Aperçu',
         'select_module'     => 'Sélection de catégorie',

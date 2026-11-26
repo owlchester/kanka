@@ -17,7 +17,6 @@ return [
         'main'  => 'Kontroluj, ako Kanka vyzerá a pôsobí. Vedz ale, že kampane môžu tieto nastavenia prepísať.',
     ],
     'editors'           => [
-        'default'   => 'Štandard (:name)',
         'legacy'    => 'Odkaz (:name)',
     ],
     'explore'           => [

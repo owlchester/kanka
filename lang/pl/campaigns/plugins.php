@@ -22,11 +22,19 @@ return [
         'enable'    => '{1} Aktywowano :count dodatek.|[2,4] Aktywowano :count dodatki.|[5,*] Aktywowano :count dodatków.',
         'update'    => '{1} Zaktualizowano :count dodatek.|[2,4] Zaktualizowano :count dodatki.|[5,*] Zaktualizowano :count dodatków.',
     ],
+    'cta'           => [
+        'lead'  => 'Rozszerz kampanię dzięki dodatkom społeczności, oferującym nowe narzędzia, motywy i sposoby zarządzania światem.',
+        'title' => 'Aktyruj dodatki do kampanii.',
+    ],
     'destroy'       => [
         'success'   => 'Usunięto dodatek :plugin',
     ],
     'disabled'      => [
         'success'   => 'Deaktywowano dodatek :plugin',
+    ],
+    'empty'         => [
+        'description'   => 'W bibliotece dodatkó znadziesz nowe narzędzia i opcje dla swojej kampanii.',
+        'title'         => 'Nie zainstalowano jeszcze dodatków',
     ],
     'empty_list'    => 'Ta kampania nie ma na razie żadnych dodatków. Odwiedź targowisko, zainstaluj dodatki i wróć, by je aktywować.',
     'enabled'       => [
@@ -74,6 +82,7 @@ return [
         'name'  => ':name autorstwa :user',
     ],
     'title'         => 'Dodatki Kampanii :name',
+    'tutorial'      => 'Zainstaluj karty postaci, nowe motywy i zawartość dzięki dodatkom do kampanii. Tu możesz zrządzać zainstalowanymi dodatkami: włączać je, wyłączać, aktualizować i importować zawartość.',
     'types'         => [
         'attribute' => 'Szablon cech',
         'pack'      => 'Dodatkowa zawartość',

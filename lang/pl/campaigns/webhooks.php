@@ -18,12 +18,20 @@ return [
         'success'   => 'Stworzono webhook',
         'title'     => 'Tworzenie webhooka',
     ],
+    'cta'           => [
+        'lead'  => 'Powiadomienia w czasie rzeczywistym na Discordzie, narzędzia automatyzacji i inne usługi.',
+        'title' => 'Połącz kampanię z innymi narzędziami',
+    ],
     'destroy'       => [
         'success'   => 'Usunięto webhook',
     ],
     'edit'          => [
         'success'   => 'Zmieniono webhook',
         'title'     => 'Edycja webhooka',
+    ],
+    'empty'         => [
+        'description'   => 'Stwórz webhook by wysyłać powiadomienia do serwisów zewnętrznych gdy element zostaje stworzony, zmieniony lub usunięty.',
+        'title'         => 'Brak webhooków',
     ],
     'error'         => [
         'pitch' => 'Ulepsz do poziomu premium by używać webhooków.',

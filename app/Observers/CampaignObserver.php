@@ -11,6 +11,10 @@ class CampaignObserver
 {
     public function saving(Campaign $campaign)
     {
+        if ($campaign->exists && empty($campaign->slug)) {
+            $campaign->slug = (string) $campaign->id;
+        }
+
         // Safety net: ensure only one admin campaign per user can be prioritised at a time.
         // This guards against two-tab exploits where the controller check passes twice.
         if ($campaign->isDirty('is_prioritised') && $campaign->is_prioritised && auth()->check()) {
@@ -31,6 +35,14 @@ class CampaignObserver
             if ($alreadyPrioritised) {
                 $campaign->is_prioritised = false;
             }
+        }
+    }
+
+    public function created(Campaign $campaign): void
+    {
+        if (empty($campaign->slug)) {
+            $campaign->slug = (string) $campaign->id;
+            $campaign->saveQuietly();
         }
     }
 

@@ -29,6 +29,8 @@ use App\Http\Controllers\Gallery\BrowseController;
 use App\Http\Controllers\Gallery\CreateController;
 use App\Http\Controllers\Gallery\DeleteController;
 use App\Http\Controllers\Gallery\ImageController;
+use App\Http\Controllers\Gallery\ItemsController;
+use App\Http\Controllers\Gallery\ReplaceController;
 use App\Http\Controllers\Gallery\SearchController;
 use App\Http\Controllers\Gallery\SetupController;
 use App\Http\Controllers\Gallery\ShowController;
@@ -67,13 +69,16 @@ Route::get('/gallery/tiptap', [TiptapController::class, 'index'])->name('gallery
 Route::post('/gallery/tiptap', [UploadController::class, 'file'])->name('gallery.tiptap.save');
 
 Route::get('/gallery/setup', [SetupController::class, 'index'])->name('gallery.setup');
+Route::get('/gallery/items', [ItemsController::class, 'index'])->name('gallery.items');
 Route::get('/gallery/open/{image}', [ImageController::class, 'show'])->name('gallery.show');
 Route::get('/gallery/search/{term?}', [SearchController::class, 'index'])->name('gallery.search');
+Route::post('/gallery/delete-preview', [DeleteController::class, 'preview'])->name('gallery.delete-preview');
 Route::post('/gallery/delete', [DeleteController::class, 'destroy'])->name('gallery.delete');
 Route::post('/gallery/create', [CreateController::class, 'index'])->name('gallery.create');
 Route::post('/gallery/update/bulk', [App\Http\Controllers\Gallery\UpdateController::class, 'bulk'])->name('gallery.update');
 Route::get('/gallery/{image}', [ShowController::class, 'show'])->name('gallery.file.show');
 Route::post('/gallery/{image}/update', [App\Http\Controllers\Gallery\UpdateController::class, 'process'])->name('gallery.file.update');
+Route::post('/gallery/{image}/replace', [ReplaceController::class, 'store'])->name('gallery.file.replace');
 Route::delete('/gallery/{image}/delete', [DeleteController::class, 'file'])->name('gallery.file.delete');
 Route::post('/gallery/{image}/update-focus', [App\Http\Controllers\Gallery\UpdateController::class, 'focus'])->name('gallery.file.update-focus');
 

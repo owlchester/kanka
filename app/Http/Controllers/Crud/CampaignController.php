@@ -95,6 +95,8 @@ class CampaignController extends Controller
             $data['settings']['modules'] = $campaign->settings['modules'];
         }
 
+        unset($data['slug']);
+
         if ($request->filled('vanity') && $campaign->premium()) {
             $data['slug'] = $request->post('vanity');
         }

@@ -31,13 +31,19 @@
     import Highlight from '@tiptap/extension-highlight'
     import TextAlign from '@tiptap/extension-text-align'
 
-    // Bubble menus
+    // Bubble menus & toolbar
     import MentionBubbleMenu from './bubblemenus/MentionBubbleMenu.vue'
     import LinkBubbleMenu from './bubblemenus/LinkBubbleMenu.vue'
     import TableBubbleMenu from './bubblemenus/TableBubbleMenu.vue'
     import ImageBubbleMenu from './bubblemenus/ImageBubbleMenu.vue'
     import TextBubbleMenu from './bubblemenus/TextBubbleMenu.vue'
+    import EditorToolbar from './EditorToolbar.vue'
+    import { buttonClass } from './utils'
+    import { t } from './i18n.js'
     const SourceEditor = defineAsyncComponent(() => import('./SourceEditor.vue'))
+    const ImageAttributesDialog = defineAsyncComponent(() => import('./dialogs/ImageAttributesDialog.vue'))
+    const EmbedDialog = defineAsyncComponent(() => import('./dialogs/EmbedDialog.vue'))
+    const ImageUrlDialog = defineAsyncComponent(() => import('./dialogs/ImageUrlDialog.vue'))
 
     const props = withDefaults(defineProps<{
         modelValue?: string
@@ -57,7 +63,18 @@
     declare global {
         interface Window {
             showToast: (message: string, type?: string) => void
+            entityFormHasUnsavedChanges?: boolean
         }
+    }
+
+    const TOOLBAR_STORAGE_KEY = 'tiptap_toolbar_visible'
+
+    const getInitialToolbarState = (): boolean => {
+        if (typeof window === 'undefined') return false
+        const stored = window.localStorage?.getItem(TOOLBAR_STORAGE_KEY)
+        if (stored === '1') return true
+        if (stored === '0') return false
+        return window.matchMedia?.('(pointer: coarse)')?.matches || window.innerWidth < 768
     }
 
     const galleryId = getCurrentInstance()!.uid.toString()
@@ -68,6 +85,33 @@
     const hasReceivedInput = ref(false)
     const sourceMode = ref(false)
     const sourceModeCursorBlock = ref(0)
+    const isFullscreen = ref(false)
+    const showToolbar = ref<boolean>(getInitialToolbarState())
+
+    const toggleToolbar = () => {
+        showToolbar.value = !showToolbar.value
+        if (typeof window !== 'undefined') {
+            window.localStorage?.setItem(TOOLBAR_STORAGE_KEY, showToolbar.value ? '1' : '0')
+        }
+    }
+
+    const setFullscreen = (next: boolean) => {
+        isFullscreen.value = next
+        if (typeof document !== 'undefined') {
+            document.body.style.overflow = next ? 'hidden' : ''
+        }
+    }
+
+    const toggleFullscreen = () => {
+        setFullscreen(!isFullscreen.value)
+    }
+
+    const handleGlobalKeydown = (event: KeyboardEvent) => {
+        if (!isFullscreen.value || event.key !== 'Escape' || event.defaultPrevented) return
+        if (document.querySelector('dialog[open], .slash-command-list, .mention-list')) return
+        event.preventDefault()
+        setFullscreen(false)
+    }
 
     const showHelperText = computed(() => {
         return isFocused.value && !hasReceivedInput.value && editor.value?.isEmpty
@@ -105,8 +149,36 @@
         }, 50)
     }
 
-    // Refs for bubble menu components
+    // Refs for bubble menu & dialog components
     const mentionBubbleRef = ref<InstanceType<typeof MentionBubbleMenu> | null>(null)
+    const toolbarRef = ref<InstanceType<typeof EditorToolbar> | null>(null)
+    const imageAttributesDialogRef = ref<InstanceType<typeof ImageAttributesDialog> | null>(null)
+    const embedDialogRef = ref<InstanceType<typeof EmbedDialog> | null>(null)
+    const imageUrlDialogRef = ref<InstanceType<typeof ImageUrlDialog> | null>(null)
+
+    const openImageAttributesDialog = () => {
+        if (editor.value) {
+            imageAttributesDialogRef.value?.open(editor.value)
+        }
+    }
+
+    const openEmbedDialog = () => {
+        if (editor.value) {
+            embedDialogRef.value?.open(editor.value)
+        }
+    }
+
+    const openImageUrlDialog = () => {
+        if (editor.value) {
+            imageUrlDialogRef.value?.open(editor.value)
+        }
+    }
+
+    const onSourceUpdate = (value: string) => {
+        html.value = value
+        emit('update:modelValue', value)
+        window.entityFormHasUnsavedChanges = true
+    }
 
     const addEntityToMentions = (entity: any) => {
         const exists = mentions.value.find(e => e.id === entity.id)
@@ -136,7 +208,7 @@
         PreserveClass,
         PreserveStyle,
         Placeholder.configure({
-            placeholder: 'Start writing...',
+            placeholder: t('placeholder', 'Start writing...'),
         }),
         Link.configure({
             openOnClick: false,
@@ -160,7 +232,13 @@
         CustomTableHeader.configure({
         }),
         SlashCommand.configure({
-            suggestion: slashCommandSuggestion(),
+            suggestion: slashCommandSuggestion({
+                onSourceMode: enterSourceMode,
+                onFullscreen: toggleFullscreen,
+                onOpenEmbed: openEmbedDialog,
+                onOpenImageUrl: openImageUrlDialog,
+                hasGallery: Boolean(props.gallery),
+            }),
         }),
         CustomImage.configure({
             inline: true,
@@ -263,6 +341,7 @@
                 '<table$1 class="$2"$3>'
             )
             emit('update:modelValue', html.value)
+            window.entityFormHasUnsavedChanges = true
             if (!hasReceivedInput.value && !editor.isEmpty) {
                 hasReceivedInput.value = true
             }
@@ -270,6 +349,7 @@
         onSelectionUpdate: ({ editor }) => {
             if (editor.isActive('mention')) {
                 mentionBubbleRef.value?.syncLabel()
+                toolbarRef.value?.syncMentionLabel()
             }
         },
         editorProps: {
@@ -432,8 +512,7 @@
     }
 
     onMounted(() => {
-        // Listen for source mode event
-        window.addEventListener('tiptap:source-mode', enterSourceMode)
+        window.addEventListener('keydown', handleGlobalKeydown)
 
         // Parse content for mentions and load their data
         if (props.mentions && props.content) {
@@ -454,7 +533,10 @@
 
     onBeforeUnmount(() => {
         mentionEntityLoader.destroy()
-        window.removeEventListener('tiptap:source-mode', enterSourceMode)
+        window.removeEventListener('keydown', handleGlobalKeydown)
+        if (typeof document !== 'undefined') {
+            document.body.style.overflow = ''
+        }
         editor?.value.destroy()
     })
 
@@ -471,103 +553,175 @@
 </script>
 
 <template>
-    <SourceEditor
-        v-if="sourceMode"
-        v-model="html"
-        :cursor-block-index="sourceModeCursorBlock"
-        @exit="exitSourceMode"
-    />
+    <div class="tiptap-shell" :class="isFullscreen ? 'fixed inset-0 z-[900] flex flex-col bg-base-100 p-4' : ''">
+        <SourceEditor
+            v-if="sourceMode"
+            :model-value="html"
+            :cursor-block-index="sourceModeCursorBlock"
+            :is-fullscreen="isFullscreen"
+            @update:model-value="onSourceUpdate"
+            @toggle-fullscreen="toggleFullscreen"
+            @exit="exitSourceMode"
+        />
 
-    <template v-else>
-        <template v-if="editor">
-            <bubble-menu
-                :editor="editor"
-                plugin-key="mentionBubbleMenu"
-                :should-show="({ editor }) => editor.isActive('mention')"
-            >
-                <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
-                    <MentionBubbleMenu
-                        ref="mentionBubbleRef"
+        <template v-else>
+            <template v-if="editor">
+                <EditorToolbar
+                    v-if="showToolbar"
+                    ref="toolbarRef"
+                    :editor="editor"
+                    :mentions="mentions"
+                    :has-gallery="Boolean(gallery)"
+                    :has-mentions="Boolean(props.mentions)"
+                    :is-fullscreen="isFullscreen"
+                    @open-link="openLinkBubble"
+                    @edit-image="openImageAttributesDialog"
+                    @open-embed="openEmbedDialog"
+                    @open-image-url="openImageUrlDialog"
+                    @enter-source="enterSourceMode"
+                    @toggle-fullscreen="toggleFullscreen"
+                    @hide-toolbar="toggleToolbar"
+                />
+
+                <div v-else class="tiptap-minimal-bar flex items-center justify-end gap-0.5 mb-1 px-2 pt-1">
+                    <button
+                        type="button"
+                        @click.prevent="toggleToolbar"
+                        :class="buttonClass(false)"
+                        :title="t('show_toolbar', 'Show toolbar')"
+                    >
+                        <i class="fa-regular fa-toolbox text-xs" :aria-label="t('show_toolbar', 'Show toolbar')" />
+                    </button>
+                    <button
+                        type="button"
+                        @click.prevent="enterSourceMode"
+                        :class="buttonClass(false)"
+                        :title="t('source_mode', 'Source Mode')"
+                    >
+                        <i class="fa-regular fa-code text-xs" :aria-label="t('source_mode', 'Source Mode')" />
+                    </button>
+                    <button
+                        type="button"
+                        @click.prevent="toggleFullscreen"
+                        :class="buttonClass(isFullscreen)"
+                        :title="isFullscreen ? t('exit_fullscreen', 'Exit fullscreen') : t('fullscreen', 'Fullscreen')"
+                    >
+                        <i
+                            class="fa-regular text-xs"
+                            :class="isFullscreen ? 'fa-compress' : 'fa-expand'"
+                            :aria-label="isFullscreen ? t('exit_fullscreen', 'Exit fullscreen') : t('fullscreen', 'Fullscreen')"
+                        />
+                    </button>
+                </div>
+
+                <template v-if="!showToolbar">
+                    <bubble-menu
                         :editor="editor"
-                        :mentions="mentions"
-                    />
-                </div>
-            </bubble-menu>
+                        plugin-key="mentionBubbleMenu"
+                        :should-show="({ editor }) => editor.isActive('mention')"
+                    >
+                        <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
+                            <MentionBubbleMenu
+                                ref="mentionBubbleRef"
+                                :editor="editor"
+                                :mentions="mentions"
+                            />
+                        </div>
+                    </bubble-menu>
 
-            <bubble-menu
-                :editor="editor"
-                plugin-key="linkBubbleMenu"
-                :should-show="({ editor }) => editor.isActive('link') && editor.state.selection.empty"
-            >
-                <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
-                    <LinkBubbleMenu :editor="editor" />
-                </div>
-            </bubble-menu>
-
-            <bubble-menu
-                :editor="editor"
-                plugin-key="tableBubbleMenu"
-                :should-show="({ editor }) => editor.state.selection instanceof CellSelection"
-            >
-                <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
-                    <TableBubbleMenu :editor="editor" />
-                </div>
-            </bubble-menu>
-
-            <bubble-menu
-                :editor="editor"
-                plugin-key="imageBubbleMenu"
-                :should-show="({ editor }) => editor.isActive('image')"
-            >
-                <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
-                    <ImageBubbleMenu :editor="editor" />
-                </div>
-            </bubble-menu>
-
-            <bubble-menu
-                :editor="editor"
-                plugin-key="textBubbleMenu"
-                :should-show="({ editor }) => {
-                    if (editor.state.selection.empty) return false
-                    if (editor.isActive('mention')) return false
-                    if (editor.state.selection instanceof CellSelection) return false
-                    if (editor.isActive('image')) return false
-                    return true
-                }"
-            >
-                <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
-                    <TextBubbleMenu
+                    <bubble-menu
                         :editor="editor"
-                        @open-link="openLinkBubble"
-                    />
-                </div>
-            </bubble-menu>
+                        plugin-key="linkBubbleMenu"
+                        :should-show="({ editor }) => editor.isActive('link') && editor.state.selection.empty"
+                    >
+                        <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
+                            <LinkBubbleMenu :editor="editor" />
+                        </div>
+                    </bubble-menu>
+
+                    <bubble-menu
+                        :editor="editor"
+                        plugin-key="tableBubbleMenu"
+                        :should-show="({ editor }) => editor.state.selection instanceof CellSelection"
+                    >
+                        <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
+                            <TableBubbleMenu :editor="editor" />
+                        </div>
+                    </bubble-menu>
+
+                    <bubble-menu
+                        :editor="editor"
+                        plugin-key="imageBubbleMenu"
+                        :should-show="({ editor }) => editor.isActive('image')"
+                    >
+                        <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
+                            <ImageBubbleMenu
+                                :editor="editor"
+                                @edit-image="openImageAttributesDialog"
+                            />
+                        </div>
+                    </bubble-menu>
+
+                    <bubble-menu
+                        :editor="editor"
+                        plugin-key="textBubbleMenu"
+                        :should-show="({ editor }) => {
+                            if (editor.state.selection.empty) return false
+                            if (editor.isActive('mention')) return false
+                            if (editor.state.selection instanceof CellSelection) return false
+                            if (editor.isActive('image')) return false
+                            return true
+                        }"
+                    >
+                        <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
+                            <TextBubbleMenu
+                                :editor="editor"
+                                @open-link="openLinkBubble"
+                            />
+                        </div>
+                    </bubble-menu>
+                </template>
+            </template>
+
+            <editor-content
+                :editor="editor"
+                class="tiptap-content"
+                :class="{ 'flex-1 min-h-0 flex flex-col': isFullscreen }"
+            />
+
+            <p v-if="showHelperText" class="tiptap-helper text-neutral-content text-xs mt-2 pb-2 flex items-center gap-5">
+                <span>
+                    {{ t('helper_mentions', 'Use @ to reference entities') }}
+                </span>
+                <span>
+                    <kbd>/</kbd> {{ t('helper_commands', 'for commands') }}
+                </span>
+                <span>
+                    <kbd>/help</kbd> {{ t('helper_help', 'for help') }}
+                </span>
+            </p>
         </template>
-
-        <editor-content :editor="editor" class="tiptap-content" />
-
-        <p v-if="showHelperText" class="text-neutral-content text-xs mt-2 flex items-center gap-5">
-            <span>
-                Use <kbd>@</kbd> to reference entities
-            </span>
-            <span>
-                <kbd>/</kbd> for commands
-            </span>
-            <span>
-                <kbd>/help</kbd> for help
-            </span>
-        </p>
-    </template>
+    </div>
 
     <input type="hidden" :name="props.fieldName" :value="html" />
 
     <GalleryDialog v-if="gallery" :gallery-id="galleryId" />
+    <ImageAttributesDialog ref="imageAttributesDialogRef" />
+    <EmbedDialog ref="embedDialogRef" />
+    <ImageUrlDialog ref="imageUrlDialogRef" />
 </template>
 
 <style scoped>
 .bubble-menu {
     z-index: 845;
     position: relative;
+}
+
+.tiptap-content.flex-1 :deep(.ProseMirror) {
+    flex: 1 1 0%;
+    max-height: none;
+    height: 100%;
+    margin-bottom: 0;
 }
 
 :deep(.ProseMirror) {

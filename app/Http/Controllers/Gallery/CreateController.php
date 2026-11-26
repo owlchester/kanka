@@ -19,7 +19,7 @@ class CreateController extends Controller
 
     public function index(Campaign $campaign, CreateFolder $request)
     {
-        $this->authorize('gallery', $campaign);
+        $this->authorize('galleryManage', $campaign);
 
         $folder = $this->service
             ->campaign($campaign)

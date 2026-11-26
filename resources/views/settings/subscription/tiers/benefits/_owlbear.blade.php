@@ -7,7 +7,7 @@
         @endif
     </div>
     <div class="flex flex-col gap-0.5">
-        <a href="https://kanka.io/premium?utm_source=subscription&utm_medium=referral&utm_campaign=owlbear" class="text-link">
+        <a href="https://kanka.io/premium?utm_source=subscription&utm_medium=referral&utm_campaign=owlbear" class="text-link" target="_blank" rel="noopener noreferrer">
             @if (auth()->user()->hasLegacyBoosterNomenclature())
                 3 {{ __('tiers.features.boosters') }}
             @else
@@ -40,7 +40,7 @@
     <div class="w-8 shrink-0 text-center">
         <x-icon class="fa-regular fa-webhook" />
     </div>
-    <a href="{{ route('larecipe.index') }}" class="text-link">
+    <a href="{{ route('larecipe.index') }}" class="text-link" target="_blank" rel="noopener noreferrer">
         {{ __('tiers.features.api_requests', ['amount' => config('limits.api.throttle.subscriber')]) }}
     </a>
 </div>
@@ -56,7 +56,7 @@
     <div class="w-8 shrink-0 text-center">
         <x-icon class="check" />
     </div>
-    <a href="{{ route('roadmap', ['utm_source' => 'subscription', 'utm_campaign' => 'owlbear']) }}" class="text-link">{{ __('tiers.features.roadmap') }}</a>
+    <a href="{{ route('roadmap', ['utm_source' => 'subscription', 'utm_campaign' => 'owlbear']) }}" class="text-link" target="_blank" rel="noopener noreferrer">{{ __('tiers.features.roadmap') }}</a>
 </div>
 
 <div class="flex gap-1">
@@ -64,6 +64,6 @@
         <x-icon class="check" />
     </div>
     <div>
-        {!! __('tiers.features.discord', ['discord' => '<a href="https://kanka.io/go/discord" class="text-link">Discord</a>',]) !!}
+        {!! __('tiers.features.discord', ['discord' => '<a href="https://kanka.io/go/discord" class="text-link" target="_blank" rel="noopener noreferrer">Discord</a>',]) !!}
     </div>
 </div>

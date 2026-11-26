@@ -1,23 +1,44 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'           => [
         'recover'           => 'Recuperar',
         'recover_selected'  => 'Recuperar seleccionados',
     ],
-    'cta'           => [
+    'cta'               => [
         'lead'  => 'Restaura las entradas y artículos eliminados antes de que se borren permanentemente.',
         'title' => 'Recupera el contenido eliminado',
     ],
-    'empty'         => 'Las entradas y artículos eliminados aparecerán aquí mientras estén disponibles para su recuperación.',
-    'empty_title'   => 'No hay nada que recuperar',
-    'error'         => 'Ha habido un error tratando de recuperar entidades.',
-    'fields'        => [
-        'deleted'       => 'Eliminadas',
-        'deleted_at'    => 'Eliminado en :date por :user',
+    'empty'             => 'Las entradas y artículos eliminados aparecerán aquí mientras estén disponibles para su recuperación.',
+    'empty_title'       => 'No hay nada que recuperar',
+    'error'             => 'Ha habido un error tratando de recuperar entidades.',
+    'fields'            => [
+        'days_left'         => '{0} Vence hoy|{1} Queda 1 día|[2,*] Quedan :count días',
+        'deleted'           => 'Eliminadas',
+        'deleted_at'        => 'Eliminado en :date por :user',
+        'expires_tooltip'   => 'Eliminación definitiva el :date',
+        'parent_entity'     => 'en :name',
     ],
-    'name_link'     => ':name se ha recuperado correctamente',
-    'order'         => [
+    'filters'           => [
+        'all_dates'     => 'En cualquier momento',
+        'all_types'     => 'Todos los tipos',
+        'all_users'     => 'Sin importar quién lo eliminó',
+        'clear'         => 'Borrar filtros',
+        'deleted_by'    => 'Eliminado por',
+        'expiring_soon' => 'Vencen en 7 días',
+        'last_24h'      => 'Últimas 24 horas',
+        'last_30d'      => 'Últimos 30 días',
+        'last_7d'       => 'Últimos 7 días',
+        'search'        => 'Buscar elementos eliminados...',
+        'sort'          => 'Ordenar por',
+        'timeframe'     => 'Período',
+        'type'          => 'Tipo',
+    ],
+    'name_link'         => ':name se ha recuperado correctamente',
+    'no_results'        => 'Prueba con otros términos de búsqueda o ajusta los filtros.',
+    'no_results_title'  => 'No hay elementos que coincidan',
+    'order'             => [
+        'name_asc'      => 'Nombre (A–Z)',
         'newest'        => 'Ordenar por: Más recientes primero',
         'newest_first'  => 'Más recientes primero',
         'oldest'        => 'Ordenar por: Más antiguo primero',
@@ -25,7 +46,10 @@ return [
         'type'          => 'Ordenar por: Tipo',
         'type_order'    => 'Tipo',
     ],
-    'success_v2'    => '{1} Se recuperó un elemento. |[2,*] Se han recuperado :count elementos.',
-    'title'         => 'Recuperación de entidades de :campaign',
-    'tutorial'      => 'Visualiza y restaura elementos eliminados recientemente de la campaña. Las entidades, publicaciones y otros datos de apoyo pueden recuperarse durante :amount días antes de eliminarse de forma permanente. Al restaurar un elemento, regresa con todos sus datos intactos.',
+    'recovered_badge'   => 'Recuperado',
+    'showing_count'     => 'Mostrando :shown de :total',
+    'success_v2'        => '{1} Se recuperó un elemento. |[2,*] Se han recuperado :count elementos.',
+    'title'             => 'Recuperación de entidades de :campaign',
+    'tutorial'          => 'Visualiza y restaura elementos eliminados recientemente de la campaña. Las entidades, publicaciones y otros datos de apoyo pueden recuperarse durante :amount días antes de eliminarse de forma permanente. Al restaurar un elemento, regresa con todos sus datos intactos.',
+    'view_recovered'    => 'Ver',
 ];

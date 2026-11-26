@@ -26,12 +26,20 @@ class TiptapService
     {
         $canBrowse = $this->user->can('galleryBrowse', $this->campaign);
 
-        $images = Image::acl($canBrowse)
+        $query = Image::where('campaign_id', $this->campaign->id)
+            ->acl($canBrowse)
             ->search($this->request->get('folder'), $this->request->get('term'))
             ->where('is_default', false)
-            ->orderBy('is_folder', 'desc')
-            ->orderBy('updated_at', 'desc')
-            ->paginate(50);
+            ->withoutFonts()
+            ->orderBy('is_folder', 'desc');
+
+        match ($this->request->get('sort')) {
+            'name_asc' => $query->orderBy('name', 'asc')->orderBy('updated_at', 'desc'),
+            'name_desc' => $query->orderBy('name', 'desc')->orderBy('updated_at', 'desc'),
+            default => $query->orderBy('updated_at', 'desc'),
+        };
+
+        $images = $query->paginate(50);
 
         return $images;
 

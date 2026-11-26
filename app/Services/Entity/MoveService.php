@@ -5,6 +5,7 @@ namespace App\Services\Entity;
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
+use App\Models\CampaignPlugin;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\Image;
@@ -15,6 +16,7 @@ use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -62,10 +64,11 @@ class MoveService
         return $this;
     }
 
-    public function process(): bool
+    /** @param array<string, string>|null $sheetReferences */
+    public function process(?array $sheetReferences = null): bool
     {
         if ($this->copy) {
-            return $this->copyEntity();
+            return $this->copyEntity($sheetReferences);
         } else {
             return $this->moveEntity();
         }
@@ -113,7 +116,8 @@ class MoveService
         return $this;
     }
 
-    protected function copyEntity(): bool
+    /** @param array<string, string>|null $sheetReferences */
+    protected function copyEntity(?array $sheetReferences): bool
     {
         DB::beginTransaction();
         try {
@@ -135,6 +139,7 @@ class MoveService
             $image = $this->entity->image; // Load the image before switching campaigns
             $header = $this->entity->header; // Load the header before switching campaigns
             $newEntry = $this->mentionsService->campaign($this->campaign)->mapCopiedEntry($this->entity->entry);
+            $sheetReferences ??= $this->sheetReferences(new Collection([$this->entity]));
 
             CampaignLocalization::forceCampaign($this->to);
 
@@ -170,6 +175,7 @@ class MoveService
                 ->character()
                 ->timeline()
                 ->map();
+            $this->copySheets($newModel->entity, $sheetReferences);
 
             DB::commit();
             $success = true;
@@ -181,6 +187,58 @@ class MoveService
         CampaignLocalization::forceCampaign($this->campaign);
 
         return $success;
+    }
+
+    /**
+     * @param  Collection<int, Entity>  $entities
+     * @return array<string, string>
+     */
+    public function sheetReferences(Collection $entities): array
+    {
+        if (! config('marketplace.enabled') || $this->campaign->id === $this->to->id) {
+            return [];
+        }
+
+        $references = $entities->loadMissing('sheets')
+            ->flatMap(fn (Entity $entity) => $entity->sheets->where('source', 'marketplace')->pluck('reference'))
+            ->unique()->values();
+
+        if ($references->isEmpty()) {
+            return [];
+        }
+
+        return CampaignPlugin::templates($this->to)
+            ->join('plugin_versions as source_versions', 'source_versions.plugin_id', 'campaign_plugins.plugin_id')
+            ->whereIn('source_versions.uuid', $references)
+            ->with('plugin')
+            ->get(['campaign_plugins.*', 'source_versions.uuid as source_reference'])
+            ->filter(fn (CampaignPlugin $plugin) => $plugin->plugin && $plugin->version && $plugin->renderable())
+            ->mapWithKeys(fn (CampaignPlugin $plugin) => [$plugin->getAttribute('source_reference') => $plugin->version->uuid])
+            ->all();
+    }
+
+    /** @param array<string, string> $sheetReferences */
+    protected function copySheets(Entity $target, array $sheetReferences): void
+    {
+        $sheets = [];
+        foreach ($this->entity->sheets as $sheet) {
+            $reference = $sheet->reference;
+            if ($sheet->source === 'marketplace' && $this->entity->campaign_id !== $target->campaign_id) {
+                $reference = $sheetReferences[$reference] ?? null;
+                if ($reference === null) {
+                    continue;
+                }
+            }
+
+            // Multiple source versions of a plugin can resolve to the same installation.
+            $sheets[$sheet->source . ':' . $reference] ??= [
+                'source' => $sheet->source,
+                'reference' => $reference,
+                'sort_order' => $sheet->sort_order,
+            ];
+        }
+
+        $target->sheets()->createMany($sheets);
     }
 
     protected function moveEntity(): bool

@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -62,6 +63,12 @@ use Illuminate\Support\Str;
  * @method static Builder|self named(string|null $term)
  * @method static Builder|self imageFolder(string|null $folder)
  * @method static Builder|self search(?string $folder, ?string $term)
+ * @method static Builder|self withoutFonts()
+ * @method static Builder|self searchMetadata(?string $term)
+ * @method static Builder|self ofType(?string $type)
+ * @method static Builder|self orientation(?string $orientation)
+ * @method static Builder|self notUsed()
+ * @method static Builder|self used()
  */
 #[ObservedBy(ImageObserver::class)]
 class Image extends Model
@@ -104,6 +111,8 @@ class Image extends Model
     public const TILING_FINISHED = 2;
 
     public const TILING_ERROR = 3;
+
+    public const FONT_EXTENSIONS = ['woff', 'woff2'];
 
     protected string $userField = 'created_by';
 
@@ -218,12 +227,42 @@ class Image extends Model
 
     public function isUsed(): bool
     {
+        if ($this->is_default) {
+            return true;
+        }
+
         $entities = count($this->inEntities());
         $mentions = $this->mentions()->count();
         $layers = $this->mapLayers()->count();
         $inventories = $this->inventories()->count();
 
         return $entities || $mentions || $layers || $inventories;
+    }
+
+    /**
+     * Check whether this folder is a descendant of the given folder ID.
+     */
+    public function isDescendantOf(string $potentialAncestorId): bool
+    {
+        $visited = [$this->id => true];
+        $currentFolderId = $this->folder_id;
+        $depth = 0;
+
+        while (! empty($currentFolderId) && $depth < 50) {
+            if ($currentFolderId === $potentialAncestorId) {
+                return true;
+            }
+            if (isset($visited[$currentFolderId])) {
+                return false;
+            }
+            $visited[$currentFolderId] = true;
+            $currentFolderId = self::withoutGlobalScopes()
+                ->where('id', $currentFolderId)
+                ->value('folder_id');
+            $depth++;
+        }
+
+        return false;
     }
 
     public function inEntitiesCount(): int
@@ -340,6 +379,160 @@ class Image extends Model
         return $query->named($term);
     }
 
+    public function scopeWithoutFonts(Builder $query): Builder
+    {
+        return $query->where(function (Builder $query): void {
+            $query->whereNull($this->getTable() . '.ext')
+                ->orWhereNotIn($this->getTable() . '.ext', self::FONT_EXTENSIONS);
+        });
+    }
+
+    public function scopeSearchMetadata(Builder $query, ?string $term): Builder
+    {
+        if (empty($term)) {
+            return $query;
+        }
+
+        $table = $this->getTable();
+        $like = '%' . $term . '%';
+
+        return $query->where(function (Builder $q) use ($table, $like): void {
+            $q->where($table . '.name', 'like', $like)
+                ->orWhere($table . '.description', 'like', $like)
+                ->orWhere($table . '.author', 'like', $like)
+                ->orWhere($table . '.ext', 'like', $like);
+        });
+    }
+
+    public function scopeOfType(Builder $query, ?string $type): Builder
+    {
+        if (empty($type) || $type === 'all') {
+            return $query;
+        }
+
+        $table = $this->getTable();
+
+        return match ($type) {
+            'image' => $query->where($table . '.is_folder', false)
+                ->whereIn($table . '.ext', ['jpg', 'jpeg', 'png', 'gif', 'webp']),
+            'svg' => $query->where($table . '.is_folder', false)
+                ->where($table . '.ext', 'svg'),
+            'font' => $query->where($table . '.is_folder', false)
+                ->whereIn($table . '.ext', self::FONT_EXTENSIONS),
+            default => $query->where($table . '.is_folder', false)
+                ->where($table . '.ext', $type),
+        };
+    }
+
+    public function scopeOrientation(Builder $query, ?string $orientation): Builder
+    {
+        if (empty($orientation) || $orientation === 'all') {
+            return $query;
+        }
+
+        $table = $this->getTable();
+        $driver = DB::getDriverName();
+
+        if ($driver === 'sqlite') {
+            $widthExpr = "CAST(json_extract({$table}.metadata, '$.width') AS INTEGER)";
+            $heightExpr = "CAST(json_extract({$table}.metadata, '$.height') AS INTEGER)";
+        } else {
+            $widthExpr = "CAST(JSON_UNQUOTE(JSON_EXTRACT({$table}.metadata, '$.width')) AS UNSIGNED)";
+            $heightExpr = "CAST(JSON_UNQUOTE(JSON_EXTRACT({$table}.metadata, '$.height')) AS UNSIGNED)";
+        }
+
+        $query->where($table . '.is_folder', false)
+            ->whereNotNull($table . '.metadata')
+            ->whereRaw("{$widthExpr} > 0 AND {$heightExpr} > 0");
+
+        return match ($orientation) {
+            'landscape' => $query->whereRaw("{$widthExpr} > {$heightExpr}"),
+            'portrait' => $query->whereRaw("{$heightExpr} > {$widthExpr}"),
+            'square' => $query->whereRaw("{$widthExpr} = {$heightExpr}"),
+            default => $query,
+        };
+    }
+
+    public function scopeNotUsed(Builder $query): Builder
+    {
+        $table = $this->getTable();
+
+        return $query
+            ->where($table . '.is_folder', false)
+            ->where($table . '.is_default', false)
+            ->whereNotExists(function ($q) use ($table): void {
+                $q->select(DB::raw(1))
+                    ->from('entities')
+                    ->whereColumn('entities.image_uuid', $table . '.id');
+            })
+            ->whereNotExists(function ($q) use ($table): void {
+                $q->select(DB::raw(1))
+                    ->from('entities')
+                    ->whereColumn('entities.header_uuid', $table . '.id');
+            })
+            ->whereNotExists(function ($q) use ($table): void {
+                $q->select(DB::raw(1))
+                    ->from('image_mentions')
+                    ->whereColumn('image_mentions.image_id', $table . '.id');
+            })
+            ->whereNotExists(function ($q) use ($table): void {
+                $q->select(DB::raw(1))
+                    ->from('entity_assets')
+                    ->whereColumn('entity_assets.image_uuid', $table . '.id');
+            })
+            ->whereNotExists(function ($q) use ($table): void {
+                $q->select(DB::raw(1))
+                    ->from('map_layers')
+                    ->whereColumn('map_layers.image_uuid', $table . '.id');
+            })
+            ->whereNotExists(function ($q) use ($table): void {
+                $q->select(DB::raw(1))
+                    ->from('inventories')
+                    ->whereColumn('inventories.image_uuid', $table . '.id');
+            });
+    }
+
+    public function scopeUsed(Builder $query): Builder
+    {
+        $table = $this->getTable();
+
+        return $query
+            ->where($table . '.is_folder', false)
+            ->where(function (Builder $q) use ($table): void {
+                $q->where($table . '.is_default', true)
+                    ->orWhereExists(function ($sub) use ($table): void {
+                        $sub->select(DB::raw(1))
+                            ->from('entities')
+                            ->whereColumn('entities.image_uuid', $table . '.id');
+                    })
+                    ->orWhereExists(function ($sub) use ($table): void {
+                        $sub->select(DB::raw(1))
+                            ->from('entities')
+                            ->whereColumn('entities.header_uuid', $table . '.id');
+                    })
+                    ->orWhereExists(function ($sub) use ($table): void {
+                        $sub->select(DB::raw(1))
+                            ->from('image_mentions')
+                            ->whereColumn('image_mentions.image_id', $table . '.id');
+                    })
+                    ->orWhereExists(function ($sub) use ($table): void {
+                        $sub->select(DB::raw(1))
+                            ->from('entity_assets')
+                            ->whereColumn('entity_assets.image_uuid', $table . '.id');
+                    })
+                    ->orWhereExists(function ($sub) use ($table): void {
+                        $sub->select(DB::raw(1))
+                            ->from('map_layers')
+                            ->whereColumn('map_layers.image_uuid', $table . '.id');
+                    })
+                    ->orWhereExists(function ($sub) use ($table): void {
+                        $sub->select(DB::raw(1))
+                            ->from('inventories')
+                            ->whereColumn('inventories.image_uuid', $table . '.id');
+                    });
+            });
+    }
+
     public function hasNoFolders(): bool
     {
         return $this->images()->where('is_folder', '1')->count() == 0;
@@ -357,7 +550,7 @@ class Image extends Model
 
     public function isFont(): bool
     {
-        return in_array($this->ext, ['woff', 'woff2']);
+        return in_array($this->ext, self::FONT_EXTENSIONS);
     }
 
     public function hasThumbnail(): bool

@@ -98,10 +98,6 @@ return [
             'role'          => 'Uloga',
             'roles'         => 'Uloge',
         ],
-        'impersonating'         => [
-            'message'   => 'Gledaš kampanju kao drugi korisnik. Neke funkcionalnosti su onemogućene, ali ostatak se ponaša jednako onako kako bi ih taj korisnik vidio. Da se vratiš nazad na svog korisnika, iskoristi "Prekini imitaciju" gumb koji se nalazi tamo gdje se inače nalazi gumb za odjavu.',
-            'title'     => 'Imitiranje :name',
-        ],
         'invite'                => [
             'description'   => 'Možeš pozvati prijatelje da se priključe tvojoj kampanji tako što im daš pozivnicu za priključivanje. Kad prihate pozivnicu, bit će dodani kao članovi u zatraženoj ulozi. Također im možeš poslati zahtjev putem emaila dok god nije Hotmail adresa, jer oni uvijek odbijaju Kankine emailove.',
             'more'          => 'Možeš dodati više uloga na :link.',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\TranslatableException;
+use App\Facades\CampaignCache;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
 use App\Services\Campaign\BoostService;
@@ -25,7 +26,7 @@ class CampaignBoostController extends Controller
     public function create()
     {
         $campaignID = request()->get('campaign');
-        $campaign = Campaign::where('slug', $campaignID)->firstOrFail();
+        $campaign = Campaign::slug($campaignID)->firstOrFail();
         $user = auth()->user();
         if ($user->hasLegacyBoosterNomenclature()) {
             $superboost = request()->has('superboost');

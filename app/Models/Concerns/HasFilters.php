@@ -557,9 +557,9 @@ trait HasFilters
         } elseif ($this->filterOption('children')) {
             $ids = Entity::where('entity_id', $value)
                 ->where('type_id', config('entities.ids.race'))
-                ->with('descendants')
+                ->with('descendantsAndSelf')
                 ->get()
-                ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
+                ->flatMap(fn ($e) => $e->descendantsAndSelf->pluck('entity_id')->toArray())
                 ->unique()
                 ->toArray();
         }
@@ -594,9 +594,9 @@ trait HasFilters
         } elseif ($this->filterOption('children')) {
             $ids = Entity::where('entity_id', $value)
                 ->where('type_id', config('entities.ids.family'))
-                ->with('descendants')
+                ->with('descendantsAndSelf')
                 ->get()
-                ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
+                ->flatMap(fn ($e) => $e->descendantsAndSelf->pluck('entity_id')->toArray())
                 ->unique()
                 ->toArray();
         }

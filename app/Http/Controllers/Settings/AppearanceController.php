@@ -6,6 +6,9 @@ use App\Facades\UserCache;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSettingsLayout;
 use App\Models\User;
+use App\Services\TutorialService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class AppearanceController extends Controller
 {
@@ -64,5 +67,15 @@ class AppearanceController extends Controller
         return redirect()
             ->route('settings.appearance')
             ->with('success', __('settings/appearance.success'));
+    }
+
+    public function enableModernEntryForm(Request $request, TutorialService $tutorialService): JsonResponse
+    {
+        /** @var User $user */
+        $user = $request->user();
+        $user->saveSettings(['entry_form_layout' => 'modern'])->save();
+        $tutorialService->user($user)->track('v4_entry_form_layout');
+
+        return response()->json(['success' => true]);
     }
 }

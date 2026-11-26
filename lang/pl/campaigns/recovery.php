@@ -1,17 +1,23 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'       => [
         'recover'           => 'Odzyskaj',
         'recover_selected'  => 'Odzyskaj wybrane',
     ],
-    'error'     => 'Podczas odzyskiwania elementów wystąpił błąd.',
-    'fields'    => [
+    'cta'           => [
+        'lead'  => 'Odzyskaj usunięte elementy i artykuły zanim na zawsze przepadną.',
+        'title' => 'Odzyskiwanie usuniętej zawartości',
+    ],
+    'empty'         => 'Usunięte elementy i artykułu pojawią się tutaj i można je będzie odzyskać.',
+    'empty_title'   => 'Nie ma czego odzyskać',
+    'error'         => 'Podczas odzyskiwania elementów wystąpił błąd.',
+    'fields'        => [
         'deleted'       => 'Usunięto',
         'deleted_at'    => 'Usunięte :date przez :user',
     ],
-    'name_link' => 'Udało się odzyskać :name',
-    'order'     => [
+    'name_link'     => 'Udało się odzyskać :name',
+    'order'         => [
         'newest'        => 'Sortowanie według: Newest',
         'newest_first'  => 'Najpierw najnowsze',
         'oldest'        => 'Sortowanie według :Oldest',
@@ -19,9 +25,9 @@ return [
         'type'          => 'Sortowanie według :Type',
         'type_order'    => 'Rodzaj',
     ],
-    'posts'     => [],
-    'success_v2'=> '{1} odzyskano :count element .|[2,4] odzyskano :count elementy.|[5,*]  odzyskano :count elementów.',
-    'title'     => 'Odzyskiwanie elementów kampanii :campaign',
-    'toggle'    => [],
-    'tutorial'  => 'Przeglądaj i odzyskuj niedawno usunięte elementy kampanii. Elementy, komentarze i inne dane można odzyskać przez :amount dni - potem zostają trwale usunięte. Odzyskanie przywraca usuniętą zawartość w całości.',
+    'posts'         => [],
+    'success_v2'    => '{1} odzyskano :count element .|[2,4] odzyskano :count elementy.|[5,*]  odzyskano :count elementów.',
+    'title'         => 'Odzyskiwanie elementów kampanii :campaign',
+    'toggle'        => [],
+    'tutorial'      => 'Przeglądaj i odzyskuj niedawno usunięte elementy kampanii. Elementy, komentarze i inne dane można odzyskać przez :amount dni - potem zostają trwale usunięte. Odzyskanie przywraca usuniętą zawartość w całości.',
 ];

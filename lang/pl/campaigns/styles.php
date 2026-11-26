@@ -2,11 +2,12 @@
 
 return [
     'actions'       => [
-        'builder'   => 'Kontruktor stylów',
+        'builder'   => 'Kreator Motywów',
         'current'   => 'Obecny motyw: :theme',
         'disable'   => 'Wyłącz',
         'enable'    => 'Uruchom',
         'new'       => 'Nowy styl',
+        'new_first' => 'Stwórz pierwszy styl',
     ],
     'bulks'         => [
         'delete'    => '{1} Usunięto :count styl.|[2,4] Usunięto :count style.|[5,*] Usunięto :count stylów.',
@@ -16,6 +17,11 @@ return [
     'create'        => [
         'success'   => 'Stworzono nowy styl',
         'title'     => 'Nowy styl',
+    ],
+    'cta'           => [
+        'helper'    => 'Ulepsz do wersji premium by pisać własne reguły CSS, wpływające na styl kampanii.',
+        'lead'      => 'Ulepsz by pisać reguły CSS zmieniające styl kampanii.',
+        'title'     => 'Własne reguły CSS są opcją premium.',
     ],
     'delete'        => [
         'success'   => 'Usunięto styl :name',
@@ -33,10 +39,12 @@ return [
         'order'         => 'Kolejność',
     ],
     'helpers'       => [
+        'empty'         => 'Brak własnych stylów',
         'here'          => 'z naszego bloga',
         'is_enabled'    => 'Użyj tego motywu na każdej stronie',
         'main'          => 'Możesz tworzyć własne style CSS w doładowanych kampaniach. Będą ładowane po stylach pobranych z biblioteki. Więcej o tworzeniu stylów dowiesz się :here.',
         'tutorial'      => 'Kontroluje estetykę kampanii. Pozwala wybrać kolory, preferencje układu treści i inne elementy wizualne. Modyfikacje dotyczą tylko tej kampanii i można je w każdej chwili zmienić.',
+        'what'          => 'Użyj Kreatora Motywów by tworzyć style według przepisu albo twórz je od zera z pomocą reguł CSS.',
     ],
     'pitch'         => 'Twórz własne style CSS by nadać kampanii indywidualny charakter.',
     'placeholders'  => [

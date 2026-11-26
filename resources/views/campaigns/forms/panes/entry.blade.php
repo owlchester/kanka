@@ -15,7 +15,7 @@
             @include('cruds.fields.entry', ['fieldName' => 'description', 'model' => $campaign?->description ?? null, ''])
         </x-forms.field>
 
-        @include('cruds.fields.image-old', ['model' => $campaign ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns.fields.image', 'recommended' => '240x208'])
+        @include('cruds.fields.image-old', ['model' => $campaign ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns.fields.image', 'recommended' => '240x144'])
 
         <x-forms.field
             field="vanity"

@@ -127,14 +127,6 @@ return [
             'role'          => 'Rolle',
             'roles'         => 'Rollen',
         ],
-        'impersonating'         => [
-            'message'   => <<<'TEXT'
-Du siehst die Kampagne jetzt als ein anderer User.
-Einige Funktionen wurden deaktiviert, aber ansonsten sieht es genau so aus wie es der User sehen würde. Um zurück zu deinem User zu wechseln, benutze den "Zurück zu meinem User" Button, wo sonst der Logout Button zu finden ist.
-TEXT
-,
-            'title'     => 'Ansicht von :name',
-        ],
         'invite'                => [
             'description'   => 'Du kannst deine Freunde zu deiner Kampagne einladen, in dem du ihre Email Adresse eingibst. Wenn sie die Einladung annehmen, werden sie als \'Zuschauer\' hinzugefügt. Du kannst die Einladung auch jederzeit abbrechen.',
             'more'          => 'Du kannst neue Rollen unter :link hinzufügen.',

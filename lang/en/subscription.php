@@ -6,12 +6,12 @@ return [
         'more'  => 'more amazing features',
     ],
     'errors'    => [
-        'pending'               => 'A subscription payment is already being processed. Please check your subscription before trying again. If this persists, contact support.',
         'grace'                 => 'Your current subscription ends on :date, after which point you can re-subscribe.',
         'invalid_card_country'  => [
             'brl'   => 'We\'re sorry but we currently only accept BRL payments for customers with Brazilian credit cards. If you think this is a mistake, contact us at :email.',
         ],
         'invalid_currency'      => 'You previously had a subscription in :old, preventing you from having a new subscription in :new. Please switch your currency to :old, or contact us at :email if you wish to switch currencies.',
         'legacy_paypal'         => 'Your subscription is managed by our legacy PayPal system and remains active until :date. You can subscribe through Stripe after that date. No data will be lost.',
+        'pending'               => 'A subscription payment is already being processed. Please check your subscription before trying again. If this persists, contact support.',
     ],
 ];

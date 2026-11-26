@@ -17,7 +17,6 @@ return [
         'main'  => 'Controlla l\'aspetto e il feel di Kanka. Nota che le campagne possono sovrascrivere alcune di queste impostazioni.',
     ],
     'editors'           => [
-        'default'   => 'Predefinito (:name)',
         'legacy'    => 'Legacy (:name)',
     ],
     'explore'           => [

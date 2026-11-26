@@ -10,6 +10,7 @@ use App\Http\Resources\GalleryFile;
 use App\Models\Campaign;
 use App\Models\Image;
 use App\Services\Gallery\UpdateService;
+use Illuminate\Validation\ValidationException;
 
 class UpdateController extends Controller
 {
@@ -27,7 +28,8 @@ class UpdateController extends Controller
 
         $count = $this->service
             ->campaign($campaign)
-            ->files($request->get('files'))
+            ->user($request->user())
+            ->files($request->validated('files'))
             ->update($request->only('visibility_id', 'folder_id', 'folder_home'));
 
         return response()->json(['toast' => trans_choice('gallery.update.success', $count, ['count' => $count])]);
@@ -35,23 +37,48 @@ class UpdateController extends Controller
 
     public function process(UpdateFile $request, Campaign $campaign, Image $image)
     {
-        $this->authorize('gallery', $campaign);
+        if ($image->campaign_id !== $campaign->id) {
+            abort(404);
+        }
 
-        $image->update(
-            $request->only(['name', 'description', 'author', 'visibility_id'])
-        );
+        $this->authorize('edit', [$image, $campaign]);
 
-        return (new GalleryFile($image))->campaign($campaign);
+        $data = $request->only(['name', 'description', 'author', 'visibility_id']);
+
+        if ($request->has('folder_id')) {
+            $folderId = $request->input('folder_id');
+            if ($folderId !== null && $image->isFolder()) {
+                $targetFolder = Image::where('id', $folderId)
+                    ->where('campaign_id', $campaign->id)
+                    ->where('is_folder', true)
+                    ->firstOrFail();
+
+                if ($targetFolder->id === $image->id || $targetFolder->isDescendantOf($image->id)) {
+                    throw ValidationException::withMessages([
+                        'folder_id' => __('gallery.update.errors.folder_cycle'),
+                    ]);
+                }
+            }
+            $data['folder_id'] = $folderId;
+        }
+
+        $image->update($data);
+
+        return (new GalleryFile($image->fresh(['creator'])))->campaign($campaign);
     }
 
     public function focus(UpdateFocus $request, Campaign $campaign, Image $image)
     {
-        $this->authorize('gallery', $campaign);
+        if ($image->campaign_id !== $campaign->id) {
+            abort(404);
+        }
+
+        $this->authorize('edit', [$image, $campaign]);
 
         $image->update(
             $request->only(['focus_x', 'focus_y'])
         );
 
-        return (new GalleryFile($image))->campaign($campaign);
+        return (new GalleryFile($image->fresh(['creator'])))->campaign($campaign);
     }
 }

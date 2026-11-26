@@ -1,31 +1,31 @@
 <?php
 
 return [
-    'copyright_visibility_locked' => 'Campaign visibility cannot be changed while a copyright notice is active.',
-    'visibility_locked' => 'Campaign visibility cannot be changed while a copyright notice is active.',
-    'buttons'   => [
+    'buttons'                       => [
         'change_visibility' => 'Change visibility',
         'copy'              => 'Copy link',
         'copy_public_link'  => 'Copy public link',
         'make_public'       => 'Make public and copy link',
     ],
-    'helpers'   => [
+    'copyright_visibility_locked'   => 'Campaign visibility cannot be changed while a copyright notice is active.',
+    'helpers'                       => [
         'private_explanation'   => 'Only members can access private campaigns.',
         'public_explanation'    => 'This campaign is public. Anyone with the link can browse it.',
         'unlisted_explanation'  => 'Anyone with the link can browse this campaign, but it doesn\'t appear in public directories.',
     ],
-    'labels'    => [
+    'labels'                        => [
         'member_link'   => 'Only members can open this',
         'public_link'   => 'Public link',
     ],
-    'status'    => [
+    'status'                        => [
         'private'   => 'Private campaign',
         'public'    => 'Anyone with the link can view this campaign',
     ],
-    'success'   => [
+    'success'                       => [
         'copied_members'    => 'Member-only link copied.',
         'copied_public'     => 'Public link copied, anyone with the link can view.',
         'made_public'       => 'Campaign is now public.',
     ],
-    'title'     => 'Share campaign',
+    'title'                         => 'Share campaign',
+    'visibility_locked'             => 'Campaign visibility cannot be changed while a copyright notice is active.',
 ];

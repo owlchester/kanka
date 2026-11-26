@@ -1,13 +1,16 @@
 <?php /** @var \App\Models\EntityAsset $asset */?>
 <div class="entity-assets">
-    <div class="flex flex-col lg:flex-row flex-wrap gap-4 max-w-7xl entity-assets-row">
-        @forelse ($assets as $asset)
-            @if ($asset->hiddenImage()) @continue @endif
-            @includeWhen($asset->isFile(), 'entities.pages.assets._file')
-            @includeWhen($asset->isLink(), 'entities.pages.assets._link')
-        @empty
-        @endforelse
-    </div>
+    @if ($assets->isEmpty())
+        @include('entities.pages.assets._empty-state')
+    @else
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4 entity-assets-row">
+            @foreach ($assets as $asset)
+                @if ($asset->hiddenImage()) @continue @endif
+                @includeWhen($asset->isFile(), 'entities.pages.assets._file')
+                @includeWhen($asset->isLink(), 'entities.pages.assets._link')
+            @endforeach
+        </div>
+    @endif
 </div>
 
 

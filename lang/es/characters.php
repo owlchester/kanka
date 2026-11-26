@@ -76,6 +76,22 @@ return [
         'fields'    => [
             'role'  => 'Rol',
         ],
+        'form'      => [
+            'add'           => 'Agregar :organisation',
+            'empty'         => 'Vincula este personaje con :organisations para registrar su rol y el estado de su membresía.',
+            'empty_title'   => 'Aún no hay membresías',
+            'helper'        => 'Vincula este personaje con :organisations y registra su rol.',
+            'pinned'        => 'Mostrar en los elementos fijados del perfil',
+            'private'       => 'Membresía privada',
+            'private_hint'  => 'Solo los miembros del rol :admin pueden ver esta membresía.',
+            'profile'       => 'Perfil de :module',
+            'remove'        => 'Quitar membresía',
+            'removed'       => 'La membresía se quitará cuando guardes.',
+            'save_hint'     => 'Los cambios de membresía se guardan junto con el personaje.',
+            'settings'      => 'Visualización y visibilidad',
+            'title'         => 'Membresías',
+            'undo'          => 'Deshacer',
+        ],
     ],
     'personality_visibility'    => [
         'admin' => 'Solo miembros del rol :admin',

@@ -23,3 +23,18 @@ it('does not break the name field out of its attribute when the name has a quote
         ->assertSee('value="John &quot;The Rock&quot; Doe"', false)
         ->assertDontSee('value="John "The Rock" Doe"', false);
 });
+
+it('crops the profile sidebar avatar to 240x144 to match the sidebar header area', function () {
+    config([
+        'thumbor.key' => 'local',
+        'thumbor.url' => 'https://th.local/',
+    ]);
+
+    $this->asUser();
+    auth()->user()->forceFill(['avatar' => 'avatars/test.jpg'])->save();
+
+    $this->get(route('settings.profile'))
+        ->assertOk()
+        ->assertSee('240x144/smart/', false)
+        ->assertDontSee('240x208', false);
+});

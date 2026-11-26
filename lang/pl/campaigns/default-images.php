@@ -11,8 +11,16 @@ return [
         'success'   => 'Zapisano miniaturę dla :type.',
         'title'     => 'Nowa miniatura',
     ],
+    'cta'               => [
+        'lead'  => 'Ndaj każdej postaci, miejscu albo innej kategorii domyślną miniaturę, by lista nigdy nie wydawała się pusta.',
+        'title' => 'Niech twoje elementy wyglądają na dopieszczone.',
+    ],
     'destroy'           => [
         'success'   => 'Usunięto miniaturę :type.',
+    ],
+    'empty'             => [
+        'description'   => 'Dodaj domyślą miniaturę kategorii - elementy bez własnych ilustracji będą jej używać automatycznie.',
+        'title'         => 'Na razie brak miniatur',
     ],
     'helper'            => 'Używane dla wszystkich elementów tej kategorii nie posiadających ilustracji.',
     'index'             => [],

@@ -12,5 +12,6 @@ return [
         ],
         'invalid_currency'      => 'Anteriormente tenías una suscripción en :old, lo que te impide tener una nueva suscripción en :new. Por favor, cambia tu divisa a :old, o contacta con nosotros en :email si deseas cambiar de divisa.',
         'legacy_paypal'         => 'Tu suscripción está gestionada por nuestro antiguo sistema de PayPal y seguirá activa hasta :date. Después de esa fecha podrás suscribirte mediante Stripe. No se perderán datos.',
+        'pending'               => 'Ya se está procesando un pago de suscripción. Revisa tu suscripción antes de volver a intentarlo. Si el problema continúa, contacta al equipo de soporte.',
     ],
 ];

@@ -5,6 +5,10 @@ return [
         'subscription'  => 'Zobacz plany i ceny',
         'upgrade'       => 'Przejdź na premium',
     ],
+    'alert'     => [
+        'enable'    => 'Włącz funkcje premium tej kampanii',
+        'sponsor'   => 'Sponsoruj funkcje premium tej kampanii',
+    ],
     'booster'   => [
         'actions'       => [
             'boost'         => 'Doładuj :campaign',

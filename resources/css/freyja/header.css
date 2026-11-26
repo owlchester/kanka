@@ -4,35 +4,6 @@
 }
 
 .navigation-drawer {
-    .header {
-        .inactive {
-            min-width: 72px;
-
-            &:hover {
-                color: var(--header-block-hover-text, #2b2e2e);
-            }
-            .profile-box:hover {
-                background-color: var(--header-profile-hover, #2b2e2e);
-            }
-        }
-
-
-        .profile-box {
-            background-color: var(--header-profile-background, #333);
-            color: var(--header-profile-text, white);
-        }
-    }
-
-    .campaigns {
-        .campaign {
-            background-image: url('https://th.kanka.io/c26cVXHRNnJXThmKZry4xpUuBS8=/100x96/smart/src/app/backgrounds/mountain-background-medium.jpg');
-
-            .name {
-                background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, hsl(var(--b2)/1) 100%);
-                color: var(--campaign-switcher-text, hsl(var(--bc)/1));
-            }
-        }
-    }
     .profile {
         .marketplace {
             .icon {
@@ -44,6 +15,29 @@
     .link {
         color: var(--link-text);
     }
+}
+
+.nav-fade-enter-active,
+.nav-fade-leave-active {
+    transition: opacity 150ms ease;
+}
+.nav-fade-enter-from,
+.nav-fade-leave-to {
+    opacity: 0;
+}
+
+.nav-drawer-enter-active,
+.nav-drawer-leave-active {
+    transition: opacity 180ms ease, transform 180ms ease;
+}
+.nav-drawer-enter-from,
+.nav-drawer-leave-to {
+    opacity: 0;
+    transform: translateX(12px);
+}
+body.has-sidebar .nav-drawer-enter-from,
+body.has-sidebar .nav-drawer-leave-to {
+    transform: translateX(-12px);
 }
 .nav-switcher {
     .profile .profile-box {

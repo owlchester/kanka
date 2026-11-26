@@ -66,9 +66,6 @@ $premiumLink = '<a href="https://kanka.io/premium" class="text-link">' . __('con
             @if ($campaign->boosted())
                 <input type="text" name="css" value="{{ old('css', $model->css ?? null) }}" class="w-full"
                        maxlength="45" id="config[class]"/>
-                <p class="text-neutral-content md:hidden">
-                    {{ __('bookmarks.helpers.class') }}
-                </p>
             @else
                 <x-slot name="helper">
                     @can('boost', auth()->user())

@@ -1,12 +1,16 @@
 <?php
 
 use App\Enums\EntityAssetType;
+use App\Models\Campaign;
+use App\Models\CampaignPermission;
+use App\Models\Character;
 use App\Models\EntityAsset;
 use App\Models\Image;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Number;
 
 it('POSTS an invalid entity_assets form')
     ->asUser()
@@ -246,3 +250,112 @@ it('DELETES an invalid asset')
     ->withAssets()
     ->delete('/api/1.0/campaigns/1/entities/1/entity_assets/100')
     ->assertStatus(404);
+
+it('shows the action empty state on the assets subpage for editors', function () {
+    $this->asUser()->withCampaign();
+    $campaign = Campaign::findOrFail(1);
+    $character = Character::factory()->create(['campaign_id' => $campaign->id]);
+
+    $this->get(route('entities.entity_assets.index', [$campaign, $character->entity]))
+        ->assertOk()
+        ->assertSee('entity-empty-state')
+        ->assertSee(__('entities/assets.empty.title', ['name' => $character->entity->name]))
+        ->assertSee(__('entities/assets.empty.file.title'))
+        ->assertSee(__('entities/assets.empty.link.title'))
+        ->assertDontSee(__('entities/assets.empty.read_only'));
+});
+
+it('shows the read-only empty state on the assets subpage for non-editors', function () {
+    $this->asUser()->withCampaign();
+    $campaign = Campaign::findOrFail(1);
+    $character = Character::factory()->create(['campaign_id' => $campaign->id]);
+
+    CampaignPermission::create([
+        'campaign_id' => $campaign->id,
+        'campaign_role_id' => 3,
+        'entity_type_id' => config('entities.ids.character'),
+        'action' => CampaignPermission::ACTION_READ,
+        'access' => true,
+    ]);
+    $this->asPlayer();
+
+    $this->get(route('entities.entity_assets.index', [$campaign, $character->entity]))
+        ->assertOk()
+        ->assertSee('entity-empty-state')
+        ->assertSee(__('entities/assets.empty.read_only'))
+        ->assertDontSee(__('entities/assets.empty.file.title'))
+        ->assertDontSee(__('entities/assets.empty.link.title'));
+});
+
+it('shows the empty state when the only asset points to a hidden or missing gallery image', function () {
+    $this->asUser()->withCampaign();
+    $campaign = Campaign::findOrFail(1);
+    $character = Character::factory()->create(['campaign_id' => $campaign->id]);
+
+    EntityAsset::factory()->create([
+        'entity_id' => $character->entity->id,
+        'type_id' => EntityAssetType::file,
+        'image_uuid' => '00000000-0000-0000-0000-000000000000',
+        'metadata' => ['type' => 'image/png', 'path' => 'missing.png'],
+    ]);
+
+    $this->get(route('entities.entity_assets.index', [$campaign, $character->entity]))
+        ->assertOk()
+        ->assertSee('entity-empty-state')
+        ->assertDontSee('entity-assets-row');
+});
+
+it('renders square preview cards, metadata, audio player, and external links on the assets subpage', function () {
+    $this->asUser()->withCampaign();
+    $campaign = Campaign::findOrFail(1);
+    $character = Character::factory()->create(['campaign_id' => $campaign->id]);
+
+    $image = Image::factory()->create([
+        'campaign_id' => $campaign->id,
+        'ext' => 'png',
+        'size' => 256,
+    ]);
+
+    $imageAsset = EntityAsset::factory()->create([
+        'entity_id' => $character->entity->id,
+        'type_id' => EntityAssetType::file,
+        'name' => 'Character Portrait',
+        'is_pinned' => 1,
+        'image_uuid' => $image->id,
+        'metadata' => [
+            'type' => 'image/png',
+            'size' => 524288,
+        ],
+    ]);
+
+    EntityAsset::factory()->create([
+        'entity_id' => $character->entity->id,
+        'type_id' => EntityAssetType::file,
+        'name' => 'Tavern Theme',
+        'metadata' => [
+            'type' => 'audio/mpeg',
+            'path' => 'audio/tavern.mp3',
+            'size' => 1048576,
+        ],
+    ]);
+
+    EntityAsset::factory()->create([
+        'entity_id' => $character->entity->id,
+        'type_id' => EntityAssetType::link,
+        'name' => 'Sheet Link',
+        'metadata' => [
+            'url' => 'https://example.com/characters/1',
+            'icon' => 'fa-solid fa-scroll',
+        ],
+    ]);
+
+    $this->get(route('entities.entity_assets.index', [$campaign, $character->entity]))
+        ->assertOk()
+        ->assertDontSee('entity-empty-state')
+        ->assertSee('aspect-square', false)
+        ->assertSee($imageAsset->imageUrl(), false)
+        ->assertSee('fa-regular fa-thumbtack', false)
+        ->assertSee(Number::fileSize(524288))
+        ->assertSee('<audio', false)
+        ->assertSee('example.com');
+});

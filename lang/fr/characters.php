@@ -68,6 +68,22 @@ return [
         'fields'    => [
             'role'  => 'Rôle',
         ],
+        'form'      => [
+            'add'           => 'Ajouter: :organisation',
+            'empty'         => 'Associe ce personnage aux organisations de la catégorie «:organisations» pour indiquer son rôle et son statut de membre.',
+            'empty_title'   => 'Aucune adhésion pour le moment',
+            'helper'        => 'Associe ce personnage aux organisations de la catégorie «:organisations» et indique son rôle.',
+            'pinned'        => 'Afficher dans les épingles du profil',
+            'private'       => 'Adhésion privée',
+            'private_hint'  => 'Seuls les membres du rôle :admin peuvent voir cette adhésion.',
+            'profile'       => 'Profil (:module)',
+            'remove'        => 'Retirer l’adhésion',
+            'removed'       => 'L’adhésion sera retirée quand tu enregistreras le personnage.',
+            'save_hint'     => 'Les modifications des adhésions sont enregistrées avec le personnage.',
+            'settings'      => 'Affichage et visibilité',
+            'title'         => 'Adhésions',
+            'undo'          => 'Annuler',
+        ],
     ],
     'personality_visibility'    => [
         'admin' => 'Membres du rôle :admin seulement',

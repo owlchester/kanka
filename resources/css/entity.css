@@ -60,6 +60,12 @@ mark.kanka-search-highlight {
     max-height: min(65dvh, calc(100dvh - var(--entity-reader-top, 3.25rem) - var(--entity-reader-height, 7rem) - 1rem));
 }
 
+.entity-grid {
+    width: 100%;
+    max-width: var(--entity-max-width, 80rem);
+    margin-inline: auto;
+}
+
 @media screen and (width < 64rem) {
     .entity-grid > .entity-body {
         flex-direction: column;

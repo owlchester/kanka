@@ -9,6 +9,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Notifications\Header;
 use App\Services\DiscordService;
+use App\Services\Roadmap\FeatureChampionService;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -78,6 +79,9 @@ class SubscriptionEndJob implements ShouldQueue
                 $unboostedCampaigns[] = $boost->campaign_id;
             }
         }
+
+        // Release any active roadmap champion slot
+        app(FeatureChampionService::class)->user($user)->releaseActive();
 
         // Cleanup the subscriber role
         /** @var Role $role */

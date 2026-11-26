@@ -1,7 +1,9 @@
 @php
     $fieldName = $fieldName ?? 'entry';
+    $fieldNameForEdition = $fieldName . 'ForEdition';
     $contentModel = $source ?? $model ?? null;
-    $content = $contentModel?->{$fieldName} ?? '';
+    $defaultContent = $contentModel?->{$fieldNameForEdition} ?? $contentModel?->{$fieldName} ?? '';
+    $content = FormCopy::field($fieldNameForEdition)->string() ?: old($fieldName, $defaultContent);
 @endphp
 <div class="tiptap-editor entity-content" data-content="{{ $content }}" data-field-name="{{ $fieldName }}">
     <tiptap

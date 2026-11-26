@@ -5,14 +5,20 @@ import { runInNewContext } from 'node:vm';
 
 const source = readFileSync(new URL('./subscription.js', import.meta.url), 'utf8');
 
-function setup({ savedCard = true, confirmSetup = async () => ({}) } = {}) {
+function setup({ savedCard = true, confirmSetup = async () => ({}), couponValue = 'INVALID' } = {}) {
     const element = (extra = {}) => ({
         listeners: {},
-        classList: { add() {}, remove() {} },
+        classList: {
+            classes: new Set(),
+            add(...names) { names.forEach(name => this.classes.add(name)); },
+            remove(...names) { names.forEach(name => this.classes.delete(name)); },
+            contains(name) { return this.classes.has(name); },
+        },
         addEventListener(event, callback) { this.listeners[event] = callback; },
         ...extra,
     });
     let submissions = 0;
+    let fetchCalls = 0;
     let resolveCoupon;
     const button = element({ disabled: false });
     const form = element({
@@ -20,19 +26,24 @@ function setup({ savedCard = true, confirmSetup = async () => ({}) } = {}) {
         querySelector: () => button,
         submit: () => submissions++,
     });
-    const coupon = element({ value: 'INVALID', dataset: { url: '/coupon' } });
+    const coupon = element({ value: couponValue, dataset: { url: '/coupon' } });
     const card = { value: savedCard ? 'pm_saved' : '' };
+    const pricingNow = element({ dataset: { originalPrice: '50.00' }, textContent: '50.00', innerHTML: '50.00' });
+    const pricingButton = element({ dataset: { originalPrice: '50.00' }, textContent: '50.00' });
+    const couponError = element();
+    const couponSuccess = element();
     const ids = {
         'stripe-token': { value: 'pk_test' },
         'subscription-confirm': form,
         'subscribe-confirm': element(),
         'payment-element': element({ dataset: { returnUrl: 'https://example.test/payment-return' } }),
         'coupon-check': coupon,
-        'coupon-success': element(),
-        'coupon-invalid': element(),
+        'coupon-success': couponSuccess,
+        'coupon-invalid': couponError,
         'coupon': { value: '' },
         'coupon-validating': element(),
-        'pricing-now': element(),
+        'pricing-now': pricingNow,
+        'pricing-button': pricingButton,
     };
     runInNewContext(source, {
         document: {
@@ -50,13 +61,22 @@ function setup({ savedCard = true, confirmSetup = async () => ({}) } = {}) {
             elements: () => ({ create: () => ({ mount() {} }) }),
             confirmSetup,
         }),
-        fetch: () => new Promise(resolve => { resolveCoupon = resolve; }),
+        fetch: () => {
+            fetchCalls++;
+            return new Promise(resolve => { resolveCoupon = resolve; });
+        },
         URL,
     });
 
     return {
         button,
         form,
+        coupon,
+        couponError,
+        couponSuccess,
+        pricingNow,
+        pricingButton,
+        fetchCalls: () => fetchCalls,
         submitEvent: () => form.listeners.submit({ target: form, preventDefault() {} }),
         couponChange: () => coupon.listeners.change({ target: coupon }),
         resolveCoupon: valid => resolveCoupon({ json: async () => ({ valid, error: 'Invalid coupon', price: '10', coupon: 'VALID' }) }),
@@ -102,4 +122,29 @@ test('a rejected Stripe confirmation also releases the submitting state', async 
     await state.submitEvent();
     assert.equal(state.button.disabled, false);
     assert.equal(state.form.dataset.submitting, undefined);
+});
+
+test('empty or whitespace coupon input skips fetch and hides errors', async () => {
+    const state = setup({ couponValue: '   ' });
+    await state.couponChange();
+    assert.equal(state.fetchCalls(), 0);
+    assert.equal(state.couponError.classList.contains('hidden'), true);
+    assert.equal(state.couponSuccess.classList.contains('hidden'), true);
+    assert.equal(state.pricingNow.textContent, '50.00');
+    assert.equal(state.pricingButton.textContent, '50.00');
+});
+
+test('valid coupon updates both pricing-now and pricing-button, and invalid restores them', async () => {
+    const state = setup({ couponValue: 'SAVE80' });
+    const first = state.couponChange();
+    state.resolveCoupon(true);
+    await first;
+    assert.equal(state.pricingNow.innerHTML, '10');
+    assert.equal(state.pricingButton.textContent, '10');
+
+    const second = state.couponChange();
+    state.resolveCoupon(false);
+    await second;
+    assert.equal(state.pricingNow.textContent, '50.00');
+    assert.equal(state.pricingButton.textContent, '50.00');
 });
