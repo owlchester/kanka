@@ -1,7 +1,9 @@
 <?php
 
+use App\Enums\Widget;
 use App\Models\Calendar;
 use App\Models\Campaign;
+use App\Models\CampaignDashboardWidget;
 use App\Models\Entity;
 use App\Models\Event;
 use App\Models\Reminder;
@@ -466,3 +468,119 @@ it('renders an inherited multi-day reminder spilling into the next year without 
         ->assertOk()
         ->assertSeeInOrder(['data-date="1-1-1"', 'Year-end festival', __('calendars.events.end')], false);
 })->with(['month', 'year']);
+
+it('formats calendar and reminder dates using custom format strings', function () {
+    $calendar = Calendar::factory()->make([
+        'date' => '2026-1-5',
+        'suffix' => 'AD',
+        'format' => 'd M, y s',
+    ]);
+    $reminder = Reminder::factory()->make(['year' => 2026, 'month' => 1, 'day' => 5]);
+    $reminder->setRelation('calendar', $calendar);
+
+    expect($calendar->niceDate())->toBe('5 January, 2026 AD')
+        ->and($reminder->readableDate())->toBe('5 January, 2026 AD');
+
+    $calendar->format = 'y-m-d';
+    expect($calendar->niceDate())->toBe('2026-1-5');
+
+    $calendar->format = 'M d, y';
+    expect($calendar->niceDate())->toBe('January 5, 2026');
+
+    $calendar->format = 'd M, y s';
+    $calendar->suffix = '';
+    expect($calendar->niceDate())->toBe('5 January, 2026');
+});
+
+it('formats era tokens s, e, and E for start-bounded, end-only, and non-era years', function () {
+    $calendar = Calendar::factory()->make([
+        'suffix' => 'AD',
+        'eras' => [
+            ['name' => 'Before Common Era', 'suffix' => 'BCE', 'start_year' => null, 'end_year' => -1],
+            ['name' => 'The Second Age', 'suffix' => '2A', 'start_year' => 1001, 'end_year' => null],
+        ],
+    ]);
+
+    $calendar->format = 'd M, y s';
+    expect($calendar->niceDate('1005-1-5'))->toBe('5 January, 5 2A')
+        ->and($calendar->niceDate('-5-1-5'))->toBe('5 January, 5 BCE')
+        ->and($calendar->niceDate('500-1-5'))->toBe('5 January, 500 AD');
+
+    $calendar->format = 'd M, y e';
+    expect($calendar->niceDate('1005-1-5'))->toBe('5 January, 5 2A')
+        ->and($calendar->niceDate('-5-1-5'))->toBe('5 January, 5 BCE')
+        ->and($calendar->niceDate('500-1-5'))->toBe('5 January, 500');
+
+    $calendar->format = 'd M, y E';
+    expect($calendar->niceDate('1005-1-5'))->toBe('5 January, 5 The Second Age')
+        ->and($calendar->niceDate('-5-1-5'))->toBe('5 January, 5 Before Common Era')
+        ->and($calendar->niceDate('500-1-5'))->toBe('5 January, 500');
+});
+
+it('does not corrupt month, year, or era names containing format token letters', function () {
+    $calendar = Calendar::factory()->make([
+        'date' => '2026-1-5',
+        'months' => [
+            ['name' => 'Midsummer', 'length' => 30, 'type' => 'standard', 'alias' => ''],
+        ],
+        'years' => [2026 => 'Year of the Dragon'],
+        'suffix' => 'AD',
+        'format' => 'd M, y s',
+    ]);
+    $reminder = Reminder::factory()->make(['year' => 2026, 'month' => 1, 'day' => 5]);
+    $reminder->setRelation('calendar', $calendar);
+
+    expect($calendar->niceDate())->toBe('5 Midsummer, Year of the Dragon AD')
+        ->and($reminder->readableDate())->toBe('5 Midsummer, Year of the Dragon AD');
+
+    $calendar->eras = [
+        ['name' => 'Second Age', 'suffix' => 'SA', 'start_year' => 2000, 'end_year' => null],
+    ];
+    $calendar->format = 'd M, y E e';
+    expect($calendar->niceDate('2026-1-5'))->toBe('5 Midsummer, 27 Second Age SA');
+});
+
+it('validates custom calendar format tokens via API', function (string $format, int $status) {
+    $this->asUser()->withCampaign();
+    $calendar = Calendar::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->putJson('/api/1.0/campaigns/1/calendars/' . $calendar->id, [
+        'format' => $format,
+    ])->assertStatus($status);
+
+    if ($status === 422) {
+        $response->assertJsonValidationErrors('format', 'fields');
+    } else {
+        expect($calendar->fresh()->format)->toBe($format);
+    }
+})->with([
+    'era name token' => ['d M, y E', 200],
+    'era suffix token' => ['e y-m-d', 200],
+    'invalid character' => ['d M, y X', 422],
+]);
+
+it('displays custom formatted date on calendar page and dashboard widget', function () {
+    $this->asUser()->withCampaign();
+    $calendar = Calendar::factory()->create([
+        'campaign_id' => 1,
+        'date' => '1005-1-5',
+        'format' => 'M d, y E',
+        'eras' => [
+            ['name' => 'The Second Age', 'suffix' => '2A', 'start_year' => 1001, 'end_year' => null],
+        ],
+    ]);
+
+    $this->get(route('entities.show', [$calendar->campaign, $calendar->entity]))
+        ->assertSuccessful()
+        ->assertSee('January 5, 5 The Second Age');
+
+    $widget = CampaignDashboardWidget::create([
+        'campaign_id' => 1,
+        'entity_id' => $calendar->entity->id,
+        'widget' => Widget::Calendar,
+    ]);
+
+    $this->get('/w/test-campaign/dashboard/widgets/' . $widget->id . '/render')
+        ->assertSuccessful()
+        ->assertSee('January 5, 5 The Second Age');
+});

@@ -263,7 +263,7 @@ To create a calendar, use the following endpoint.
 | `season_name` | `array` | Array of season names |
 | `season_month` | `array` | Array of seasons month start |
 | `season_day` | `array` | Array of seasons day start |
-| `format` | `string` | The rendering format for the calendar dates |
+| `format` | `string` | The rendering format for the calendar dates (supports `d`, `m`, `M`, `y`, `s`, `e`, `E`) |
 | `has_leap_year` | `boolean` | Whether the calendar has leap years |
 | `leap_year_amount` | `integer` | The amount of leap days |
 | `leap_year_offset` | `integer` | Every how many years the leap days occur |

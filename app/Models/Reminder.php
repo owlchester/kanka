@@ -126,22 +126,10 @@ class Reminder extends Model
     public function readableDate(): string
     {
         if (! isset($this->readableDate)) {
-            // Replace month with real month, and year maybe
-            $months = $this->calendar->months ?? [];
-            $year = $this->calendar->yearName($this->year);
-
             try {
-                if ($this->calendar->format) {
-                    $this->readableDate = Str::replace(
-                        ['d', 's', 'y', 'm', 'M'],
-                        [$this->day, '', $year, $this->month, isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month],
-                        $this->calendar->format
-                    );
-                } else {
-                    $this->readableDate = $this->day . ' ' .
-                        (isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month) . ', ' .
-                        $year;
-                }
+                $this->readableDate = $this->calendar
+                    ? $this->calendar->formatDate($this->year, $this->month, $this->day)
+                    : $this->date();
             } catch (Exception $e) {
                 $this->readableDate = $this->date();
             }
