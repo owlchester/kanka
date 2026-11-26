@@ -223,6 +223,7 @@
             <div class="flex flex-col gap-1 w-full">
                 <label v-html="trans('folder')"></label>
                 <select class="w-full" v-model="bulkFolder">
+                    <option value=""></option>
                     <option v-for="(name, id) in folders" :value="id" v-html="name"></option>
                 </select>
             </div>
@@ -421,7 +422,7 @@ const stopBulking = () => {
 const openUpdate = () => {
     openDialog(updateDialog.value)
     bulkVisibility.value = null
-    bulkFolder.value = null
+    bulkFolder.value = ''
 }
 
 const gridClass = () => {
@@ -730,7 +731,7 @@ const updateFiles = () => {
             })
         }
 
-        bulkFolder.value = null
+        bulkFolder.value = ''
         bulkVisibility.value = null
         isBulking.value = false
 

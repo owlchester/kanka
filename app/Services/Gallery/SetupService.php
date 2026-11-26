@@ -225,7 +225,6 @@ class SetupService
     protected function folders(): array
     {
         $folders = [
-            '' => '',
             0 => __('gallery.update.home'),
         ];
         $query = $this
