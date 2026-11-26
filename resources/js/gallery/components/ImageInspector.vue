@@ -24,7 +24,7 @@
             <!-- Scrollable Body -->
             <div class="flex-1 overflow-y-auto p-4 flex flex-col gap-4">
                 <!-- Preview / Font Sample -->
-                <div v-if="!file.is_folder && file.original" class="relative rounded-xl overflow-hidden bg-base-200 group cursor-pointer" @click="$emit('lightbox', file)">
+                <div v-if="!file.is_folder && file.original" class="relative rounded-xl overflow-hidden bg-base-200 group cursor-pointer shrink-0" @click="$emit('lightbox', file)">
                     <img
                         :src="file.original"
                         :alt="file.name"
@@ -36,7 +36,7 @@
                     </div>
                 </div>
 
-                <div v-else-if="file.is_font" class="rounded-xl bg-base-200 p-4 flex flex-col gap-3">
+                <div v-else-if="file.is_font" class="rounded-xl bg-base-200 p-4 flex flex-col gap-3 shrink-0">
                     <div class="text-2xl text-center py-2" :style="{ fontFamily: fontFamilyName }">
                         {{ trans('font_sample') }}
                     </div>
