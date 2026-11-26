@@ -29,12 +29,14 @@ class UploadController extends Controller
         $this->authorize('galleryUpload', $campaign);
 
         try {
-            return response()->json(
-                $this->service
-                    ->campaign($campaign)
-                    ->user($request->user())
-                    ->file($request->file('file'))
-            );
+            $result = $this->service
+                ->campaign($campaign)
+                ->user($request->user())
+                ->folder((string) $request->input('folder_id', ''))
+                ->file($request->file('file'));
+            $this->storage->campaign($campaign)->clearCache();
+
+            return response()->json($result);
         } catch (TranslatableException $e) {
             return response()->json(
                 ['error' => $e->getTranslatedMessage()],
@@ -72,13 +74,16 @@ class UploadController extends Controller
         $this->authorize('galleryUpload', $campaign);
 
         try {
-            return response()->json(
-                $this->service
-                    ->campaign($campaign)
-                    ->user($request->user())
-                    ->request($request)
-                    ->url($request->get('url'))
-            );
+            $result = $this->service
+                ->campaign($campaign)
+                ->user($request->user())
+                ->request($request)
+                ->folder((string) $request->validated('folder_id', ''))
+                ->url($request->get('url'));
+            $this->storage->campaign($campaign)->clearCache();
+            $result['used'] = $this->storage->uncachedUsedSpace();
+
+            return response()->json($result);
         } catch (TranslatableException $e) {
             return response()->json(
                 ['error' => $e->getTranslatedMessage()],

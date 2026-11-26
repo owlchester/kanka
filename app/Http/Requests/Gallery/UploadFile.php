@@ -3,9 +3,11 @@
 namespace App\Http\Requests\Gallery;
 
 use App\Facades\Limit;
+use App\Models\Campaign;
 use App\Rules\GallerySize;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
 
 class UploadFile extends FormRequest
@@ -25,8 +27,10 @@ class UploadFile extends FormRequest
      */
     public function rules(): array
     {
+        /** @var Campaign $campaign */
+        $campaign = $this->route('campaign');
         $types = ['jpeg', 'jpg', 'gif', 'png', 'webp'];
-        $limit = Limit::campaign($this->route('campaign'));
+        $limit = Limit::campaign($campaign);
         if ($this->user()) {
             $limit = $limit->user($this->user());
         }
@@ -41,6 +45,13 @@ class UploadFile extends FormRequest
                 File::types($types),
                 'max:' . $limit->upload(),
                 new GallerySize,
+            ],
+            'folder_id' => [
+                'nullable',
+                'string',
+                Rule::exists('images', 'id')
+                    ->where('is_folder', true)
+                    ->where('campaign_id', $campaign->id),
             ],
         ];
     }
