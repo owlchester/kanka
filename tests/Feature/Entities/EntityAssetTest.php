@@ -1,11 +1,14 @@
 <?php
 
 use App\Enums\EntityAssetType;
+use App\Enums\Visibility;
+use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\Character;
 use App\Models\EntityAsset;
 use App\Models\Image;
+use App\Services\Submenus\SubmenuService;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -358,4 +361,143 @@ it('renders square preview cards, metadata, audio player, and external links on 
         ->assertSee(Number::fileSize(524288))
         ->assertSee('<audio', false)
         ->assertSee('example.com');
+});
+
+it('uses the uploaded file visibility for its backing gallery image regardless of campaign default gallery visibility', function () {
+    Storage::fake('s3');
+    $this->asUser()->withCampaign();
+    $campaign = Campaign::findOrFail(1);
+    $campaign->settings = array_merge($campaign->settings ?? [], ['gallery_visibility' => 'admin']);
+    $campaign->save();
+
+    $character = Character::factory()->create(['campaign_id' => $campaign->id]);
+
+    $this->post(route('entities.entity_assets.store', [$campaign, $character->entity]), [
+        'type_id' => EntityAssetType::file->value,
+        'visibility_id' => Visibility::All->value,
+        'is_pinned' => 1,
+        'files' => [UploadedFile::fake()->create('theme.mp3', 100, 'audio/mpeg')],
+    ])->assertRedirect(route('entities.entity_assets.index', [$campaign, $character->entity]));
+
+    $publicAsset = EntityAsset::query()
+        ->where('entity_id', $character->entity->id)
+        ->latest('id')
+        ->firstOrFail();
+
+    expect($publicAsset->visibility_id)->toBe(Visibility::All)
+        ->and($publicAsset->image)->not->toBeNull()
+        ->and($publicAsset->image->visibility_id)->toBe(Visibility::All);
+
+    $this->post(route('entities.entity_assets.store', [$campaign, $character->entity]), [
+        'type_id' => EntityAssetType::file->value,
+        'visibility_id' => Visibility::Admin->value,
+        'is_pinned' => 1,
+        'files' => [UploadedFile::fake()->create('secret.mp3', 100, 'audio/mpeg')],
+    ])->assertRedirect(route('entities.entity_assets.index', [$campaign, $character->entity]));
+
+    $adminAsset = EntityAsset::query()
+        ->where('entity_id', $character->entity->id)
+        ->latest('id')
+        ->firstOrFail();
+
+    expect($adminAsset->visibility_id)->toBe(Visibility::Admin)
+        ->and($adminAsset->image)->not->toBeNull()
+        ->and($adminAsset->image->visibility_id)->toBe(Visibility::Admin);
+});
+
+it('excludes assets with hidden or missing gallery images from the media submenu count', function () {
+    $this->asUser()->withCampaign();
+    $campaign = Campaign::findOrFail(1);
+    $character = Character::factory()->create(['campaign_id' => $campaign->id]);
+
+    CampaignPermission::create([
+        'campaign_id' => $campaign->id,
+        'campaign_role_id' => 3,
+        'entity_type_id' => config('entities.ids.character'),
+        'action' => CampaignPermission::ACTION_READ,
+        'access' => true,
+    ]);
+
+    $adminImage = Image::factory()->create([
+        'campaign_id' => $campaign->id,
+        'ext' => 'mp3',
+        'visibility_id' => Visibility::Admin,
+    ]);
+
+    EntityAsset::factory()->create([
+        'entity_id' => $character->entity->id,
+        'type_id' => EntityAssetType::file,
+        'visibility_id' => Visibility::All,
+        'image_uuid' => $adminImage->id,
+        'metadata' => ['type' => 'audio/mpeg'],
+    ]);
+
+    EntityAsset::factory()->create([
+        'entity_id' => $character->entity->id,
+        'type_id' => EntityAssetType::file,
+        'visibility_id' => Visibility::All,
+        'image_uuid' => '00000000-0000-0000-0000-000000000000',
+        'metadata' => ['type' => 'audio/mpeg'],
+    ]);
+
+    CampaignLocalization::forceCampaign($campaign);
+
+    // VisibilityIDScope intentionally skips console requests; exercise its web behaviour.
+    $console = new ReflectionProperty(app(), 'isRunningInConsole');
+    $console->setValue(app(), false);
+
+    try {
+        $adminItems = app(SubmenuService::class)
+            ->campaign($campaign)
+            ->entity($character->entity)
+            ->user(auth()->user())
+            ->items();
+
+        $adminMediaCount = collect($adminItems)->collapse()->get('assets')['count'] ?? null;
+        expect($adminMediaCount)->toBe(1);
+
+        $this->asPlayer();
+
+        $playerItems = app(SubmenuService::class)
+            ->campaign($campaign)
+            ->entity($character->entity)
+            ->user(auth()->user())
+            ->items();
+
+        $playerMediaCount = collect($playerItems)->collapse()->get('assets')['count'] ?? null;
+        expect($playerMediaCount)->toBe(0);
+
+        $publicImage = Image::factory()->create([
+            'campaign_id' => $campaign->id,
+            'ext' => 'mp3',
+            'visibility_id' => Visibility::All,
+        ]);
+
+        EntityAsset::factory()->create([
+            'entity_id' => $character->entity->id,
+            'type_id' => EntityAssetType::file,
+            'visibility_id' => Visibility::All,
+            'image_uuid' => $publicImage->id,
+            'metadata' => ['type' => 'audio/mpeg'],
+        ]);
+
+        EntityAsset::factory()->create([
+            'entity_id' => $character->entity->id,
+            'type_id' => EntityAssetType::link,
+            'visibility_id' => Visibility::All,
+            'image_uuid' => null,
+            'metadata' => ['url' => 'https://example.com'],
+        ]);
+
+        $playerItemsWithVisible = app(SubmenuService::class)
+            ->campaign($campaign)
+            ->entity($character->entity)
+            ->user(auth()->user())
+            ->items();
+
+        $playerMediaCountWithVisible = collect($playerItemsWithVisible)->collapse()->get('assets')['count'] ?? null;
+        expect($playerMediaCountWithVisible)->toBe(2);
+    } finally {
+        $console->setValue(app(), true);
+    }
 });

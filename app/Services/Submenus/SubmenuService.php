@@ -99,7 +99,7 @@ class SubmenuService
             $this->items['third']['assets'] = [
                 'name' => __('entries/tabs.media'),
                 'route' => 'entities.entity_assets.index',
-                'count' => $this->entity->assets()->withoutAliases()->count(),
+                'count' => $this->entity->assets()->withoutAliases()->withoutHiddenImages()->count(),
                 'entity' => true,
                 'icon' => 'fa-regular fa-file',
             ];

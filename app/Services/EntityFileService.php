@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Enums\EntityAssetType;
+use App\Enums\Visibility;
 use App\Exceptions\TranslatableException;
 use App\Facades\Limit;
 use App\Http\Requests\StoreEntityAsset;
@@ -57,12 +58,14 @@ class EntityFileService
                 $name = Str::limit(Str::beforeLast($name, '.'), 45, '');
             }
 
+            $visibility = Visibility::tryFrom((int) $request->input('visibility_id')) ?? Visibility::All;
+
             $image = new Image;
             $image->campaign_id = $this->campaign->id;
             $image->ext = $uploadedFile->extension();
             $image->size = (int) ceil($uploadedFile->getSize() / 1024); // kb
             $image->name = mb_substr($name, 0, 45);
-            $image->visibility_id = $this->campaign->defaultGalleryVisibility();
+            $image->visibility_id = $visibility;
             $image->save();
 
             $uploadedFile
@@ -80,7 +83,7 @@ class EntityFileService
                 'type' => $uploadedFile->getMimeType(),
             ];
             $file->name = $name;
-            $file->visibility_id = $request->get('visibility_id', 1);
+            $file->visibility_id = $visibility;
             $file->is_pinned = $request->get('is_pinned', 1);
             $file->image_uuid = $image->id;
             $file->save();
