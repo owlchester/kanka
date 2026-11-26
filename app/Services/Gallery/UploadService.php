@@ -215,6 +215,7 @@ class UploadService
             'thumbnail' => $this->image->getUrl(192, 144),
             'selection_thumbnail' => $this->image->getUrl(160, 160),
             'src' => $this->image->getUrl(),
+            'file' => (new GalleryFile($this->image->fresh(['creator'])))->campaign($this->campaign),
         ];
     }
 }

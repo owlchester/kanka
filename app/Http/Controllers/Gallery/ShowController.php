@@ -16,7 +16,11 @@ class ShowController extends Controller
 
     public function show(Campaign $campaign, Image $image)
     {
-        $this->authorize('gallery', $campaign);
+        if ($image->campaign_id !== $campaign->id) {
+            abort(404);
+        }
+
+        $this->authorize('view', [$image, $campaign]);
 
         return new GalleryFileFull($image);
     }

@@ -26,6 +26,7 @@ class BrowseController extends Controller
                 ->user($request->user())
                 ->folder($request->get('folder'))
                 ->term($request->get('term'))
+                ->sort($request->get('sort'))
                 ->images()
         );
     }

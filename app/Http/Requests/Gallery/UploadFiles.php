@@ -30,7 +30,7 @@ class UploadFiles extends FormRequest
         if ($this->user()) {
             $limit = $limit->user($this->user());
         }
-        $types = ['jpeg', 'jpg', 'gif', 'png', 'webp', 'woff2'];
+        $types = ['jpeg', 'jpg', 'gif', 'png', 'webp', 'svg', 'woff2'];
 
         return [
             'files' => 'required|array',

@@ -36,9 +36,24 @@ const pagination = ref<PaginationLinks>({
     next: null,
 })
 const folderStack = ref<{ url: string; name: string }[]>([])
+const sort = ref(localStorage.getItem('gallery-tiptap-sort') || 'recent')
+const mode = ref(localStorage.getItem('gallery-mode') === 'small' ? 'small' : 'large')
 const editorRef = ref<any>(null)
 let abortController: AbortController | null = null
 let searchTimeout: ReturnType<typeof setTimeout> | null = null
+
+const setMode = (nextMode: 'large' | 'small') => {
+    mode.value = nextMode
+    localStorage.setItem('gallery-mode', nextMode)
+}
+
+const onSortChange = () => {
+    localStorage.setItem('gallery-tiptap-sort', sort.value)
+    const url = new URL(currentUrl.value || baseUrl.value, window.location.origin)
+    url.searchParams.set('sort', sort.value)
+    currentUrl.value = url.toString()
+    loadImages(currentUrl.value)
+}
 
 const openGallery = (event: CustomEvent) => {
     if (event.detail.galleryId !== props.galleryId) return
@@ -248,6 +263,19 @@ onBeforeUnmount(() => {
                         <i class="fa-regular fa-search" aria-hidden="true"></i>
                         Search
                     </button>
+                    <select v-model="sort" @change="onSortChange" class="bg-base-200 rounded-lg px-2 py-1.5 text-xs">
+                        <option value="recent">Recent</option>
+                        <option value="name_asc">Name (A-Z)</option>
+                        <option value="name_desc">Name (Z-A)</option>
+                    </select>
+                    <div class="flex rounded-lg bg-base-200 p-0.5 text-xs gap-0.5 shrink-0">
+                        <button type="button" class="rounded px-2 py-1 cursor-pointer" :class="mode === 'large' ? 'bg-base-100' : 'text-neutral-content'" @click="setMode('large')">
+                            <i class="fa-regular fa-grid-2" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="rounded px-2 py-1 cursor-pointer" :class="mode === 'small' ? 'bg-base-100' : 'text-neutral-content'" @click="setMode('small')">
+                            <i class="fa-regular fa-grid-4" aria-hidden="true"></i>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Breadcrumb / Back navigation -->
@@ -277,7 +305,7 @@ onBeforeUnmount(() => {
                     No images found
                 </div>
 
-                <div v-else class="grid grid-cols-4 gap-4">
+                <div v-else :class="mode === 'small' ? 'grid grid-cols-5 sm:grid-cols-6 gap-2' : 'grid grid-cols-3 sm:grid-cols-4 gap-4'">
                     <button
                         v-for="image in images"
                         :key="image.uuid"
