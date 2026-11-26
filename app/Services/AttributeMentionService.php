@@ -17,6 +17,7 @@ class AttributeMentionService
 
     protected Entity $loadedEntity;
 
+    /** @var Collection<string, array<string, mixed>> */
     protected Collection $calculatedAttributes;
 
     /**
@@ -103,7 +104,9 @@ class AttributeMentionService
 
         $baseAttributes = $this->loadedEntity->attributes()->orderBy('default_order')->pluck('value', 'name');
 
-        $this->calculatedAttributes = new Collection;
+        /** @var Collection<string, array<string, mixed>> $calculated */
+        $calculated = new Collection;
+        $this->calculatedAttributes = $calculated;
 
         // Prepare our attributes with first level references
         foreach ($baseAttributes as $name => $value) {
@@ -111,7 +114,7 @@ class AttributeMentionService
             preg_match_all('`\{(.*?)\}`i', $value, $references);
 
             // Cleanup attribute name to remove range stuff
-            $name = preg_replace('`\[range:(.*)\]`i', '', $name);
+            $name = (string) preg_replace('`\[range:(.*)\]`i', '', (string) $name);
 
             $this->calculatedAttributes->put($name, [
                 'value' => $value,
@@ -125,12 +128,11 @@ class AttributeMentionService
         // Loop through the attributes and calculate the values
         foreach ($this->calculatedAttributes as $name => $attribute) {
             try {
-                // @phpstan-ignore-next-line
-                $this->calculatedAttributes[$name] = $this->calculateAttribute($attribute);
+                $this->calculatedAttributes->put((string) $name, $this->calculateAttribute($attribute));
             } catch (Exception $e) {
                 $attribute['loop'] = true;
                 $attribute['final'] = $attribute['value'];
-                $this->calculatedAttributes[$name] = $attribute;
+                $this->calculatedAttributes->put((string) $name, $attribute);
             }
         }
 
