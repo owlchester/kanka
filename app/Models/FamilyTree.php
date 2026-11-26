@@ -19,6 +19,11 @@ class FamilyTree extends Model
     use Blameable;
     use HasFactory;
 
+    protected $fillable = [
+        'family_id',
+        'config',
+    ];
+
     public $casts = [
         'config' => 'array',
     ];

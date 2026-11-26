@@ -133,6 +133,7 @@ Route::get('/families/{family}/tree', [TreeController::class, 'index'])->name('f
 Route::get('/families/{family}/tree/api', [App\Http\Controllers\Families\Trees\ApiController::class, 'index'])->name('families.family-tree.api');
 Route::get('/families/{entity}/tree/entity-api', [App\Http\Controllers\Families\Trees\ApiController::class, 'entity'])->name('families.family-tree.entity-api');
 Route::post('/families/{family}/tree/api', [App\Http\Controllers\Families\Trees\ApiController::class, 'save'])->name('families.family-tree.api-save');
+Route::post('/families/{family}/tree/promote-character', [App\Http\Controllers\Families\Trees\ApiController::class, 'promoteCharacter'])->name('families.family-tree.promote-character');
 
 Route::post('/families/{family}/store-member', 'Families\MemberController@store')->name('families.members.store');
 Route::get('/families/{family}/add-member', 'Families\MemberController@create')->name('families.members.create');
