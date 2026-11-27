@@ -194,13 +194,22 @@ button.loading {
 .loading, .loading:hover {
     pointer-events: none;
 }
+@keyframes kanka-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
 .loading:before {
-    margin-right: .5rem;
+    content: "";
     display: inline-block;
-    font-family: "Font Awesome 6 Pro";
-    font-weight: 900;
-    animation: fa-spin 2s linear infinite;
-    content: "\f110";
+    width: 1em;
+    height: 1em;
+    margin-right: .5rem;
+    vertical-align: -0.125em;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 9999px;
+    animation: kanka-spin 0.75s linear infinite;
 }
 
 .bg-box {
