@@ -33,6 +33,7 @@ return [
         ],
         'join'              => ':user joined :campaign.',
         'leave'             => ':user left :campaign.',
+        'left'              => 'You have left :campaign.',
         'new_owner'         => 'You have been made an admin of :campaign.',
         'plugin'            => [
             'deleted'   => 'The plugin :plugin was deleted from the marketplace and removed from :campaign.',
