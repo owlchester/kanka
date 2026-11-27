@@ -9,6 +9,7 @@
     --tw-background-opacity: 1;
     background: hsl(var(--b1)/var(--tw-background-opacity));
     left: 18px;
+    --fa-width: 2rem;
 }
 
 
