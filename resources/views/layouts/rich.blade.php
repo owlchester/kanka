@@ -32,7 +32,7 @@ if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'bas
         'resources/css/vendor.css',
         'resources/css/app.css',
     ])
-    @includeWhen(!config('fontawesome.kit'), 'layouts.styles.fontawesome')
+    @includeWhen(config('fontawesome.pro_url') || !config('fontawesome.kit'), 'layouts.styles.fontawesome')
     @include('layouts._theme_css')
     @includeWhen(!empty($campaign), 'layouts._theme')
     @yield('styles')
@@ -46,7 +46,7 @@ if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'bas
 <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full"></div>
 
 @vite('resources/js/app.js')
-@includeWhen(config('fontawesome.kit'), 'layouts.scripts.fontawesome')
+@includeWhen(!config('fontawesome.pro_url') && config('fontawesome.kit'), 'layouts.scripts.fontawesome')
 
 @yield('scripts')
 @livewireScripts

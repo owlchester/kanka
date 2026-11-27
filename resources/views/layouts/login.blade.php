@@ -13,7 +13,7 @@
     @include('layouts.links.icons')
 
     @vite('resources/css/auth.css')
-    @includeWhen(!config('fontawesome.kit'), 'layouts.styles.fontawesome')
+    @includeWhen(config('fontawesome.pro_url') || !config('fontawesome.kit'), 'layouts.styles.fontawesome')
 </head>
 <body class="hold-transition register-page">
     <div class="login-box mx-auto">
@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    @includeWhen(config('fontawesome.kit'), 'layouts.scripts.fontawesome')
+    @includeWhen(!config('fontawesome.pro_url') && config('fontawesome.kit'), 'layouts.scripts.fontawesome')
     @vite(['resources/js/auth.js'])
 @yield('scripts')
 

@@ -50,7 +50,7 @@ if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'bas
         'resources/css/vendor.css',
         'resources/css/app.css',
     ])
-    @includeWhen(!config('fontawesome.kit'), 'layouts.styles.fontawesome')
+    @includeWhen(config('fontawesome.pro_url') || !config('fontawesome.kit'), 'layouts.styles.fontawesome')
     @includeWhen (config('ads.nitro.enabled'), 'ads.nitro.styles')
     @yield('styles')
     @include('layouts._theme_css')
@@ -120,7 +120,7 @@ if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'bas
 
     <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full flex flex-col gap-2 z-1001"></div>
 
-    @includeWhen(config('fontawesome.kit'), 'layouts.scripts.fontawesome')
+    @includeWhen(!config('fontawesome.pro_url') && config('fontawesome.kit'), 'layouts.scripts.fontawesome')
     @vite('resources/js/app.js')
     @yield('scripts')
 

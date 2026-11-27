@@ -28,7 +28,7 @@ class NavigationService
             'marketplace' => $this->marketplace(),
             'releases' => $this->releasesData(),
             'has_unread' => $this->user->hasUnread(),
-            'fontawesome_pro' => ! empty(config('fontawesome.kit')),
+            'fontawesome_pro' => ! empty(config('fontawesome.pro_url')) || ! empty(config('fontawesome.kit')),
         ];
     }
 

@@ -92,7 +92,7 @@ class ModuleService
 
     public function defaultIcon(EntityType $entityType): string
     {
-        if (config('fontawesome.kit')) {
+        if (config('fontawesome.pro_url') || config('fontawesome.kit')) {
             return 'fa-duotone ' . $entityType->icon;
         }
 
