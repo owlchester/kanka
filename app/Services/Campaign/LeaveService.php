@@ -5,6 +5,7 @@ namespace App\Services\Campaign;
 use App\Events\Campaigns\Members\UserLeft;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
+use App\Notifications\Header;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Exception;
@@ -34,9 +35,18 @@ class LeaveService
             ->where('cr.campaign_id', $this->campaign->id)
             ->get();
         foreach ($roles as $role) {
-            $role->delete();
+            $role->deleteQuietly();
         }
 
         UserLeft::dispatch($this->campaign, $this->user);
+
+        $this->user->notify(new Header(
+            'campaign.left',
+            'user',
+            'info',
+            [
+                'campaign' => $this->campaign->name,
+            ]
+        ));
     }
 }

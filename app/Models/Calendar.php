@@ -110,22 +110,40 @@ class Calendar extends MiscModel
     /** Format a year in its era, or return null when no era matches. */
     public function eraYearName(int|string $year): ?string
     {
+        $era = $this->eraForYear($year);
+
+        return $era !== null ? $era['number'] . ' ' . $era['suffix'] : null;
+    }
+
+    /**
+     * Resolve the matching era details for a year, or null when no era matches.
+     *
+     * @return array{name: string, suffix: string, number: int}|null
+     */
+    public function eraForYear(int|string $year): ?array
+    {
         $eras = $this->eras;
         if (! is_array($eras)) {
             return null;
         }
 
+        $yearInt = (int) $year;
+
         foreach ($eras as $era) {
-            if (! is_string($era['suffix'] ?? null)) {
+            if (! is_array($era) || ! is_string($era['suffix'] ?? null)) {
                 continue;
             }
 
             $start = $era['start_year'] ?? null;
             $end = $era['end_year'] ?? null;
-            if (($start === null || $year >= $start) && ($end === null || $year <= $end)) {
-                $number = $start === null ? abs((int) $year) : $year - $start + 1;
+            if (($start === null || $yearInt >= $start) && ($end === null || $yearInt <= $end)) {
+                $number = $start === null ? abs($yearInt) : $yearInt - $start + 1;
 
-                return $number . ' ' . $era['suffix'];
+                return [
+                    'name' => is_string($era['name'] ?? null) ? $era['name'] : '',
+                    'suffix' => $era['suffix'],
+                    'number' => $number,
+                ];
             }
         }
 
@@ -176,6 +194,40 @@ class Calendar extends MiscModel
     }
 
     /**
+     * Format a year, month, and day according to the calendar's custom format or default layout.
+     */
+    public function formatDate(int|string $year, int|string $month, int|string $day): string
+    {
+        $name = Arr::get($this->months, ((int) $month - 1) . '.name');
+        $monthName = is_string($name) ? $name : (string) $month;
+
+        if (empty($this->format)) {
+            return $day . ' ' . $monthName . ', ' . $this->yearName($year);
+        }
+
+        $era = $this->eraForYear($year);
+        $namedYear = is_array($this->years) ? Arr::get($this->years, $year) : null;
+        $yearValue = $era !== null
+            ? (string) $era['number']
+            : (string) ($namedYear ?? $year);
+        $suffix = $era !== null ? $era['suffix'] : (string) ($this->suffix ?? '');
+        $eraSuffix = $era !== null ? $era['suffix'] : '';
+        $eraName = $era !== null ? $era['name'] : '';
+
+        $formatted = strtr($this->format, [
+            'd' => (string) $day,
+            'm' => (string) $month,
+            'M' => $monthName,
+            'y' => $yearValue,
+            's' => $suffix,
+            'e' => $eraSuffix,
+            'E' => $eraName,
+        ]);
+
+        return trim((string) preg_replace('/\s{2,}/', ' ', $formatted));
+    }
+
+    /**
      * Get the calendar's nice date
      */
     public function niceDate(?string $date = null): string
@@ -189,9 +241,7 @@ class Calendar extends MiscModel
 
         [$year, $month, $day] = $this->dateArray($date);
 
-        $name = Arr::get($this->months, ($month - 1) . '.name');
-
-        return $day . ' ' . (is_string($name) ? $name : $month) . ', ' . $this->yearName($year);
+        return $this->formatDate($year, $month, $day);
     }
 
     /**

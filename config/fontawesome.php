@@ -2,11 +2,14 @@
 
 return [
     /**
-     * We use FontAwesome kits to load additional icons. To have fontawesome loaded in your local
-     * version of Kanka, create a kit on fontawesome and add your kit name in your .env file.
+     * We use FontAwesome Pro (via a self-hosted stylesheet URL or a FontAwesome Kit) to load
+     * additional icons. `pro_url` takes precedence over `kit`; when neither is set, the local
+     * free stylesheet is used.
      * https://fontawesome.com/kits
      */
-    'kit' => getenv('FONTAWESOME_KIT'),
+    'pro_url' => env('FONTAWESOME_PRO_URL'),
+
+    'kit' => env('FONTAWESOME_KIT'),
 
     'search' => 'https://fontawesome.com/search',
 ];

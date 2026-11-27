@@ -17,7 +17,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=5' name='viewport'>
     @include('layouts.links.icons')
-    @includeWhen(!config('fontawesome.kit'), 'layouts.styles.fontawesome')
+    @includeWhen(config('fontawesome.pro_url') || !config('fontawesome.kit'), 'layouts.styles.fontawesome')
 
     @if (config('app.asset_url'))
         <link rel="dns-prefetch" href="{{ config('app.asset_url') }}">
@@ -80,7 +80,7 @@
 
 @includeWhen(Route::has('home'), 'front.footer')
 @vite('resources/js/front.js')
-@includeWhen(config('fontawesome.kit'), 'layouts.scripts.fontawesome')
+@includeWhen(!config('fontawesome.pro_url') && config('fontawesome.kit'), 'layouts.scripts.fontawesome')
 
 @includeWhen(config('tracking.consent'), 'partials.cookieconsent')
 </body>

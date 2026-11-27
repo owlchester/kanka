@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @method static self|Builder file()
  * @method static self|Builder link()
  * @method static self|Builder withoutAliases()
+ * @method static self|Builder withoutHiddenImages()
  */
 trait EntityAssetScopes
 {
@@ -55,5 +56,16 @@ trait EntityAssetScopes
     {
         // @phpstan-ignore-next-line
         return $query->whereNot('type_id', EntityAssetType::alias);
+    }
+
+    public function scopeWithoutHiddenImages(Builder $query): Builder
+    {
+        $column = $query->qualifyColumn('image_uuid');
+
+        return $query->where(function (Builder $query) use ($column): void {
+            $query->whereNull($column)
+                ->orWhere($column, '')
+                ->orWhereHas('image');
+        });
     }
 }

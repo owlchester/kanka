@@ -13,7 +13,6 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=5' name='viewport'>
 
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="//kit.fontawesome.com">
     @vite('resources/css/front.css')
 </head>
 <body id="page-top">

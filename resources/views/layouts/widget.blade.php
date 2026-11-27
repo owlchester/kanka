@@ -32,7 +32,7 @@ if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'bas
         'resources/css/vendor.css',
         'resources/css/app.css',
     ])
-    @includeWhen(!config('fontawesome.kit'), 'layouts.styles.fontawesome')
+    @includeWhen(config('fontawesome.pro_url') || !config('fontawesome.kit'), 'layouts.styles.fontawesome')
     @yield('styles')
     @include('layouts._theme_css')
     @includeWhen(!empty($campaign), 'layouts._theme')
@@ -51,7 +51,7 @@ if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'bas
 
     @yield('modals')
 
-    @includeWhen(config('fontawesome.kit'), 'layouts.scripts.fontawesome')
+    @includeWhen(!config('fontawesome.pro_url') && config('fontawesome.kit'), 'layouts.scripts.fontawesome')
     @vite('resources/js/app.js')
     @yield('scripts')
 </body>

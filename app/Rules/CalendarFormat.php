@@ -15,7 +15,7 @@ class CalendarFormat implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (! preg_match('/^[ymMds\s,-]+$/', $value)) {
+        if (! preg_match('/^[ymMdseE\s,-]+$/', $value)) {
             $fail(__('calendars.validators.format'));
         }
     }

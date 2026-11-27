@@ -17,7 +17,6 @@
     @include('layouts.links.icons')
 
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="//kit.fontawesome.com">
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
     @vite('resources/css/front.css')
 </head>
