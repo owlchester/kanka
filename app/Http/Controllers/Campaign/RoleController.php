@@ -142,6 +142,8 @@ class RoleController extends Controller
             ->with('user')
             ->paginate();
 
+        $campaignRole->setAttribute('users_count', $members->total());
+
         $entityTypeService = $this->entityTypeService
             ->campaign($campaign)
             ->exclude([config('entities.ids.bookmark')]);

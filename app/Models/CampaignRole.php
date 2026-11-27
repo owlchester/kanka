@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property Collection|CampaignPermission[] $rolePermissions
  * @property Collection|CampaignDashboardRole[] $dashboardRoles
  * @property Collection|CampaignRoleUser[] $users
+ * @property int|null $users_count
  *
  * @method static self|Builder admin(bool $with)
  * @method static self|Builder public(bool $with)

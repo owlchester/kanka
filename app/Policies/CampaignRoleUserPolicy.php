@@ -29,6 +29,14 @@ class CampaignRoleUserPolicy
 
     public function delete(User $user, CampaignRoleUser $campaignRoleUser, CampaignRole $campaignRole): bool
     {
-        return $user->can('admin', $campaignRole->campaign);
+        if ($campaignRoleUser->campaign_role_id !== $campaignRole->id || ! $user->can('admin', $campaignRole->campaign)) {
+            return false;
+        }
+
+        if ($campaignRole->isAdmin()) {
+            return ($campaignRole->users_count ?? $campaignRole->users()->count()) > 1;
+        }
+
+        return true;
     }
 }

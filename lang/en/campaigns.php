@@ -285,6 +285,7 @@ return [
             ],
             'errors'    => [
                 'cant_kick_admins'  => 'To avoid abuse, it is not possible to remove other members from the :admin role. In case of issues, contact us on :discord or at :email.',
+                'last_admin'        => 'You cannot remove the last member of the :admin role.',
                 'needs_more_roles'  => 'You need to add yourself to another role in the campaign before being able to remove yourself from the :admin role.',
             ],
             'fields'    => [

@@ -50,6 +50,11 @@ class MemberService
         $deletedRoles = [];
         /** @var ?CampaignRoleUser $role */
         foreach ($roleUsers as $role) {
+            if ($role->campaignRole->isAdmin() && $role->campaignRole->users()->count() <= 1) {
+                throw (new TranslatableException(
+                    'campaigns.roles.users.errors.last_admin'
+                ))->setOptions(['admin' => $role->campaignRole->name]);
+            }
             // Admin role being switched? Forget the cache
             if ($role->campaignRole->isAdmin()) {
                 CampaignCache::campaign($this->campaign)->clear();
@@ -117,7 +122,8 @@ class MemberService
         if (
             ! $this->checkUserInCampaign() ||
             ! $this->checkRoleInCampaign() ||
-            ! $this->userIsInRole()
+            ! $this->userIsInRole() ||
+            ($this->campaignRole->isAdmin() && $this->campaignRole->users()->count() <= 1)
         ) {
             return false;
         }
@@ -135,6 +141,12 @@ class MemberService
         // If the role isn't an admin, we can safely delete
         if (! $this->userCampaignRole->campaignRole->isAdmin()) {
             return $this->userCampaignRole->delete();
+        }
+
+        if ($this->userCampaignRole->campaignRole->users()->count() <= 1) {
+            throw (new TranslatableException(
+                'campaigns.roles.users.errors.last_admin'
+            ))->setOptions(['admin' => $this->userCampaignRole->campaignRole->name]);
         }
 
         // It's the admin role. Only allow if campaign author or self
