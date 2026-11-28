@@ -16,6 +16,8 @@ enum UserAction: int
     case subFail = 15;
     case subPaypal = 16;
     case subRenew = 17;
+    case subPause = 18;
+    case subResume = 19;
     case campaignNew = 20;
     case campaignJoin = 21;
     case campaignLeave = 22;
@@ -42,6 +44,8 @@ enum UserAction: int
     case subPaypalRenew = 85;
     case paymentEdit = 86;
     case paymentAuto = 87;
+    case subPauseResumingWarning = 88;
+    case subYearlyNudge = 89;
     case campaignBoost = 90;
     case campaignUpgradeBoost = 91;
     case campaignSuperboost = 92;

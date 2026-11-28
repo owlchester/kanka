@@ -34,11 +34,17 @@ class CancellationService
         }
 
         try {
-            $this->user->subscription('kanka')->cancel();
+            $subscription = $this->user->subscription('kanka');
+            if ($subscription->getAttribute('paused_until') !== null) {
+                $subscription->forceFill(['paused_until' => null])->save();
+            }
+            $subscription->cancel();
         } catch (\Exception $e) {
             // On local machines, subs get dropped from stripe and it causes issues
             $this->user->subscription('kanka')->delete();
         }
+
+        app(YearlyNudgeService::class)->user($this->user)->forgetCache();
 
         UserLogger::user($this->user)->log(UserAction::subCancel);
         if ($this->webhook) {

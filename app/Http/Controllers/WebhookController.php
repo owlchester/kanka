@@ -12,7 +12,9 @@ use App\Jobs\SubscriptionEndJob;
 use App\Models\TierPrice;
 use App\Models\User;
 use App\Services\Subscription\PaymentMethodService;
+use App\Services\Subscription\YearlyNudgeService;
 use App\Services\SubscriptionService;
+use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\Http\Controllers\WebhookController as CashierController;
@@ -78,6 +80,19 @@ class WebhookController extends CashierController
 
         Log::debug('Stripe payload', $payload);
 
+        // Sync pause_collection state with local subscriptions.paused_until
+        $previousAttributes = Arr::get($payload, 'data.previous_attributes', []);
+        $resumesAt = Arr::get($data, 'pause_collection.resumes_at');
+        $pausedUntil = $resumesAt ? Carbon::createFromTimestamp((int) $resumesAt) : null;
+        if ($localSub = $user->subscription('kanka')) {
+            $currentPaused = $localSub->getAttribute('paused_until');
+            $currentPausedTs = $currentPaused ? Carbon::parse((string) $currentPaused)->timestamp : null;
+            if ($currentPausedTs !== $pausedUntil?->timestamp) {
+                $localSub->forceFill(['paused_until' => $pausedUntil])->save();
+                app(YearlyNudgeService::class)->user($user)->forgetCache();
+            }
+        }
+
         // PayPal / 3DS: subscription transitions from incomplete to active
         $previousStatus = Arr::get($payload, 'data.previous_attributes.status', null);
         $isNewActivation = $previousStatus === 'incomplete' && $status === 'active';
@@ -87,6 +102,10 @@ class WebhookController extends CashierController
         $previousPlanId = Arr::get($payload, 'data.previous_attributes.plan.id')
             ?? Arr::get($payload, 'data.previous_attributes.items.data.0.price.id');
         $isPlanChange = $previousPlanId !== null && $previousPlanId !== $planId;
+
+        if (is_array($previousAttributes) && array_key_exists('pause_collection', $previousAttributes) && ! $isNewActivation && ! $isPlanChange) {
+            return $response;
+        }
 
         /** @var SubscriptionService $service */
         $service = app()->make('App\Services\SubscriptionService');

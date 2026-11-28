@@ -17,6 +17,8 @@ use App\Console\Commands\Report\Onboarding;
 use App\Console\Commands\Report\Weekly;
 use App\Console\Commands\Subscriptions\EndFreeTrials;
 use App\Console\Commands\Subscriptions\EndSubscriptions;
+use App\Console\Commands\Subscriptions\NudgeYearlyCommand;
+use App\Console\Commands\Subscriptions\PauseResumingCommand;
 use App\Console\Commands\Subscriptions\PaypalExpiringCommand;
 use App\Console\Commands\Users\RegenerateDiscordToken;
 use Illuminate\Console\Scheduling\Schedule;
@@ -48,6 +50,8 @@ class Kernel extends ConsoleKernel
         $schedule->command(EndSubscriptions::class)->onOneServer()->dailyAt('00:05')->sentryMonitor();
         $schedule->command(EndFreeTrials::class)->onOneServer()->dailyAt('00:01');
         $schedule->command(PaypalExpiringCommand::class)->onOneServer()->dailyAt('06:30');
+        $schedule->command(PauseResumingCommand::class)->onOneServer()->dailyAt('06:45');
+        $schedule->command(NudgeYearlyCommand::class)->onOneServer()->dailyAt('09:00');
         $schedule->command(RegenerateDiscordToken::class)->onOneServer()->dailyAt('00:15');
         $schedule->command(VisibileEntityCountCommand::class)->onOneServer()->dailyAt('01:00');
         $schedule->command(CleanupTrashed::class)->onOneServer()->dailyAt('01:15');

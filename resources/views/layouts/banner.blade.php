@@ -31,8 +31,9 @@
 {{--    </x-tutorial>--}}
 {{--@endif--}}
 
+<div @class(['max-w-7xl mx-auto' => isset($centered) && $centered])>
 @can('freeTrial', auth()->user())
-    <x-tutorial code="banner_free_trial" type="info">
+    <x-tutorial code="banner_free_trial" type="info" class="mx-4 mt-4">
             <p>
                 {!! __('subscriptions/free-trial.pitch.title') !!}<br />
 
@@ -43,3 +44,20 @@
 
         </x-tutorial>
 @endif
+
+@if (auth()->check() && auth()->user()->isSubscriber() && ! \App\Facades\UserCache::dismissedTutorial('banner_yearly_nudge'))
+    @if ($yearlyNudgeOffer = app(\App\Services\Subscription\YearlyNudgeService::class)->user(auth()->user())->cachedOffer())
+        <x-tutorial code="banner_yearly_nudge" type="info" class="mx-4 mt-4">
+            <p>
+                {{ __('subscriptions/yearly-nudge.banner', [
+                    'tier' => $yearlyNudgeOffer['tier_name'],
+                    'savings' => $yearlyNudgeOffer['currency_symbol'] . \Illuminate\Support\Number::format($yearlyNudgeOffer['savings'], 2),
+                ]) }}
+                <a href="{{ route('settings.subscription') }}" class="font-bold underline text-link">
+                    {{ __('subscriptions/yearly-nudge.action') }}
+                </a>
+            </p>
+        </x-tutorial>
+    @endif
+@endif
+</div>

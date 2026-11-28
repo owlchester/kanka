@@ -20,6 +20,7 @@ use App\Models\SubscriptionCancellation;
 use App\Models\Tier;
 use App\Models\TierPrice;
 use App\Services\Roadmap\FeatureChampionService;
+use App\Services\Subscription\YearlyNudgeService;
 use App\Traits\UserAware;
 use Carbon\Carbon;
 use Illuminate\Contracts\Cache\LockProvider;
@@ -293,6 +294,7 @@ class SubscriptionService
         // Add the necessary roles and pledge data
         $this->user->pledge = $this->tier->name;
         $this->user->update(['pledge' => $this->tier->name]);
+        app(YearlyNudgeService::class)->user($this->user)->forgetCache();
 
         if ($this->tier->name !== Pledge::ELEMENTAL) {
             app(FeatureChampionService::class)->user($this->user)->releaseActive();

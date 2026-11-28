@@ -31,6 +31,56 @@
             @include('settings.subscription._recap')
         @endif
 
+        @if (!empty($pausedUntil) && $pausedUntil->isFuture())
+            <div class="rounded-2xl bg-box p-4 shadow-xs flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border border-primary/40">
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-base-200 flex items-center justify-center shrink-0 text-primary">
+                        <x-icon class="fa-regular fa-pause-circle text-lg" />
+                    </div>
+                    <div class="flex flex-col gap-0.5">
+                        <div class="font-semibold">{{ __('subscriptions/pause.banner.title') }}</div>
+                        <p class="text-sm text-neutral-content m-0">
+                            {{ __('subscriptions/pause.banner.body', ['date' => $pausedUntil->isoFormat('MMMM D, Y')]) }}
+                        </p>
+                    </div>
+                </div>
+                <form method="POST" action="{{ route('settings.subscription.resume') }}" class="shrink-0">
+                    @csrf
+                    <button type="submit" class="btn2 btn-primary btn-sm">
+                        {{ __('subscriptions/pause.actions.resume') }}
+                    </button>
+                </form>
+            </div>
+        @elseif (!empty($yearlyNudge))
+            <div class="rounded-2xl bg-box p-4 shadow-xs flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border border-primary/40">
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-base-200 flex items-center justify-center shrink-0 text-primary">
+                        <x-icon class="fa-regular fa-calendar-check text-lg" />
+                    </div>
+                    <div class="flex flex-col gap-0.5">
+                        <div class="font-semibold">
+                            {{ __('subscriptions/yearly-nudge.card.title', ['savings' => $yearlyNudge['currency_symbol'] . \Illuminate\Support\Number::format($yearlyNudge['savings'], 2)]) }}
+                        </div>
+                        <p class="text-sm text-neutral-content m-0">
+                            {{ __('subscriptions/yearly-nudge.card.body', [
+                                'tier' => $yearlyNudge['tier']->name,
+                                'savings' => $yearlyNudge['currency_symbol'] . \Illuminate\Support\Number::format($yearlyNudge['savings'], 2),
+                            ]) }}
+                        </p>
+                    </div>
+                </div>
+                <a
+                    href="#"
+                    class="btn2 btn-primary btn-sm shrink-0 self-start sm:self-center"
+                    data-toggle="dialog"
+                    data-target="subscribe-confirm"
+                    data-url="{{ route('settings.subscription.change', [$yearlyNudge['tier'], 'period' => 'yearly']) }}"
+                >
+                    {{ __('subscriptions/yearly-nudge.action') }}
+                </a>
+            </div>
+        @endif
+
         <h2 class="text-xl m-0">
             {{ __('settings.subscription.tiers') }}
         </h2>

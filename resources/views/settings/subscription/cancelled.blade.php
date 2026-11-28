@@ -16,7 +16,6 @@
 
     <x-hero>
         <x-slot name="title">
-            💔
             {!! __('subscriptions/cancelled.title', ['name' => $user->name]) !!}
         </x-slot>
         <x-slot name="subtitle">{{ __('subscriptions/cancelled.subtitle') }}</x-slot>
@@ -24,8 +23,7 @@
 
     <x-grid type="1/1">
         <x-box class="flex flex-col gap-4">
-                <div class="text-xl">
-                    ⏳
+                <div class="text-2xl font-light">
                     {{ __('subscriptions/cancelled.active.title') }}
                 </div>
                 <p>
@@ -33,7 +31,7 @@
     'date' => '<strong>' . $endDate . '</strong>'
 ]) !!}
                 </p>
-            <ul>
+            <ul class="list-disc space-y-1 pl-5">
                 <li>{!! __('subscriptions/cancelled.active.premium' ) !!}</li>
                 <li>{!! __('subscriptions/cancelled.active.discord', ['discord' => '<a href="' . \App\Facades\Domain::toFront('go/discord') . '" class="text-link">Discord</a>'] ) !!}</li>
                 <li>{!! __('subscriptions/cancelled.active.adfree' ) !!}</li>
@@ -43,13 +41,12 @@
         </x-box>
 
         <x-box class="flex flex-col gap-4">
-                <div class="text-xl">
-                    ❌
+                <div class="text-2xl font-light">
                     {{ __('subscriptions/cancelled.next.title') }}
                 </div>
                 <p>{!! __('subscriptions/cancelled.next.helper', [
 ]) !!}</p>
-            <ul>
+            <ul class="list-disc space-y-1 pl-5">
                 <li>{!! __('subscriptions/cancelled.next.premium' ) !!}</li>
                 <li>{!! __('subscriptions/cancelled.next.discord', ['discord' => '<a href="' . \App\Facades\Domain::toFront('go/discord') . '" class="text-link">Discord</a>'] ) !!}</li>
                 <li>{!! __('subscriptions/cancelled.next.data' ) !!}</li>
@@ -57,8 +54,7 @@
         </x-box>
 
         <x-box class="flex flex-col gap-4">
-                <div class="text-xl">
-                    💡
+                <div class="text-2xl font-light">
                     {{ __('subscriptions/cancelled.change.title') }}
                 </div>
                 <p>{!! __('subscriptions/cancelled.change.helper', [
@@ -71,8 +67,7 @@
         </x-box>
 
         <x-box class="flex flex-col gap-4">
-            <div class="text-xl">
-                👋
+            <div class="text-2xl font-light">
                 {{ __('subscriptions/cancelled.contact.title') }}
             </div>
             <p>{!! __('subscriptions/cancelled.contact.helper', []) !!}</p>

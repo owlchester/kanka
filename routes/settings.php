@@ -30,6 +30,7 @@ use App\Http\Controllers\Settings\Subscription\CancellationController;
 use App\Http\Controllers\Settings\Subscription\CancelledController;
 use App\Http\Controllers\Settings\Subscription\FinishController;
 use App\Http\Controllers\Settings\Subscription\FreeTrialController;
+use App\Http\Controllers\Settings\Subscription\PauseController;
 use App\Http\Controllers\Settings\SubscriptionController;
 use App\Http\Controllers\Settings\TutorialController;
 use Illuminate\Support\Facades\Route;
@@ -101,6 +102,8 @@ Route::get('/subscription/payment-return/{tier}', [SubscriptionController::class
 Route::post('/subscription/change/{tier}', [SubscriptionController::class, 'subscribe'])->name('settings.subscription.subscribe');
 Route::get('/subscription/unsubscribe', [CancellationController::class, 'index'])->name('settings.subscription.unsubscribe');
 Route::post('/subscription/cancel', [CancellationController::class, 'save'])->name('settings.subscription.cancel');
+Route::post('/subscription/pause', [PauseController::class, 'pause'])->name('settings.subscription.pause');
+Route::post('/subscription/resume', [PauseController::class, 'resume'])->name('settings.subscription.resume');
 Route::get('/subscription/cancelled', [CancelledController::class, 'index'])->name('settings.subscription.cancelled');
 Route::get('/billing/payment-method', [PaymentMethodController::class, 'index'])->name('billing.payment-method');
 Route::get('/billing/portal', [PaymentMethodController::class, 'portal'])->name('billing.portal');

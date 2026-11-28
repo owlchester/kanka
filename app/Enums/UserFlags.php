@@ -10,5 +10,7 @@ enum UserFlags: string
     case email = 'email';
     case freeTrial = 'free_trial';
     case startTrial = 'start_trial';
+    case subPaused = 'sub_paused';
     case uploadSize = 'upload_size';
+    case yearlyNudge = 'yearly_nudge';
 }

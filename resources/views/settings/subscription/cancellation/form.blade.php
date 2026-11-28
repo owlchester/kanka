@@ -21,6 +21,10 @@
 
 <article class="text-center max-w-xl container p-4 md:px-6">
 
+    <form id="subscription-pause-form" method="POST" action="{{ route('settings.subscription.pause') }}" class="hidden">
+        @csrf
+    </form>
+
     <x-form :action="['settings.subscription.cancel']" id="cancellation-confirm" class="subscription-form text-left">
         <x-grid type="1/1">
 
@@ -75,6 +79,8 @@
                 x-data="{
                     reason: '',
                     secondary: '',
+                    pauseMonths: 1,
+                    canPause: @js($canPause ?? false),
                     canDowngrade: '{{ !$user->isOwlbear() }}',
                     secondaryOptions: @js($secondaryOptions)
                 }"
@@ -144,6 +150,47 @@
                 <div x-show="reason === 'financial' && canDowngrade" x-cloak>
                     {{ __('subscriptions/cancellation.loss.downgrade') }}
                 </div>
+
+                @if ($canPause ?? false)
+                    <div
+                        x-show="['on_break', 'too_busy', 'lost_motivation', 'not_often'].includes(secondary)"
+                        x-cloak
+                        class="rounded-xl border border-primary/40 bg-base-200/70 p-4 flex flex-col gap-3"
+                    >
+                        <div class="flex flex-col gap-1">
+                            <span class="font-semibold text-base">
+                                <x-icon class="fa-regular fa-pause-circle text-primary" />
+                                {{ __('subscriptions/pause.cancel_modal.title') }}
+                            </span>
+                            <p class="text-sm text-neutral-content m-0">
+                                {{ __('subscriptions/pause.cancel_modal.helper') }}
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2">
+                            @foreach ([1, 2, 3] as $m)
+                                <label class="rounded-lg border border-base-300 bg-base-100 p-2 text-center text-sm font-medium cursor-pointer hover:border-primary flex items-center justify-center gap-1.5">
+                                    <input
+                                        type="radio"
+                                        name="months"
+                                        value="{{ $m }}"
+                                        form="subscription-pause-form"
+                                        x-model.number="pauseMonths"
+                                    >
+                                    <span>{{ trans_choice('subscriptions/pause.cancel_modal.month', $m, ['count' => $m]) }}</span>
+                                </label>
+                            @endforeach
+                        </div>
+
+                        <button
+                            type="submit"
+                            form="subscription-pause-form"
+                            class="btn2 btn-primary btn-block"
+                        >
+                            {{ __('subscriptions/pause.actions.pause') }}
+                        </button>
+                    </div>
+                @endif
 
                 <x-forms.field field="reason_custom" :label="__('subscriptions/cancellation.custom.label')">
                     <textarea

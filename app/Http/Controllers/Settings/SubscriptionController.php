@@ -12,6 +12,8 @@ use App\Jobs\Users\AbandonedCart;
 use App\Models\Campaign;
 use App\Models\Tier;
 use App\Models\User;
+use App\Services\Subscription\PauseService;
+use App\Services\Subscription\YearlyNudgeService;
 use App\Services\SubscriptionService;
 use App\Services\SubscriptionUpgradeService;
 use App\Services\Users\CurrencyService;
@@ -73,6 +75,8 @@ class SubscriptionController extends Controller
         $currency = $user->currencySymbol();
         $tiers = Tier::with('prices')->ordered()->get();
         $hasManual = $user->hasManualSubscription();
+        $pausedUntil = app(PauseService::class)->user($user)->pausedUntil();
+        $yearlyNudge = app(YearlyNudgeService::class)->user($user)->offer();
         $tempTiers = [];
         $downgrades = [];
         $upgrades = [];
@@ -98,6 +102,8 @@ class SubscriptionController extends Controller
             'upgrades',
             'downgrades',
             'contextCampaign',
+            'pausedUntil',
+            'yearlyNudge',
         ));
     }
 

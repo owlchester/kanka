@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Settings\Subscription;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubscriptionCancel;
 use App\Services\Subscription\CancellationService;
+use App\Services\Subscription\PauseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -12,6 +13,7 @@ class CancellationController extends Controller
 {
     public function __construct(
         protected CancellationService $service,
+        protected PauseService $pauseService,
     ) {
         $this->middleware(['auth', 'identity', 'subscriptions']);
     }
@@ -53,6 +55,7 @@ class CancellationController extends Controller
         $players = $members->reject(fn ($userId) => $userId == $user->id)->count();
 
         $discord = auth()->user()->discord();
+        $canPause = $this->pauseService->user($user)->canPause();
 
         return view('settings.subscription.cancellation.form', compact(
             'user',
@@ -61,6 +64,7 @@ class CancellationController extends Controller
             'players',
             'discord',
             'plugins',
+            'canPause',
         ));
     }
 
