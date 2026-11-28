@@ -2,7 +2,9 @@
 
 return [
     'actions'           => [
-        'import'    => 'Upload the export',
+        'import'        => 'Upload the export',
+        'upload'        => 'Upload file',
+        'upload_csv'    => 'Upload CSV',
     ],
     'csv'               => [
         'continue'          => 'Continue',
@@ -23,13 +25,21 @@ return [
         'type_helper'       => 'Select the category you want to import the new entries into.',
         'validation_error'  => 'At least 1 column must be fully populated',
     ],
-    'description_v2'    => 'Import entries, articles, properties, galleries, and other data from an export  or new entries from a .CSV file into this campaign. The import runs in the background and may take some time. You and any other  admins will be notified when it finishes.',
+    'description_csv'   => 'Bulk-import new entries into this campaign from a .CSV file. The import runs in the background, and campaign admins are notified when it finishes.',
+    'description_v2'    => 'Import full campaign .zip exports (entries, articles, properties, galleries, and more) or bulk-import new entries from a .csv file. Imports run in the background, and campaign admins are notified when they finish.',
+    'errors'            => [
+        'file_size'     => 'File is too large. Maximum size is :size.',
+        'file_type_all' => 'Please select a .zip or .csv file.',
+        'file_type_csv' => 'Please select a .csv file.',
+    ],
     'fields'            => [
-        'file_v2'   => 'CSV file or export ZIP file',
+        'file_csv'  => 'CSV file',
+        'file_v2'   => 'Campaign export (.zip) or CSV file',
         'updated'   => 'Last updated',
     ],
     'form'              => 'Upload form',
-    'limitation_v2'     => 'Only zip and csv files are accepted. Max :size.',
+    'limitation_csv'    => 'Only .csv files are accepted. Max :size.',
+    'limitation_v2'     => 'Only .zip (max :size) and .csv (max :csv_size) files are accepted.',
     'progress'          => [
         'uploading' => 'Uploading',
     ],
@@ -44,7 +54,8 @@ return [
         'validating'    => 'Validating',
     ],
     'subscription'      => [
-        'pitch' => 'Restore a campaign backup or bring in an export from another campaign. Available on :wyvern or :elemental plans.',
+        'pitch' => 'Need to clone a world or restore a full backup? Campaign .zip imports (entries, articles, properties, and galleries) are included with :wyvern and :elemental plans.',
+        'title' => 'Duplicate or restore a full campaign',
     ],
     'title'             => 'Import',
 ];

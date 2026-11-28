@@ -25,7 +25,7 @@ class ImportController extends Controller
     {
         $this->authorize('setting', $campaign);
 
-        Datagrid::layout(\App\Renderers\Layouts\Campaign\CampaignImport::class);
+        Datagrid::campaign($campaign)->layout(\App\Renderers\Layouts\Campaign\CampaignImport::class);
 
         $rows = $campaign->campaignImports()
             ->sort(request()->only(['o', 'k']))
@@ -44,23 +44,22 @@ class ImportController extends Controller
             ]);
         }
 
-        $token = null;
-        if (auth()->user()->can('import', $campaign)) {
-            $token = $this->service
-                ->campaign($campaign)
-                ->user(auth()->user())
-                ->token();
-        }
+        $canImportZip = auth()->user()->can('import', $campaign);
+        $token = $this->service
+            ->campaign($campaign)
+            ->user(auth()->user())
+            ->token();
 
         return view('campaigns.import.index')
             ->with('campaign', $campaign)
             ->with('token', $token)
+            ->with('canImportZip', $canImportZip)
             ->with('rows', $rows);
     }
 
     public function presign(Campaign $campaign, CampaignImport $campaignImport): JsonResponse
     {
-        $this->authorize('import', $campaign);
+        $this->authorize('setting', $campaign);
 
         if ($campaignImport->campaign_id !== $campaign->id) {
             abort(403);
@@ -72,6 +71,10 @@ class ImportController extends Controller
 
         $ext = request()->validate(['ext' => 'required|in:zip,csv'])['ext'];
 
+        if ($ext === 'zip') {
+            $this->authorize('import', $campaign);
+        }
+
         $result = $this->signedUploadService->campaign($campaign)->presign($campaignImport, $ext);
 
         return response()->json($result);
@@ -79,7 +82,7 @@ class ImportController extends Controller
 
     public function confirm(Campaign $campaign, CampaignImport $campaignImport): JsonResponse
     {
-        $this->authorize('import', $campaign);
+        $this->authorize('setting', $campaign);
 
         if ($campaignImport->campaign_id !== $campaign->id) {
             abort(403);
@@ -87,6 +90,11 @@ class ImportController extends Controller
 
         if (! $campaignImport->isPrepared()) {
             abort(422);
+        }
+
+        $uploadKey = $campaignImport->config['upload_key'] ?? null;
+        if (is_string($uploadKey) && str_ends_with(strtolower($uploadKey), '.zip')) {
+            $this->authorize('import', $campaign);
         }
 
         $this->signedUploadService->campaign($campaign)->confirm($campaignImport);

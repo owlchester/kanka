@@ -34,6 +34,15 @@
     {{ __('tiers.features.no_ads') }}
 </div>
 
+<div class="flex gap-1">
+    <div class="w-8 shrink-0 text-center">
+        <x-icon class="fa-brands fa-markdown" />
+    </div>
+    <a href="https://docs.kanka.io/en/latest/features/campaigns/export.html" class="text-link" target="_blank" rel="noopener noreferrer">
+        {{ __('tiers.features.markdown_export') }}
+    </a>
+</div>
+
 <hr class="my-4" />
 
 <div class="flex gap-1">
@@ -43,13 +52,6 @@
     <a href="{{ route('larecipe.index') }}" class="text-link" target="_blank" rel="noopener noreferrer">
         {{ __('tiers.features.api_requests', ['amount' => config('limits.api.throttle.subscriber')]) }}
     </a>
-</div>
-
-<div class="flex gap-1">
-    <div class="w-8 shrink-0 text-center">
-        <x-icon class="check" />
-    </div>
-    {{ __('tiers.features.nice_image') }}
 </div>
 
 <div class="flex gap-1">

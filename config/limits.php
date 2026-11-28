@@ -88,7 +88,7 @@ return [
         'image' => [
             'standard' => env('APP_IMAGE_SIZE_MB', 3),
             'owlbear' => env('APP_IMAGE_SIZE_OWLBEAR_MB', 10),
-            'wyvern' => env('APP_IMAGE_SIZE_WYVERN_MB', 25),
+            'wyvern' => env('APP_IMAGE_SIZE_WYVERN_MB', 50),
             'elemental' => env('APP_IMAGE_SIZE_ELEMENTAL_MB', 100),
             'admin' => env('APP_IMAGE_SIZE_ADMIN_MB', 50),
         ],

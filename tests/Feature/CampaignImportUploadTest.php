@@ -4,6 +4,7 @@ use App\Enums\CampaignImportStatus;
 use App\Jobs\Campaigns\Import;
 use App\Models\Campaign;
 use App\Models\CampaignImport;
+use App\Models\CampaignUser;
 use App\Models\Pledge;
 use App\Models\User;
 use App\Services\Campaign\Import\SignedUploadService;
@@ -209,4 +210,162 @@ it('confirm — missing upload_key in config returns 422', function () {
         ->assertJsonFragment(['message' => 'No upload key found.']);
 
     Bus::assertNotDispatched(Import::class);
+});
+
+it('presign and confirm — free campaign admin can upload a csv', function () {
+    Storage::fake('export');
+    Bus::fake();
+
+    $user = User::factory()->create(); // free user
+    Auth::login($user);
+    $this->withCampaign();
+    $campaign = Campaign::first();
+
+    $token = new CampaignImport;
+    $token->campaign_id = $campaign->id;
+    $token->user_id = $user->id;
+    $token->status_id = CampaignImportStatus::PREPARED;
+    $token->save();
+
+    $mock = $this->mock(SignedUploadService::class)->makePartial();
+    $mock->shouldReceive('presign')->once()->andReturnUsing(function (CampaignImport $t, string $ext) use ($campaign) {
+        $key = "campaigns/{$campaign->id}/imports/test.{$ext}";
+        $t->config = array_merge($t->config ?? [], ['upload_key' => $key]);
+        $t->save();
+
+        return ['url' => 'https://fake-s3.example.com/upload', 'headers' => []];
+    });
+
+    $this->actingAs($user)
+        ->postJson(route('campaign.import.presign', [$campaign, $token]), ['ext' => 'csv'])
+        ->assertStatus(200)
+        ->assertJsonStructure(['url']);
+
+    $key = $token->fresh()->config['upload_key'];
+    expect($key)->toEndWith('.csv');
+
+    Storage::disk('export')->put($key, "name,type\nAria,NPC");
+
+    $this->actingAs($user)
+        ->postJson(route('campaign.import.confirm', [$campaign, $token]))
+        ->assertStatus(200)
+        ->assertJson(['success' => true]);
+
+    expect($token->fresh()->status_id)->toBe(CampaignImportStatus::QUEUED);
+    Bus::assertDispatched(Import::class);
+});
+
+it('confirm — free campaign admin gets 403 for a zip upload_key', function () {
+    Storage::fake('export');
+    Bus::fake();
+
+    $user = User::factory()->create();
+    Auth::login($user);
+    $this->withCampaign();
+    $campaign = Campaign::first();
+
+    $key = "campaigns/{$campaign->id}/imports/test.zip";
+    Storage::disk('export')->put($key, 'fake zip');
+
+    $token = new CampaignImport;
+    $token->campaign_id = $campaign->id;
+    $token->user_id = $user->id;
+    $token->status_id = CampaignImportStatus::PREPARED;
+    $token->config = ['upload_key' => $key];
+    $token->save();
+
+    $this->actingAs($user)
+        ->postJson(route('campaign.import.confirm', [$campaign, $token]))
+        ->assertStatus(403);
+
+    Bus::assertNotDispatched(Import::class);
+});
+
+it('presign and confirm — non-admin campaign member gets 403 for csv', function () {
+    Storage::fake('export');
+    Bus::fake();
+
+    $owner = User::factory()->create();
+    Auth::login($owner);
+    $this->withCampaign();
+    $campaign = Campaign::first();
+
+    $member = User::factory()->create();
+    CampaignUser::create([
+        'campaign_id' => $campaign->id,
+        'user_id' => $member->id,
+    ]);
+
+    $key = "campaigns/{$campaign->id}/imports/member.csv";
+    Storage::disk('export')->put($key, "name\nTest");
+
+    $token = new CampaignImport;
+    $token->campaign_id = $campaign->id;
+    $token->user_id = $member->id;
+    $token->status_id = CampaignImportStatus::PREPARED;
+    $token->config = ['upload_key' => $key];
+    $token->save();
+
+    $this->actingAs($member)
+        ->postJson(route('campaign.import.presign', [$campaign, $token]), ['ext' => 'csv'])
+        ->assertStatus(403);
+
+    $this->actingAs($member)
+        ->postJson(route('campaign.import.confirm', [$campaign, $token]))
+        ->assertStatus(403);
+
+    Bus::assertNotDispatched(Import::class);
+});
+
+it('confirm — csv file over 50 MiB returns 422 and deletes file', function () {
+    Storage::fake('export');
+    Bus::fake();
+
+    $user = User::factory()->create();
+    Auth::login($user);
+    $this->withCampaign();
+    $campaign = Campaign::first();
+
+    $key = "campaigns/{$campaign->id}/imports/large.csv";
+    $token = new CampaignImport;
+    $token->campaign_id = $campaign->id;
+    $token->user_id = $user->id;
+    $token->status_id = CampaignImportStatus::PREPARED;
+    $token->config = ['upload_key' => $key];
+    $token->save();
+
+    $mockDisk = Mockery::mock(Filesystem::class);
+    $mockDisk->shouldReceive('exists')->with($key)->andReturn(true);
+    $mockDisk->shouldReceive('size')->with($key)->andReturn(51 * 1024 * 1024);
+    $mockDisk->shouldReceive('delete')->with($key)->once()->andReturn(true);
+
+    Storage::shouldReceive('disk')->with('export')->andReturn($mockDisk);
+
+    $this->actingAs($user)
+        ->postJson(route('campaign.import.confirm', [$campaign, $token]))
+        ->assertStatus(422);
+
+    Bus::assertNotDispatched(Import::class);
+});
+
+it('index — shows csv-only form and zip upsell to free admin, and full form to wyvern admin', function () {
+    $freeUser = User::factory()->create();
+    Auth::login($freeUser);
+    $this->withCampaign();
+    $campaign = Campaign::first();
+
+    $this->actingAs($freeUser)
+        ->get(route('campaign.import', $campaign))
+        ->assertOk()
+        ->assertSee('accept=".csv"', false)
+        ->assertSee(__('campaigns/import.subscription.title'));
+
+    $freeUser->pledge = Pledge::WYVERN;
+    $freeUser->save();
+
+    $this->actingAs($freeUser)
+        ->get(route('campaign.import', $campaign))
+        ->assertOk()
+        ->assertSee('accept=".zip, .csv"', false)
+        ->assertDontSee(__('campaigns/import.subscription.title'));
 });

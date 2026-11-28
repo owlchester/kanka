@@ -48,9 +48,12 @@ class SignedUploadService
             abort(422, 'File not found on storage.');
         }
 
-        if (Storage::disk('export')->size($key) > 512 * 1024 * 1024) {
+        $isCsv = str_ends_with(strtolower($key), '.csv');
+        $maxMb = (int) config($isCsv ? 'imports.max_size_csv_mb' : 'imports.max_size_zip_mb', $isCsv ? 50 : 512);
+
+        if (Storage::disk('export')->size($key) > $maxMb * 1024 * 1024) {
             Storage::disk('export')->delete($key);
-            abort(422, 'File exceeds 512 MiB limit.');
+            abort(422, "File exceeds {$maxMb} MiB limit.");
         }
 
         $token->config = array_merge($token->config, ['files' => [$key]]);

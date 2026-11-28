@@ -1,6 +1,7 @@
 <?php /**
  * @var \App\Models\CampaignBoost $boost
  * @var \App\Models\Campaign $campaign
+ * @var ?\App\Models\Campaign $contextCampaign
  * @var \App\Models\User $user
  */
 
@@ -201,7 +202,15 @@
                     </div>
                     <div>
                         <h3 class="text-lg font-semibold m-0">{{ __('tiers.premium_summary.title') }}</h3>
-                        <p class="text-sm text-neutral-content m-0">{{ __('tiers.premium_summary.subtitle') }}</p>
+                        <p class="text-sm text-neutral-content m-0">
+                            @if ($contextCampaign && intval($contextCampaign->members_count) > 1)
+                                {{ __('tiers.premium_summary.subtitle_group', ['campaign' => $contextCampaign->name, 'count' => intval($contextCampaign->members_count)]) }}
+                            @elseif ($contextCampaign)
+                                {{ __('tiers.premium_summary.subtitle_solo', ['campaign' => $contextCampaign->name, 'storage' => config('limits.gallery.premium') / 1024 / 1024]) }}
+                            @else
+                                {{ __('tiers.premium_summary.subtitle') }}
+                            @endif
+                        </p>
                     </div>
                 </div>
                 <a href="https://kanka.io/premium" class="btn2 btn-sm shrink-0 self-start sm:self-center inline-flex items-center gap-1.5" target="_blank" rel="noopener noreferrer">
@@ -212,7 +221,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 <div class="rounded-xl bg-base-200/60 p-3.5 flex items-start gap-3">
                     <div class="w-8 h-8 rounded-lg bg-base-100 flex items-center justify-center shrink-0 text-boost">
-                        <x-icon class="fa-regular fa-puzzle-piece" />
+                        <x-icon class="fa-regular fa-palette" />
                     </div>
                     <div class="flex flex-col gap-0.5">
                         <div class="text-sm font-semibold">{{ __('tiers.premium_summary.plugins_title') }}</div>
@@ -221,11 +230,20 @@
                 </div>
                 <div class="rounded-xl bg-base-200/60 p-3.5 flex items-start gap-3">
                     <div class="w-8 h-8 rounded-lg bg-base-100 flex items-center justify-center shrink-0 text-boost">
-                        <x-icon class="fa-regular fa-palette" />
+                        <x-icon class="fa-regular fa-map" />
                     </div>
                     <div class="flex flex-col gap-0.5">
-                        <div class="text-sm font-semibold">{{ __('tiers.premium_summary.styling_title') }}</div>
-                        <div class="text-xs text-neutral-content">{{ __('tiers.premium_summary.styling_desc') }}</div>
+                        <div class="text-sm font-semibold">{{ __('tiers.premium_summary.maps_title') }}</div>
+                        <div class="text-xs text-neutral-content">{{ __('tiers.premium_summary.maps_desc') }}</div>
+                    </div>
+                </div>
+                <div class="rounded-xl bg-base-200/60 p-3.5 flex items-start gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-base-100 flex items-center justify-center shrink-0 text-boost">
+                        <x-icon class="fa-regular fa-layer-group" />
+                    </div>
+                    <div class="flex flex-col gap-0.5">
+                        <div class="text-sm font-semibold">{{ __('tiers.premium_summary.structure_title') }}</div>
+                        <div class="text-xs text-neutral-content">{{ __('tiers.premium_summary.structure_desc') }}</div>
                     </div>
                 </div>
                 <div class="rounded-xl bg-base-200/60 p-3.5 flex items-start gap-3">
@@ -233,17 +251,8 @@
                         <x-icon class="fa-regular fa-users" />
                     </div>
                     <div class="flex flex-col gap-0.5">
-                        <div class="text-sm font-semibold">{{ __('tiers.premium_summary.members_title') }}</div>
-                        <div class="text-xs text-neutral-content">{{ __('tiers.premium_summary.members_desc') }}</div>
-                    </div>
-                </div>
-                <div class="rounded-xl bg-base-200/60 p-3.5 flex items-start gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-base-100 flex items-center justify-center shrink-0 text-boost">
-                        <x-icon class="fa-regular fa-history" />
-                    </div>
-                    <div class="flex flex-col gap-0.5">
-                        <div class="text-sm font-semibold">{{ __('tiers.premium_summary.logs_title', ['days' => config('limits.campaigns.logs.premium')]) }}</div>
-                        <div class="text-xs text-neutral-content">{{ __('tiers.premium_summary.logs_desc') }}</div>
+                        <div class="text-sm font-semibold">{{ __('tiers.premium_summary.sharing_title') }}</div>
+                        <div class="text-xs text-neutral-content">{{ __('tiers.premium_summary.sharing_desc', ['days' => config('limits.campaigns.logs.premium')]) }}</div>
                     </div>
                 </div>
             </div>

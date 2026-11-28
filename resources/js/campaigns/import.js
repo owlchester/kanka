@@ -1,13 +1,28 @@
 import axios from "axios";
 import { createS3UploadClient } from "./s3UploadClient.js";
 
-const MAX_SIZE = 536870912;
+const DEFAULT_MAX_ZIP_SIZE = 512 * 1024 * 1024;
+const DEFAULT_MAX_CSV_SIZE = 50 * 1024 * 1024;
 
 const initExport = () => {
     const form = document.getElementById('campaign-import-form');
     if (!form) {
         return;
     }
+
+    const allowedExtensions = (form.dataset.allowedExtensions || 'zip,csv')
+        .split(',')
+        .map((ext) => ext.trim().toLowerCase())
+        .filter(Boolean);
+    const maxSizes = {
+        zip: Number(form.dataset.maxZipSize) || DEFAULT_MAX_ZIP_SIZE,
+        csv: Number(form.dataset.maxCsvSize) || DEFAULT_MAX_CSV_SIZE,
+    };
+    const typeErrorMessage = form.dataset.errorType || 'Please select a .zip or .csv file.';
+    const sizeErrorMessages = {
+        zip: form.dataset.errorSizeZip || 'File is too large. Maximum size is 512 MiB.',
+        csv: form.dataset.errorSizeCsv || 'File is too large. Maximum size is 50 MiB.',
+    };
 
     const fileProgress = document.querySelector('.progress');
     const progressBar = document.querySelector('[role="progressbar"]');
@@ -28,18 +43,19 @@ const initExport = () => {
         const file = fileInput.files[0];
 
         if (!file) {
-            showError('Please select a .zip or .csv file.');
+            showError(typeErrorMessage);
             return;
         }
 
         const ext = file.name.toLowerCase().split('.').pop();
-        if (ext !== 'zip' && ext !== 'csv') {
-            showError('Please select a .zip or .csv file.');
+        if (!allowedExtensions.includes(ext)) {
+            showError(typeErrorMessage);
             return;
         }
 
-        if (file.size > MAX_SIZE) {
-            showError('File is too large. Maximum size is 512 MiB.');
+        const maxSize = maxSizes[ext] ?? DEFAULT_MAX_ZIP_SIZE;
+        if (file.size > maxSize) {
+            showError(sizeErrorMessages[ext] || sizeErrorMessages.zip);
             return;
         }
 

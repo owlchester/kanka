@@ -4,6 +4,7 @@ use App\Enums\CampaignVisibility;
 use App\Enums\PricingPeriod;
 use App\Http\Controllers\Settings\SubscriptionController;
 use App\Models\Campaign;
+use App\Models\CampaignUser;
 use App\Models\Tier;
 use App\Models\TierPrice;
 use App\Models\User;
@@ -180,4 +181,57 @@ it('adds period classes to disabled current-plan buttons on Wyvern and Elemental
         ->get(route('settings.subscription'))
         ->assertOk()
         ->assertSee('btn2 btn-block disabled price-monthly', false);
+});
+
+it('shows the solo contextual summary when the user has a solo unboosted campaign', function () {
+    config(['services.stripe.enabled' => true]);
+
+    $this->asUser()->withCampaign();
+    $campaign = Campaign::firstOrFail();
+    auth()->user()->update(['last_campaign_id' => $campaign->id]);
+
+    $this->get(route('settings.subscription'))
+        ->assertOk()
+        ->assertSee(__('tiers.premium_summary.subtitle_solo', [
+            'campaign' => $campaign->name,
+            'storage' => config('limits.gallery.premium') / 1024 / 1024,
+        ]));
+});
+
+it('shows the group contextual summary when the user has a multi-member unboosted campaign', function () {
+    config(['services.stripe.enabled' => true]);
+
+    $this->asUser()->withCampaign();
+    $campaign = Campaign::firstOrFail();
+    auth()->user()->update(['last_campaign_id' => $campaign->id]);
+    $player = User::factory()->create();
+    CampaignUser::create([
+        'campaign_id' => $campaign->id,
+        'user_id' => $player->id,
+    ]);
+
+    $this->get(route('settings.subscription'))
+        ->assertOk()
+        ->assertSee(__('tiers.premium_summary.subtitle_group', [
+            'campaign' => $campaign->name,
+            'count' => 2,
+        ]));
+});
+
+it('shows the generic summary when the current campaign is already boosted', function () {
+    config(['services.stripe.enabled' => true]);
+
+    $this->asUser()->withCampaign();
+    $campaign = Campaign::firstOrFail();
+    auth()->user()->update(['last_campaign_id' => $campaign->id]);
+    $campaign->boost_count = 1;
+    $campaign->saveQuietly();
+
+    $this->get(route('settings.subscription'))
+        ->assertOk()
+        ->assertSee(__('tiers.premium_summary.subtitle'))
+        ->assertDontSee(__('tiers.premium_summary.subtitle_solo', [
+            'campaign' => $campaign->name,
+            'storage' => config('limits.gallery.premium') / 1024 / 1024,
+        ]));
 });

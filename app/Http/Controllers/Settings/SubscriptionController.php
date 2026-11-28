@@ -59,7 +59,13 @@ class SubscriptionController extends Controller
     {
         /** @var User $user */
         $user = auth()->user();
-        $this->rememberCampaignContext(request(), clearWhenMissing: true);
+        $contextCampaign = $this->rememberCampaignContext(request(), clearWhenMissing: true);
+        if ($contextCampaign === null && $user->last_campaign_id) {
+            $contextCampaign = Campaign::acl($user->last_campaign_id)->withCount('members')->first();
+        }
+        if ($contextCampaign?->boosted()) {
+            $contextCampaign = null;
+        }
         $stripeApiToken = config('cashier.key');
         $this->currencyService->user($user)->setDefaultCurrency();
         $status = $this->subscription->user($user)->status();
@@ -91,6 +97,7 @@ class SubscriptionController extends Controller
             'hasManual',
             'upgrades',
             'downgrades',
+            'contextCampaign',
         ));
     }
 
@@ -392,18 +399,22 @@ class SubscriptionController extends Controller
             ->with('sub_id', $sub->tierPrice()->id);
     }
 
-    private function rememberCampaignContext(Request $request, bool $clearWhenMissing = false): void
+    private function rememberCampaignContext(Request $request, bool $clearWhenMissing = false): ?Campaign
     {
         if ($clearWhenMissing) {
             session()->forget(self::SUCCESS_SESSION_KEY);
         }
 
         if ($request->has('w')) {
-            Campaign::acl($request->integer('w'))->firstOrFail();
+            $campaign = Campaign::acl($request->integer('w'))->withCount('members')->firstOrFail();
             session()->put(self::CAMPAIGN_SESSION_KEY, $request->integer('w'));
+
+            return $campaign;
         } elseif ($clearWhenMissing) {
             session()->forget(self::CAMPAIGN_SESSION_KEY);
         }
+
+        return null;
     }
 
     private function markSubscriptionSuccess(bool $eligible): void
