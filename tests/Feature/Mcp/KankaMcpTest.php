@@ -1,21 +1,29 @@
 <?php
 
+use App\Enums\Visibility;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Module;
 use App\Facades\UserCache;
 use App\Mcp\Servers\KankaServer;
+use App\Mcp\Tools\AddEntityPostTool;
+use App\Mcp\Tools\CreateEntityTool;
+use App\Mcp\Tools\CreateRelationTool;
 use App\Mcp\Tools\GetEntityRelationsTool;
 use App\Mcp\Tools\GetEntityTool;
 use App\Mcp\Tools\ListCampaignsTool;
 use App\Mcp\Tools\ListEntityAttributesTool;
 use App\Mcp\Tools\ListEntityPostsTool;
+use App\Mcp\Tools\SearchContentTool;
 use App\Mcp\Tools\SearchEntitiesTool;
 use App\Models\Attribute;
+use App\Models\CampaignUser;
 use App\Models\Character;
 use App\Models\CharacterTrait;
+use App\Models\Entity;
 use App\Models\Family;
 use App\Models\Location;
+use App\Models\Pledge;
 use App\Models\Post;
 use App\Models\Race;
 use App\Models\Relation;
@@ -222,10 +230,10 @@ it('shows a browser help page on the MCP URL', function () {
         ->assertOk()
         ->assertViewIs('mcp.help')
         ->assertSee('Kanka MCP')
-        ->assertSee('OpenCode')
-        ->assertSee('Codex')
         ->assertSee('Claude')
-        ->assertSee('read-only');
+        ->assertSee('ChatGPT')
+        ->assertSee('Wyvern and Elemental')
+        ->assertSee('full-text');
 });
 
 it('keeps the MCP endpoint disabled unless explicitly enabled', function () {
@@ -273,4 +281,177 @@ it('allows ordinary OAuth API tokens to continue using the REST API', function (
     Passport::actingAs($user, ['read']);
 
     $this->getJson('/api/1.0/profile')->assertOk();
+});
+
+it('gates the MCP endpoint to Wyvern and Elemental subscribers', function () {
+    $initPayload = [
+        'jsonrpc' => '2.0',
+        'id' => 1,
+        'method' => 'initialize',
+        'params' => [
+            'protocolVersion' => '2025-03-26',
+            'capabilities' => [],
+            'clientInfo' => ['name' => 'TestClient', 'version' => '1.0.0'],
+        ],
+    ];
+
+    $freeUser = User::factory()->create();
+    Passport::actingAs($freeUser, ['mcp:use']);
+    $this->postJson('/mcp', $initPayload)->assertForbidden();
+
+    $owlbearUser = User::factory()->create(['pledge' => Pledge::OWLBEAR]);
+    Passport::actingAs($owlbearUser, ['mcp:use']);
+    $this->postJson('/mcp', $initPayload)->assertForbidden();
+
+    $wyvernUser = User::factory()->create(['pledge' => Pledge::WYVERN]);
+    Passport::actingAs($wyvernUser, ['mcp:use']);
+    $this->postJson('/mcp', $initPayload)->assertOk();
+
+    $elementalUser = User::factory()->create(['pledge' => Pledge::ELEMENTAL]);
+    Passport::actingAs($elementalUser, ['mcp:use']);
+    $this->postJson('/mcp', $initPayload)->assertOk();
+});
+
+it('searches full-text entity and post content while respecting ACL', function () {
+    $this->asUser()->withCampaign();
+    $admin = auth()->user();
+
+    $publicChar = Character::factory()->create([
+        'campaign_id' => 1,
+        'name' => 'Brother Aldric',
+        'is_private' => false,
+    ]);
+    $publicEntity = $publicChar->entity;
+    $publicEntity->entry = '<p>Keeper of the Obsidian Pact archive.</p>';
+    $publicEntity->save();
+
+    $privateChar = Character::factory()->create([
+        'campaign_id' => 1,
+        'name' => 'Secret Agent',
+        'is_private' => true,
+    ]);
+    $privateEntity = $privateChar->entity;
+    $privateEntity->entry = '<p>Secretly leads the Obsidian Pact.</p>';
+    $privateEntity->save();
+
+    Post::factory()->create([
+        'entity_id' => $publicEntity->id,
+        'name' => 'Hidden Ledger',
+        'entry' => '<p>Obsidian Pact treasury details.</p>',
+        'visibility_id' => Visibility::Admin,
+    ]);
+
+    KankaServer::actingAs($admin, 'api')
+        ->tool(SearchContentTool::class, ['campaign_id' => 1, 'query' => 'Obsidian Pact'])
+        ->assertHasNoErrors()
+        ->assertStructuredContent(fn ($json) => $json
+            ->where('search_engine', 'database')
+            ->has('results', 3));
+
+    // Non-admin member should only see the public entity, not private entity or admin-only post
+    $member = User::factory()->create(['pledge' => Pledge::WYVERN]);
+    CampaignUser::create(['campaign_id' => 1, 'user_id' => $member->id]);
+
+    CampaignLocalization::clearCampaign();
+    app()->forgetInstance(EntityPermissionService::class);
+    app(EntityPermissionService::class);
+
+    KankaServer::actingAs($member, 'api')
+        ->tool(SearchContentTool::class, ['campaign_id' => 1, 'query' => 'Obsidian Pact'])
+        ->assertHasNoErrors()
+        ->assertStructuredContent(fn ($json) => $json
+            ->has('results', 1)
+            ->where('results.0.entity_id', $publicEntity->id)
+            ->etc());
+});
+
+it('creates standard and custom entities defaulting to private for admins', function () {
+    $this->asUser()->withCampaign();
+    $admin = auth()->user();
+
+    KankaServer::actingAs($admin, 'api')
+        ->tool(CreateEntityTool::class, [
+            'campaign_id' => 1,
+            'module' => 'character',
+            'name' => 'Captain Vane',
+            'type' => 'NPC',
+            'entry' => 'Commander of the **Silver Guard**.',
+        ])
+        ->assertHasNoErrors()
+        ->assertStructuredContent(fn ($json) => $json
+            ->where('name', 'Captain Vane')
+            ->where('module.code', 'character')
+            ->where('is_private', true)
+            ->etc());
+
+    $created = Entity::where('campaign_id', 1)->where('name', 'Captain Vane')->firstOrFail();
+    expect((bool) $created->is_private)->toBeTrue();
+    expect($created->entry)->toContain('<strong>Silver Guard</strong>');
+
+    KankaServer::actingAs($admin, 'api')
+        ->tool(CreateEntityTool::class, [
+            'campaign_id' => 1,
+            'module' => 'note',
+            'name' => 'Session 14 Prep',
+            'is_private' => false,
+        ])
+        ->assertHasNoErrors()
+        ->assertStructuredContent(fn ($json) => $json
+            ->where('name', 'Session 14 Prep')
+            ->where('module.code', 'note')
+            ->where('is_private', false)
+            ->etc());
+
+    // Non-member user is denied access to create entities in the campaign
+    $outsider = User::factory()->create(['pledge' => Pledge::WYVERN]);
+
+    KankaServer::actingAs($outsider, 'api')
+        ->tool(CreateEntityTool::class, [
+            'campaign_id' => 1,
+            'module' => 'character',
+            'name' => 'Unauthorized NPC',
+        ])
+        ->assertHasErrors();
+});
+
+it('adds an article post and creates a relation defaulting to admin-only visibility', function () {
+    $this->asUser()->withCampaign();
+    $admin = auth()->user();
+
+    $c1 = Character::factory()->create(['campaign_id' => 1, 'name' => 'Silverkeep']);
+    $c2 = Character::factory()->create(['campaign_id' => 1, 'name' => 'Lord Vance']);
+
+    KankaServer::actingAs($admin, 'api')
+        ->tool(AddEntityPostTool::class, [
+            'campaign_id' => 1,
+            'entity_id' => $c1->entity->id,
+            'name' => 'Session 14 Recap',
+            'entry' => 'The party met *Lord Vance* at the gate.',
+        ])
+        ->assertHasNoErrors()
+        ->assertStructuredContent(fn ($json) => $json
+            ->where('entity_id', $c1->entity->id)
+            ->where('name', 'Session 14 Recap')
+            ->where('visibility', Visibility::Admin->value)
+            ->etc());
+
+    $post = Post::where('entity_id', $c1->entity->id)->where('name', 'Session 14 Recap')->firstOrFail();
+    expect($post->entry)->toContain('<em>Lord Vance</em>');
+
+    KankaServer::actingAs($admin, 'api')
+        ->tool(CreateRelationTool::class, [
+            'campaign_id' => 1,
+            'owner_entity_id' => $c1->entity->id,
+            'target_entity_id' => $c2->entity->id,
+            'relation' => 'governed by',
+            'attitude' => 25,
+        ])
+        ->assertHasNoErrors()
+        ->assertStructuredContent(fn ($json) => $json
+            ->where('owner_entity_id', $c1->entity->id)
+            ->where('target_entity_id', $c2->entity->id)
+            ->where('relation', 'governed by')
+            ->where('attitude', 25)
+            ->where('visibility', Visibility::Admin->value)
+            ->etc());
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,13 @@ class AuthenticateMcp
         }
 
         Auth::shouldUse('api');
+
+        $user = Auth::guard('api')->user();
+        if (! $user instanceof User || (! $user->isWyvern() && ! $user->isElemental() && ! $user->hasRole('admin'))) {
+            return response()->json([
+                'message' => 'Kanka MCP requires a Wyvern or Elemental subscription. Upgrade at ' . route('settings.subscription'),
+            ], 403);
+        }
 
         return $next($request);
     }

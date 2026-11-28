@@ -26,8 +26,8 @@ return [
         'token_name'    => 'Token Name',
     ],
     'mcp'               => [
-        'badge'         => 'MCP · read only',
-        'description'   => 'Connect AI assistants to Kanka for searching entries of your worlds via the Model Context Protocol. Add this URL as a streamable HTTP MCP server in your client.',
+        'badge'         => 'MCP',
+        'description'   => 'Connect AI assistants to Kanka to search your worlds and draft entries via the Model Context Protocol. Add this URL as a streamable HTTP MCP server in your client.',
         'more'          => 'Learn more on your :mcp page.',
         'title'         => 'MCP Server',
     ],

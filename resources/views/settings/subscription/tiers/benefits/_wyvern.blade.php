@@ -42,3 +42,12 @@
         {{ __('tiers.features.import') }}
     </a>
 </div>
+
+<div class="flex gap-1">
+    <div class="w-8 shrink-0 text-center">
+        <x-icon class="fa-regular fa-plug" />
+    </div>
+    <a href="{{ route('mcp.help') }}" class="text-link" target="_blank" rel="noopener noreferrer">
+        {{ __('tiers.features.mcp') }}
+    </a>
+</div>

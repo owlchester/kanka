@@ -24,6 +24,7 @@ return [
         'file_size'         => ':size file uploads',
         'import'            => 'Campaign duplicator & backup importer (.zip)',
         'markdown_export'   => 'Full Markdown campaign export',
+        'mcp'               => 'AI assistant access via Kanka MCP',
         'modules'           => ':count custom categories',
         'nice_image'        => 'Default thumbnail per category',
         'no_ads'            => 'Remove all ads',

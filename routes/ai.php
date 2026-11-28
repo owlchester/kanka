@@ -13,7 +13,7 @@ Mcp::web('/mcp', KankaServer::class)
 
 Route::get('/mcp', fn () => response()->view('mcp.help', [
     'title' => 'Kanka MCP',
-    'metaDescription' => 'Connect an AI assistant to your Kanka worlds using read-only MCP tools.',
+    'metaDescription' => 'Connect Claude, ChatGPT, or other AI assistants to your Kanka worlds with full-text lore search and safe draft tools.',
 ]))->name('mcp.help');
 
 Route::middleware(['throttle:20,1', EnsureMcpEnabled::class])->group(function () {
